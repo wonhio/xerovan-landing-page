@@ -47,14 +47,14 @@
   .brand img{height:26px; width:auto;}
   .brand-word{font-family:'Aptos','Segoe UI','Inter',sans-serif; font-weight:500; font-size:16px; letter-spacing:0.02em; display:inline-flex; align-items:baseline; color:var(--silver-100);}
   .logo-a{width:0.62em; height:0.72em; vertical-align:-0.055em; fill:none; stroke:currentColor; stroke-width:1.3; stroke-linecap:round; stroke-linejoin:round;}
-  .brand-word-img{height:13px; width:auto; display:block;}
-  .nav-links{display:flex; gap:32px; font-size:13.5px; color:var(--silver-500);}
+  .brand img.brand-word-img{height:20px; width:auto; display:block;}
+  .nav-links{display:flex; gap:32px; font-size:13.5px; font-weight:600; color:var(--silver-300);}
   .nav-links a:hover{color:var(--silver-100);}
   .nav-cta{font-family:'Unbounded'; font-size:12px; letter-spacing:0.04em; font-weight:600; padding:10px 20px; border-radius:100px; background:var(--silver-100); color:#0a0b0d; transition:transform .2s ease, box-shadow .2s ease; white-space:nowrap;}
   .nav-cta:hover{transform:translateY(-1px); box-shadow:0 8px 24px rgba(255,255,255,0.12);}
   @media(max-width:920px){ .nav-links{display:none;} }
 
-  .btn-primary{font-family:'Unbounded'; font-size:13px; font-weight:600; letter-spacing:0.02em; padding:16px 28px; border-radius:100px; background:var(--silver-100); color:#0a0b0d; border:none; cursor:pointer; transition:transform .2s ease, box-shadow .2s ease; white-space:nowrap;}
+  .btn-primary{font-family:'Unbounded'; font-size:13px; font-weight:600; letter-spacing:0.02em; padding:16px 28px; border-radius:100px; background:linear-gradient(180deg, #ffffff 0%, #e2e6ea 35%, #b7bec4 60%, #eef1f3 100%); color:#0a0b0d; border:none; cursor:pointer; transition:transform .2s ease, box-shadow .2s ease; white-space:nowrap; box-shadow:inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -1px 2px rgba(0,0,0,0.15);}
   .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 30px rgba(255,255,255,0.14);}
   .btn-ghost{font-family:'Unbounded'; font-size:13px; font-weight:600; letter-spacing:0.02em; padding:16px 28px; border-radius:100px; border:1px solid var(--line); color:var(--silver-300); background:transparent; cursor:pointer; transition:all .2s ease; white-space:nowrap;}
   .btn-ghost:hover{border-color:var(--silver-500); color:var(--silver-100);}
@@ -75,7 +75,13 @@
     100%{opacity:0; transform:translate(var(--sx,4px),-30px) scale(0.25);}
   }
   h1.hero-title{font-family:'Unbounded'; font-weight:700; font-size:clamp(38px, 7.2vw, 84px); line-height:1; letter-spacing:-0.01em; position:relative; z-index:1;}
-  h1.hero-title .metal{background:linear-gradient(180deg, var(--silver-100) 20%, var(--silver-500) 60%, var(--silver-300) 100%); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  h1.hero-title .metal{
+    background:linear-gradient(100deg, var(--silver-500) 0%, var(--silver-100) 22%, #ffffff 38%, var(--silver-300) 52%, var(--silver-500) 70%, var(--silver-100) 100%);
+    background-size:260% 100%;
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  @media (prefers-reduced-motion:no-preference){ h1.hero-title .metal{ animation:text-shine 6.5s ease-in-out infinite; } }
+  @keyframes text-shine{ 0%{background-position:0% 50%;} 100%{background-position:100% 50%;} }
   .hero-sub{max-width:540px; margin:22px auto 40px; font-size:16.5px; line-height:1.65; color:var(--silver-500); position:relative; z-index:1;}
   .hero-ctas{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; position:relative; z-index:2;}
 
@@ -90,7 +96,7 @@
 
   /* ---------- app preview ---------- */
   .app-preview{padding:20px 0 100px; text-align:center;}
-  .hero-visual-wrap{position:relative; max-width:920px; width:100%; margin:0 auto; aspect-ratio:1396/1032;}
+  .hero-visual-wrap{position:relative; max-width:920px; width:100%; margin:0 auto; aspect-ratio:1396/1032; overflow:hidden; border-radius:18px;}
   .hero-visual-img{position:absolute; inset:0; width:100%; height:100%; display:block; border-radius:18px;}
   .hero-visual-screen{position:absolute; left:39.9%; top:5.62%; width:25.07%; height:78.59%; border-radius:8%/3.4%; overflow:hidden; background:#000;}
   .hero-visual-screen iframe{position:absolute; top:0; left:0; border:0; background:#000; transform-origin:top left;}
@@ -103,7 +109,13 @@
   section{padding:110px 0;}
   .section-head{max-width:660px; margin-bottom:56px;}
   .section-head.center{margin-left:auto; margin-right:auto; text-align:center;}
-  .section-head h2{font-family:'Unbounded'; font-weight:600; font-size:clamp(26px, 4vw, 42px); line-height:1.1; letter-spacing:-0.01em;}
+  .section-head h2{
+    font-family:'Unbounded'; font-weight:600; font-size:clamp(26px, 4vw, 42px); line-height:1.1; letter-spacing:-0.01em;
+    background:linear-gradient(100deg, var(--silver-300) 0%, var(--silver-100) 25%, #ffffff 42%, var(--silver-300) 60%, var(--silver-500) 78%, var(--silver-100) 100%);
+    background-size:260% 100%;
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  @media (prefers-reduced-motion:no-preference){ .section-head h2{ animation:text-shine 8s ease-in-out infinite; } }
   .section-head p{margin-top:16px; color:var(--silver-500); font-size:16px; line-height:1.65;}
 
   .flow{display:flex; align-items:center; justify-content:center; gap:0; flex-wrap:wrap; margin:40px 0 50px;}
@@ -117,11 +129,11 @@
   .eco-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; margin-top:60px;}
   @media(max-width:900px){ .eco-grid{grid-template-columns:1fr 1fr;} }
   @media(max-width:600px){ .eco-grid{grid-template-columns:1fr;} }
-  .eco-card{background:var(--panel); padding:34px 28px;}
+  .eco-card{background:var(--panel); padding:34px 28px; box-shadow:inset 0 1px 0 rgba(255,255,255,0.06);}
   .eco-card h4{font-family:'Unbounded'; font-size:16px; font-weight:600; margin-bottom:16px;}
   .eco-card li{font-size:13.5px; color:var(--silver-500); line-height:1.9; position:relative; padding-left:14px;}
   .eco-card li::before{content:'—'; position:absolute; left:0; color:var(--silver-700);}
-  .eco-card-visual{background:var(--panel); position:relative; min-height:220px;}
+  .eco-card-visual{background:var(--panel); position:relative; min-height:220px; overflow:hidden;}
   .eco-card-visual img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
 
   /* ---------- feature rows ---------- */
@@ -131,7 +143,7 @@
   .feature:nth-child(even) > *{direction:ltr;}
   @media(max-width:900px){ .feature{grid-template-columns:1fr; gap:36px; direction:ltr !important;} .feature > *{direction:ltr !important;} }
   .feature-num{font-family:'JetBrains Mono'; font-size:12px; color:var(--ice); letter-spacing:0.14em; margin-bottom:16px; display:block;}
-  .icon-tile{width:52px; height:52px; border-radius:14px; background:var(--panel-2); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; margin-bottom:22px;}
+  .icon-tile{width:52px; height:52px; border-radius:14px; background:var(--panel-2); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; margin-bottom:22px; box-shadow:inset 0 1px 0 rgba(255,255,255,0.08);}
   .icon-tile svg{width:24px; height:24px; stroke:var(--silver-100); fill:none; stroke-width:1.6;}
   .feature h3{font-family:'Unbounded'; font-size:24px; font-weight:600; margin-bottom:8px; line-height:1.25;}
   .feature .feature-kicker{font-size:14.5px; color:var(--ice); margin-bottom:18px; font-family:'JetBrains Mono'; letter-spacing:0.02em;}
@@ -144,6 +156,33 @@
   .tag{font-family:'JetBrains Mono'; font-size:11px; letter-spacing:0.03em; padding:6px 12px; border-radius:100px; border:1px solid var(--line); color:var(--text-dim);}
   .tag-label{font-family:'JetBrains Mono'; font-size:11px; letter-spacing:0.14em; color:var(--text-dim); text-transform:uppercase; margin-top:20px; margin-bottom:10px; display:block;}
   .feature-visual{aspect-ratio:4/3.1; border-radius:var(--radius); background:var(--panel); border:1px solid var(--line); position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; padding:28px;}
+
+  /* ---------- brushed-metal shine sweep (hero / ecosystem / feature photos) ---------- */
+  .hero-visual-wrap::after,
+  .eco-card-visual::after,
+  .feature-visual::after{
+    content:''; position:absolute; top:0; bottom:0; left:-45%; width:32%; z-index:2; pointer-events:none;
+    background:linear-gradient(100deg,
+      transparent 0%,
+      rgba(255,255,255,0.05) 32%,
+      rgba(255,255,255,0.65) 50%,
+      rgba(255,255,255,0.05) 68%,
+      transparent 100%);
+    mix-blend-mode:overlay;
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .hero-visual-wrap::after,
+    .eco-card-visual::after,
+    .feature-visual::after{ animation:shine-sweep 7.5s ease-in-out infinite; }
+    .feature:nth-child(2n) .feature-visual::after{ animation-delay:1.6s; }
+    .feature:nth-child(3n) .feature-visual::after{ animation-delay:3.2s; }
+    .feature:nth-child(4n) .feature-visual::after{ animation-delay:4.8s; }
+    .eco-card-visual::after{ animation-delay:2.4s; }
+  }
+  @keyframes shine-sweep{
+    0%, 8%{ left:-45%; }
+    45%, 100%{ left:130%; }
+  }
   .feature-visual.no-pad{padding:0;}
   .feature-visual img{width:100%; height:100%; object-fit:cover; display:block;}
   .mockup-bars{display:flex; align-items:flex-end; gap:10px; height:55%;}
@@ -158,7 +197,7 @@
 
   /* ---------- use cases accordion ---------- */
   .uc-list{display:flex; flex-direction:column; gap:14px;}
-  .uc-item{border:1px solid var(--line); border-radius:var(--radius); background:var(--panel); overflow:hidden;}
+  .uc-item{border:1px solid var(--line); border-radius:var(--radius); background:var(--panel); overflow:hidden; box-shadow:inset 0 1px 0 rgba(255,255,255,0.06);}
   .uc-head{width:100%; display:flex; align-items:center; gap:20px; padding:26px 28px; background:none; border:none; cursor:pointer; text-align:left; color:var(--silver-100);}
   .uc-num{font-family:'JetBrains Mono'; font-size:12px; color:var(--ice); letter-spacing:0.1em; flex-shrink:0; width:26px;}
   .uc-head-text{flex:1;}
@@ -242,7 +281,7 @@
   .footer-security{display:flex; gap:28px; flex-wrap:wrap; padding:28px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-bottom:28px;}
   .footer-security span{font-family:'JetBrains Mono'; font-size:12px; color:var(--text-dim); display:flex; align-items:center; gap:8px;}
   .footer-security span::before{content:'✓'; color:var(--ice);}
-  .footer-legal{font-family:'JetBrains Mono'; font-size:11px; color:var(--text-dim); line-height:1.8;}
+  .footer-legal{font-family:'JetBrains Mono'; font-size:9.5px; color:var(--text-dim); line-height:1.7;}
   .footer-social{display:flex; flex-direction:column; gap:11px; margin-top:0;}
   .footer-social a{font-size:12.5px; color:var(--silver-500);}
   .footer-social a:hover{color:var(--silver-100);}
@@ -262,7 +301,6 @@
       <a href="#usecases">Use Cases</a>
       <a href="#faq">FAQ</a>
     </div>
-    <a href="#waitlist" class="nav-cta">Join the Waitlist</a>
   </nav>
 </header>
 
@@ -477,7 +515,7 @@
         <ul class="feature-list"><li>Multiple currency support</li><li>Global Visa acceptance</li><li>Solutions for individuals and businesses</li></ul>
         <p class="feature-close" style="margin-top:22px;">One platform for wherever life and business take you.</p>
       </div>
-      <div class="feature-visual no-pad"><img src="images/feature-09.jpg" alt="Global Access — one platform, global access"></div>
+      <div class="feature-visual no-pad" style="aspect-ratio:1/1;"><img src="images/feature-09.jpg" alt="Global Access — one platform, global access"></div>
     </div>
   </div>
 </section>
@@ -571,9 +609,11 @@
       <span>Non-Custodial Wallet</span><span>Secure Authentication</span><span>KYC & AML Compliant</span><span>Visa Card Program</span><span>Multi-Chain Infrastructure</span>
     </div>
     <div class="footer-legal">
-      © 2026 Xerovan. Powered by Xerovan.<br>
-      Card services are provided by licensed issuing partners.<br>
-      Some services are subject to regional availability.
+      © 2026 Xerovan. All rights reserved.
+      Xerovan is a technology platform and is not a bank. Card and payment services are provided by authorized financial institutions and licensed program partners, subject to eligibility, applicable terms, and regional availability.
+      Digital asset, wallet, swap, bridge, payment, travel, and rewards services may involve independent third-party providers. Features, supported assets, fees, limits, and availability may vary by jurisdiction and are subject to change.
+      Digital assets involve risks, including price volatility, network disruptions, smart-contract vulnerabilities, and possible loss of funds. Xerovan does not provide investment, financial, tax, or legal advice.
+      Use of Xerovan is subject to applicable laws, identity verification, sanctions screening, and the relevant service agreements.
     </div>
   </div>
 </footer>
@@ -805,8 +845,8 @@
       lede: "Marketing agencies and media buyers often manage multiple advertising accounts with different budgets, clients, and approval requirements. Xerovan makes it easier to issue dedicated cards, control spending, and track every transaction from one place.",
       items: ["Issue separate virtual cards for each client or campaign","Assign dedicated cards to Google Ads, Meta Ads, TikTok Ads, and other platforms","Set individual spending limits by client, employee, or campaign","Apply merchant category restrictions","Freeze or unfreeze cards instantly","Collect receipts and supporting documents","Create receipt-based transaction approval workflows","Monitor advertising expenses from a centralized dashboard","Generate expense reports by client, team, or project"],
       value: "Separate every budget. Control every transaction. Track every campaign.",
-      visual: "rows",
-      rows: [["Meta Ads · Client A","$2,400"],["Google Ads · Client B","$1,180"],["TikTok Ads · Client C","$860"]]
+      visual: "image",
+      image: "images/usecase-01.jpg"
     },
     {
       title: "Frequent International Travelers",
@@ -814,8 +854,8 @@
       lede: "Frequent travelers need reliable access to funds, global payment options, and essential travel services wherever they go. Xerovan connects digital assets, Visa card payments, and travel bookings in one experience.",
       items: ["Spend globally wherever Visa cards are accepted","Use virtual and physical cards while traveling","Add cards to Apple Pay or Google Pay","Top up a card using supported digital assets","Freeze a lost or stolen card immediately","Unfreeze a card directly from the app","Monitor transactions in real time","Book flights, hotels, tours, activities, and eSIM services","Manage assets across multiple currencies and networks"],
       value: "One platform for your money, card, and journey.",
-      visual: "rows",
-      rows: [["✈ Flight · ICN → DXB","$412"],["🏨 Hotel · 3 nights","$268"],["📶 eSIM · UAE 10GB","$14"]]
+      visual: "image",
+      image: "images/usecase-02.jpg"
     },
     {
       title: "Digital Nomads and Global Freelancers",
@@ -823,7 +863,8 @@
       lede: "Digital nomads and freelancers often receive income, make payments, and manage expenses across different countries and currencies. Xerovan helps them manage digital assets and everyday spending without being tied to one location.",
       items: ["Manage multiple crypto wallets from one interface","Hold and manage assets across supported networks","Swap assets when needed","Spend globally using a Xerovan Visa card","Pay for software, accommodation, transportation, and daily expenses","Book travel services through the Xerovan Travel Marketplace","Purchase eSIM services for international connectivity","Review personal and business transactions in one place"],
       value: "Work anywhere. Spend anywhere. Stay in control.",
-      visual: "bars"
+      visual: "image",
+      image: "images/usecase-03.jpg"
     },
     {
       title: "Users Paying for USD and International Subscriptions",
@@ -831,8 +872,8 @@
       lede: "Users in many countries face difficulties paying for international software, cloud services, streaming platforms, and USD-denominated subscriptions. Xerovan provides a convenient way to organize and control recurring payments.",
       items: ["Create a dedicated virtual card for subscription payments","Pay for supported international and USD-denominated services","Use separate cards for business and personal subscriptions","Set spending limits for each subscription category","Monitor recurring charges in real time","Freeze a card when a subscription is no longer required","Reduce the risk of unexpected or unauthorized charges","Track payments for SaaS, cloud, productivity, and digital services"],
       value: "Take control of every international subscription.",
-      visual: "rows",
-      rows: [["Cloud infrastructure","$89 / mo"],["AI & productivity tools","$42 / mo"],["Streaming & content","$19 / mo"]],
+      visual: "image",
+      image: "images/usecase-04.jpg",
       tags: ["Cloud infrastructure","AI and productivity tools","Design and collaboration software","Marketing platforms","Streaming and digital content","Business SaaS subscriptions"]
     },
     {
@@ -841,8 +882,8 @@
       lede: "Many crypto users hold assets across multiple wallets and blockchain networks but lack a simple way to use them in everyday life. Xerovan connects wallet management, swaps, payments, rewards, and travel.",
       items: ["Import and manage compatible wallets in one place","Connect external wallets","View and manage multi-chain assets","Send and receive crypto","Swap assets across supported networks","Bridge assets between supported chains","Top up Xerovan Balance or supported cards","Spend through the Visa network","Use crypto for supported travel products and services","Access staking, yield, cashback, and referral opportunities"],
       value: "Turn digital assets into real-world possibilities.",
-      visual: "dial",
-      dialLabel: "8%"
+      visual: "image",
+      image: "images/usecase-05.jpg"
     },
     {
       title: "SMEs and Distributed Teams",
@@ -850,8 +891,8 @@
       lede: "Small and medium-sized businesses need better visibility and control over employee spending. Xerovan enables businesses to issue cards, define spending policies, and manage expenses centrally.",
       items: ["Issue multiple cards to employees or departments","Create separate cards for travel, marketing, software, and operations","Set spending limits by employee, team, or expense category","Restrict cards to approved merchant categories","Freeze or unfreeze cards instantly","Build receipt-based expense approval workflows","Collect and organize employee receipts","Monitor business transactions in real time","Generate centralized expense reports","Manage international business and travel expenses"],
       value: "Give teams spending flexibility without losing financial control.",
-      visual: "rows",
-      rows: [["Team · Growth","$12,400 / mo"],["Media buyer · J.K.","$3,120"],["Pending approval","2"]]
+      visual: "image",
+      image: "images/usecase-06.jpg"
     }
   ];
 
@@ -867,6 +908,9 @@
   function metalGradient(el, angle){ const a = (angle===undefined) ? 180 : angle; el.style.background = 'linear-gradient(' + a + 'deg, #f6f7f9 0%, #9ba0a8 45%, #5c6068 70%, #d4d7dc 100%)'; }
 
   function buildVisual(uc){
+    if(uc.visual === 'image'){
+      return `<img src="${uc.image}" alt="${uc.title}" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;">`;
+    }
     if(uc.visual === 'rows'){
       const rows = uc.rows.map(r => `<div class="mockup-row"><span class="l">${r[0]}</span><span class="r">${r[1]}</span></div>`).join('');
       return `<div class="mockup-rows" style="width:100%">${rows}</div>`;
@@ -897,7 +941,7 @@
             ${tagsHtml}
             <div class="uc-key-value">Key Value: ${uc.value}</div>
           </div>
-          <div class="uc-visual">${buildVisual(uc)}</div>
+          <div class="uc-visual" style="${uc.visual === 'image' ? 'padding:0; overflow:hidden;' : ''}">${buildVisual(uc)}</div>
         </div>
       </div>`;
     ucList.appendChild(el);
