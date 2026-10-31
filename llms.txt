@@ -13,6 +13,10 @@ The site is available in English, Korean, Japanese, Spanish, Arabic and Portugue
 - [Xerovan (العربية)](https://www.xerovan.com/ar/): Arabic version
 - [Xerovan (Português)](https://www.xerovan.com/pt/): Portuguese version
 
+## Company
+
+- [About Xerovan](https://www.xerovan.com/en/about): mission, founder (Jay Yoon), headquarters (Dubai, UAE) and contact (hello@xerovan.com)
+
 ## Blog
 
 - [Blog (English)](https://www.xerovan.com/en/blog): news, app manual, and guides on crypto and everyday payments

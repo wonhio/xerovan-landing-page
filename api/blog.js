@@ -100,6 +100,59 @@ async function legalDocs() {
   return docs;
 }
 
+// About page + founder (used on /{lang}/about and in the author box under posts)
+const FOUNDER = 'Jay Yoon';
+const CONTACT_EMAIL = 'hello@xerovan.com';
+const HQ = 'Dubai, UAE';
+const ABOUT = {
+  en: { title: 'About Xerovan', eyebrow: 'About', h1: 'Moving money across borders, without the borders.',
+    p: ['Sending money or paying abroad is still slow and expensive. Transfers can take days, exchange and foreign-transaction fees add up on every payment, and the payment methods you can use change from country to country.',
+        'Xerovan rebuilds this around stablecoins. From a wallet for your digital assets to a Visa card you can use worldwide, and on to travel and business payments, our goal is to connect it all in one app that is faster and more transparent.'],
+    founder: 'Founder', role: 'Founder, Xerovan',
+    bio: 'Jay Yoon is an entrepreneur who has run cross-border businesses between Singapore, Dubai and Georgia. Paying and getting paid by customers and partners in different countries, he ran into slow transfers, repeated exchange costs and payment limits that change by country, and started Xerovan to solve them with stablecoins.',
+    company: 'Company', hq: 'Headquarters', contact: 'Contact', cta: 'Join the waitlist',
+    short: 'Founder of Xerovan. Runs cross-border businesses between Singapore, Dubai and Georgia.', by: 'Written by' },
+  kr: { title: 'Xerovan 소개', eyebrow: '회사 소개', h1: '국경을 넘는 돈의 이동을, 국경 없이.',
+    p: ['해외로 돈을 보내거나 결제하는 일은 여전히 느리고 비쌉니다. 송금은 며칠씩 걸리고, 환전과 해외결제 수수료는 거래할 때마다 붙으며, 나라마다 쓸 수 있는 결제 수단도 다릅니다.',
+        'Xerovan은 스테이블코인을 기반으로 이 과정을 다시 설계합니다. 디지털 자산을 보관하는 지갑부터 전 세계에서 쓰는 Visa 카드, 여행과 비즈니스 결제까지 하나의 앱에서 더 빠르고 투명하게 연결하는 것이 Xerovan의 목표입니다.'],
+    founder: '창업자', role: 'Xerovan 창업자',
+    bio: 'Jay Yoon은 싱가포르, 두바이, 조지아를 오가며 국경을 넘는 사업을 운영해 온 창업가입니다. 여러 나라의 고객·파트너와 대금을 주고받으며 느린 송금, 반복되는 환전 비용, 나라마다 다른 결제 제약을 직접 겪었고, 이 문제를 스테이블코인으로 풀기 위해 Xerovan을 시작했습니다.',
+    company: '회사 정보', hq: '본사', contact: '문의', cta: '대기자 명단 등록',
+    short: 'Xerovan 창업자. 싱가포르·두바이·조지아를 오가며 국경을 넘는 사업을 운영합니다.', by: '작성자' },
+  ja: { title: 'Xerovanについて', eyebrow: '会社概要', h1: '国境を越えるお金の移動を、国境なく。',
+    p: ['海外への送金や支払いは、いまも時間がかかり、コストも高いままです。送金には数日かかることがあり、両替や海外決済の手数料は取引のたびに発生し、使える決済手段も国によって異なります。',
+        'Xerovanはステーブルコインを基盤に、この仕組みをつくり直します。デジタル資産を管理するウォレットから、世界中で使えるVisaカード、旅行やビジネスの支払いまで、ひとつのアプリでより速く、より透明につなぐことがXerovanの目標です。'],
+    founder: '創業者', role: 'Xerovan 創業者',
+    bio: 'Jay Yoonは、シンガポール、ドバイ、ジョージアを拠点に国境を越えるビジネスを運営してきた起業家です。各国の顧客やパートナーとの支払いのなかで、遅い送金、繰り返される両替コスト、国ごとに異なる決済の制約を自ら経験し、ステーブルコインでこれらを解決するためにXerovanを立ち上げました。',
+    company: '会社情報', hq: '所在地', contact: 'お問い合わせ', cta: 'ウェイトリストに登録',
+    short: 'Xerovan創業者。シンガポール、ドバイ、ジョージアを拠点に国境を越えるビジネスを運営。', by: '執筆者' },
+  es: { title: 'Sobre Xerovan', eyebrow: 'Sobre nosotros', h1: 'Mover dinero entre países, sin fronteras.',
+    p: ['Enviar dinero o pagar en el extranjero sigue siendo lento y caro. Las transferencias pueden tardar días, las comisiones de cambio y por operaciones en el extranjero se acumulan en cada pago, y los medios de pago disponibles cambian de un país a otro.',
+        'Xerovan reconstruye este proceso sobre stablecoins. Desde una wallet para tus activos digitales hasta una tarjeta Visa que puedes usar en todo el mundo, pasando por pagos de viajes y de empresa, nuestro objetivo es conectarlo todo en una sola app, más rápida y transparente.'],
+    founder: 'Fundador', role: 'Fundador de Xerovan',
+    bio: 'Jay Yoon es un emprendedor que ha dirigido negocios internacionales entre Singapur, Dubái y Georgia. Al pagar y cobrar a clientes y socios de distintos países, se encontró con transferencias lentas, costes de cambio repetidos y límites de pago que varían según el país, y fundó Xerovan para resolverlos con stablecoins.',
+    company: 'Empresa', hq: 'Sede', contact: 'Contacto', cta: 'Únete a la lista de espera',
+    short: 'Fundador de Xerovan. Dirige negocios internacionales entre Singapur, Dubái y Georgia.', by: 'Escrito por' },
+  ar: { title: 'عن Xerovan', eyebrow: 'من نحن', h1: 'نقل الأموال عبر الحدود، بلا حدود.',
+    p: ['لا يزال إرسال الأموال أو الدفع في الخارج بطيئًا ومكلفًا. فقد تستغرق التحويلات أيامًا، وتتراكم رسوم الصرف والمعاملات الدولية مع كل عملية دفع، وتختلف وسائل الدفع المتاحة من بلد إلى آخر.',
+        'تعيد Xerovan بناء هذه العملية على أساس العملات المستقرة. من محفظة لأصولك الرقمية إلى بطاقة Visa تستخدمها حول العالم، وصولًا إلى مدفوعات السفر والأعمال، هدفنا أن نربط كل ذلك في تطبيق واحد أسرع وأكثر شفافية.'],
+    founder: 'المؤسس', role: 'مؤسس Xerovan',
+    bio: 'جاي يون (Jay Yoon) رائد أعمال يدير أعمالًا عابرة للحدود بين سنغافورة ودبي وجورجيا. وخلال الدفع والتحصيل مع عملاء وشركاء في دول مختلفة، واجه بطء التحويلات وتكرار تكاليف الصرف وقيود الدفع التي تختلف من بلد لآخر، فأسّس Xerovan لحلّها باستخدام العملات المستقرة.',
+    company: 'الشركة', hq: 'المقر', contact: 'تواصل معنا', cta: 'انضم إلى قائمة الانتظار',
+    short: 'مؤسس Xerovan. يدير أعمالًا عابرة للحدود بين سنغافورة ودبي وجورجيا.', by: 'بقلم' },
+  pt: { title: 'Sobre a Xerovan', eyebrow: 'Sobre nós', h1: 'Movimentar dinheiro entre países, sem fronteiras.',
+    p: ['Enviar dinheiro ou pagar no exterior ainda é lento e caro. Transferências podem levar dias, taxas de câmbio e de transações internacionais se somam a cada pagamento, e os meios de pagamento disponíveis mudam de um país para outro.',
+        'A Xerovan reconstrói esse processo com base em stablecoins. De uma carteira para seus ativos digitais a um cartão Visa aceito no mundo todo, passando por pagamentos de viagens e de empresas, nosso objetivo é conectar tudo em um só app, mais rápido e transparente.'],
+    founder: 'Fundador', role: 'Fundador da Xerovan',
+    bio: 'Jay Yoon é um empreendedor que administra negócios internacionais entre Singapura, Dubai e Geórgia. Ao pagar e receber de clientes e parceiros em diferentes países, enfrentou transferências lentas, custos de câmbio repetidos e limites de pagamento que mudam de país para país, e criou a Xerovan para resolvê-los com stablecoins.',
+    company: 'Empresa', hq: 'Sede', contact: 'Contato', cta: 'Entrar na lista de espera',
+    short: 'Fundador da Xerovan. Administra negócios internacionais entre Singapura, Dubai e Geórgia.', by: 'Escrito por' },
+};
+const founderLD = (lang) => ({ '@type': 'Person', name: FOUNDER, jobTitle: 'Founder', url: `${SITE}/${lang}/about`,
+  worksFor: { '@type': 'Organization', name: 'Xerovan', url: `${SITE}/` } });
+// WordPress accounts often show as "admin": posts by such an account are credited to the founder.
+const isFounderAccount = (name) => !name || /^(admin|administrator|xerovan|jay|jay yoon)$/i.test(String(name).trim());
+
 // ---------------------------------------------------------------- helpers
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const decode = (s) => String(s ?? '')
@@ -179,7 +232,7 @@ function shape(p, lang, tmap = {}) {
     modified: p.modified_gmt ? p.modified_gmt + 'Z' : p.modified,
     image: img,
     imageAlt: media?.alt_text || stripTags(p.title?.rendered),
-    author: p._embedded?.author?.[0]?.name || 'Xerovan',
+    author: isFounderAccount(p._embedded?.author?.[0]?.name) ? FOUNDER : p._embedded.author[0].name,
     minutes: Math.max(1, Math.round(cjk ? chars / 500 : words / 220)),
     // Optional: a translation slug in another language, set via a WP custom field "translations" = "kr:slug-ko,ja:slug-ja"
     translations: Object.fromEntries(String(p.meta?.translations || '')
@@ -301,6 +354,27 @@ function layout({ lang, title, description, canonical, alternates, ogImage, ogTy
     .chip{display:inline-block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.06em;color:var(--ice);border:1px solid rgba(143,227,238,.35);padding:3px 9px;border-radius:100px;margin-inline-end:8px;vertical-align:1px}
     .post-head .chip{margin-bottom:18px;font-size:11.5px;padding:5px 12px}
     .post-head .chip:hover{border-color:var(--ice)}
+    .about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;padding:56px 0 30px}
+    @media(max-width:860px){.about-grid{grid-template-columns:1fr}}
+    .about-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:30px;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+    .about-card h2{font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;color:var(--ice);text-transform:uppercase;margin-bottom:20px;font-weight:400}
+    .person{display:flex;gap:18px;align-items:center;margin-bottom:18px}
+    .avatar{width:56px;height:56px;flex-shrink:0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-weight:600;font-size:17px;color:#0a0b0d;background:linear-gradient(160deg,#f6f7f9 0%,#9ba0a8 45%,#5c6068 70%,#d4d7dc 100%)}
+    .person .name{font-family:var(--f-display);font-size:18px;font-weight:600}
+    .person .role{font-size:13.5px;color:var(--silver-500);margin-top:4px}
+    .about-card p{color:var(--silver-300);font-size:15px;line-height:1.75}
+    .facts{display:grid;gap:14px}
+    .facts div{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line-soft);padding-bottom:12px;font-size:14.5px}
+    .facts span:first-child{color:var(--text-dim);font-family:var(--f-mono);font-size:12px;letter-spacing:.06em}
+    .facts a{color:var(--ice)}
+    .mission{max-width:760px;padding-top:28px}
+    .mission p{color:var(--silver-300);font-size:17px;line-height:1.8}
+    .mission p + p{margin-top:16px}
+    .author-box{max-width:720px;margin:0 auto 34px;display:flex;gap:16px;align-items:center;padding:22px 24px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius)}
+    .author-box .lbl{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;color:var(--text-dim);text-transform:uppercase}
+    .author-box .nm{font-family:var(--f-display);font-size:15px;font-weight:600;display:inline-block;margin:4px 0 6px}
+    .author-box .nm:hover{color:var(--ice)}
+    .author-box p{font-size:13.5px;color:var(--silver-500);line-height:1.6}
     .pager{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:10px 0 90px;font-family:var(--f-mono);font-size:12px;color:var(--text-dim)}
     .pager a{padding:11px 20px;border:1px solid var(--line);border-radius:100px;color:var(--silver-300)}
     .pager a:hover{border-color:var(--silver-500);color:var(--silver-100)}
@@ -368,7 +442,7 @@ ${body}
 <footer>
   <div class="wrap">
     <span>© ${new Date().getFullYear()} Xerovan. All rights reserved.</span>
-    <span><a href="/${lang}/">xerovan.com</a> · <a href="/${lang}/blog/feed.xml">RSS</a></span>
+    <span><a href="/${lang}/">xerovan.com</a> · <a href="/${lang}/about">${esc(ABOUT[lang].eyebrow)}</a> · <a href="/${lang}/blog/feed.xml">RSS</a></span>
   </div>
 </footer>
 <script>
@@ -435,12 +509,45 @@ function postView(lang, p) {
       </header>
       ${p.image ? `<figure class="cover"><img src="${esc(p.image)}" alt="${esc(p.imageAlt)}"></figure>` : ''}
       <div class="prose">${p.content}</div>
+      ${p.author === FOUNDER ? `<aside class="author-box"><div class="avatar">JY</div><div>
+        <div class="lbl">${esc(ABOUT[lang].by)}</div>
+        <a class="nm" href="/${lang}/about">${esc(FOUNDER)}</a>
+        <p>${esc(ABOUT[lang].short)}</p></div></aside>` : ''}
       <div class="post-foot">
         <a class="btn" href="/${lang}/blog">${LANGS[lang].rtl ? '→' : '←'} ${esc(t.back)}</a>
         <a class="btn primary" href="/${lang}/#waitlist">Xerovan ${LANGS[lang].rtl ? '←' : '→'}</a>
       </div>
     </div>
   </article>`;
+}
+
+function aboutView(lang) {
+  const A = ABOUT[lang], t = T[lang];
+  return `
+  <section class="blog-hero"><div class="wrap">
+    <div class="crumb" style="font-family:var(--f-mono);font-size:12px;color:var(--text-dim);margin-bottom:26px"><a href="/${lang}/">${esc(t.home)}</a> / ${esc(A.eyebrow)}</div>
+    <span class="eyebrow">${esc(A.eyebrow)}</span>
+    <h1 class="metal">${esc(A.h1)}</h1>
+    <div class="mission">${A.p.map((x) => `<p>${esc(x)}</p>`).join('')}</div>
+  </div></section>
+  <div class="wrap">
+    <div class="about-grid">
+      <section class="about-card">
+        <h2>${esc(A.founder)}</h2>
+        <div class="person"><div class="avatar">JY</div><div><div class="name">${esc(FOUNDER)}</div><div class="role">${esc(A.role)}</div></div></div>
+        <p>${esc(A.bio)}</p>
+      </section>
+      <section class="about-card">
+        <h2>${esc(A.company)}</h2>
+        <div class="facts">
+          <div><span>${esc(A.hq)}</span><span>${esc(HQ)}</span></div>
+          <div><span>${esc(A.contact)}</span><a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a></div>
+        </div>
+        <p style="margin-top:26px"><a class="btn primary" href="/${lang}/#waitlist">${esc(A.cta)}</a></p>
+      </section>
+    </div>
+    <div style="height:70px"></div>
+  </div>`;
 }
 
 function legalView(lang, doc, slug) {
@@ -473,6 +580,7 @@ async function sitemap() {
   // Always returns a valid sitemap: blog index pages are listed even if WordPress is unreachable.
   const urls = [];
   for (const lang of Object.keys(LANGS)) {
+    urls.push({ loc: `${SITE}/${lang}/about`, lastmod: null });
     urls.push({ loc: `${SITE}/${lang}/blog`, lastmod: null });
     try {
       const cat = await categoryId(lang);
@@ -547,6 +655,21 @@ module.exports = async (req, res) => {
   try { slug = decodeURIComponent(slug); } catch { /* keep as is */ }
   slug = slug.normalize('NFC').toLowerCase().replace(/[^\p{L}\p{N}\-_]/gu, '').slice(0, 200);
 
+  if (q.about) {
+    const A = ABOUT[lang];
+    return send(200, layout({
+      lang, title: `${A.title} | Xerovan`, description: A.p[0], canonical: `${SITE}/${lang}/about`,
+      alternates: Object.keys(LANGS).map((k) => [k, `${SITE}/${k}/about`]),
+      body: aboutView(lang),
+      jsonLd: [crumbs([['Xerovan', `${SITE}/${lang}/`], [A.eyebrow, `${SITE}/${lang}/about`]]), {
+        '@context': 'https://schema.org', '@type': 'AboutPage', name: A.title, url: `${SITE}/${lang}/about`, inLanguage: LANGS[lang].hl,
+        mainEntity: { '@type': 'Organization', name: 'Xerovan', url: `${SITE}/`, logo: `${SITE}/images/logo-icon.png`, email: CONTACT_EMAIL,
+          address: { '@type': 'PostalAddress', addressLocality: 'Dubai', addressCountry: 'AE' }, founder: founderLD(lang),
+          sameAs: ['https://x.com/XerovanC', 'https://www.instagram.com/xerovancard/', 'https://www.facebook.com/profile.php?id=61594055002981'] },
+      }],
+    }), 'text/html; charset=utf-8', 's-maxage=3600, stale-while-revalidate=86400');
+  }
+
   if (q.legal) {
     const slug2 = String(q.legal).toLowerCase();
     if (!LEGAL_DOCS[slug2]) {
@@ -605,7 +728,7 @@ module.exports = async (req, res) => {
           '@context': 'https://schema.org', '@type': 'BlogPosting', headline: p.title, description: p.excerpt,
           datePublished: p.date, dateModified: p.modified, inLanguage: LANGS[lang].hl,
           mainEntityOfPage: canonical, image: p.image ? `${SITE}${p.image}` : `${SITE}/images/og-preview.jpg`,
-          author: { '@type': 'Organization', name: 'Xerovan' },
+          author: p.author === FOUNDER ? founderLD(lang) : { '@type': 'Person', name: p.author },
           publisher: { '@type': 'Organization', name: 'Xerovan', logo: { '@type': 'ImageObject', url: `${SITE}/images/logo-icon.png` } },
         }],
       }));

@@ -225,8 +225,12 @@ def prerender(page):
 
 def finalize(html, lang):
     # hide footer links that have no destination yet (Company column, Fees)
-    html, n = re.subn(r'<div class="footer-col"><h5>[^<]*</h5><ul>(?:<li><a href="#">[^<]*</a></li>){3}</ul></div>', '', html)
+    # Company column: keep only "About Us" (now a real page), drop Careers / Partners until they exist
+    html, n = re.subn(r'<div class="footer-col"><h5>([^<]*)</h5><ul><li><a href="#">([^<]*)</a></li>(?:<li><a href="#">[^<]*</a></li>){2}</ul></div>',
+                      lambda m: f'<div class="footer-col"><h5>{m.group(1)}</h5><ul><li><a href="/{lang}/about">{m.group(2)}</a></li></ul></div>', html)
     assert n == 1, "company column not found"
+    html = must(html, '"logo":"https://www.xerovan.com/images/logo-icon.png",',
+                '"logo":"https://www.xerovan.com/images/logo-icon.png","email":"hello@xerovan.com","address":{"@type":"PostalAddress","addressLocality":"Dubai","addressCountry":"AE"},"founder":{"@type":"Person","name":"Jay Yoon","url":"https://www.xerovan.com/' + lang + '/about"},')
     html, n = re.subn(r'<li><a href="#">[^<]*</a></li>', '', html)
     assert n == 1, "fees link not found"
     for name in WEBP:
