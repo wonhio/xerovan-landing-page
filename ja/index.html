@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xerovan — Value in Motion | ウォレット・決済・リワード・旅行をひとつに</title>
+    <meta name="description" content="Xerovanは、ウォレット、決済、リワード、旅行、ビジネス支出をひとつの安全なプラットフォームにまとめます。">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Xerovan">
+    <meta property="og:title" content="Xerovan — Value in Motion">
+    <meta property="og:description" content="暗号資産の管理からVisaカードでのグローバル決済、リワード獲得、旅行予約まで — すべてをひとつの安全なプラットフォームで。">
+    <meta property="og:url" content="https://www.xerovan.com/ja/">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="ko_KR">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="ar_AE">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="og:image" content="https://www.xerovan.com/images/og-preview.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@XerovanC">
+    <meta name="twitter:title" content="Xerovan — Value in Motion">
+    <meta name="twitter:description" content="暗号資産の管理からVisaカードでのグローバル決済、リワード獲得、旅行予約まで — すべてをひとつの安全なプラットフォームで。">
+    <meta name="twitter:image" content="https://www.xerovan.com/images/og-preview.jpg">
+    <link rel="canonical" href="https://www.xerovan.com/ja/">
+    <link rel="alternate" hreflang="en" href="https://www.xerovan.com/en/">
+    <link rel="alternate" hreflang="ko" href="https://www.xerovan.com/kr/">
+    <link rel="alternate" hreflang="ja" href="https://www.xerovan.com/ja/">
+    <link rel="alternate" hreflang="es" href="https://www.xerovan.com/es/">
+    <link rel="alternate" hreflang="ar" href="https://www.xerovan.com/ar/">
+    <link rel="alternate" hreflang="pt" href="https://www.xerovan.com/pt/">
+    <link rel="alternate" hreflang="x-default" href="https://www.xerovan.com/en/">
+    <script type="application/ld+json">
+        {"@context":"https://schema.org","@type":"Organization","name":"Xerovan","url":"https://www.xerovan.com/","logo":"https://www.xerovan.com/images/logo-icon.png","description":"Xerovanは、暗号資産ウォレット、決済、リワード、旅行、ビジネス支出をひとつの安全なアプリにまとめるテクノロジープラットフォームです。","sameAs":["https://x.com/XerovanC","https://www.instagram.com/xerovancard/","https://www.facebook.com/profile.php?id=61594055002981"]}
+    </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0a0b0d; --panel:#131417; --panel-2:#1b1d21; --panel-3:#0f1012;
+    --line:#232529; --line-soft:#1a1c20;
+    --silver-100:#f6f7f9; --silver-300:#d4d7dc; --silver-500:#9ba0a8; --silver-700:#5c6068;
+    --steel-900:#2a2c31; --ice:#8fe3ee; --text-dim:#83878f;
+    --radius:16px; --radius-sm:10px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--void); color:var(--silver-100); font-family:'Inter','Noto Sans JP', sans-serif; overflow-x:hidden; -webkit-font-smoothing:antialiased;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  img{max-width:100%; display:block;}
+  .mono{font-family:'JetBrains Mono','Noto Sans JP', monospace;}
+  .display{font-family:'Unbounded','Noto Sans JP', sans-serif;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  body{line-break:strict; word-break:normal; overflow-wrap:anywhere;}
+  ::selection{background:var(--ice); color:#0a0b0d;}
+  :focus-visible{outline:2px solid var(--ice); outline-offset:3px;}
+
+  .brushed{
+    background:
+      repeating-linear-gradient(100deg, rgba(255,255,255,0.06) 0px, rgba(255,255,255,0.06) 1px, transparent 1px, transparent 3px),
+      linear-gradient(160deg, var(--silver-100) 0%, var(--silver-500) 32%, var(--silver-700) 55%, var(--silver-300) 75%, var(--silver-100) 100%);
+    background-size:200% 200%, 200% 200%;
+  }
+  @media (prefers-reduced-motion:no-preference){ .brushed{ animation: sheen 7s ease-in-out infinite; } }
+  @keyframes sheen{ 0%{background-position:0% 0%, 0% 0%;} 50%{background-position:100% 100%, 60% 40%;} 100%{background-position:0% 0%, 0% 0%;} }
+
+  .eyebrow{font-family:'JetBrains Mono','Noto Sans JP'; font-size:12px; letter-spacing:0.2em; color:var(--ice); text-transform:uppercase; display:inline-flex; align-items:center; gap:10px; margin-bottom:16px;}
+  .eyebrow::after{content:''; width:20px; height:1px; background:var(--ice); opacity:0.5;}
+  .eyebrow.center{justify-content:center;}
+
+  /* ---------- nav ---------- */
+  header{position:fixed; top:0; left:0; right:0; z-index:200; backdrop-filter:blur(14px); background:rgba(10,11,13,0.75); border-bottom:1px solid var(--line);}
+  nav{display:flex; align-items:center; justify-content:space-between; padding:14px 32px; max-width:1180px; margin:0 auto;}
+  .brand{display:flex; align-items:center; gap:10px;}
+  .brand img{height:26px; width:auto;}
+  .brand-word{font-family:'Aptos','Segoe UI','Inter','Noto Sans JP',sans-serif; font-weight:500; font-size:16px; letter-spacing:0.02em; display:inline-flex; align-items:baseline; color:var(--silver-100);}
+  .logo-a{width:0.62em; height:0.72em; vertical-align:-0.055em; fill:none; stroke:currentColor; stroke-width:1.3; stroke-linecap:round; stroke-linejoin:round;}
+  .brand img.brand-word-img{height:20px; width:auto; display:block;}
+  .nav-links{display:flex; gap:32px; font-size:13.5px; font-weight:600; color:var(--silver-300);}
+  .nav-links a:hover{color:var(--silver-100);}
+  .nav-cta{font-family:'Unbounded','Noto Sans JP'; font-size:12px; letter-spacing:0.04em; font-weight:600; padding:10px 20px; border-radius:100px; background:var(--silver-100); color:#0a0b0d; transition:transform .2s ease, box-shadow .2s ease; white-space:nowrap;}
+  .nav-cta:hover{transform:translateY(-1px); box-shadow:0 8px 24px rgba(255,255,255,0.12);}
+  @media(max-width:920px){ .nav-links{display:none;} }
+  .lang-menu{position:relative;}
+  .lang-menu summary{list-style:none; cursor:pointer; display:flex; align-items:center; gap:8px; padding:8px 14px; border:1px solid var(--line); border-radius:100px; font-family:'JetBrains Mono','Noto Sans JP',monospace; font-size:11.5px; letter-spacing:0.1em; color:var(--silver-300);}
+  .lang-menu summary::-webkit-details-marker{display:none;}
+  .lang-menu summary::before{content:''; width:13px; height:13px; border:1.4px solid currentColor; border-radius:50%; box-shadow:inset 0 0 0 3px var(--void), inset 0 0 0 4.4px currentColor; opacity:.8;}
+  .lang-menu summary::after{content:'▾'; font-size:10px; opacity:.7;}
+  .lang-menu[open] summary, .lang-menu summary:hover{color:var(--silver-100); border-color:var(--silver-500);}
+  .lang-list{position:absolute; top:calc(100% + 8px); inset-inline-end:0; min-width:170px; padding:6px; background:var(--panel); border:1px solid var(--line); border-radius:12px; box-shadow:0 24px 60px -20px rgba(0,0,0,.7); display:flex; flex-direction:column;}
+  .lang-list a{padding:10px 14px; border-radius:8px; font-size:14px; color:var(--silver-300); font-family:'Inter','Noto Sans JP','Noto Sans KR','Noto Sans JP','Noto Sans Arabic',sans-serif;}
+  .lang-list a:hover{background:var(--panel-2); color:var(--silver-100);}
+  .lang-list a[aria-current="true"]{color:var(--ice);}
+
+  .btn-primary{font-family:'Unbounded','Noto Sans JP'; font-size:13px; font-weight:600; letter-spacing:0.02em; padding:16px 28px; border-radius:100px; background:linear-gradient(180deg, #ffffff 0%, #e2e6ea 35%, #b7bec4 60%, #eef1f3 100%); color:#0a0b0d; border:none; cursor:pointer; transition:transform .2s ease, box-shadow .2s ease; white-space:nowrap; box-shadow:inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -1px 2px rgba(0,0,0,0.15);}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 30px rgba(255,255,255,0.14);}
+  .btn-ghost{font-family:'Unbounded','Noto Sans JP'; font-size:13px; font-weight:600; letter-spacing:0.02em; padding:16px 28px; border-radius:100px; border:1px solid var(--line); color:var(--silver-300); background:transparent; cursor:pointer; transition:all .2s ease; white-space:nowrap;}
+  .btn-ghost:hover{border-color:var(--silver-500); color:var(--silver-100);}
+
+  /* ---------- hero / waveform ---------- */
+  .hero{position:relative; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:150px 24px 80px; overflow:hidden;}
+  .hero::before{content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 45% at 50% 25%, rgba(143,227,238,0.07), transparent 70%), radial-gradient(ellipse 80% 60% at 50% 100%, rgba(255,255,255,0.04), transparent 70%); pointer-events:none;}
+  .waveform{display:flex; align-items:flex-end; justify-content:center; gap:3.5px; height:96px; margin-bottom:18px; position:relative; z-index:1; overflow:visible; padding:0 4px;}
+  .waveform .bar{width:6px; border-radius:4px 4px 2px 2px; transform-origin:center bottom;}
+  @media (prefers-reduced-motion:no-preference){ .waveform .bar{ animation-name:wv, wvshade; animation-iteration-count:infinite, infinite; animation-timing-function:cubic-bezier(.45,0,.25,1), cubic-bezier(.45,0,.25,1); } }
+  @keyframes wv{ 0%,100%{transform:scaleY(var(--wv-min,0.35));} 50%{transform:scaleY(1);} }
+  @keyframes wvshade{ 0%,100%{filter:brightness(0.68) saturate(0.88);} 50%{filter:brightness(1.28) saturate(1.08);} }
+  .wv-spark{position:absolute; width:3px; height:3px; border-radius:50%; background:radial-gradient(circle, #ffffff 0%, #d4d7dc 55%, transparent 75%); pointer-events:none; opacity:0; z-index:3;}
+  @media (prefers-reduced-motion:no-preference){ .wv-spark{ animation-name:wvspark; animation-iteration-count:infinite; animation-timing-function:ease-out; } }
+  @keyframes wvspark{
+    0%,44%{opacity:0; transform:translate(0,0) scale(0.5);}
+    52%{opacity:0.9; transform:translate(0,-3px) scale(1);}
+    100%{opacity:0; transform:translate(var(--sx,4px),-30px) scale(0.25);}
+  }
+  h1.hero-title{font-family:'Unbounded','Noto Sans JP'; font-weight:700; font-size:clamp(38px, 7.2vw, 84px); line-height:1; letter-spacing:-0.01em; position:relative; z-index:1;}
+  h1.hero-title .metal{
+    background:linear-gradient(100deg, var(--silver-500) 0%, var(--silver-100) 22%, #ffffff 38%, var(--silver-300) 52%, var(--silver-500) 70%, var(--silver-100) 100%);
+    background-size:260% 100%;
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  @media (prefers-reduced-motion:no-preference){ h1.hero-title .metal{ animation:text-shine 6.5s ease-in-out infinite; } }
+  @keyframes text-shine{ 0%{background-position:0% 50%;} 100%{background-position:100% 50%;} }
+  .hero-sub{max-width:540px; margin:22px auto 40px; font-size:16.5px; line-height:1.65; color:var(--silver-500); position:relative; z-index:1;}
+  .hero-ctas{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; position:relative; z-index:2;}
+
+  .waitlist-inline{max-width:440px; margin:0 auto; position:relative; z-index:2;}
+  .form-row{display:flex; gap:10px; flex-wrap:wrap; justify-content:center;}
+  .form-row input{flex:1; min-width:220px; padding:15px 20px; border-radius:100px; border:1px solid var(--line); background:var(--panel-2); color:var(--silver-100); font-family:'Inter','Noto Sans JP'; font-size:14px;}
+  .form-row input::placeholder{color:var(--text-dim);}
+  .form-row input:focus{outline:none; border-color:var(--silver-500);}
+  .form-note{margin-top:14px; font-family:'JetBrains Mono','Noto Sans JP'; font-size:11px; color:var(--text-dim);}
+  .form-success{display:none; max-width:440px; margin:0 auto; padding:20px 24px; border-radius:var(--radius-sm); background:var(--panel-2); border:1px solid var(--line); font-size:14px; line-height:1.6; color:var(--silver-300);}
+  .form-success strong{color:var(--ice); display:block; margin-bottom:6px; font-family:'Unbounded','Noto Sans JP'; font-size:13px; letter-spacing:0.02em;}
+
+  /* ---------- app preview ---------- */
+  .app-preview{padding:20px 0 100px; text-align:center;}
+  .hero-visual-wrap{position:relative; max-width:920px; width:100%; margin:0 auto; aspect-ratio:1396/1032; overflow:hidden; border-radius:18px;}
+  .hero-visual-img{position:absolute; inset:0; width:100%; height:100%; display:block; border-radius:18px;}
+  .hero-visual-screen{position:absolute; left:39.9%; top:5.62%; width:25.07%; height:78.59%; border-radius:8%/3.4%; overflow:hidden; background:#000;}
+  .hero-visual-screen iframe{position:absolute; top:0; left:0; border:0; background:#000; transform-origin:top left;}
+
+  .divider{display:flex; align-items:center; justify-content:center; gap:6px; height:48px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--panel); overflow:hidden;}
+  .divider .bar{width:3px; border-radius:1px;}
+  @media (prefers-reduced-motion:no-preference){ .divider .bar{ animation:dpulse 2.2s ease-in-out infinite; } }
+  @keyframes dpulse{ 0%,100%{transform:scaleY(0.4);} 50%{transform:scaleY(1);} }
+
+  section{padding:110px 0;}
+  .section-head{max-width:660px; margin-bottom:56px;}
+  .section-head.center{margin-left:auto; margin-right:auto; text-align:center;}
+  .section-head h2{
+    font-family:'Unbounded','Noto Sans JP'; font-weight:600; font-size:clamp(26px, 4vw, 42px); line-height:1.1; letter-spacing:-0.01em;
+    background:linear-gradient(100deg, var(--silver-300) 0%, var(--silver-100) 25%, #ffffff 42%, var(--silver-300) 60%, var(--silver-500) 78%, var(--silver-100) 100%);
+    background-size:260% 100%;
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  @media (prefers-reduced-motion:no-preference){ .section-head h2{ animation:text-shine 8s ease-in-out infinite; } }
+  .section-head p{margin-top:16px; color:var(--silver-500); font-size:16px; line-height:1.65;}
+
+  .flow{display:flex; align-items:center; justify-content:center; gap:0; flex-wrap:wrap; margin:40px 0 50px;}
+  .flow-step{font-family:'Unbounded','Noto Sans JP'; font-size:13px; font-weight:600; letter-spacing:0.03em; padding:12px 22px; border:1px solid var(--line); border-radius:100px; color:var(--silver-300);}
+  .flow-arrow{color:var(--ice); padding:0 10px; font-size:14px;}
+  .why-list{display:grid; grid-template-columns:repeat(2,1fr); gap:14px 40px; max-width:820px; margin:0 auto;}
+  @media(max-width:700px){ .why-list{grid-template-columns:1fr;} }
+  .why-list li{display:flex; gap:12px; align-items:flex-start; font-size:14.5px; color:var(--silver-300); line-height:1.5;}
+  .why-list li::before{content:''; width:6px; height:6px; margin-top:6px; flex-shrink:0; border-radius:1px; background:var(--ice);}
+
+  .eco-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; margin-top:60px;}
+  @media(max-width:900px){ .eco-grid{grid-template-columns:1fr 1fr;} }
+  @media(max-width:600px){ .eco-grid{grid-template-columns:1fr;} }
+  .eco-card{background:var(--panel); padding:34px 28px; box-shadow:inset 0 1px 0 rgba(255,255,255,0.06);}
+  .eco-card h4{font-family:'Unbounded','Noto Sans JP'; font-size:16px; font-weight:600; margin-bottom:16px;}
+  .eco-card li{font-size:13.5px; color:var(--silver-500); line-height:1.9; position:relative; padding-left:14px;}
+  .eco-card li::before{content:'—'; position:absolute; left:0; color:var(--silver-700);}
+  .eco-card-visual{background:var(--panel); position:relative; min-height:220px; overflow:hidden;}
+  .eco-card-visual img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+
+  /* ---------- feature rows ---------- */
+  .feature{display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:center; padding:80px 0; border-bottom:1px solid var(--line-soft);}
+  .feature:last-child{border-bottom:none;}
+  .feature:nth-child(even){direction:rtl;}
+  .feature:nth-child(even) > *{direction:ltr;}
+  @media(max-width:900px){ .feature{grid-template-columns:1fr; gap:36px; direction:ltr !important;} .feature > *{direction:ltr !important;} }
+  .feature-num{font-family:'JetBrains Mono','Noto Sans JP'; font-size:12px; color:var(--ice); letter-spacing:0.14em; margin-bottom:16px; display:block;}
+  .icon-tile{width:52px; height:52px; border-radius:14px; background:var(--panel-2); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; margin-bottom:22px; box-shadow:inset 0 1px 0 rgba(255,255,255,0.08);}
+  .icon-tile svg{width:24px; height:24px; stroke:var(--silver-100); fill:none; stroke-width:1.6;}
+  .feature h3{font-family:'Unbounded','Noto Sans JP'; font-size:24px; font-weight:600; margin-bottom:8px; line-height:1.25;}
+  .feature .feature-kicker{font-size:14.5px; color:var(--ice); margin-bottom:18px; font-family:'JetBrains Mono','Noto Sans JP'; letter-spacing:0.02em;}
+  .feature .feature-lede{color:var(--silver-500); font-size:15px; line-height:1.7; margin-bottom:22px;}
+  .feature-list{display:grid; gap:10px; margin-bottom:24px;}
+  .feature-list li{display:flex; gap:10px; align-items:flex-start; font-size:14px; color:var(--silver-300); line-height:1.55;}
+  .feature-list li::before{content:''; width:5px; height:5px; margin-top:7px; flex-shrink:0; border-radius:50%; background:var(--silver-500);}
+  .feature-close{font-family:'Unbounded','Noto Sans JP'; font-size:14px; color:var(--silver-100); font-weight:500;}
+  .tag-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:6px;}
+  .tag{font-family:'JetBrains Mono','Noto Sans JP'; font-size:11px; letter-spacing:0.03em; padding:6px 12px; border-radius:100px; border:1px solid var(--line); color:var(--text-dim);}
+  .tag-label{font-family:'JetBrains Mono','Noto Sans JP'; font-size:11px; letter-spacing:0.14em; color:var(--text-dim); text-transform:uppercase; margin-top:20px; margin-bottom:10px; display:block;}
+  .feature-visual{aspect-ratio:4/3.1; border-radius:var(--radius); background:var(--panel); border:1px solid var(--line); position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; padding:28px;}
+
+  /* ---------- brushed-metal shine sweep (hero / ecosystem / feature photos) ---------- */
+  .hero-visual-wrap::after,
+  .eco-card-visual::after,
+  .feature-visual::after{
+    content:''; position:absolute; top:0; bottom:0; left:-45%; width:32%; z-index:2; pointer-events:none;
+    background:linear-gradient(100deg,
+      transparent 0%,
+      rgba(255,255,255,0.05) 32%,
+      rgba(255,255,255,0.65) 50%,
+      rgba(255,255,255,0.05) 68%,
+      transparent 100%);
+    mix-blend-mode:overlay;
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .hero-visual-wrap::after,
+    .eco-card-visual::after,
+    .feature-visual::after{ animation:shine-sweep 7.5s ease-in-out infinite; }
+    .feature:nth-child(2n) .feature-visual::after{ animation-delay:1.6s; }
+    .feature:nth-child(3n) .feature-visual::after{ animation-delay:3.2s; }
+    .feature:nth-child(4n) .feature-visual::after{ animation-delay:4.8s; }
+    .eco-card-visual::after{ animation-delay:2.4s; }
+  }
+  @keyframes shine-sweep{
+    0%, 8%{ left:-45%; }
+    45%, 100%{ left:130%; }
+  }
+  .feature-visual.no-pad{padding:0;}
+  .feature-visual img{width:100%; height:100%; object-fit:cover; display:block;}
+  .mockup-bars{display:flex; align-items:flex-end; gap:10px; height:55%;}
+  .mockup-bars .bar{width:16px; border-radius:3px;}
+  .mockup-rows{width:100%; display:flex; flex-direction:column; gap:12px;}
+  .mockup-row{background:var(--panel-2); border:1px solid var(--line); border-radius:10px; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; font-size:12.5px;}
+  .mockup-row .l{color:var(--silver-500); font-family:'JetBrains Mono','Noto Sans JP'; font-size:11px;}
+  .mockup-row .r{color:var(--silver-100); font-family:'Unbounded','Noto Sans JP'; font-size:12px; font-weight:500;}
+  .mockup-dial{width:150px; height:150px; border-radius:50%; border:10px solid var(--panel-2); position:relative; display:flex; align-items:center; justify-content:center;}
+  .mockup-dial::before{content:''; position:absolute; inset:-10px; border-radius:50%; border:10px solid transparent; border-top-color:var(--ice); border-right-color:var(--ice); transform:rotate(35deg);}
+  .mockup-dial span{font-family:'Unbounded','Noto Sans JP'; font-size:20px; font-weight:600;}
+
+  /* ---------- use cases accordion ---------- */
+  .uc-list{display:flex; flex-direction:column; gap:14px;}
+  .uc-item{border:1px solid var(--line); border-radius:var(--radius); background:var(--panel); overflow:hidden; box-shadow:inset 0 1px 0 rgba(255,255,255,0.06);}
+  .uc-head{width:100%; display:flex; align-items:center; gap:20px; padding:26px 28px; background:none; border:none; cursor:pointer; text-align:left; color:var(--silver-100);}
+  .uc-num{font-family:'JetBrains Mono','Noto Sans JP'; font-size:12px; color:var(--ice); letter-spacing:0.1em; flex-shrink:0; width:26px;}
+  .uc-head-text{flex:1;}
+  .uc-head-text h3{font-family:'Unbounded','Noto Sans JP'; font-size:17px; font-weight:600; margin-bottom:4px;}
+  .uc-head-text p{font-size:13.5px; color:var(--silver-500);}
+  .uc-plus{font-family:'JetBrains Mono','Noto Sans JP'; font-size:22px; color:var(--silver-500); transition:transform .25s ease; flex-shrink:0;}
+  .uc-item.open .uc-plus{transform:rotate(45deg); color:var(--ice);}
+  .uc-body{max-height:0; overflow:hidden; transition:max-height .35s ease;}
+  .uc-body-inner{padding:0 28px 34px; display:grid; grid-template-columns:1.15fr 1fr; gap:44px; align-items:start;}
+  @media(max-width:820px){ .uc-body-inner{grid-template-columns:1fr;} }
+  .uc-body-inner p.lede{color:var(--silver-500); font-size:14.5px; line-height:1.7; margin-bottom:20px;}
+  .uc-body-inner .tag-label{margin-top:0;}
+  .uc-body-inner ul{display:grid; gap:8px; margin-bottom:20px;}
+  .uc-body-inner li{display:flex; gap:10px; align-items:flex-start; font-size:13.5px; color:var(--silver-300); line-height:1.5;}
+  .uc-body-inner li::before{content:''; width:5px; height:5px; margin-top:6px; flex-shrink:0; border-radius:50%; background:var(--silver-500);}
+  .uc-key-value{font-family:'Unbounded','Noto Sans JP'; font-size:14px; font-weight:500; color:var(--silver-100); padding-top:14px; border-top:1px solid var(--line);}
+  .uc-visual{aspect-ratio:1/1; border-radius:var(--radius-sm); background:var(--panel-2); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; padding:24px;}
+
+  .uc-table{width:100%; border-collapse:collapse; margin-top:70px;}
+  .uc-table th, .uc-table td{text-align:left; padding:16px 18px; border-bottom:1px solid var(--line); font-size:13.5px; vertical-align:top;}
+  .uc-table th{font-family:'JetBrains Mono','Noto Sans JP'; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-dim); font-weight:400;}
+  .uc-table td{color:var(--silver-300); line-height:1.5;}
+  .uc-table td:first-child{color:var(--silver-100); font-family:'Unbounded','Noto Sans JP'; font-size:13px; font-weight:500;}
+  .uc-table-wrap{overflow-x:auto;}
+
+  .closing-band{text-align:center; padding:90px 0 20px;}
+  .closing-band h3{font-family:'Unbounded','Noto Sans JP'; font-size:clamp(22px,3.4vw,32px); font-weight:600; margin-bottom:16px;}
+  .closing-band p{color:var(--silver-500); max-width:600px; margin:0 auto; font-size:15px; line-height:1.7;}
+  .closing-band .tagline{margin-top:18px; font-family:'JetBrains Mono','Noto Sans JP'; font-size:13px; color:var(--ice); letter-spacing:0.04em;}
+
+  /* ---------- FAQ ---------- */
+  .faq-list{max-width:800px; margin:0 auto; border-top:1px solid var(--line);}
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-q{width:100%; text-align:left; background:none; border:none; color:var(--silver-100); font-family:'Unbounded','Noto Sans JP'; font-size:15px; font-weight:500; padding:24px 4px; display:flex; justify-content:space-between; align-items:center; gap:20px; cursor:pointer;}
+  .faq-q .plus{font-family:'JetBrains Mono','Noto Sans JP'; font-size:18px; color:var(--silver-500); transition:transform .25s ease; flex-shrink:0;}
+  .faq-item.open .faq-q .plus{transform:rotate(45deg); color:var(--ice);}
+  .faq-a{max-height:0; overflow:hidden; transition:max-height .3s ease;}
+  .faq-a p{padding:0 4px 24px; font-size:14px; color:var(--silver-500); line-height:1.75; max-width:680px;}
+  .faq-footnote{text-align:center; margin-top:44px; font-size:14px; color:var(--silver-500);}
+  .faq-footnote a{color:var(--silver-100); border-bottom:1px solid var(--silver-500);}
+
+  .cta-band{padding:100px 0; text-align:center; border-top:1px solid var(--line);}
+  .cta-band h2{font-family:'Unbounded','Noto Sans JP'; font-size:clamp(28px,4.6vw,44px); font-weight:600; margin-bottom:16px;}
+  .cta-band p{color:var(--silver-500); margin-bottom:36px;}
+
+  footer{padding:80px 0 40px; border-top:1px solid var(--line); background:var(--panel-3);}
+  .footer-top{display:flex; justify-content:space-between; gap:60px; flex-wrap:wrap; margin-bottom:70px;}
+  .footer-brand{max-width:280px;}
+  .footer-brand-top{display:flex; align-items:center; gap:9px; margin-bottom:16px;}
+  .footer-brand-top img.footer-icon{height:26px; width:auto;}
+  .footer-brand-top img.footer-wordmark{height:13px; width:auto;}
+  .footer-brand p{color:var(--silver-500); font-size:14px; line-height:1.6; margin-bottom:24px;}
+  .store-badges{display:flex; gap:10px; flex-wrap:wrap;}
+  .store-badge{display:inline-flex; align-items:center; gap:9px; padding:9px 15px; border:1px solid var(--line); border-radius:8px; color:var(--silver-100); transition:border-color .2s ease, background .2s ease;}
+  .store-badge:hover{border-color:var(--silver-500); background:var(--panel-2);}
+  .store-badge svg{width:18px; height:18px; flex-shrink:0;}
+  .store-badge .store-text{display:flex; flex-direction:column; line-height:1.25;}
+  .store-badge .store-text .small{font-family:'Inter','Noto Sans JP'; font-size:8.5px; color:var(--text-dim); letter-spacing:0.02em;}
+  .store-badge .store-text .big{font-family:'Unbounded','Noto Sans JP'; font-size:12px; font-weight:500;}
+  .footer-cols{display:flex; gap:56px; flex-wrap:wrap;}
+  .footer-col h5{font-family:'JetBrains Mono','Noto Sans JP'; font-size:11px; letter-spacing:0.12em; color:var(--text-dim); text-transform:uppercase; margin-bottom:18px;}
+  .footer-col li{margin-bottom:11px;}
+  .footer-col a{font-size:13.5px; color:var(--silver-500);}
+  .footer-col a:hover{color:var(--silver-100);}
+  .legal-link-btn{font-family:'Inter','Noto Sans JP'; font-size:13.5px; color:var(--silver-500); background:none; border:none; padding:0; cursor:pointer; text-align:left;}
+  .legal-link-btn:hover{color:var(--silver-100);}
+  .legal-modal-overlay{position:fixed; inset:0; background:rgba(5,6,7,0.75); backdrop-filter:blur(5px); z-index:1000; display:none; align-items:center; justify-content:center; padding:24px;}
+  .legal-modal-overlay.open{display:flex;}
+  .legal-modal{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); max-width:640px; width:100%; max-height:78vh; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 40px 90px -20px rgba(0,0,0,0.7);}
+  .legal-modal-header{display:flex; justify-content:space-between; align-items:center; gap:20px; padding:22px 26px; border-bottom:1px solid var(--line); flex-shrink:0;}
+  .legal-modal-header h3{font-family:'Unbounded','Noto Sans JP'; font-size:17px; font-weight:600;}
+  .legal-modal-close{background:none; border:none; color:var(--silver-500); font-size:24px; line-height:1; cursor:pointer; flex-shrink:0;}
+  .legal-modal-close:hover{color:var(--silver-100);}
+  .legal-modal-body{padding:24px 26px; overflow-y:auto; color:var(--silver-300); font-size:14px; line-height:1.75;}
+  .legal-modal-body p{margin-bottom:14px;}
+  .legal-modal-body p:last-child{margin-bottom:0;}
+  .help-form{display:flex; flex-direction:column; gap:14px;}
+  .help-form label{display:flex; flex-direction:column; gap:6px; font-family:'JetBrains Mono','Noto Sans JP'; font-size:10.5px; letter-spacing:0.05em; color:var(--text-dim); text-transform:uppercase;}
+  .help-form input, .help-form textarea{font-family:'Inter','Noto Sans JP'; font-size:14px; color:var(--silver-100); background:var(--panel-2); border:1px solid var(--line); border-radius:8px; padding:11px 14px; resize:vertical; text-transform:none; letter-spacing:normal;}
+  .help-form input:focus, .help-form textarea:focus{outline:none; border-color:var(--silver-500);}
+  .footer-security{display:flex; gap:28px; flex-wrap:wrap; padding:28px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-bottom:28px;}
+  .footer-security span{font-family:'JetBrains Mono','Noto Sans JP'; font-size:12px; color:var(--text-dim); display:flex; align-items:center; gap:8px;}
+  .footer-security span::before{content:'✓'; color:var(--ice);}
+  .footer-legal{font-family:'JetBrains Mono','Noto Sans JP'; font-size:9.5px; color:var(--text-dim); line-height:1.7;}
+  .footer-social{display:flex; flex-direction:column; gap:11px; margin-top:0;}
+  .footer-social a{font-size:12.5px; color:var(--silver-500);}
+  .footer-social a:hover{color:var(--silver-100);}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#top" class="brand">
+      <img src="/images/logo-icon.png" alt="Xerovan">
+      <img src="/images/logo-wordmark.png" alt="XEROVAN" class="brand-word-img">
+    </a>
+    <div class="nav-links">
+      <a href="#summary">概要</a>
+      <a href="#features">機能</a>
+      <a href="#usecases">活用例</a>
+      <a href="#faq">FAQ</a>
+      <a href="/ja/blog">ブログ</a>
+    </div>
+    <details class="lang-menu">
+      <summary aria-label="Language">JA</summary>
+      <div class="lang-list">
+        <a href="/en/" data-lang="en" hreflang="en" lang="en">English</a>
+        <a href="/kr/" data-lang="kr" hreflang="ko" lang="ko">한국어</a>
+        <a href="/ja/" data-lang="ja" hreflang="ja" lang="ja" aria-current="true">日本語</a>
+        <a href="/es/" data-lang="es" hreflang="es" lang="es">Español</a>
+        <a href="/ar/" data-lang="ar" hreflang="ar" lang="ar">العربية</a>
+        <a href="/pt/" data-lang="pt" hreflang="pt" lang="pt">Português</a>
+      </div>
+    </details>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div class="waveform" id="heroWave"></div>
+  <h1 class="hero-title"><span class="metal">Value in Motion</span></h1>
+  <p class="hero-sub">Xerovanは、ウォレット、決済、リワード、旅行、ビジネス支出をひとつの安全なプラットフォームにまとめます。</p>
+  <div class="hero-ctas">
+    <a href="#waitlist" class="btn-primary">ウェイトリストに登録</a>
+    <button class="btn-ghost" id="exploreBtn">アプリを見る</button>
+  </div>
+</section>
+
+<section class="app-preview" id="appPreview">
+  <div class="wrap">
+    <div class="hero-visual-wrap">
+      <img src="/images/hero-visual.jpg" alt="ひとつのウォレットで、無限の可能性。デジタル資産を管理し、世界中で支払い、現実の世界で活用しましょう。" class="hero-visual-img">
+      <div class="hero-visual-screen" id="heroVisualScreen">
+        <iframe id="heroVisualIframe" src="https://demo-brown-seven-24.vercel.app/" loading="lazy" title="Xerovanアプリのライブプレビュー"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" id="dividerBars1"></div>
+
+<section id="summary">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow center">XEROVANを選ぶ理由</span>
+      <h2>暗号資産は、ウォレットに眠らせておくだけのものではありません。</h2>
+      <p>Xerovanは、デジタル資産の保有・管理から決済、旅行、ビジネス運営まで、すべてのプロセスをつなぎます。</p>
+    </div>
+    <div class="flow">
+      <span class="flow-step">管理</span><span class="flow-arrow">→</span>
+      <span class="flow-step">スワップ</span><span class="flow-arrow">→</span>
+      <span class="flow-step">決済</span><span class="flow-arrow">→</span>
+      <span class="flow-step">獲得</span><span class="flow-arrow">→</span>
+      <span class="flow-step">旅行</span>
+    </div>
+    <ul class="why-list">
+      <li>複数の暗号資産ウォレットをひとつに</li>
+      <li>対応する複数のブロックチェーンで資産を管理</li>
+      <li>少ないステップで資産をスワップ・ブリッジ</li>
+      <li>バーチャル・物理Visaカードで世界中で決済</li>
+      <li>利回り、ステーキング、キャッシュバック、紹介リワードを利用</li>
+      <li>航空券、ホテル、アクティビティ、eSIMを予約</li>
+      <li>法人カードとチームの経費を管理</li>
+    </ul>
+
+    <div class="section-head center" style="margin-top:110px;">
+      <span class="eyebrow center">XEROVANエコシステム</span>
+      <h2>すべてがつながり、何も分断されない。</h2>
+      <p>5つの主要サービスを、ひとつのシームレスなエコシステムに。</p>
+    </div>
+    <div class="eco-grid">
+      <div class="eco-card"><h4>デジタル資産管理</h4><ul><li>統合マルチウォレット管理</li><li>セルフカストディ型MPCウォレット</li><li>マルチチェーン資産対応</li><li>スマート暗号資産スワップ</li><li>クロスチェーンブリッジ</li></ul></div>
+      <div class="eco-card"><h4>グローバル決済</h4><ul><li>バーチャル・物理Visaカード</li><li>Xerovan残高</li><li>Apple Pay・Google Pay</li><li>世界中のVisa加盟店で利用可能</li><li>個人・ビジネスの支出管理</li></ul></div>
+      <div class="eco-card"><h4>獲得とリワード</h4><ul><li>ステーブルコインの利回り商品</li><li>暗号資産ステーキング</li><li>キャッシュバックリワード</li><li>ユーザーリワードプログラム</li><li>紹介リワード</li></ul></div>
+      <div class="eco-card"><h4>旅行とライフスタイル</h4><ul><li>航空券</li><li>ホテル</li><li>ツアー・アクティビティ</li><li>eSIMサービス</li><li>Trateriaによる旅行マーケットプレイス</li></ul></div>
+      <div class="eco-card"><h4>ビジネスとセキュリティ</h4><ul><li>法人カード</li><li>経費管理</li><li>取引承認ワークフロー</li><li>チームの支出管理</li><li>MPCウォレットセキュリティ</li><li>デバイス・取引認証</li></ul></div>
+      <div class="eco-card-visual"><img src="/images/ecosystem-visual.jpg" alt="世界とつながるXerovanカードとアプリ"></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" id="dividerBars2"></div>
+
+<section id="features">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow center">機能</span>
+      <h2>ひとつのプラットフォームで、あらゆる動きを。</h2>
+      <p>音が空気を伝わるように、資産を自在に動かすための9つの機能。</p>
+    </div>
+
+    <div class="feature">
+      <div>
+        <span class="feature-num">01 / 09</span>
+        <div class="icon-tile"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="14" rx="3"/><path d="M2 10h20"/><circle cx="17" cy="15" r="1.4" fill="currentColor" stroke="none"/></svg></div>
+        <h3>統合マルチウォレット管理</h3>
+        <div class="feature-kicker">すべてのウォレット、すべての資産を、ひとつの安全な画面で。</div>
+        <p class="feature-lede">対応する暗号資産ウォレットをインポートまたは接続し、統合されたセルフカストディ型インターフェースですべての資産を管理できます。</p>
+        <ul class="feature-list">
+          <li>セルフカストディ型ウォレット体験</li><li>外部ウォレットのインポート・接続</li><li>安全なMPCウォレット技術</li>
+        </ul>
+        <span class="tag-label">対応ネットワーク</span>
+        <div class="tag-row"><span class="tag">Ethereum</span><span class="tag">Base</span><span class="tag">Arbitrum</span><span class="tag">Polygon</span><span class="tag">BNB Chain</span><span class="tag">Solana</span><span class="tag">TRON</span><span class="tag">Bitcoin</span><span class="tag">TON</span><span class="tag">Avalanche</span></div>
+        <p class="feature-close" style="margin-top:22px;">ウォレットはいつまでもあなたのもの。Xerovanはそれらを連携させるだけです。</p>
+      </div>
+      <div class="feature-visual no-pad">
+        <img src="/images/feature-01.jpg" alt="統合マルチウォレット管理 — ウォレットと資産内訳を表示するXerovanアプリ">
+      </div>
+    </div>
+
+    <div class="feature">
+      <div>
+        <span class="feature-num">02 / 09</span>
+        <div class="icon-tile"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/><path d="M6 15h4"/></svg></div>
+        <h3>Visa暗号資産カード</h3>
+        <div class="feature-kicker">暗号資産を、日常の支払い手段に。</div>
+        <p class="feature-lede">XerovanのバーチャルカードとVisa物理カードなら、Visaが使える場所ならどこでも暗号資産を実際の購買力に変えられます。</p>
+        <ul class="feature-list">
+          <li>Apple Pay・Google Pay対応</li><li>カードの即時凍結・解除</li><li>利用限度額のカスタマイズ</li>
+        </ul>
+        <span class="tag-label">こんな方に</span>
+        <div class="tag-row"><span class="tag">海外旅行者</span><span class="tag">デジタルノマド</span><span class="tag">グローバルフリーランサー</span><span class="tag">メディアバイヤー</span><span class="tag">暗号資産ユーザー</span><span class="tag">一般消費者</span></div>
+        <p class="feature-close" style="margin-top:22px;">国境のないライフスタイルのための、一枚のカード。</p>
+      </div>
+      <div class="feature-visual no-pad">
+        <img src="/images/feature-02.jpg" alt="Visa暗号資産カード — 暗号資産を日常の支払い手段に">
+      </div>
+    </div>
+
+    <div class="feature">
+      <div>
+        <span class="feature-num">03 / 09</span>
+        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M4 8h13M17 8l-3-3M17 8l-3 3"/><path d="M20 16H7M7 16l3-3M7 16l3 3"/></svg></div>
+        <h3>スマート暗号資産スワップ</h3>
+        <div class="feature-kicker">複雑さなしに、チェーンを越えて。</div>
+        <p class="feature-lede">Xerovanのスマートルーティングで、対応ネットワーク間の資産をワンクリックで簡単にスワップ・ブリッジできます。</p>
+        <ul class="feature-list"><li>スマート価格ルーティング</li><li>競争力のあるネットワーク手数料</li><li>シンプルなワンクリック体験</li></ul>
+        <span class="tag-label">技術パートナー</span>
+        <div class="tag-row"><span class="tag">0x</span><span class="tag">LI.FI</span><span class="tag">Circle CCTP</span></div>
+        <p class="feature-close" style="margin-top:22px;">摩擦は少なく、動く自由はもっと大きく。</p>
+      </div>
+      <div class="feature-visual no-pad"><img src="/images/feature-03.jpg" alt="スマート暗号資産スワップ — 複雑さなしにチェーンを移動"></div>
+    </div>
+
+    <div class="feature">
+      <div>
+        <span class="feature-num">04 / 09</span>
+        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></div>
+        <h3>獲得とリワード</h3>
+        <div class="feature-kicker">すべての資産とすべての取引に、もっと働いてもらう。</div>
+        <p class="feature-lede">Xerovanはステーキング、キャッシュバック、紹介リワードをまとめ、あなたの資産と取引が価値を生み続けるようにします。</p>
+        <ul class="feature-list"><li>ステーブルコインの利回り商品</li><li>暗号資産ステーキング</li><li>最大8%のキャッシュバックリワード</li></ul>
+        <p class="feature-close" style="margin-top:22px;">ただ保有するだけでなく、デジタル資産からもっと多くを。</p>
+      </div>
+      <div class="feature-visual no-pad"><img src="/images/feature-04.jpg" alt="獲得とリワード — 今月の獲得リワード合計8%"></div>
+    </div>
+
+    <div class="feature">
+      <div>
+        <span class="feature-num">05 / 09</span>
+        <div class="icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg></div>
+        <h3>Xerovan残高</h3>
+        <div class="feature-kicker">ひとつの残高で、すべてのXerovan体験を。</div>
+        <p class="feature-lede">暗号資産でXerovan残高をチャージし、エコシステム内のすべての商品・サービスを即座に支払えます。</p>
+        <ul class="feature-list"><li>暗号資産でチャージ</li><li>アプリ内で即時決済</li><li>対応する旅行商品の支払い</li></ul>
+        <p class="feature-close" style="margin-top:22px;">一度チャージすれば、エコシステム全体でスムーズに。</p>
+      </div>
+      <div class="feature-visual no-pad">
+        <img src="/images/feature-05.jpg" alt="Xerovan残高 — エコシステム全体で使えるひとつの残高">
+      </div>
+    </div>
+
+    <div class="feature">
+      <div>
+        <span class="feature-num">06 / 09</span>
+        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M2 12l9-8 2 3h9l-3 5 3 5h-9l-2 3-9-8z"/></svg></div>
+        <h3>旅行マーケットプレイス</h3>
+        <div class="feature-kicker">国境なく支払い、予約し、旅しよう。</div>
+        <p class="feature-lede">Xerovanは航空券、ホテル、ツアー、eSIMをひとつのマーケットプレイスにまとめ、Xerovan残高で支払えます。</p>
+        <span class="tag-label">旅行商品</span>
+        <div class="tag-row"><span class="tag">航空券</span><span class="tag">ホテル</span><span class="tag">ツアー・アクティビティ</span><span class="tag">eSIMサービス</span></div>
+        <ul class="feature-list" style="margin-top:20px;"><li>Trateriaによる旅行マーケットプレイス</li><li>多言語での商品検索</li><li>暗号資産に対応した支払いオプション</li></ul>
+        <p class="feature-close" style="margin-top:22px;">ウォレット、カード、そして旅が、ついにひとつに。</p>
+      </div>
+      <div class="feature-visual no-pad">
+        <img src="/images/feature-06.jpg" alt="旅行マーケットプレイス — 国境なく支払い、予約し、旅する">
+      </div>
+    </div>
+
+    <div class="feature">
+      <div>
+        <span class="feature-num">07 / 09</span>
+        <div class="icon-tile"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></div>
+        <h3>法人カードと経費管理</h3>
+        <div class="feature-kicker">すべてのカードを管理し、すべての経費を追跡し、自信を持って成長を。</div>
+        <p class="feature-lede">Xerovanなら、ひとつのダッシュボードでカードを発行し、支出ポリシーを設定し、すべての経費を追跡できます。</p>
+        <ul class="feature-list"><li>加盟店カテゴリーの制限を適用</li><li>領収書ベースの承認ワークフローを作成</li><li>従業員・チーム・カテゴリー別に支出を管理</li></ul>
+        <span class="tag-label">こんな方に</span>
+        <div class="tag-row"><span class="tag">中小企業</span><span class="tag">マーケティングエージェンシー</span><span class="tag">メディアバイイングチーム</span><span class="tag">グローバルフリーランサー</span><span class="tag">リモートチーム</span><span class="tag">海外経費の多い企業</span></div>
+        <p class="feature-close" style="margin-top:22px;">財務管理を失わずに、チームに裁量を。</p>
+      </div>
+      <div class="feature-visual no-pad">
+        <img src="/images/feature-07.jpg" alt="法人カードと経費管理 — すべてのカードを管理し、すべての経費を追跡">
+      </div>
+    </div>
+
+    <div class="feature">
+      <div>
+        <span class="feature-num">08 / 09</span>
+        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6l8-4z"/></svg></div>
+        <h3>セキュリティと資産保護</h3>
+        <div class="feature-kicker">あなたの資産を、あなたの管理で、高度に保護。</div>
+        <p class="feature-lede">Xerovanは、セルフカストディ型MPCウォレット基盤に暗号化と認証を組み合わせ、すべてのウォレット、カード、取引を保護します。</p>
+        <ul class="feature-list"><li>MPCウォレット基盤</li><li>データ暗号化</li><li>取引認証</li></ul>
+        <p class="feature-close" style="margin-top:22px;">すべてのウォレット、カード、取引にセキュリティを標準搭載。</p>
+      </div>
+      <div class="feature-visual no-pad"><img src="/images/feature-08.jpg" alt="セキュリティと資産保護 — すべてのウォレット、カード、取引を高度に保護"></div>
+    </div>
+
+    <div class="feature">
+      <div>
+        <span class="feature-num">09 / 09</span>
+        <div class="icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.6 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.6-3.8-9S9.5 5.5 12 3z"/></svg></div>
+        <h3>グローバルアクセス</h3>
+        <div class="feature-kicker">金融の国境がない世界のために。</div>
+        <p class="feature-lede">Xerovanは、国やデジタルネットワークを越えて暮らし、支払い、旅する個人と企業のために作られています。</p>
+        <ul class="feature-list"><li>複数通貨対応</li><li>世界中のVisa加盟店で利用可能</li><li>個人・法人向けソリューション</li></ul>
+        <p class="feature-close" style="margin-top:22px;">人生とビジネスがどこへ向かっても、ひとつのプラットフォームで。</p>
+      </div>
+      <div class="feature-visual no-pad" style="aspect-ratio:1/1;"><img src="/images/feature-09.jpg" alt="グローバルアクセス — ひとつのプラットフォームで世界中へ"></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" id="dividerBars3"></div>
+
+<section id="usecases">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow center">活用例</span>
+      <h2>国境を越えて活動する個人と企業のために。</h2>
+      <p>Xerovanは、デジタル資産を管理し、海外送金・決済を行い、頻繁に旅し、国境を越えてビジネスを行う個人と企業のために設計されています。</p>
+    </div>
+
+    <div class="uc-list" id="ucList"></div>
+
+    <div class="uc-table-wrap">
+      <table class="uc-table">
+        <thead><tr><th>顧客セグメント</th><th>主なニーズ</th><th>Xerovanのソリューション</th></tr></thead>
+        <tbody id="ucTableBody"></tbody>
+      </table>
+    </div>
+
+    <div class="closing-band">
+      <h3>国境のない個人と企業のために</h3>
+      <p>クライアントの広告予算管理、海外旅行、リモートワーク、海外サブスクリプションの支払い、日常での暗号資産利用、チームの経費管理まで — Xerovanはすべてをひとつのプラットフォームにまとめます。</p>
+      <div class="tagline">暗号資産を管理。支出をコントロール。世界中で決済。どこへでも旅を。</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" id="dividerBars4"></div>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow center">FAQ</span>
+      <h2>よくある質問</h2>
+    </div>
+    <div class="faq-list" id="faqList"></div>
+    <div class="faq-footnote">ご不明な点がありますか？<button type="button" class="legal-link-btn" style="display:inline" id="helpTrigger1">ヘルプセンター</button>または<button type="button" class="legal-link-btn" style="display:inline" id="helpTrigger2">サポートへのお問い合わせ</button>をご利用ください。</div>
+  </div>
+</section>
+
+<section class="cta-band" id="waitlist">
+  <div class="wrap">
+    <h2>あなたの暗号資産を、動かす準備はできています。</h2>
+    <p>ウェイトリストに登録して、Xerovanのローンチ情報をいち早く受け取りましょう。</p>
+    <div class="waitlist-inline">
+      <form class="form-row" id="footerForm">
+        <input type="email" placeholder="メールアドレスを入力" required aria-label="メールアドレス">
+        <button type="submit" class="btn-primary">ウェイトリストに登録</button>
+      </form>
+      <div class="form-note">スパムは送りません — ローンチ情報のみお届けします。</div>
+    </div>
+    <div class="form-success" id="footerSuccess">
+      <strong>Xerovanにご関心をお寄せいただきありがとうございます。</strong>
+      ウェイトリストへの登録が完了しました。Xerovanが正式にローンチされ次第、お知らせいたします。
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-brand-top">
+          <img src="/images/logo-icon.png" alt="Xerovan" class="footer-icon">
+          <img src="/images/logo-wordmark.png" alt="XEROVAN" class="footer-wordmark">
+        </div>
+        <p><strong style="color:var(--silver-100);">管理。獲得。決済。旅行。</strong><br>現代のユーザーのためのオールインワンWeb3金融プラットフォーム。</p>
+        <div class="store-badges">
+          <a href="#" class="store-badge">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 3c.2 1.3-.3 2.6-1 3.5-.8.9-2 1.6-3.2 1.5-.2-1.3.4-2.6 1.1-3.4.8-.9 2.1-1.5 3.1-1.6z"/><path d="M20.7 16.3c-.5 1.3-.8 1.9-1.5 3-1 1.6-2.4 3.5-4.2 3.5-1.6 0-2-1-3.9-1-2 0-2.5 1-4 1-1.7 0-3.1-1.7-4.1-3.3C0.7 16.4-.3 12 1.9 9c1.1-1.5 2.8-2.3 4.4-2.3 1.6 0 2.7.9 4 .9 1.3 0 2.1-.9 4-.9 1.5 0 3 .8 4.1 2.1-3.6 2-3 7.1 1.8 7.6-.2.6.3-.1.5-.1z"/></svg>
+            <span class="store-text"><span class="small">Download on the</span><span class="big">App Store</span></span>
+          </a>
+          <a href="#" class="store-badge">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.4 2.7 14 12 4.4 21.3c-.5-.3-.9-.8-.9-1.5V4.2c0-.7.4-1.2.9-1.5z"/><path d="M15 13l2.9-2.9 3.6 2c.9.5.9 1.8 0 2.3l-3.6 2L15 13z"/><path d="M14 12 4.4 2.7c.1-.1.3-.1.4-.1.3 0 .6.1.9.2l10.8 6.1L14 12z"/><path d="M14 12l2.5 2.9-10.8 6.1c-.3.2-.6.2-.9.2-.1 0-.3 0-.4-.1L14 12z"/></svg>
+            <span class="store-text"><span class="small">Get it on</span><span class="big">Google Play</span></span>
+          </a>
+        </div>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col"><h5>会社情報</h5><ul><li><a href="#">会社概要</a></li><li><a href="#">採用情報</a></li><li><a href="#">パートナー</a></li></ul></div>
+        <div class="footer-col"><h5>リソース</h5><ul><li><button type="button" class="legal-link-btn" id="helpTrigger3">ヘルプセンター</button></li><li><a href="#faq">FAQ</a></li><li><a href="/ja/blog">ブログ</a></li><li><a href="#">手数料</a></li></ul></div>
+        <div class="footer-col"><h5>法的情報</h5><ul id="legalLinks"><li><a href="#">利用規約</a></li><li><a href="#">プライバシーポリシー</a></li><li><a href="#">返金ポリシー</a></li><li><a href="#">リスク開示</a></li><li><a href="#">コンプライアンス</a></li></ul></div>
+        <div class="footer-col"><h5>SNS</h5><div class="footer-social"><a href="https://x.com/XerovanC" target="_blank" rel="noopener">X</a><a href="https://www.instagram.com/xerovancard/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/profile.php?id=61594055002981" target="_blank" rel="noopener">Facebook</a><a href="https://discord.com/channels/@me" target="_blank" rel="noopener">Discord</a></div></div>
+      </div>
+    </div>
+    <div class="footer-security">
+      <span>ノンカストディアルウォレット</span><span>安全な認証</span><span>KYC・AML準拠</span><span>Visaカードプログラム</span><span>マルチチェーン基盤</span>
+    </div>
+    <div class="footer-legal">
+      © 2026 Xerovan. All rights reserved.
+      Xerovanはテクノロジープラットフォームであり、銀行ではありません。カードおよび決済サービスは、認可を受けた金融機関およびライセンスを持つプログラムパートナーによって提供され、利用資格、適用される規約、地域ごとの提供状況に従います。
+      デジタル資産、ウォレット、スワップ、ブリッジ、決済、旅行、リワードの各サービスには、独立した第三者プロバイダーが関与する場合があります。機能、対応資産、手数料、上限、提供状況は法域により異なり、変更されることがあります。
+      デジタル資産には、価格変動、ネットワーク障害、スマートコントラクトの脆弱性、資金喪失の可能性などのリスクが伴います。Xerovanは投資、金融、税務、法律に関する助言を提供しません。
+      Xerovanのご利用には、適用法令、本人確認、制裁スクリーニング、および関連するサービス規約が適用されます。
+    </div>
+  </div>
+</footer>
+
+<div class="legal-modal-overlay" id="legalModalOverlay">
+  <div class="legal-modal">
+    <div class="legal-modal-header">
+      <h3 id="legalModalTitle"></h3>
+      <button type="button" class="legal-modal-close" id="legalModalClose" aria-label="閉じる">&times;</button>
+    </div>
+    <div class="legal-modal-body" id="legalModalBody"></div>
+  </div>
+</div>
+
+<div class="legal-modal-overlay" id="helpModalOverlay">
+  <div class="legal-modal" style="max-width:480px;">
+    <div class="legal-modal-header">
+      <h3>お問い合わせ</h3>
+      <button type="button" class="legal-modal-close" id="helpModalClose" aria-label="閉じる">&times;</button>
+    </div>
+    <div class="legal-modal-body">
+      <form id="helpForm" class="help-form">
+        <label>お名前<input type="text" name="name" required></label>
+        <label>メールアドレス<input type="email" name="email" required></label>
+        <label>メッセージ<textarea name="message" rows="5" required></textarea></label>
+        <button type="submit" class="btn-primary" style="width:100%; margin-top:2px;">メッセージを送信</button>
+        <div class="form-note" style="text-align:center;">ご入力いただいたメールアドレスに返信いたします。</div>
+      </form>
+      <div class="form-success" id="helpFormSuccess">
+        <strong>お問い合わせありがとうございます。</strong>
+        メッセージを受け付けました。追ってご連絡いたします。
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ============================================================
+     FAQ CONTENT — now loaded live from your Google Sheet (published
+     as CSV). Edit the sheet (Question / Answer columns) and the site
+     picks it up automatically — no redeploy needed.
+     FAQ_SHEET_URL below is that published CSV link.
+     faqDataFallback is only used if the sheet can't be reached
+     (e.g. offline, or the publish link changes) — keep it up to date
+     occasionally, but the sheet is the source of truth.
+  ============================================================ */
+  // Leave empty to use faqDataFallback below, or paste the CSV link of a sheet tab in this language.
+  const FAQ_SHEET_URL = '';
+
+  const faqDataFallback = [
+    {
+      "q": "現在どの国で利用できますか？",
+      "a": "Xerovanは提供地域を段階的に拡大しています。ウォレット作成、カード発行、一部のサービスはお住まいの国によって異なる場合があります。最新の提供状況は対応国ページをご確認ください。"
+    },
+    {
+      "q": "どのブロックチェーンに対応していますか？",
+      "a": "Ethereum、Base、Arbitrum、Polygon、BNB Chain、Solana、TRON、Bitcoinなど主要なブロックチェーンに対応しており、今後も追加予定です。"
+    },
+    {
+      "q": "Visaカードにはどうやって入金しますか？",
+      "a": "対応する暗号資産をXerovanウォレットに送金し、数回のタップでカードにチャージできます。選択した資産とネットワークに応じて資金が変換され、カード決済に利用できるようになります。"
+    },
+    {
+      "q": "Xerovanの手数料は？",
+      "a": "ウォレット送金、スワップ、カードへのチャージには、取引内容に応じてネットワーク手数料やサービス手数料がかかる場合があります。すべての手数料は確定前に明示されます。"
+    },
+    {
+      "q": "Xerovanはカストディアル型ですか、ノンカストディアル型ですか？",
+      "a": "Xerovanはノンカストディアル型ウォレットとして設計されており、デジタル資産の管理権を保持したまま統合金融サービスを利用できます。"
+    },
+    {
+      "q": "既存のウォレットを接続できますか？",
+      "a": "はい。MetaMaskなど対応する外部ウォレットを接続し、Xerovan内でシームレスに資産を管理できます。"
+    },
+    {
+      "q": "Xerovanの安全性は？",
+      "a": "セキュリティは最優先事項です。高度なウォレットセキュリティ技術、暗号化通信、生体認証、業界標準の保護機構によって資産とアカウントを守ります。"
+    },
+    {
+      "q": "暗号資産でリワードを獲得できますか？",
+      "a": "はい。地域での提供状況に応じて、対象資産でステーキング、利回り商品、キャッシュバック、紹介リワードに参加できます。"
+    },
+    {
+      "q": "法人でも利用できますか？",
+      "a": "もちろんです。従業員カード、支出管理、承認ワークフロー、経費管理、取引レポートなど、あらゆる規模の企業向け機能を提供しています。"
+    },
+    {
+      "q": "暗号資産ウォレット以外にどんなサービスがありますか？",
+      "a": "Xerovanは単なるウォレットではありません。暗号資産管理に加え、Visaカード決済、資産スワップ、クロスチェーン送金、旅行予約、eSIM購入、リワードなどをひとつのプラットフォームで利用できます。"
+    },
+    {
+      "q": "KYC認証は必要ですか？",
+      "a": "ウォレット作成、カード発行、規制対象の金融商品など一部のサービスでは、法令に基づき本人確認が必要です。対応するケースでは、外部ウォレットの接続はKYCなしで利用できる場合があります。"
+    },
+    {
+      "q": "Xerovanはいつ正式ローンチしますか？",
+      "a": "現在、正式ローンチに向けて準備中です。ウェイトリストに登録すると、製品アップデート、早期アクセス、ローンチのお知らせを受け取れます。"
+    }
+  ];
+
+  // Minimal CSV parser that handles quoted fields (commas/newlines inside
+  // quotes, escaped "" quotes) — Google Sheets' CSV export uses this format.
+  function parseCSV(text){
+    const rows = [];
+    let row = [], field = '', inQuotes = false;
+    for (let i = 0; i < text.length; i++){
+      const c = text[i], next = text[i+1];
+      if (inQuotes){
+        if (c === '"' && next === '"'){ field += '"'; i++; }
+        else if (c === '"'){ inQuotes = false; }
+        else { field += c; }
+      } else {
+        if (c === '"'){ inQuotes = true; }
+        else if (c === ','){ row.push(field); field = ''; }
+        else if (c === '\n'){ row.push(field); rows.push(row); row = []; field = ''; }
+        else if (c === '\r'){ /* skip */ }
+        else { field += c; }
+      }
+    }
+    if (field.length || row.length){ row.push(field); rows.push(row); }
+    return rows.filter(r => r.some(cell => cell.trim() !== ''));
+  }
+
+  function renderFAQ(data){
+    const faqList = document.getElementById('faqList');
+    faqList.innerHTML = '';
+    data.forEach((item) => {
+      const el = document.createElement('div');
+      el.className = 'faq-item';
+      el.innerHTML = `<button class="faq-q" aria-expanded="false"><span>${item.q}</span><span class="plus">+</span></button><div class="faq-a"><p>${item.a}</p></div>`;
+      faqList.appendChild(el);
+      const btn = el.querySelector('.faq-q');
+      const ans = el.querySelector('.faq-a');
+      btn.addEventListener('click', () => {
+        const isOpen = el.classList.contains('open');
+        faqList.querySelectorAll('.faq-item.open').forEach(o => {
+          o.classList.remove('open'); o.querySelector('.faq-a').style.maxHeight = null; o.querySelector('.faq-q').setAttribute('aria-expanded','false');
+        });
+        if(!isOpen){ el.classList.add('open'); ans.style.maxHeight = ans.scrollHeight + 'px'; btn.setAttribute('aria-expanded','true'); }
+      });
+    });
+  }
+
+  (FAQ_SHEET_URL ? fetch(FAQ_SHEET_URL) : Promise.reject(new Error('no sheet')))
+    .then(res => { if (!res.ok) throw new Error('sheet fetch failed'); return res.text(); })
+    .then(text => {
+      const rows = parseCSV(text);
+      rows.shift(); // drop header row (Question, Answer)
+      const data = rows
+        .filter(r => r[0] && r[0].trim())
+        .map(r => ({ q: r[0].trim(), a: (r[1] || '').trim() }));
+      renderFAQ(data.length ? data : faqDataFallback);
+    })
+    .catch(() => { renderFAQ(faqDataFallback); });
+
+  /* ============================================================
+     LEGAL CONTENT — loaded live from a Google Sheet (Title / Content
+     columns). Clicking a link in the footer opens a modal showing
+     that document's full text, pulled straight from the sheet — no
+     separate pages to build or host. Edit the sheet any time.
+     LEGAL_SHEET_URL is that sheet's published CSV link.
+  ============================================================ */
+  const LEGAL_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTmXKE-ZqjHlT6Vw8NnS4qKxX8zC77y3tGWVk1HZeFyupirEUfRb8nGTsI3-_d1pcLrWHuxMm8UiHUO/pub?gid=1700406003&single=true&output=csv';
+
+  const legalDataFallback = [
+    {
+      "title": "利用規約",
+      "content": "近日公開予定です。"
+    },
+    {
+      "title": "プライバシーポリシー",
+      "content": "近日公開予定です。"
+    },
+    {
+      "title": "返金ポリシー",
+      "content": "近日公開予定です。"
+    }
+  ];
+
+  function renderLegalLinks(data){
+    const list = document.getElementById('legalLinks');
+    if (!list) return;
+    list.innerHTML = '';
+    data.forEach((item, i) => {
+      const li = document.createElement('li');
+      li.innerHTML = `<button type="button" class="legal-link-btn" data-idx="${i}">${item.title}</button>`;
+      list.appendChild(li);
+    });
+    list.querySelectorAll('.legal-link-btn').forEach(btn => {
+      btn.addEventListener('click', () => openLegalModal(data[Number(btn.dataset.idx)]));
+    });
+  }
+
+  function openLegalModal(item){
+    const overlay = document.getElementById('legalModalOverlay');
+    const title = document.getElementById('legalModalTitle');
+    const body = document.getElementById('legalModalBody');
+    title.textContent = item.title;
+    body.innerHTML = (item.content || '')
+      .split(/\n{2,}/)
+      .map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`)
+      .join('');
+    overlay.classList.add('open');
+  }
+
+  function closeLegalModal(){
+    document.getElementById('legalModalOverlay').classList.remove('open');
+  }
+  document.getElementById('legalModalClose').addEventListener('click', closeLegalModal);
+  document.getElementById('legalModalOverlay').addEventListener('click', (e) => {
+    if (e.target.id === 'legalModalOverlay') closeLegalModal();
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLegalModal(); });
+
+  /* ============================================================
+     HELP CENTER / CONTACT — clicking "Help Center" or "Contact
+     Support" opens a small form. Submissions are emailed to
+     hello@xerovan.com via an Apps Script web app.
+     HELP_SCRIPT_URL is that deployed web app's URL.
+  ============================================================ */
+  const HELP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw3ATTK_vDuvQOzJXpbS36DV2AmPfRmYneZCn9J8H09gYkviEWSoG1_NJczrhoA36eihw/exec';
+
+  function openHelpModal(){ document.getElementById('helpModalOverlay').classList.add('open'); }
+  function closeHelpModal(){ document.getElementById('helpModalOverlay').classList.remove('open'); }
+
+  ['helpTrigger1', 'helpTrigger2', 'helpTrigger3'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('click', openHelpModal);
+  });
+  document.getElementById('helpModalClose').addEventListener('click', closeHelpModal);
+  document.getElementById('helpModalOverlay').addEventListener('click', (e) => {
+    if (e.target.id === 'helpModalOverlay') closeHelpModal();
+  });
+
+  document.getElementById('helpForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const form = this;
+    const name = form.querySelector('[name="name"]').value.trim();
+    const email = form.querySelector('[name="email"]').value.trim();
+    const message = form.querySelector('[name="message"]').value.trim();
+
+    fetch(HELP_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: 'name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email) + '&message=' + encodeURIComponent(message)
+    }).catch(function(err){ console.error('Help form submit failed', err); });
+
+    form.style.display = 'none';
+    document.getElementById('helpFormSuccess').style.display = 'block';
+    form.reset();
+  });
+
+  fetch(LEGAL_SHEET_URL)
+    .then(res => { if (!res.ok) throw new Error('sheet fetch failed'); return res.text(); })
+    .then(text => {
+      const rows = parseCSV(text);
+      rows.shift(); // drop header row (Title, Content)
+      const data = rows
+        .filter(r => r[0] && r[0].trim())
+        .map(r => ({ title: r[0].trim(), content: (r[1] || '').trim() }));
+      renderLegalLinks(data.length ? data : legalDataFallback);
+    })
+    .catch(() => { renderLegalLinks(legalDataFallback); });
+
+  /* ============================================================
+     USE CASES CONTENT — edit this array to add / change / remove
+     use cases. "visual" is a small keyword used to pick a mockup
+     graphic (rows / bars / dial) — any of: "rows", "bars", "dial".
+  ============================================================ */
+  const useCaseData = [
+    {
+      "title": "マーケティングエージェンシー・メディアバイヤー",
+      "tag": "クライアント、チーム、プラットフォームをまたぐ広告費を管理。",
+      "lede": "マーケティングエージェンシーやメディアバイヤーは、予算、クライアント、承認要件が異なる複数の広告アカウントを運用しています。Xerovanなら専用カードを発行し、支出を管理し、すべての取引を一か所で追跡できます。",
+      "items": [
+        "クライアント・キャンペーンごとにバーチャルカードを発行",
+        "Google Ads、Meta Ads、TikTok Adsなどプラットフォーム別に専用カードを割り当て",
+        "クライアント・従業員・キャンペーン別に利用限度額を設定",
+        "加盟店カテゴリーの制限を適用",
+        "カードを即時に凍結・解除",
+        "領収書や証憑書類を収集",
+        "領収書ベースの取引承認ワークフローを作成",
+        "一元化されたダッシュボードで広告費をモニタリング",
+        "クライアント・チーム・プロジェクト別の経費レポートを作成"
+      ],
+      "value": "すべての予算を分け、すべての取引を管理し、すべてのキャンペーンを追跡。",
+      "visual": "image",
+      "image": "/images/usecase-01.jpg"
+    },
+    {
+      "title": "海外を頻繁に訪れる旅行者",
+      "tag": "お金、決済、旅行サービスをひとつのプラットフォームで。",
+      "lede": "頻繁に旅する人には、どこでも頼れる資金アクセス、グローバルな決済手段、欠かせない旅行サービスが必要です。Xerovanはデジタル資産、Visaカード決済、旅行予約をひとつの体験につなぎます。",
+      "items": [
+        "Visaが使える場所なら世界中で決済",
+        "旅行中にバーチャル・物理カードを利用",
+        "Apple PayやGoogle Payにカードを追加",
+        "対応するデジタル資産でカードにチャージ",
+        "紛失・盗難時はすぐにカードを凍結",
+        "アプリから直接カードの凍結を解除",
+        "取引をリアルタイムで確認",
+        "航空券、ホテル、ツアー、アクティビティ、eSIMを予約",
+        "複数の通貨とネットワークの資産を管理"
+      ],
+      "value": "お金、カード、旅をひとつのプラットフォームで。",
+      "visual": "image",
+      "image": "/images/usecase-02.jpg"
+    },
+    {
+      "title": "デジタルノマド・グローバルフリーランサー",
+      "tag": "どこからでも働ける、金融の柔軟性を。",
+      "lede": "デジタルノマドやフリーランサーは、異なる国や通貨で収入を得て、支払い、経費を管理しています。Xerovanなら、場所に縛られずにデジタル資産と日々の支出を管理できます。",
+      "items": [
+        "ひとつの画面で複数の暗号資産ウォレットを管理",
+        "対応ネットワーク全体で資産を保有・管理",
+        "必要なときに資産をスワップ",
+        "Xerovan Visaカードで世界中で決済",
+        "ソフトウェア、宿泊、交通、生活費を支払い",
+        "Xerovan旅行マーケットプレイスで旅行を予約",
+        "海外での通信用にeSIMを購入",
+        "個人・ビジネスの取引を一か所で確認"
+      ],
+      "value": "どこでも働き、どこでも支払い、常にコントロールを。",
+      "visual": "image",
+      "image": "/images/usecase-03.jpg"
+    },
+    {
+      "title": "ドル建て・海外サブスクリプションの利用者",
+      "tag": "専用カードで、定期的な海外決済を管理。",
+      "lede": "多くの国のユーザーが、海外のソフトウェア、クラウド、ストリーミング、ドル建てサブスクリプションの支払いに苦労しています。Xerovanは定期支払いを整理し、管理する便利な方法を提供します。",
+      "items": [
+        "サブスクリプション専用のバーチャルカードを作成",
+        "対応する海外・ドル建てサービスを支払い",
+        "ビジネス用と個人用のサブスクリプションカードを分ける",
+        "カテゴリーごとに利用限度額を設定",
+        "定期的な請求をリアルタイムで確認",
+        "不要になったサブスクリプションはカードを凍結",
+        "予期しない請求や不正利用のリスクを軽減",
+        "SaaS、クラウド、生産性ツール、デジタルサービスの支払いを追跡"
+      ],
+      "value": "すべての海外サブスクリプションを、自分の手で管理。",
+      "visual": "image",
+      "image": "/images/usecase-04.jpg",
+      "tags": [
+        "クラウドインフラ",
+        "AI・生産性ツール",
+        "デザイン・コラボレーションツール",
+        "マーケティングプラットフォーム",
+        "ストリーミング・デジタルコンテンツ",
+        "ビジネス向けSaaS"
+      ]
+    },
+    {
+      "title": "暗号資産を実生活で活用したい保有者",
+      "tag": "保有するだけでなく、デジタル資産を使い始めよう。",
+      "lede": "多くの暗号資産ユーザーは、複数のウォレットやブロックチェーンに資産を分散して保有していますが、日常で使う簡単な方法がありません。Xerovanはウォレット管理、スワップ、決済、リワード、旅行をつなぎます。",
+      "items": [
+        "対応ウォレットをインポートして一か所で管理",
+        "外部ウォレットを接続",
+        "マルチチェーン資産を表示・管理",
+        "暗号資産の送金・受け取り",
+        "対応ネットワーク間で資産をスワップ",
+        "対応チェーン間で資産をブリッジ",
+        "Xerovan残高やカードにチャージ",
+        "Visaネットワークで決済",
+        "対応する旅行商品やサービスに暗号資産を利用",
+        "ステーキング、利回り、キャッシュバック、紹介リワードを利用"
+      ],
+      "value": "デジタル資産を、現実の可能性に。",
+      "visual": "image",
+      "image": "/images/usecase-05.jpg"
+    },
+    {
+      "title": "中小企業・分散型チーム",
+      "tag": "従業員、チーム、国をまたぐビジネス支出をシンプルに。",
+      "lede": "中小企業には、従業員の支出をより可視化し、管理する仕組みが必要です。Xerovanなら、カードを発行し、支出ポリシーを定め、経費を一元管理できます。",
+      "items": [
+        "従業員や部署ごとに複数のカードを発行",
+        "出張、マーケティング、ソフトウェア、運営用にカードを分ける",
+        "従業員・チーム・経費カテゴリー別に利用限度額を設定",
+        "承認済みの加盟店カテゴリーに利用を制限",
+        "カードを即時に凍結・解除",
+        "領収書ベースの経費承認ワークフローを構築",
+        "従業員の領収書を収集・整理",
+        "ビジネス取引をリアルタイムでモニタリング",
+        "一元化された経費レポートを作成",
+        "海外のビジネス経費・出張費を管理"
+      ],
+      "value": "財務管理を保ちながら、チームに支出の柔軟性を。",
+      "visual": "image",
+      "image": "/images/usecase-06.jpg"
+    }
+  ];
+
+  const summaryTable = [
+    [
+      "マーケティングエージェンシー・メディアバイヤー",
+      "クライアント別の広告予算を分けて管理",
+      "複数カード、利用限度額、加盟店制限、経費追跡"
+    ],
+    [
+      "海外を頻繁に訪れる旅行者",
+      "世界中での決済と旅行の管理",
+      "Visaカード、カード管理、旅行予約、eSIM"
+    ],
+    [
+      "デジタルノマド・フリーランサー",
+      "国境を越えた収入と支出の管理",
+      "マルチウォレット管理、スワップ、グローバル決済、旅行サービス"
+    ],
+    [
+      "海外サブスクリプション利用者",
+      "定期的な海外サービスの支払いと管理",
+      "専用バーチャルカード、利用限度額、取引モニタリング"
+    ],
+    [
+      "暗号資産保有者",
+      "保管や取引を超えたデジタル資産の活用",
+      "ウォレット管理、スワップ、カード決済、リワード、旅行"
+    ],
+    [
+      "中小企業・分散型チーム",
+      "従業員・部署の経費管理",
+      "法人カード、承認ワークフロー、領収書管理、レポート"
+    ]
+  ];
+
+  function metalGradient(el, angle){ const a = (angle===undefined) ? 180 : angle; el.style.background = 'linear-gradient(' + a + 'deg, #f6f7f9 0%, #9ba0a8 45%, #5c6068 70%, #d4d7dc 100%)'; }
+
+  function buildVisual(uc){
+    if(uc.visual === 'image'){
+      return `<img src="${uc.image}" alt="${uc.title}" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;">`;
+    }
+    if(uc.visual === 'rows'){
+      const rows = uc.rows.map(r => `<div class="mockup-row"><span class="l">${r[0]}</span><span class="r">${r[1]}</span></div>`).join('');
+      return `<div class="mockup-rows" style="width:100%">${rows}</div>`;
+    }
+    if(uc.visual === 'dial'){
+      return `<div class="mockup-dial"><span>${uc.dialLabel || ''}</span></div>`;
+    }
+    return `<div class="mockup-bars" data-bars></div>`;
+  }
+
+  const ucList = document.getElementById('ucList');
+  useCaseData.forEach((uc, i) => {
+    const el = document.createElement('div');
+    el.className = 'uc-item';
+    const tagsHtml = uc.tags ? `<span class="tag-label">主なサービス</span><div class="tag-row">${uc.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>` : '';
+    el.innerHTML = `
+      <button class="uc-head" aria-expanded="false">
+        <span class="uc-num">0${i+1}</span>
+        <span class="uc-head-text"><h3>${uc.title}</h3><p>${uc.tag}</p></span>
+        <span class="uc-plus">+</span>
+      </button>
+      <div class="uc-body">
+        <div class="uc-body-inner">
+          <div>
+            <p class="lede">${uc.lede}</p>
+            <span class="tag-label">主な活用シーン</span>
+            <ul>${uc.items.map(it=>`<li>${it}</li>`).join('')}</ul>
+            ${tagsHtml}
+            <div class="uc-key-value">提供価値: ${uc.value}</div>
+          </div>
+          <div class="uc-visual" style="${uc.visual === 'image' ? 'padding:0; overflow:hidden;' : ''}">${buildVisual(uc)}</div>
+        </div>
+      </div>`;
+    ucList.appendChild(el);
+
+    const bars = el.querySelector('[data-bars]');
+    if(bars){
+      [0.5,0.85,0.6,1,0.5,0.75].forEach(h=>{
+        const b = document.createElement('div'); b.className='bar'; b.style.width='14px'; b.style.borderRadius='3px'; b.style.height=(h*100)+'%';
+        metalGradient(b); bars.appendChild(b);
+      });
+    }
+
+    const btn = el.querySelector('.uc-head');
+    const body = el.querySelector('.uc-body');
+    btn.addEventListener('click', () => {
+      const isOpen = el.classList.contains('open');
+      ucList.querySelectorAll('.uc-item.open').forEach(o => {
+        o.classList.remove('open'); o.querySelector('.uc-body').style.maxHeight = null; o.querySelector('.uc-head').setAttribute('aria-expanded','false');
+      });
+      if(!isOpen){ el.classList.add('open'); body.style.maxHeight = body.scrollHeight + 'px'; btn.setAttribute('aria-expanded','true'); }
+    });
+  });
+
+  const ucTableBody = document.getElementById('ucTableBody');
+  summaryTable.forEach(row => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${row[0]}</td><td>${row[1]}</td><td>${row[2]}</td>`;
+    ucTableBody.appendChild(tr);
+  });
+
+  /* ---------- waveform hero (audio-equalizer feel) ---------- */
+  const heroWave = document.getElementById('heroWave');
+  const WAVE_BARS = 31; // ~2/3 of the previous width
+  const WAVE_H = 96;    // bars now grow upward from a baseline only
+  const barData = [];
+
+  for (let i = 0; i < WAVE_BARS; i++) {
+    const t = i / (WAVE_BARS - 1); // 0..1 across the width
+
+    // Smooth flowing envelope: two soft overlapping bumps (like a spoken
+    // phrase) plus a couple of low-frequency ripples. All continuous
+    // functions of t, so neighboring bars stay close in height — no jagged,
+    // independent-random spikes, just a flowing contour.
+    const bumpA = Math.exp(-Math.pow((t - 0.30) * 3.2, 2)) * 0.5;
+    const bumpB = Math.exp(-Math.pow((t - 0.70) * 2.4, 2)) * 1.0;
+    const ripple = 0.09 * Math.sin(t * 13 + 1.2) + 0.05 * Math.sin(t * 24 + 0.5);
+    let h = 0.10 + bumpA + bumpB + ripple;
+    h = Math.max(0.08, Math.min(1, h));
+
+    const b = document.createElement('div');
+    b.className = 'bar';
+    b.style.height = (h * WAVE_H) + 'px';
+
+    // Gentle per-bar variation in speed/phase — still smooth, just not
+    // perfectly synchronized, so the wave feels alive rather than mechanical.
+    const seed = Math.abs(Math.sin(i * 91.7));
+    const duration = (3.0 + seed * 2.2).toFixed(2);      // 3.0s – 5.2s
+    const delay = (-(seed * 4) - t * 1.6).toFixed(2);     // staggered start, subtle left→right drift
+    const minScale = (0.30 + (1 - h) * 0.22).toFixed(2);
+    const angle = 165 + (ripple * 260);
+
+    b.style.animationDuration = duration + 's';
+    b.style.animationDelay = delay + 's';
+    b.style.setProperty('--wv-min', minScale);
+    metalGradient(b, angle);
+    heroWave.appendChild(b);
+
+    barData.push({ el: b, h, duration, delay });
+  }
+
+  // Small particles that scatter upward off the taller peaks, like dust
+  // lifting off an audio meter — synced to each bar's own pulse timing.
+  barData.forEach((d, i) => {
+    if (d.h < 0.45 || i % 2 !== 0) return;
+    const left = d.el.offsetLeft + d.el.offsetWidth / 2 - 1.5;
+    const bottom = d.h * WAVE_H - 2;
+    const spark = document.createElement('div');
+    spark.className = 'wv-spark';
+    spark.style.left = left + 'px';
+    spark.style.bottom = bottom + 'px';
+    spark.style.animationDuration = d.duration + 's';
+    spark.style.animationDelay = d.delay + 's';
+    spark.style.setProperty('--sx', ((Math.random() - 0.5) * 12).toFixed(1) + 'px');
+    heroWave.appendChild(spark);
+  });
+
+  function fillBars(id, heights){
+    const el = document.getElementById(id); if(!el) return;
+    heights.forEach(h=>{ const b=document.createElement('div'); b.className='bar'; b.style.height=(h*100)+'%'; metalGradient(b); el.appendChild(b); });
+  }
+
+  function fillDivider(id, count){
+    const el = document.getElementById(id); if(!el) return;
+    for(let i=0;i<count;i++){
+      const b=document.createElement('div'); b.className='bar';
+      const h = 12 + Math.abs(Math.sin(i*0.5))*22;
+      b.style.height=h+'px'; b.style.animationDelay=(i*0.09)+'s';
+      metalGradient(b); el.appendChild(b);
+    }
+  }
+  fillDivider('dividerBars1', 40);
+  fillDivider('dividerBars2', 40);
+  fillDivider('dividerBars3', 40);
+  fillDivider('dividerBars4', 40);
+
+  document.getElementById('exploreBtn').addEventListener('click', () => {
+    document.getElementById('appPreview').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  /* Render the live preview at a normal mobile width (390px) so its own
+     responsive layout doesn't squish, then scale the whole iframe down
+     to fit the (smaller) phone screen cutout in the hero image. */
+  function fitHeroVisualIframe(){
+    const container = document.getElementById('heroVisualScreen');
+    const iframe = document.getElementById('heroVisualIframe');
+    if (!container || !iframe) return;
+    const DEVICE_W = 390, DEVICE_H = 844;
+    const rect = container.getBoundingClientRect();
+    if (!rect.width) return;
+    const scale = rect.width / DEVICE_W;
+    iframe.style.width = DEVICE_W + 'px';
+    iframe.style.height = DEVICE_H + 'px';
+    iframe.style.transform = 'scale(' + scale + ')';
+  }
+  window.addEventListener('load', fitHeroVisualIframe);
+  window.addEventListener('resize', fitHeroVisualIframe);
+  fitHeroVisualIframe();
+
+  document.querySelectorAll('.lang-list a').forEach(function(a){
+    a.addEventListener('click', function(){
+      document.cookie = 'xv_lang=' + a.dataset.lang + '; path=/; max-age=31536000; SameSite=Lax';
+    });
+  });
+  document.addEventListener('click', function(e){
+    var m = document.querySelector('.lang-menu');
+    if (m && m.open && !m.contains(e.target)) m.open = false;
+  });
+
+  /* Google Sheet waitlist webhook (Apps Script Web App) */
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxKNLj0A3U9I-49Yh6bO_7oZltUSemfqj8RjVvyMoUEJLVLKiVxt2YS68BLVX0I4TY1/exec';
+
+  function wireForm(formId, successId){
+    const form = document.getElementById(formId);
+    const success = document.getElementById(successId);
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const emailInput = this.querySelector('input[type="email"]');
+      const email = emailInput ? emailInput.value.trim() : '';
+
+      if (email) {
+        fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors', // Apps Script web apps don't return CORS headers; fire-and-forget
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: 'email=' + encodeURIComponent(email) + '&lang=ja'
+        }).catch(function(err){ console.error('Waitlist submit failed', err); });
+      }
+
+      form.style.display = 'none';
+      const note = form.parentElement.querySelector('.form-note');
+      if(note) note.style.display = 'none';
+      success.style.display = 'block';
+      this.reset();
+    });
+  }
+  wireForm('footerForm', 'footerSuccess');
+</script>
+</body>
+</html>
