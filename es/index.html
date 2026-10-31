@@ -281,6 +281,18 @@
   .faq-footnote{text-align:center; margin-top:44px; font-size:14px; color:var(--silver-500);}
   .faq-footnote a{color:var(--silver-100); border-bottom:1px solid var(--silver-500);}
 
+  .latest{padding:100px 0;}
+  .latest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  @media(max-width:900px){ .latest-grid{grid-template-columns:1fr;} }
+  .latest-card{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:border-color .2s ease, transform .2s ease;}
+  .latest-card:hover{border-color:var(--silver-700);transform:translateY(-2px);}
+  .latest-card .lc-thumb{aspect-ratio:16/9;background:linear-gradient(160deg,#2a2c31,#131417 60%,#1b1d21);}
+  .latest-card .lc-thumb img{width:100%;height:100%;object-fit:cover;}
+  .latest-card .lc-body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:10px;}
+  .latest-card .lc-meta{font-family:'JetBrains Mono';font-size:11px;color:var(--text-dim);letter-spacing:0.04em;}
+  .latest-card h3{font-family:'Unbounded';font-size:15px;font-weight:600;line-height:1.4;}
+  .latest-card p{font-size:13.5px;color:var(--silver-500);line-height:1.6;}
+  .latest-more{text-align:center;margin-top:36px;}
   .cta-band{padding:100px 0; text-align:center; border-top:1px solid var(--line);}
   .cta-band h2{font-family:'Unbounded'; font-size:clamp(28px,4.6vw,44px); font-weight:600; margin-bottom:16px;}
   .cta-band p{color:var(--silver-500); margin-bottom:36px;}
@@ -374,7 +386,7 @@
 <section class="app-preview" id="appPreview">
   <div class="wrap">
     <div class="hero-visual-wrap">
-      <img src="/images/hero-visual.jpg" alt="Una wallet. Posibilidades infinitas. Gestiona activos digitales, paga en todo el mundo y dales utilidad real." class="hero-visual-img">
+      <img src="/images/hero-visual.webp" alt="Una wallet. Posibilidades infinitas. Gestiona activos digitales, paga en todo el mundo y dales utilidad real." class="hero-visual-img">
       <div class="hero-visual-screen" id="heroVisualScreen">
         <iframe id="heroVisualIframe" src="https://demo-brown-seven-24.vercel.app/" loading="lazy" title="Vista previa en vivo de la app Xerovan"></iframe>
       </div>
@@ -419,7 +431,7 @@
       <div class="eco-card"><h4>Gana y recompensas</h4><ul><li>Oportunidades de rendimiento en stablecoins</li><li>Staking de cripto</li><li>Recompensas de cashback</li><li>Programas de recompensas</li><li>Recompensas por referidos</li></ul></div>
       <div class="eco-card"><h4>Viajes y estilo de vida</h4><ul><li>Vuelos</li><li>Hoteles</li><li>Tours y actividades</li><li>Servicios eSIM</li><li>Marketplace de viajes impulsado por Trateria</li></ul></div>
       <div class="eco-card"><h4>Empresa y seguridad</h4><ul><li>Tarjetas corporativas</li><li>Gestión de gastos</li><li>Flujos de aprobación de transacciones</li><li>Controles de gasto del equipo</li><li>Seguridad de wallet MPC</li><li>Verificación de dispositivo y transacciones</li></ul></div>
-      <div class="eco-card-visual"><img src="/images/ecosystem-visual.jpg" alt="Tarjeta y app Xerovan conectadas en todo el mundo"></div>
+      <div class="eco-card-visual"><img loading="lazy" decoding="async" src="/images/ecosystem-visual.webp" alt="Tarjeta y app Xerovan conectadas en todo el mundo"></div>
     </div>
   </div>
 </section>
@@ -449,7 +461,7 @@
         <p class="feature-close" style="margin-top:22px;">Tus wallets siguen siendo tuyas. Xerovan simplemente las hace trabajar juntas.</p>
       </div>
       <div class="feature-visual no-pad">
-        <img src="/images/feature-01.jpg" alt="Gestión unificada de wallets — app Xerovan mostrando wallets y desglose de activos">
+        <img loading="lazy" decoding="async" src="/images/feature-01.webp" alt="Gestión unificada de wallets — app Xerovan mostrando wallets y desglose de activos">
       </div>
     </div>
 
@@ -468,7 +480,7 @@
         <p class="feature-close" style="margin-top:22px;">Una tarjeta para un estilo de vida sin fronteras.</p>
       </div>
       <div class="feature-visual no-pad">
-        <img src="/images/feature-02.jpg" alt="Tarjeta Visa cripto — convierte tus cripto en poder de compra diario">
+        <img loading="lazy" decoding="async" src="/images/feature-02.webp" alt="Tarjeta Visa cripto — convierte tus cripto en poder de compra diario">
       </div>
     </div>
 
@@ -484,7 +496,7 @@
         <div class="tag-row"><span class="tag">0x</span><span class="tag">LI.FI</span><span class="tag">Circle CCTP</span></div>
         <p class="feature-close" style="margin-top:22px;">Menos fricción. Más libertad para moverte.</p>
       </div>
-      <div class="feature-visual no-pad"><img src="/images/feature-03.jpg" alt="Intercambios cripto inteligentes — muévete entre cadenas sin complicaciones"></div>
+      <div class="feature-visual no-pad"><img loading="lazy" decoding="async" src="/images/feature-03.webp" alt="Intercambios cripto inteligentes — muévete entre cadenas sin complicaciones"></div>
     </div>
 
     <div class="feature">
@@ -497,7 +509,7 @@
         <ul class="feature-list"><li>Oportunidades de rendimiento en stablecoins</li><li>Staking de cripto</li><li>Cashback de hasta el 8%</li></ul>
         <p class="feature-close" style="margin-top:22px;">No te limites a mantener. Saca más partido a tus activos digitales.</p>
       </div>
-      <div class="feature-visual no-pad"><img src="/images/feature-04.jpg" alt="Gana y recompensas — 8% de recompensas totales este mes"></div>
+      <div class="feature-visual no-pad"><img loading="lazy" decoding="async" src="/images/feature-04.webp" alt="Gana y recompensas — 8% de recompensas totales este mes"></div>
     </div>
 
     <div class="feature">
@@ -511,7 +523,7 @@
         <p class="feature-close" style="margin-top:22px;">Recarga una vez. Gasta sin fricciones en todo el ecosistema.</p>
       </div>
       <div class="feature-visual no-pad">
-        <img src="/images/feature-05.jpg" alt="Saldo Xerovan — un saldo para todo el ecosistema">
+        <img loading="lazy" decoding="async" src="/images/feature-05.webp" alt="Saldo Xerovan — un saldo para todo el ecosistema">
       </div>
     </div>
 
@@ -528,7 +540,7 @@
         <p class="feature-close" style="margin-top:22px;">Tu wallet, tu tarjeta y tu viaje — por fin conectados.</p>
       </div>
       <div class="feature-visual no-pad">
-        <img src="/images/feature-06.jpg" alt="Marketplace de viajes — paga, reserva y viaja sin fronteras">
+        <img loading="lazy" decoding="async" src="/images/feature-06.webp" alt="Marketplace de viajes — paga, reserva y viaja sin fronteras">
       </div>
     </div>
 
@@ -545,7 +557,7 @@
         <p class="feature-close" style="margin-top:22px;">Da autonomía a tu equipo sin perder el control financiero.</p>
       </div>
       <div class="feature-visual no-pad">
-        <img src="/images/feature-07.jpg" alt="Tarjetas corporativas y gestión de gastos — controla cada tarjeta, sigue cada gasto">
+        <img loading="lazy" decoding="async" src="/images/feature-07.webp" alt="Tarjetas corporativas y gestión de gastos — controla cada tarjeta, sigue cada gasto">
       </div>
     </div>
 
@@ -559,7 +571,7 @@
         <ul class="feature-list"><li>Infraestructura de wallet MPC</li><li>Cifrado de datos</li><li>Verificación de transacciones</li></ul>
         <p class="feature-close" style="margin-top:22px;">Seguridad integrada en cada wallet, tarjeta y transacción.</p>
       </div>
-      <div class="feature-visual no-pad"><img src="/images/feature-08.jpg" alt="Seguridad y protección de activos — protección avanzada para cada wallet, tarjeta y transacción"></div>
+      <div class="feature-visual no-pad"><img loading="lazy" decoding="async" src="/images/feature-08.webp" alt="Seguridad y protección de activos — protección avanzada para cada wallet, tarjeta y transacción"></div>
     </div>
 
     <div class="feature">
@@ -572,7 +584,7 @@
         <ul class="feature-list"><li>Soporte de varias divisas</li><li>Aceptación global de Visa</li><li>Soluciones para particulares y empresas</li></ul>
         <p class="feature-close" style="margin-top:22px;">Una plataforma para dondequiera que te lleven la vida y los negocios.</p>
       </div>
-      <div class="feature-visual no-pad" style="aspect-ratio:1/1;"><img src="/images/feature-09.jpg" alt="Acceso global — una plataforma, acceso global"></div>
+      <div class="feature-visual no-pad" style="aspect-ratio:1/1;"><img loading="lazy" decoding="async" src="/images/feature-09.webp" alt="Acceso global — una plataforma, acceso global"></div>
     </div>
   </div>
 </section>
@@ -601,6 +613,17 @@
       <p>Ya sea que gestiones presupuestos publicitarios de clientes, viajes al extranjero, trabajes en remoto, pagues suscripciones globales, uses cripto en tu día a día o controles los gastos de tu equipo, Xerovan lo reúne todo en una plataforma conectada.</p>
       <div class="tagline">GESTIONA CRIPTO. CONTROLA EL GASTO. PAGA EN TODO EL MUNDO. VIAJA A CUALQUIER LUGAR.</div>
     </div>
+  </div>
+</section>
+
+<section id="latest" class="latest" hidden>
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow center">Blog</span>
+      <h2>Guías y novedades del equipo de Xerovan.</h2>
+    </div>
+    <div class="latest-grid" id="latestGrid"></div>
+    <div class="latest-more"><a href="/es/blog" class="btn-ghost">Ver todos los artículos</a></div>
   </div>
 </section>
 
@@ -656,9 +679,9 @@
         </div>
       </div>
       <div class="footer-cols">
-        <div class="footer-col"><h5>Empresa</h5><ul><li><a href="#">Sobre nosotros</a></li><li><a href="#">Empleo</a></li><li><a href="#">Partners</a></li></ul></div>
-        <div class="footer-col"><h5>Recursos</h5><ul><li><button type="button" class="legal-link-btn" id="helpTrigger3">Centro de ayuda</button></li><li><a href="#faq">FAQ</a></li><li><a href="/es/blog">Blog</a></li><li><a href="#">Comisiones</a></li></ul></div>
-        <div class="footer-col"><h5>Legal</h5><ul id="legalLinks"><li><a href="#">Términos y condiciones</a></li><li><a href="#">Política de privacidad</a></li><li><a href="#">Política de reembolso</a></li><li><a href="#">Divulgación de riesgos</a></li><li><a href="#">Cumplimiento normativo</a></li></ul></div>
+        
+        <div class="footer-col"><h5>Recursos</h5><ul><li><button type="button" class="legal-link-btn" id="helpTrigger3">Centro de ayuda</button></li><li><a href="#faq">FAQ</a></li><li><a href="/es/blog">Blog</a></li></ul></div>
+        <div class="footer-col"><h5>Legal</h5><ul id="legalLinks"><li><a href="/es/legal/terms">Términos y condiciones</a></li><li><a href="/es/legal/privacy">Política de privacidad</a></li><li><a href="/es/legal/refund">Política de reembolso</a></li><li><a href="/es/legal/risk-disclosure">Divulgación de riesgos</a></li><li><a href="/es/legal/compliance">Cumplimiento normativo</a></li></ul></div>
         <div class="footer-col"><h5>SNS</h5><div class="footer-social"><a href="https://x.com/XerovanC" target="_blank" rel="noopener">X</a><a href="https://www.instagram.com/xerovancard/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/profile.php?id=61594055002981" target="_blank" rel="noopener">Facebook</a><a href="https://discord.com/channels/@me" target="_blank" rel="noopener">Discord</a></div></div>
       </div>
     </div>
@@ -924,17 +947,7 @@
     form.reset();
   });
 
-  fetch(LEGAL_SHEET_URL)
-    .then(res => { if (!res.ok) throw new Error('sheet fetch failed'); return res.text(); })
-    .then(text => {
-      const rows = parseCSV(text);
-      rows.shift(); // drop header row (Title, Content)
-      const data = rows
-        .filter(r => r[0] && r[0].trim())
-        .map(r => ({ title: r[0].trim(), content: (r[1] || '').trim() }));
-      renderLegalLinks(data.length ? data : legalDataFallback);
-    })
-    .catch(() => { renderLegalLinks(legalDataFallback); });
+  /* Legal documents are served as pages at /{lang}/legal/{doc} (rendered from the same sheet). */
 
   /* ============================================================
      USE CASES CONTENT — edit this array to add / change / remove
@@ -959,7 +972,7 @@
       ],
       "value": "Separa cada presupuesto. Controla cada transacción. Sigue cada campaña.",
       "visual": "image",
-      "image": "/images/usecase-01.jpg"
+      "image": "/images/usecase-01.webp"
     },
     {
       "title": "Viajeros internacionales frecuentes",
@@ -978,7 +991,7 @@
       ],
       "value": "Una plataforma para tu dinero, tu tarjeta y tu viaje.",
       "visual": "image",
-      "image": "/images/usecase-02.jpg"
+      "image": "/images/usecase-02.webp"
     },
     {
       "title": "Nómadas digitales y freelancers globales",
@@ -996,7 +1009,7 @@
       ],
       "value": "Trabaja desde cualquier lugar. Paga en cualquier lugar. Mantén el control.",
       "visual": "image",
-      "image": "/images/usecase-03.jpg"
+      "image": "/images/usecase-03.webp"
     },
     {
       "title": "Usuarios de suscripciones en USD e internacionales",
@@ -1014,7 +1027,7 @@
       ],
       "value": "Toma el control de cada suscripción internacional.",
       "visual": "image",
-      "image": "/images/usecase-04.jpg",
+      "image": "/images/usecase-04.webp",
       "tags": [
         "Infraestructura en la nube",
         "Herramientas de IA y productividad",
@@ -1042,7 +1055,7 @@
       ],
       "value": "Convierte tus activos digitales en posibilidades reales.",
       "visual": "image",
-      "image": "/images/usecase-05.jpg"
+      "image": "/images/usecase-05.webp"
     },
     {
       "title": "Pymes y equipos distribuidos",
@@ -1062,7 +1075,7 @@
       ],
       "value": "Da flexibilidad de gasto a tus equipos sin perder el control financiero.",
       "visual": "image",
-      "image": "/images/usecase-06.jpg"
+      "image": "/images/usecase-06.webp"
     }
   ];
 
@@ -1103,7 +1116,7 @@
 
   function buildVisual(uc){
     if(uc.visual === 'image'){
-      return `<img src="${uc.image}" alt="${uc.title}" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;">`;
+      return `<img src="${uc.image}" alt="${uc.title}" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;">`;
     }
     if(uc.visual === 'rows'){
       const rows = uc.rows.map(r => `<div class="mockup-row"><span class="l">${r[0]}</span><span class="r">${r[1]}</span></div>`).join('');
@@ -1263,6 +1276,24 @@
   window.addEventListener('load', fitHeroVisualIframe);
   window.addEventListener('resize', fitHeroVisualIframe);
   fitHeroVisualIframe();
+
+  /* Latest blog posts (hidden until at least one post exists) */
+  fetch('/es/blog/latest.json').then(function (r) { return r.ok ? r.json() : []; }).then(function (posts) {
+    if (!posts || !posts.length) return;
+    var grid = document.getElementById('latestGrid');
+    posts.forEach(function (p) {
+      var a = document.createElement('a'); a.className = 'latest-card'; a.href = p.url;
+      var th = document.createElement('div'); th.className = 'lc-thumb';
+      if (p.image) { var im = document.createElement('img'); im.src = p.image; im.alt = p.title; im.loading = 'lazy'; im.decoding = 'async'; th.appendChild(im); }
+      var body = document.createElement('div'); body.className = 'lc-body';
+      var meta = document.createElement('div'); meta.className = 'lc-meta'; meta.textContent = [p.topic, p.date].filter(Boolean).join(' · ');
+      var h = document.createElement('h3'); h.textContent = p.title;
+      var ex = document.createElement('p'); ex.textContent = p.excerpt;
+      body.appendChild(meta); body.appendChild(h); body.appendChild(ex);
+      a.appendChild(th); a.appendChild(body); grid.appendChild(a);
+    });
+    document.getElementById('latest').hidden = false;
+  }).catch(function () {});
 
   document.querySelectorAll('.lang-list a').forEach(function(a){
     a.addEventListener('click', function(){

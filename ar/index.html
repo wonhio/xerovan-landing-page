@@ -281,6 +281,18 @@
   .faq-footnote{text-align:center; margin-top:44px; font-size:14px; color:var(--silver-500);}
   .faq-footnote a{color:var(--silver-100); border-bottom:1px solid var(--silver-500);}
 
+  .latest{padding:100px 0;}
+  .latest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  @media(max-width:900px){ .latest-grid{grid-template-columns:1fr;} }
+  .latest-card{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:border-color .2s ease, transform .2s ease;}
+  .latest-card:hover{border-color:var(--silver-700);transform:translateY(-2px);}
+  .latest-card .lc-thumb{aspect-ratio:16/9;background:linear-gradient(160deg,#2a2c31,#131417 60%,#1b1d21);}
+  .latest-card .lc-thumb img{width:100%;height:100%;object-fit:cover;}
+  .latest-card .lc-body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:10px;}
+  .latest-card .lc-meta{font-family:'JetBrains Mono','Noto Sans Arabic';font-size:11px;color:var(--text-dim);letter-spacing:0.04em;}
+  .latest-card h3{font-family:'Unbounded','Noto Sans Arabic';font-size:15px;font-weight:600;line-height:1.4;}
+  .latest-card p{font-size:13.5px;color:var(--silver-500);line-height:1.6;}
+  .latest-more{text-align:center;margin-top:36px;}
   .cta-band{padding:100px 0; text-align:center; border-top:1px solid var(--line);}
   .cta-band h2{font-family:'Unbounded','Noto Sans Arabic'; font-size:clamp(28px,4.6vw,44px); font-weight:600; margin-bottom:16px;}
   .cta-band p{color:var(--silver-500); margin-bottom:36px;}
@@ -381,7 +393,7 @@
 <section class="app-preview" id="appPreview">
   <div class="wrap">
     <div class="hero-visual-wrap">
-      <img src="/images/hero-visual.jpg" alt="محفظة واحدة، وإمكانات لا حدود لها. أدِر أصولك الرقمية، وادفع حول العالم، واستفد منها في حياتك اليومية." class="hero-visual-img">
+      <img src="/images/hero-visual.webp" alt="محفظة واحدة، وإمكانات لا حدود لها. أدِر أصولك الرقمية، وادفع حول العالم، واستفد منها في حياتك اليومية." class="hero-visual-img">
       <div class="hero-visual-screen" id="heroVisualScreen">
         <iframe id="heroVisualIframe" src="https://demo-brown-seven-24.vercel.app/" loading="lazy" title="معاينة مباشرة لتطبيق Xerovan"></iframe>
       </div>
@@ -426,7 +438,7 @@
       <div class="eco-card"><h4>الأرباح والمكافآت</h4><ul><li>فرص عوائد العملات المستقرة</li><li>تخزين العملات المشفرة (Staking)</li><li>مكافآت الاسترداد النقدي</li><li>برامج مكافآت المستخدمين</li><li>مكافآت الإحالة</li></ul></div>
       <div class="eco-card"><h4>السفر ونمط الحياة</h4><ul><li>رحلات الطيران</li><li>الفنادق</li><li>الجولات والأنشطة</li><li>خدمات eSIM</li><li>سوق سفر مدعوم من Trateria</li></ul></div>
       <div class="eco-card"><h4>الأعمال والأمان</h4><ul><li>بطاقات الشركات</li><li>إدارة النفقات</li><li>مسارات اعتماد المعاملات</li><li>ضوابط إنفاق الفريق</li><li>أمان محفظة MPC</li><li>التحقق من الجهاز والمعاملات</li></ul></div>
-      <div class="eco-card-visual"><img src="/images/ecosystem-visual.jpg" alt="بطاقة وتطبيق Xerovan متصلان حول العالم"></div>
+      <div class="eco-card-visual"><img loading="lazy" decoding="async" src="/images/ecosystem-visual.webp" alt="بطاقة وتطبيق Xerovan متصلان حول العالم"></div>
     </div>
   </div>
 </section>
@@ -456,7 +468,7 @@
         <p class="feature-close" style="margin-top:22px;">محافظك تبقى ملكك. Xerovan تجعلها تعمل معًا فقط.</p>
       </div>
       <div class="feature-visual no-pad">
-        <img src="/images/feature-01.jpg" alt="إدارة موحدة للمحافظ — تطبيق Xerovan يعرض المحافظ وتوزيع الأصول">
+        <img loading="lazy" decoding="async" src="/images/feature-01.webp" alt="إدارة موحدة للمحافظ — تطبيق Xerovan يعرض المحافظ وتوزيع الأصول">
       </div>
     </div>
 
@@ -475,7 +487,7 @@
         <p class="feature-close" style="margin-top:22px;">بطاقة واحدة لأسلوب حياة بلا حدود.</p>
       </div>
       <div class="feature-visual no-pad">
-        <img src="/images/feature-02.jpg" alt="بطاقة Visa للعملات المشفرة — حوّل عملاتك المشفرة إلى قوة شرائية يومية">
+        <img loading="lazy" decoding="async" src="/images/feature-02.webp" alt="بطاقة Visa للعملات المشفرة — حوّل عملاتك المشفرة إلى قوة شرائية يومية">
       </div>
     </div>
 
@@ -491,7 +503,7 @@
         <div class="tag-row"><span class="tag">0x</span><span class="tag">LI.FI</span><span class="tag">Circle CCTP</span></div>
         <p class="feature-close" style="margin-top:22px;">احتكاك أقل. حرية أكبر في الحركة.</p>
       </div>
-      <div class="feature-visual no-pad"><img src="/images/feature-03.jpg" alt="مبادلات ذكية للعملات المشفرة — تنقّل بين الشبكات دون تعقيد"></div>
+      <div class="feature-visual no-pad"><img loading="lazy" decoding="async" src="/images/feature-03.webp" alt="مبادلات ذكية للعملات المشفرة — تنقّل بين الشبكات دون تعقيد"></div>
     </div>
 
     <div class="feature">
@@ -504,7 +516,7 @@
         <ul class="feature-list"><li>فرص عوائد العملات المستقرة</li><li>تخزين العملات المشفرة (Staking)</li><li>استرداد نقدي يصل إلى 8%</li></ul>
         <p class="feature-close" style="margin-top:22px;">لا تكتفِ بالاحتفاظ. احصل على المزيد من أصولك الرقمية.</p>
       </div>
-      <div class="feature-visual no-pad"><img src="/images/feature-04.jpg" alt="الأرباح والمكافآت — إجمالي مكافآت 8% هذا الشهر"></div>
+      <div class="feature-visual no-pad"><img loading="lazy" decoding="async" src="/images/feature-04.webp" alt="الأرباح والمكافآت — إجمالي مكافآت 8% هذا الشهر"></div>
     </div>
 
     <div class="feature">
@@ -518,7 +530,7 @@
         <p class="feature-close" style="margin-top:22px;">اشحن مرة واحدة. وأنفِق بسلاسة عبر المنظومة.</p>
       </div>
       <div class="feature-visual no-pad">
-        <img src="/images/feature-05.jpg" alt="رصيد Xerovan — رصيد واحد عبر المنظومة">
+        <img loading="lazy" decoding="async" src="/images/feature-05.webp" alt="رصيد Xerovan — رصيد واحد عبر المنظومة">
       </div>
     </div>
 
@@ -535,7 +547,7 @@
         <p class="feature-close" style="margin-top:22px;">محفظتك وبطاقتك ورحلتك — متصلة أخيرًا.</p>
       </div>
       <div class="feature-visual no-pad">
-        <img src="/images/feature-06.jpg" alt="سوق السفر — ادفع واحجز وسافر بلا حدود">
+        <img loading="lazy" decoding="async" src="/images/feature-06.webp" alt="سوق السفر — ادفع واحجز وسافر بلا حدود">
       </div>
     </div>
 
@@ -552,7 +564,7 @@
         <p class="feature-close" style="margin-top:22px;">امنح فريقك المرونة دون أن تفقد السيطرة المالية.</p>
       </div>
       <div class="feature-visual no-pad">
-        <img src="/images/feature-07.jpg" alt="بطاقات الشركات وإدارة النفقات — تحكّم في كل بطاقة وتتبّع كل نفقة">
+        <img loading="lazy" decoding="async" src="/images/feature-07.webp" alt="بطاقات الشركات وإدارة النفقات — تحكّم في كل بطاقة وتتبّع كل نفقة">
       </div>
     </div>
 
@@ -566,7 +578,7 @@
         <ul class="feature-list"><li>بنية محفظة MPC</li><li>تشفير البيانات</li><li>التحقق من المعاملات</li></ul>
         <p class="feature-close" style="margin-top:22px;">أمان مدمج في كل محفظة وبطاقة ومعاملة.</p>
       </div>
-      <div class="feature-visual no-pad"><img src="/images/feature-08.jpg" alt="الأمان وحماية الأصول — حماية متقدمة لكل محفظة وبطاقة ومعاملة"></div>
+      <div class="feature-visual no-pad"><img loading="lazy" decoding="async" src="/images/feature-08.webp" alt="الأمان وحماية الأصول — حماية متقدمة لكل محفظة وبطاقة ومعاملة"></div>
     </div>
 
     <div class="feature">
@@ -579,7 +591,7 @@
         <ul class="feature-list"><li>دعم عملات متعددة</li><li>قبول Visa حول العالم</li><li>حلول للأفراد والشركات</li></ul>
         <p class="feature-close" style="margin-top:22px;">منصة واحدة أينما أخذتك الحياة والأعمال.</p>
       </div>
-      <div class="feature-visual no-pad" style="aspect-ratio:1/1;"><img src="/images/feature-09.jpg" alt="وصول عالمي — منصة واحدة، وصول عالمي"></div>
+      <div class="feature-visual no-pad" style="aspect-ratio:1/1;"><img loading="lazy" decoding="async" src="/images/feature-09.webp" alt="وصول عالمي — منصة واحدة، وصول عالمي"></div>
     </div>
   </div>
 </section>
@@ -608,6 +620,17 @@
       <p>سواء كنت تدير ميزانيات إعلانات العملاء، أو تسافر دوليًا، أو تعمل عن بُعد، أو تدفع اشتراكات عالمية، أو تستخدم العملات المشفرة في حياتك اليومية، أو تتحكم في نفقات فريقك، فإن Xerovan تجمع كل ذلك في منصة واحدة متصلة.</p>
       <div class="tagline">أدِر العملات المشفرة. تحكّم في الإنفاق. ادفع حول العالم. سافر إلى أي مكان.</div>
     </div>
+  </div>
+</section>
+
+<section id="latest" class="latest" hidden>
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow center">المدونة</span>
+      <h2>أدلة وتحديثات من فريق Xerovan.</h2>
+    </div>
+    <div class="latest-grid" id="latestGrid"></div>
+    <div class="latest-more"><a href="/ar/blog" class="btn-ghost">عرض جميع المقالات</a></div>
   </div>
 </section>
 
@@ -663,9 +686,9 @@
         </div>
       </div>
       <div class="footer-cols">
-        <div class="footer-col"><h5>الشركة</h5><ul><li><a href="#">من نحن</a></li><li><a href="#">الوظائف</a></li><li><a href="#">الشركاء</a></li></ul></div>
-        <div class="footer-col"><h5>الموارد</h5><ul><li><button type="button" class="legal-link-btn" id="helpTrigger3">مركز المساعدة</button></li><li><a href="#faq">FAQ</a></li><li><a href="/ar/blog">المدونة</a></li><li><a href="#">الرسوم</a></li></ul></div>
-        <div class="footer-col"><h5>قانوني</h5><ul id="legalLinks"><li><a href="#">الشروط والأحكام</a></li><li><a href="#">سياسة الخصوصية</a></li><li><a href="#">سياسة الاسترداد</a></li><li><a href="#">الإفصاح عن المخاطر</a></li><li><a href="#">الامتثال</a></li></ul></div>
+        
+        <div class="footer-col"><h5>الموارد</h5><ul><li><button type="button" class="legal-link-btn" id="helpTrigger3">مركز المساعدة</button></li><li><a href="#faq">FAQ</a></li><li><a href="/ar/blog">المدونة</a></li></ul></div>
+        <div class="footer-col"><h5>قانوني</h5><ul id="legalLinks"><li><a href="/ar/legal/terms">الشروط والأحكام</a></li><li><a href="/ar/legal/privacy">سياسة الخصوصية</a></li><li><a href="/ar/legal/refund">سياسة الاسترداد</a></li><li><a href="/ar/legal/risk-disclosure">الإفصاح عن المخاطر</a></li><li><a href="/ar/legal/compliance">الامتثال</a></li></ul></div>
         <div class="footer-col"><h5>SNS</h5><div class="footer-social"><a href="https://x.com/XerovanC" target="_blank" rel="noopener">X</a><a href="https://www.instagram.com/xerovancard/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/profile.php?id=61594055002981" target="_blank" rel="noopener">Facebook</a><a href="https://discord.com/channels/@me" target="_blank" rel="noopener">Discord</a></div></div>
       </div>
     </div>
@@ -931,17 +954,7 @@
     form.reset();
   });
 
-  fetch(LEGAL_SHEET_URL)
-    .then(res => { if (!res.ok) throw new Error('sheet fetch failed'); return res.text(); })
-    .then(text => {
-      const rows = parseCSV(text);
-      rows.shift(); // drop header row (Title, Content)
-      const data = rows
-        .filter(r => r[0] && r[0].trim())
-        .map(r => ({ title: r[0].trim(), content: (r[1] || '').trim() }));
-      renderLegalLinks(data.length ? data : legalDataFallback);
-    })
-    .catch(() => { renderLegalLinks(legalDataFallback); });
+  /* Legal documents are served as pages at /{lang}/legal/{doc} (rendered from the same sheet). */
 
   /* ============================================================
      USE CASES CONTENT — edit this array to add / change / remove
@@ -966,7 +979,7 @@
       ],
       "value": "افصل كل ميزانية. تحكّم في كل معاملة. تتبّع كل حملة.",
       "visual": "image",
-      "image": "/images/usecase-01.jpg"
+      "image": "/images/usecase-01.webp"
     },
     {
       "title": "المسافرون الدوليون الدائمون",
@@ -985,7 +998,7 @@
       ],
       "value": "منصة واحدة لأموالك وبطاقتك ورحلتك.",
       "visual": "image",
-      "image": "/images/usecase-02.jpg"
+      "image": "/images/usecase-02.webp"
     },
     {
       "title": "الرحّالة الرقميون والمستقلون حول العالم",
@@ -1003,7 +1016,7 @@
       ],
       "value": "اعمل من أي مكان. ادفع في أي مكان. وابقَ متحكمًا.",
       "visual": "image",
-      "image": "/images/usecase-03.jpg"
+      "image": "/images/usecase-03.webp"
     },
     {
       "title": "مستخدمو الاشتراكات الدولية وبالدولار",
@@ -1021,7 +1034,7 @@
       ],
       "value": "تحكّم في كل اشتراك دولي.",
       "visual": "image",
-      "image": "/images/usecase-04.jpg",
+      "image": "/images/usecase-04.webp",
       "tags": [
         "البنية السحابية",
         "أدوات الذكاء الاصطناعي والإنتاجية",
@@ -1049,7 +1062,7 @@
       ],
       "value": "حوّل أصولك الرقمية إلى إمكانات حقيقية.",
       "visual": "image",
-      "image": "/images/usecase-05.jpg"
+      "image": "/images/usecase-05.webp"
     },
     {
       "title": "الشركات الصغيرة والمتوسطة والفرق الموزعة",
@@ -1069,7 +1082,7 @@
       ],
       "value": "امنح فرقك مرونة الإنفاق دون فقدان السيطرة المالية.",
       "visual": "image",
-      "image": "/images/usecase-06.jpg"
+      "image": "/images/usecase-06.webp"
     }
   ];
 
@@ -1110,7 +1123,7 @@
 
   function buildVisual(uc){
     if(uc.visual === 'image'){
-      return `<img src="${uc.image}" alt="${uc.title}" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;">`;
+      return `<img src="${uc.image}" alt="${uc.title}" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;">`;
     }
     if(uc.visual === 'rows'){
       const rows = uc.rows.map(r => `<div class="mockup-row"><span class="l">${r[0]}</span><span class="r">${r[1]}</span></div>`).join('');
@@ -1270,6 +1283,24 @@
   window.addEventListener('load', fitHeroVisualIframe);
   window.addEventListener('resize', fitHeroVisualIframe);
   fitHeroVisualIframe();
+
+  /* Latest blog posts (hidden until at least one post exists) */
+  fetch('/ar/blog/latest.json').then(function (r) { return r.ok ? r.json() : []; }).then(function (posts) {
+    if (!posts || !posts.length) return;
+    var grid = document.getElementById('latestGrid');
+    posts.forEach(function (p) {
+      var a = document.createElement('a'); a.className = 'latest-card'; a.href = p.url;
+      var th = document.createElement('div'); th.className = 'lc-thumb';
+      if (p.image) { var im = document.createElement('img'); im.src = p.image; im.alt = p.title; im.loading = 'lazy'; im.decoding = 'async'; th.appendChild(im); }
+      var body = document.createElement('div'); body.className = 'lc-body';
+      var meta = document.createElement('div'); meta.className = 'lc-meta'; meta.textContent = [p.topic, p.date].filter(Boolean).join(' · ');
+      var h = document.createElement('h3'); h.textContent = p.title;
+      var ex = document.createElement('p'); ex.textContent = p.excerpt;
+      body.appendChild(meta); body.appendChild(h); body.appendChild(ex);
+      a.appendChild(th); a.appendChild(body); grid.appendChild(a);
+    });
+    document.getElementById('latest').hidden = false;
+  }).catch(function () {});
 
   document.querySelectorAll('.lang-list a').forEach(function(a){
     a.addEventListener('click', function(){

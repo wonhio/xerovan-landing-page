@@ -58,6 +58,48 @@ const TOPIC_INTRO = {
   pt: { news: 'Novidades do lançamento, novos recursos e parcerias.', manual: 'Ajuda passo a passo para usar o app Xerovan.', guide: 'Noções de cripto e blockchain, e soluções para pagamentos, viagens e negócios.' },
 };
 
+// Legal documents: same Google Sheet the site used for its footer modal (columns: Title, Content).
+const LEGAL_SHEET = process.env.LEGAL_SHEET_URL || 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTmXKE-ZqjHlT6Vw8NnS4qKxX8zC77y3tGWVk1HZeFyupirEUfRb8nGTsI3-_d1pcLrWHuxMm8UiHUO/pub?gid=1700406003&single=true&output=csv';
+const LEGAL_DOCS = { terms: 'terms', privacy: 'privacy', refund: 'refund', 'risk-disclosure': 'risk', compliance: 'compliance' }; // url slug → keyword in sheet title
+const LEGAL_NAMES = {
+  en: { terms: 'Terms & Conditions', privacy: 'Privacy Policy', refund: 'Refund Policy', 'risk-disclosure': 'Risk Disclosure', compliance: 'Compliance', legal: 'Legal', note: '', soon: 'This document will be published soon.' },
+  kr: { terms: '이용약관', privacy: '개인정보 처리방침', refund: '환불 정책', 'risk-disclosure': '위험 고지', compliance: '컴플라이언스', legal: '법적 고지', note: '이 문서는 영어 원문으로 제공됩니다.', soon: '이 문서는 곧 게시됩니다.' },
+  ja: { terms: '利用規約', privacy: 'プライバシーポリシー', refund: '返金ポリシー', 'risk-disclosure': 'リスク開示', compliance: 'コンプライアンス', legal: '法的情報', note: '本書は英語の原文で提供されています。', soon: 'この文書は近日公開予定です。' },
+  es: { terms: 'Términos y condiciones', privacy: 'Política de privacidad', refund: 'Política de reembolso', 'risk-disclosure': 'Divulgación de riesgos', compliance: 'Cumplimiento normativo', legal: 'Legal', note: 'Este documento se ofrece en su versión original en inglés.', soon: 'Este documento se publicará pronto.' },
+  ar: { terms: 'الشروط والأحكام', privacy: 'سياسة الخصوصية', refund: 'سياسة الاسترداد', 'risk-disclosure': 'الإفصاح عن المخاطر', compliance: 'الامتثال', legal: 'قانوني', note: 'يُقدَّم هذا المستند بنسخته الإنجليزية الأصلية.', soon: 'سيُنشر هذا المستند قريبًا.' },
+  pt: { terms: 'Termos e condições', privacy: 'Política de privacidade', refund: 'Política de reembolso', 'risk-disclosure': 'Divulgação de riscos', compliance: 'Conformidade', legal: 'Jurídico', note: 'Este documento é fornecido na versão original em inglês.', soon: 'Este documento será publicado em breve.' },
+};
+
+function parseCSV(text) {
+  const rows = []; let row = [], field = '', q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i], n = text[i + 1];
+    if (q) { if (c === '"' && n === '"') { field += '"'; i++; } else if (c === '"') q = false; else field += c; }
+    else if (c === '"') q = true;
+    else if (c === ',') { row.push(field); field = ''; }
+    else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
+    else if (c !== '\r') field += c;
+  }
+  if (field.length || row.length) { row.push(field); rows.push(row); }
+  return rows.filter((r) => r.some((x) => x.trim() !== ''));
+}
+
+let legalCache = { at: 0, docs: null };
+/** { terms: {title, content}, ... } for documents that have real content (≥ 120 characters). */
+async function legalDocs() {
+  if (legalCache.docs && Date.now() - legalCache.at < 600000) return legalCache.docs;
+  const r = await fetch(LEGAL_SHEET);
+  if (!r.ok) throw new Error(`legal sheet ${r.status}`);
+  const rows = parseCSV(await r.text()); rows.shift();
+  const docs = {};
+  for (const [slug, kw] of Object.entries(LEGAL_DOCS)) {
+    const row = rows.find((x) => (x[0] || '').toLowerCase().includes(kw));
+    if (row && (row[1] || '').trim().length >= 120) docs[slug] = { title: row[0].trim(), content: row[1].trim() };
+  }
+  legalCache = { at: Date.now(), docs };
+  return docs;
+}
+
 // ---------------------------------------------------------------- helpers
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const decode = (s) => String(s ?? '')
@@ -151,9 +193,9 @@ const fmtDate = (iso, lang) => {
 };
 
 // ---------------------------------------------------------------- page shell
-function layout({ lang, title, description, canonical, alternates, ogImage, ogType = 'website', body, jsonLd }) {
+function layout({ lang, title, description, canonical, alternates, ogImage, ogType = 'website', body, jsonLd, noindex = false, hreflang = true }) {
   const L = LANGS[lang], t = T[lang];
-  const alts = (alternates || Object.keys(LANGS).map((k) => [k, `${SITE}/${k}/blog`]))
+  const alts = !hreflang ? '' : (alternates || Object.keys(LANGS).map((k) => [k, `${SITE}/${k}/blog`]))
     .map(([k, href]) => `<link rel="alternate" hreflang="${LANGS[k].hl}" href="${esc(href)}">`).join('\n  ');
   const langLinks = Object.entries(LANGS).map(([k, v]) => {
     const alt = (alternates || []).find(([a]) => a === k);
@@ -171,7 +213,7 @@ function layout({ lang, title, description, canonical, alternates, ogImage, ogTy
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(description)}">
   <link rel="icon" type="image/png" href="/images/favicon.png">
-  <link rel="canonical" href="${esc(canonical)}">
+  <link rel="canonical" href="${esc(canonical)}">${noindex ? '\n  <meta name="robots" content="noindex">' : ''}
   ${alts}
   <link rel="alternate" type="application/rss+xml" title="${esc(t.title)}" href="${SITE}/${lang}/blog/feed.xml">
   <meta property="og:type" content="${ogType}">
@@ -339,6 +381,11 @@ ${body}
 </html>`;
 }
 
+const crumbs = (items) => ({
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: items.map(([name, url], i) => ({ '@type': 'ListItem', position: i + 1, name, item: url })),
+});
+
 // ---------------------------------------------------------------- views
 function listView(lang, posts, page, pages, topic) {
   const t = T[lang], TL = TOPIC_LABEL[lang], rtl = LANGS[lang].rtl;
@@ -396,6 +443,26 @@ function postView(lang, p) {
   </article>`;
 }
 
+function legalView(lang, doc, slug) {
+  const N = LEGAL_NAMES[lang], t = T[lang];
+  const name = doc ? (lang === 'en' ? doc.title : N[slug]) : N[slug];
+  const paras = doc ? doc.content.split(/\n{2,}/).map((x) => `<p>${esc(x).replace(/\n/g, '<br>')}</p>`).join('') : `<p>${esc(N.soon)}</p>`;
+  const other = Object.keys(LEGAL_DOCS).filter((k) => k !== slug)
+    .map((k) => `<a class="chip" href="/${lang}/legal/${k}">${esc(N[k])}</a>`).join('');
+  return `
+  <article>
+    <div class="wrap">
+      <header class="post-head">
+        <div class="crumb"><a href="/${lang}/">${esc(t.home)}</a><span>/</span><span>${esc(N.legal)}</span></div>
+        <h1>${esc(name)}</h1>
+        ${doc && N.note ? `<div class="meta">${esc(N.note)}</div>` : ''}
+      </header>
+      <div class="prose"${lang !== 'en' && doc ? ' lang="en" dir="ltr"' : ''}>${paras}</div>
+      <div class="post-foot" style="justify-content:flex-start">${other}</div>
+    </div>
+  </article>`;
+}
+
 function messageView(lang, heading, text) {
   return `<section class="blog-hero"><div class="wrap"><h1 class="metal">${esc(heading)}</h1><p>${esc(text)}</p>
     <p style="margin-top:30px"><a class="btn" href="/${lang}/blog">${esc(T[lang].back)}</a></p></div></section><div style="height:120px"></div>`;
@@ -425,6 +492,10 @@ async function sitemap() {
       console.error('[blog-sitemap]', lang, e.message);
     }
   }
+  try {
+    const docs = await legalDocs();
+    Object.keys(docs).forEach((k) => urls.push({ loc: `${SITE}/en/legal/${k}`, lastmod: null }));
+  } catch (e) { console.error('[blog-sitemap] legal', e.message); }
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map((u) => `  <url><loc>${esc(u.loc)}</loc>${u.lastmod ? `<lastmod>${u.lastmod.slice(0, 10)}</lastmod>` : ''}</url>`).join('\n')}
@@ -476,8 +547,36 @@ module.exports = async (req, res) => {
   try { slug = decodeURIComponent(slug); } catch { /* keep as is */ }
   slug = slug.normalize('NFC').toLowerCase().replace(/[^\p{L}\p{N}\-_]/gu, '').slice(0, 200);
 
+  if (q.legal) {
+    const slug2 = String(q.legal).toLowerCase();
+    if (!LEGAL_DOCS[slug2]) {
+      return send(404, layout({ lang, title: `${t.notFound} | Xerovan`, description: t.notFoundText, canonical: `${SITE}/${lang}/`, body: messageView(lang, t.notFound, t.notFoundText), noindex: true }));
+    }
+    let doc = null;
+    try { doc = (await legalDocs())[slug2] || null; } catch (e) { console.error('[legal]', e.message); }
+    const N = LEGAL_NAMES[lang];
+    const title = `${doc && lang === 'en' ? doc.title : N[slug2]} | Xerovan`;
+    return send(200, layout({
+      lang, title, description: doc ? clip(doc.content.replace(/\s+/g, ' '), 155) : N.soon,
+      canonical: `${SITE}/en/legal/${slug2}`,                       // one English original; other languages point to it
+      alternates: Object.keys(LANGS).map((k) => [k, `${SITE}/${k}/legal/${slug2}`]), hreflang: false,
+      noindex: !doc || lang !== 'en',
+      body: legalView(lang, doc, slug2),
+      jsonLd: crumbs([['Xerovan', `${SITE}/${lang}/`], [N[slug2], `${SITE}/${lang}/legal/${slug2}`]]),
+    }), 'text/html; charset=utf-8', 's-maxage=600, stale-while-revalidate=86400');
+  }
+
   try {
     const cat = await categoryId(lang);
+
+    if (q.latest) {
+      const tmap = cat ? await topicIds().catch(() => ({})) : {};
+      const posts = cat ? (await langPosts(lang, cat)).slice(0, 3).map((p) => shape(p, lang, tmap)) : [];
+      return send(200, JSON.stringify(posts.map((p) => ({
+        title: p.title, excerpt: clip(p.excerpt, 120), url: `/${lang}/blog/${p.slug}`, image: p.image,
+        date: fmtDate(p.date, lang), topic: p.topic ? TOPIC_LABEL[lang][p.topic] : null,
+      }))), 'application/json; charset=utf-8');
+    }
 
     if (q.feed) {
       const { data } = cat ? await wp(`posts?categories=${cat}&per_page=20&_embed=wp:featuredmedia`) : { data: [] };
@@ -498,13 +597,17 @@ module.exports = async (req, res) => {
         lang, title: `${p.title} | Xerovan`, description: p.excerpt, canonical, alternates,
         ogImage: p.image ? `${SITE}${p.image}` : null, ogType: 'article',
         body: postView(lang, p),
-        jsonLd: {
+        jsonLd: [crumbs([
+          ['Xerovan', `${SITE}/${lang}/`], [t.blog, `${SITE}/${lang}/blog`],
+          ...(p.topic ? [[TOPIC_LABEL[lang][p.topic], `${SITE}/${lang}/blog/category/${p.topic}`]] : []),
+          [p.title, canonical],
+        ]), {
           '@context': 'https://schema.org', '@type': 'BlogPosting', headline: p.title, description: p.excerpt,
           datePublished: p.date, dateModified: p.modified, inLanguage: LANGS[lang].hl,
           mainEntityOfPage: canonical, image: p.image ? `${SITE}${p.image}` : `${SITE}/images/og-preview.jpg`,
           author: { '@type': 'Organization', name: 'Xerovan' },
           publisher: { '@type': 'Organization', name: 'Xerovan', logo: { '@type': 'ImageObject', url: `${SITE}/images/logo-icon.png` } },
-        },
+        }],
       }));
     }
 
@@ -528,10 +631,14 @@ module.exports = async (req, res) => {
       description: topic ? TOPIC_INTRO[lang][topic] : t.intro, canonical,
       alternates: Object.keys(LANGS).map((k) => [k, `${SITE}/${k}${basePath}`]),
       body: listView(lang, data.map((p) => shape(p, lang, tmap)), page, pages, topic),
-      jsonLd: { '@context': 'https://schema.org', '@type': topic ? 'CollectionPage' : 'Blog', name: heading, url: `${SITE}/${lang}${basePath}`, inLanguage: LANGS[lang].hl },
+      jsonLd: [crumbs([
+        ['Xerovan', `${SITE}/${lang}/`], [t.blog, `${SITE}/${lang}/blog`],
+        ...(topic ? [[TOPIC_LABEL[lang][topic], `${SITE}/${lang}${basePath}`]] : []),
+      ]), { '@context': 'https://schema.org', '@type': topic ? 'CollectionPage' : 'Blog', name: heading, url: `${SITE}/${lang}${basePath}`, inLanguage: LANGS[lang].hl }],
     }));
   } catch (e) {
     console.error('[blog]', e);
+    if (q.latest) return send(200, '[]', 'application/json; charset=utf-8', 's-maxage=60');
     return send(503, layout({ lang, title: `${t.down} | Xerovan`, description: t.downText, canonical: `${SITE}/${lang}/blog`, body: messageView(lang, t.down, t.downText) }));
   }
 };

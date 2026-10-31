@@ -282,6 +282,18 @@
   .faq-footnote{text-align:center; margin-top:44px; font-size:14px; color:var(--silver-500);}
   .faq-footnote a{color:var(--silver-100); border-bottom:1px solid var(--silver-500);}
 
+  .latest{padding:100px 0;}
+  .latest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  @media(max-width:900px){ .latest-grid{grid-template-columns:1fr;} }
+  .latest-card{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:border-color .2s ease, transform .2s ease;}
+  .latest-card:hover{border-color:var(--silver-700);transform:translateY(-2px);}
+  .latest-card .lc-thumb{aspect-ratio:16/9;background:linear-gradient(160deg,#2a2c31,#131417 60%,#1b1d21);}
+  .latest-card .lc-thumb img{width:100%;height:100%;object-fit:cover;}
+  .latest-card .lc-body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:10px;}
+  .latest-card .lc-meta{font-family:'JetBrains Mono','Noto Sans KR';font-size:11px;color:var(--text-dim);letter-spacing:0.04em;}
+  .latest-card h3{font-family:'Unbounded','Noto Sans KR';font-size:15px;font-weight:600;line-height:1.4;}
+  .latest-card p{font-size:13.5px;color:var(--silver-500);line-height:1.6;}
+  .latest-more{text-align:center;margin-top:36px;}
   .cta-band{padding:100px 0; text-align:center; border-top:1px solid var(--line);}
   .cta-band h2{font-family:'Unbounded','Noto Sans KR'; font-size:clamp(28px,4.6vw,44px); font-weight:600; margin-bottom:16px;}
   .cta-band p{color:var(--silver-500); margin-bottom:36px;}
@@ -375,7 +387,7 @@
 <section class="app-preview" id="appPreview">
   <div class="wrap">
     <div class="hero-visual-wrap">
-      <img src="/images/hero-visual.jpg" alt="하나의 지갑, 무한한 가능성. 디지털 자산을 관리하고, 전 세계에서 결제하고, 실생활에서 활용하세요." class="hero-visual-img">
+      <img src="/images/hero-visual.webp" alt="하나의 지갑, 무한한 가능성. 디지털 자산을 관리하고, 전 세계에서 결제하고, 실생활에서 활용하세요." class="hero-visual-img">
       <div class="hero-visual-screen" id="heroVisualScreen">
         <iframe id="heroVisualIframe" src="https://demo-brown-seven-24.vercel.app/" loading="lazy" title="Xerovan 앱 실시간 미리보기"></iframe>
       </div>
@@ -420,7 +432,7 @@
       <div class="eco-card"><h4>수익 및 리워드</h4><ul><li>스테이블코인 이자 상품</li><li>크립토 스테이킹</li><li>캐시백 리워드</li><li>사용자 리워드 프로그램</li><li>추천 리워드</li></ul></div>
       <div class="eco-card"><h4>여행 및 라이프스타일</h4><ul><li>항공권</li><li>호텔</li><li>투어 및 액티비티</li><li>eSIM 서비스</li><li>Trateria 기반 여행 마켓플레이스</li></ul></div>
       <div class="eco-card"><h4>비즈니스 및 보안</h4><ul><li>법인 카드</li><li>경비 관리</li><li>거래 승인 워크플로</li><li>팀 지출 관리</li><li>MPC 지갑 보안</li><li>기기 및 거래 인증</li></ul></div>
-      <div class="eco-card-visual"><img src="/images/ecosystem-visual.jpg" alt="전 세계와 연결된 Xerovan 카드와 앱"></div>
+      <div class="eco-card-visual"><img loading="lazy" decoding="async" src="/images/ecosystem-visual.webp" alt="전 세계와 연결된 Xerovan 카드와 앱"></div>
     </div>
   </div>
 </section>
@@ -450,7 +462,7 @@
         <p class="feature-close" style="margin-top:22px;">지갑의 주인은 언제나 당신입니다. Xerovan은 그 지갑들이 함께 작동하게 할 뿐입니다.</p>
       </div>
       <div class="feature-visual no-pad">
-        <img src="/images/feature-01.jpg" alt="통합 멀티 지갑 관리 — 지갑과 자산 구성을 보여주는 Xerovan 앱">
+        <img loading="lazy" decoding="async" src="/images/feature-01.webp" alt="통합 멀티 지갑 관리 — 지갑과 자산 구성을 보여주는 Xerovan 앱">
       </div>
     </div>
 
@@ -469,7 +481,7 @@
         <p class="feature-close" style="margin-top:22px;">국경 없는 라이프스타일을 위한 단 하나의 카드.</p>
       </div>
       <div class="feature-visual no-pad">
-        <img src="/images/feature-02.jpg" alt="Visa 크립토 카드 — 암호화폐를 일상의 결제 수단으로">
+        <img loading="lazy" decoding="async" src="/images/feature-02.webp" alt="Visa 크립토 카드 — 암호화폐를 일상의 결제 수단으로">
       </div>
     </div>
 
@@ -485,7 +497,7 @@
         <div class="tag-row"><span class="tag">0x</span><span class="tag">LI.FI</span><span class="tag">Circle CCTP</span></div>
         <p class="feature-close" style="margin-top:22px;">마찰은 줄이고, 움직임의 자유는 더 크게.</p>
       </div>
-      <div class="feature-visual no-pad"><img src="/images/feature-03.jpg" alt="스마트 크립토 스왑 — 복잡함 없이 체인을 넘나들기"></div>
+      <div class="feature-visual no-pad"><img loading="lazy" decoding="async" src="/images/feature-03.webp" alt="스마트 크립토 스왑 — 복잡함 없이 체인을 넘나들기"></div>
     </div>
 
     <div class="feature">
@@ -498,7 +510,7 @@
         <ul class="feature-list"><li>스테이블코인 이자 상품</li><li>크립토 스테이킹</li><li>최대 8% 캐시백 리워드</li></ul>
         <p class="feature-close" style="margin-top:22px;">그냥 보유만 하지 마세요. 디지털 자산에서 더 많은 것을 얻으세요.</p>
       </div>
-      <div class="feature-visual no-pad"><img src="/images/feature-04.jpg" alt="수익 및 리워드 — 이번 달 누적 리워드 8%"></div>
+      <div class="feature-visual no-pad"><img loading="lazy" decoding="async" src="/images/feature-04.webp" alt="수익 및 리워드 — 이번 달 누적 리워드 8%"></div>
     </div>
 
     <div class="feature">
@@ -512,7 +524,7 @@
         <p class="feature-close" style="margin-top:22px;">한 번 충전으로 에코시스템 전체에서 자유롭게.</p>
       </div>
       <div class="feature-visual no-pad">
-        <img src="/images/feature-05.jpg" alt="Xerovan 잔액 — 에코시스템 전체를 아우르는 하나의 잔액">
+        <img loading="lazy" decoding="async" src="/images/feature-05.webp" alt="Xerovan 잔액 — 에코시스템 전체를 아우르는 하나의 잔액">
       </div>
     </div>
 
@@ -529,7 +541,7 @@
         <p class="feature-close" style="margin-top:22px;">지갑, 카드, 그리고 여행 — 마침내 하나로.</p>
       </div>
       <div class="feature-visual no-pad">
-        <img src="/images/feature-06.jpg" alt="여행 마켓플레이스 — 국경 없이 결제하고 예약하고 여행하기">
+        <img loading="lazy" decoding="async" src="/images/feature-06.webp" alt="여행 마켓플레이스 — 국경 없이 결제하고 예약하고 여행하기">
       </div>
     </div>
 
@@ -546,7 +558,7 @@
         <p class="feature-close" style="margin-top:22px;">재무 통제는 지키면서 팀에 자율성을 부여하세요.</p>
       </div>
       <div class="feature-visual no-pad">
-        <img src="/images/feature-07.jpg" alt="법인 카드 및 경비 관리 — 모든 카드 통제, 모든 경비 추적">
+        <img loading="lazy" decoding="async" src="/images/feature-07.webp" alt="법인 카드 및 경비 관리 — 모든 카드 통제, 모든 경비 추적">
       </div>
     </div>
 
@@ -560,7 +572,7 @@
         <ul class="feature-list"><li>MPC 지갑 인프라</li><li>데이터 암호화</li><li>거래 인증</li></ul>
         <p class="feature-close" style="margin-top:22px;">모든 지갑, 카드, 거래에 보안이 기본으로 내장되어 있습니다.</p>
       </div>
-      <div class="feature-visual no-pad"><img src="/images/feature-08.jpg" alt="보안 및 자산 보호 — 모든 지갑, 카드, 거래를 위한 고급 보호"></div>
+      <div class="feature-visual no-pad"><img loading="lazy" decoding="async" src="/images/feature-08.webp" alt="보안 및 자산 보호 — 모든 지갑, 카드, 거래를 위한 고급 보호"></div>
     </div>
 
     <div class="feature">
@@ -573,7 +585,7 @@
         <ul class="feature-list"><li>다중 통화 지원</li><li>전 세계 Visa 가맹점 결제</li><li>개인 및 기업 솔루션</li></ul>
         <p class="feature-close" style="margin-top:22px;">삶과 비즈니스가 어디로 향하든, 하나의 플랫폼으로.</p>
       </div>
-      <div class="feature-visual no-pad" style="aspect-ratio:1/1;"><img src="/images/feature-09.jpg" alt="글로벌 액세스 — 하나의 플랫폼, 전 세계 어디서나"></div>
+      <div class="feature-visual no-pad" style="aspect-ratio:1/1;"><img loading="lazy" decoding="async" src="/images/feature-09.webp" alt="글로벌 액세스 — 하나의 플랫폼, 전 세계 어디서나"></div>
     </div>
   </div>
 </section>
@@ -602,6 +614,17 @@
       <p>고객사 광고 예산 관리, 해외 여행, 원격 근무, 글로벌 구독 결제, 일상 속 암호화폐 사용, 팀 경비 관리까지 — Xerovan은 이 모든 것을 하나로 연결된 플랫폼에 담았습니다.</p>
       <div class="tagline">암호화폐 관리. 지출 통제. 글로벌 결제. 어디든 여행.</div>
     </div>
+  </div>
+</section>
+
+<section id="latest" class="latest" hidden>
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow center">블로그</span>
+      <h2>Xerovan 팀이 전하는 가이드와 소식.</h2>
+    </div>
+    <div class="latest-grid" id="latestGrid"></div>
+    <div class="latest-more"><a href="/kr/blog" class="btn-ghost">전체 글 보기</a></div>
   </div>
 </section>
 
@@ -657,9 +680,9 @@
         </div>
       </div>
       <div class="footer-cols">
-        <div class="footer-col"><h5>회사</h5><ul><li><a href="#">회사 소개</a></li><li><a href="#">채용</a></li><li><a href="#">파트너</a></li></ul></div>
-        <div class="footer-col"><h5>리소스</h5><ul><li><button type="button" class="legal-link-btn" id="helpTrigger3">고객센터</button></li><li><a href="#faq">FAQ</a></li><li><a href="/kr/blog">블로그</a></li><li><a href="#">수수료</a></li></ul></div>
-        <div class="footer-col"><h5>법적 고지</h5><ul id="legalLinks"><li><a href="#">이용약관</a></li><li><a href="#">개인정보 처리방침</a></li><li><a href="#">환불 정책</a></li><li><a href="#">위험 고지</a></li><li><a href="#">컴플라이언스</a></li></ul></div>
+        
+        <div class="footer-col"><h5>리소스</h5><ul><li><button type="button" class="legal-link-btn" id="helpTrigger3">고객센터</button></li><li><a href="#faq">FAQ</a></li><li><a href="/kr/blog">블로그</a></li></ul></div>
+        <div class="footer-col"><h5>법적 고지</h5><ul id="legalLinks"><li><a href="/kr/legal/terms">이용약관</a></li><li><a href="/kr/legal/privacy">개인정보 처리방침</a></li><li><a href="/kr/legal/refund">환불 정책</a></li><li><a href="/kr/legal/risk-disclosure">위험 고지</a></li><li><a href="/kr/legal/compliance">컴플라이언스</a></li></ul></div>
         <div class="footer-col"><h5>SNS</h5><div class="footer-social"><a href="https://x.com/XerovanC" target="_blank" rel="noopener">X</a><a href="https://www.instagram.com/xerovancard/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/profile.php?id=61594055002981" target="_blank" rel="noopener">Facebook</a><a href="https://discord.com/channels/@me" target="_blank" rel="noopener">Discord</a></div></div>
       </div>
     </div>
@@ -881,17 +904,7 @@
     form.reset();
   });
 
-  fetch(LEGAL_SHEET_URL)
-    .then(res => { if (!res.ok) throw new Error('sheet fetch failed'); return res.text(); })
-    .then(text => {
-      const rows = parseCSV(text);
-      rows.shift(); // drop header row (Title, Content)
-      const data = rows
-        .filter(r => r[0] && r[0].trim())
-        .map(r => ({ title: r[0].trim(), content: (r[1] || '').trim() }));
-      renderLegalLinks(data.length ? data : legalDataFallback);
-    })
-    .catch(() => { renderLegalLinks(legalDataFallback); });
+  /* Legal documents are served as pages at /{lang}/legal/{doc} (rendered from the same sheet). */
 
   /* ============================================================
      USE CASES CONTENT — edit this array to add / change / remove
@@ -906,7 +919,7 @@
       items: ["고객사·캠페인별 가상 카드 개별 발급","Google Ads, Meta Ads, TikTok Ads 등 플랫폼별 전용 카드 지정","고객사·직원·캠페인별 지출 한도 설정","가맹점 업종 제한 적용","카드 즉시 정지 및 해제","영수증 및 증빙 서류 수집","영수증 기반 거래 승인 워크플로 구성","통합 대시보드에서 광고비 모니터링","고객사·팀·프로젝트별 경비 리포트 생성"],
       value: "모든 예산을 분리하고, 모든 거래를 통제하고, 모든 캠페인을 추적하세요.",
       visual: "image",
-      image: "/images/usecase-01.jpg"
+      image: "/images/usecase-01.webp"
     },
     {
       title: "해외를 자주 오가는 여행자",
@@ -915,7 +928,7 @@
       items: ["Visa 가맹점이라면 전 세계 어디서나 결제","여행 중 가상·실물 카드 사용","Apple Pay 또는 Google Pay에 카드 등록","지원되는 디지털 자산으로 카드 충전","분실·도난 카드 즉시 정지","앱에서 바로 카드 정지 해제","실시간 거래 내역 확인","항공권, 호텔, 투어, 액티비티, eSIM 예약","여러 통화와 네트워크의 자산 관리"],
       value: "자금, 카드, 여행을 하나의 플랫폼으로.",
       visual: "image",
-      image: "/images/usecase-02.jpg"
+      image: "/images/usecase-02.webp"
     },
     {
       title: "디지털 노마드 및 글로벌 프리랜서",
@@ -924,7 +937,7 @@
       items: ["하나의 인터페이스에서 여러 암호화폐 지갑 관리","지원 네트워크 전반의 자산 보유 및 관리","필요할 때 자산 스왑","Xerovan Visa 카드로 전 세계 결제","소프트웨어, 숙소, 교통, 생활비 결제","Xerovan 여행 마켓플레이스에서 여행 예약","해외 통신을 위한 eSIM 구매","개인·업무 거래를 한곳에서 확인"],
       value: "어디서든 일하고, 어디서든 결제하고, 언제나 통제하세요.",
       visual: "image",
-      image: "/images/usecase-03.jpg"
+      image: "/images/usecase-03.webp"
     },
     {
       title: "달러·해외 구독 서비스 이용자",
@@ -933,7 +946,7 @@
       items: ["구독 결제 전용 가상 카드 생성","지원되는 해외·달러 결제 서비스 이용","업무용·개인용 구독 카드 분리","구독 카테고리별 지출 한도 설정","반복 결제 실시간 모니터링","더 이상 필요 없는 구독은 카드 정지","예상치 못한 결제나 무단 결제 위험 감소","SaaS, 클라우드, 생산성, 디지털 서비스 결제 추적"],
       value: "모든 해외 구독을 직접 통제하세요.",
       visual: "image",
-      image: "/images/usecase-04.jpg",
+      image: "/images/usecase-04.webp",
       tags: ["클라우드 인프라","AI 및 생산성 도구","디자인·협업 소프트웨어","마케팅 플랫폼","스트리밍 및 디지털 콘텐츠","비즈니스 SaaS 구독"]
     },
     {
@@ -943,7 +956,7 @@
       items: ["호환 지갑을 가져와 한곳에서 관리","외부 지갑 연결","멀티체인 자산 조회 및 관리","암호화폐 송금 및 수신","지원 네트워크 간 자산 스왑","지원 체인 간 자산 브리지","Xerovan 잔액 또는 카드 충전","Visa 네트워크에서 결제","지원되는 여행 상품·서비스를 암호화폐로 결제","스테이킹, 이자, 캐시백, 추천 리워드 이용"],
       value: "디지털 자산을 현실의 가능성으로 바꾸세요.",
       visual: "image",
-      image: "/images/usecase-05.jpg"
+      image: "/images/usecase-05.webp"
     },
     {
       title: "중소기업 및 분산 근무 팀",
@@ -952,7 +965,7 @@
       items: ["직원 또는 부서별 다수 카드 발급","출장, 마케팅, 소프트웨어, 운영용 카드 분리","직원·팀·경비 항목별 지출 한도 설정","승인된 가맹점 업종으로 카드 사용 제한","카드 즉시 정지 및 해제","영수증 기반 경비 승인 워크플로 구성","직원 영수증 수집 및 정리","비즈니스 거래 실시간 모니터링","통합 경비 리포트 생성","해외 사업·출장 경비 관리"],
       value: "재무 통제는 지키면서 팀에 지출의 유연함을 주세요.",
       visual: "image",
-      image: "/images/usecase-06.jpg"
+      image: "/images/usecase-06.webp"
     }
   ];
 
@@ -969,7 +982,7 @@
 
   function buildVisual(uc){
     if(uc.visual === 'image'){
-      return `<img src="${uc.image}" alt="${uc.title}" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;">`;
+      return `<img src="${uc.image}" alt="${uc.title}" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;">`;
     }
     if(uc.visual === 'rows'){
       const rows = uc.rows.map(r => `<div class="mockup-row"><span class="l">${r[0]}</span><span class="r">${r[1]}</span></div>`).join('');
@@ -1129,6 +1142,24 @@
   window.addEventListener('load', fitHeroVisualIframe);
   window.addEventListener('resize', fitHeroVisualIframe);
   fitHeroVisualIframe();
+
+  /* Latest blog posts (hidden until at least one post exists) */
+  fetch('/kr/blog/latest.json').then(function (r) { return r.ok ? r.json() : []; }).then(function (posts) {
+    if (!posts || !posts.length) return;
+    var grid = document.getElementById('latestGrid');
+    posts.forEach(function (p) {
+      var a = document.createElement('a'); a.className = 'latest-card'; a.href = p.url;
+      var th = document.createElement('div'); th.className = 'lc-thumb';
+      if (p.image) { var im = document.createElement('img'); im.src = p.image; im.alt = p.title; im.loading = 'lazy'; im.decoding = 'async'; th.appendChild(im); }
+      var body = document.createElement('div'); body.className = 'lc-body';
+      var meta = document.createElement('div'); meta.className = 'lc-meta'; meta.textContent = [p.topic, p.date].filter(Boolean).join(' · ');
+      var h = document.createElement('h3'); h.textContent = p.title;
+      var ex = document.createElement('p'); ex.textContent = p.excerpt;
+      body.appendChild(meta); body.appendChild(h); body.appendChild(ex);
+      a.appendChild(th); a.appendChild(body); grid.appendChild(a);
+    });
+    document.getElementById('latest').hidden = false;
+  }).catch(function () {});
 
   document.querySelectorAll('.lang-list a').forEach(function(a){
     a.addEventListener('click', function(){

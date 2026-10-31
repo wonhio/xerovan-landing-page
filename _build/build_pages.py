@@ -36,6 +36,19 @@ VERCEL_ANALYTICS = '''  <!-- Vercel Web Analytics -->
   <script defer src="/_vercel/insights/script.js"></script>
 '''
 
+LEGAL_SLUGS = ["terms", "privacy", "refund", "risk-disclosure", "compliance"]
+LEGAL_NAMES_EN = ["Terms & Conditions", "Privacy Policy", "Refund Policy", "Risk Disclosure", "Compliance"]
+LEGAL_NAMES_KR = ["이용약관", "개인정보 처리방침", "환불 정책", "위험 고지", "컴플라이언스"]
+LATEST = {
+    "en": ("Blog", "Guides and updates from the Xerovan team.", "View all posts"),
+    "kr": ("블로그", "Xerovan 팀이 전하는 가이드와 소식.", "전체 글 보기"),
+    "ja": ("ブログ", "Xerovanチームによるガイドとお知らせ。", "すべての記事を見る"),
+    "es": ("Blog", "Guías y novedades del equipo de Xerovan.", "Ver todos los artículos"),
+    "ar": ("المدونة", "أدلة وتحديثات من فريق Xerovan.", "عرض جميع المقالات"),
+    "pt": ("Blog", "Guias e novidades da equipe Xerovan.", "Ver todos os artigos"),
+}
+WEBP = ["hero-visual", "ecosystem-visual"] + [f"feature-0{i}" for i in range(1, 10)] + [f"usecase-0{i}" for i in range(1, 7)]
+
 OG_TITLE = {
     "en": "Xerovan — Value in Motion",
     "kr": "Xerovan — 지갑·결제·리워드·여행을 하나로",
@@ -45,10 +58,62 @@ OG_TITLE = {
     "pt": "Xerovan — Carteiras, pagamentos, recompensas e viagens em um só lugar",
 }
 
-def common(html, lang):
+def common(html, lang, legal_names=None):
     hl, loc, _, short = LANGS[lang]
     html = html.replace('"images/', '"/images/')
     html = must(html, '</head>', VERCEL_ANALYTICS + '</head>', 1)
+    names = legal_names or LEGAL_NAMES_EN
+    html = must(html, '<li><a href="#">Terms & Conditions</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Refund Policy</a></li><li><a href="#">Risk Disclosure</a></li><li><a href="#">Compliance</a></li>',
+        "".join(f'<li><a href="/{lang}/legal/{sl}">{nm}</a></li>' for sl, nm in zip(LEGAL_SLUGS, names)))
+    # footer legal links are real pages now: stop the script from replacing them with modal buttons
+    html = must_re(html, r"  fetch\(LEGAL_SHEET_URL\).*?\.catch\(\(\) => \{ renderLegalLinks\(legalDataFallback\); \}\);\n",
+        "  /* Legal documents are served as pages at /{lang}/legal/{doc} (rendered from the same sheet). */\n")
+    lt = LATEST[lang]
+    html = must(html, '<div class="divider" id="dividerBars4"></div>',
+        f'''<section id="latest" class="latest" hidden>
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow center">{lt[0]}</span>
+      <h2>{lt[1]}</h2>
+    </div>
+    <div class="latest-grid" id="latestGrid"></div>
+    <div class="latest-more"><a href="/{lang}/blog" class="btn-ghost">{lt[2]}</a></div>
+  </div>
+</section>
+
+<div class="divider" id="dividerBars4"></div>''')
+    html = must(html, "  .cta-band{", """  .latest{padding:100px 0;}
+  .latest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  @media(max-width:900px){ .latest-grid{grid-template-columns:1fr;} }
+  .latest-card{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:border-color .2s ease, transform .2s ease;}
+  .latest-card:hover{border-color:var(--silver-700);transform:translateY(-2px);}
+  .latest-card .lc-thumb{aspect-ratio:16/9;background:linear-gradient(160deg,#2a2c31,#131417 60%,#1b1d21);}
+  .latest-card .lc-thumb img{width:100%;height:100%;object-fit:cover;}
+  .latest-card .lc-body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:10px;}
+  .latest-card .lc-meta{font-family:'JetBrains Mono';font-size:11px;color:var(--text-dim);letter-spacing:0.04em;}
+  .latest-card h3{font-family:'Unbounded';font-size:15px;font-weight:600;line-height:1.4;}
+  .latest-card p{font-size:13.5px;color:var(--silver-500);line-height:1.6;}
+  .latest-more{text-align:center;margin-top:36px;}
+  .cta-band{""")
+    html = must(html, '  /* Google Sheet waitlist webhook (Apps Script Web App) */', f"""  /* Latest blog posts (hidden until at least one post exists) */
+  fetch('/{lang}/blog/latest.json').then(function (r) {{ return r.ok ? r.json() : []; }}).then(function (posts) {{
+    if (!posts || !posts.length) return;
+    var grid = document.getElementById('latestGrid');
+    posts.forEach(function (p) {{
+      var a = document.createElement('a'); a.className = 'latest-card'; a.href = p.url;
+      var th = document.createElement('div'); th.className = 'lc-thumb';
+      if (p.image) {{ var im = document.createElement('img'); im.src = p.image; im.alt = p.title; im.loading = 'lazy'; im.decoding = 'async'; th.appendChild(im); }}
+      var body = document.createElement('div'); body.className = 'lc-body';
+      var meta = document.createElement('div'); meta.className = 'lc-meta'; meta.textContent = [p.topic, p.date].filter(Boolean).join(' · ');
+      var h = document.createElement('h3'); h.textContent = p.title;
+      var ex = document.createElement('p'); ex.textContent = p.excerpt;
+      body.appendChild(meta); body.appendChild(h); body.appendChild(ex);
+      a.appendChild(th); a.appendChild(body); grid.appendChild(a);
+    }});
+    document.getElementById('latest').hidden = false;
+  }}).catch(function () {{}});
+
+  /* Google Sheet waitlist webhook (Apps Script Web App) */""")
     html = must(html, 'content="Xerovan — Value in Motion"', f'content="{OG_TITLE[lang]}"', 2)  # og:title + twitter:title
     html = must(html, '<html lang="en">',
                 f'<html lang="{hl}"' + (' dir="rtl"' if lang == "ar" else '') + '>')
@@ -108,10 +173,22 @@ def common(html, lang):
         "  (FAQ_SHEET_URL ? fetch(FAQ_SHEET_URL) : Promise.reject(new Error('no sheet')))\n")
     return html
 
-en = common(src, "en")
+def finalize(html):
+    # hide footer links that have no destination yet (Company column, Fees)
+    html, n = re.subn(r'<div class="footer-col"><h5>[^<]*</h5><ul>(?:<li><a href="#">[^<]*</a></li>){3}</ul></div>', '', html)
+    assert n == 1, "company column not found"
+    html, n = re.subn(r'<li><a href="#">[^<]*</a></li>', '', html)
+    assert n == 1, "fees link not found"
+    for name in WEBP:
+        html = html.replace(f'/images/{name}.jpg', f'/images/{name}.webp')
+    html = re.sub(r'<img src="(/images/(?:feature|ecosystem)[^"]*)"', r'<img loading="lazy" decoding="async" src="\1"', html)
+    html = html.replace('<img src="${uc.image}" alt="${uc.title}" style=', '<img src="${uc.image}" alt="${uc.title}" loading="lazy" decoding="async" style=')
+    return html
+
+en = finalize(common(src, "en"))
 
 # ---------------------------------------------------------------- Korean
-kr = common(src, "kr")
+kr = common(src, "kr", LEGAL_NAMES_KR)
 
 # Korean-capable fonts + line breaking
 kr = must(kr, "family=JetBrains+Mono:wght@400;500&display=swap",
@@ -388,8 +465,6 @@ kr = must_re(kr, r"const legalDataFallback = \[.*?\n  \];", '''const legalDataFa
     { title: "개인정보 처리방침", content: "준비 중입니다." },
     { title: "환불 정책", content: "준비 중입니다." }
   ];''')
-kr = must(kr, '<li><a href="#">Terms & Conditions</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Refund Policy</a></li><li><a href="#">Risk Disclosure</a></li><li><a href="#">Compliance</a></li>',
-          '<li><a href="#">이용약관</a></li><li><a href="#">개인정보 처리방침</a></li><li><a href="#">환불 정책</a></li><li><a href="#">위험 고지</a></li><li><a href="#">컴플라이언스</a></li>')
 
 kr = must_re(kr, r"const useCaseData = \[.*?\n  \];", '''const useCaseData = [
     {
@@ -497,7 +572,7 @@ def build_generic(code):
     L = importlib.util.module_from_spec(spec); spec.loader.exec_module(L)
     if len(L.T) != len(KEYS):
         sys.exit(f"{code}: {len(L.T)} strings, expected {len(KEYS)}")
-    h = common(src, code)
+    h = common(src, code, L.LEGAL_LINKS)
     if code in EXTRA_FONTS:
         fam, name = EXTRA_FONTS[code]
         h = must(h, "family=JetBrains+Mono:wght@400;500&display=swap", f"family=JetBrains+Mono:wght@400;500&{fam}&display=swap")
@@ -510,8 +585,6 @@ def build_generic(code):
         h = h.replace('<span class="flow-arrow">→</span>', '<span class="flow-arrow">←</span>')
     for old, new in zip(KEYS, L.T):
         h = must(h, old, wrap(old, new))
-    h = must(h, '<li><a href="#">Terms & Conditions</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Refund Policy</a></li><li><a href="#">Risk Disclosure</a></li><li><a href="#">Compliance</a></li>',
-             "".join(f'<li><a href="#">{t}</a></li>' for t in L.LEGAL_LINKS))
     h = must_re(h, r'(<div class="footer-legal">).*?(</div>)',
                 '<div class="footer-legal">\n      © 2026 Xerovan. All rights reserved.\n      ' + L.FOOTER_LEGAL.strip() + '\n    </div>')
     h = must_re(h, r"const FAQ_SHEET_URL = '[^']*';",
@@ -528,7 +601,7 @@ def build_generic(code):
     h = must_re(h, r"const useCaseData = \[.*?\n  \];", "const useCaseData = " + js(ucs) + ";")
     h = must_re(h, r"const summaryTable = \[.*?\n  \];", "const summaryTable = " + js(L.SUMMARY) + ";")
     (ROOT / code).mkdir(exist_ok=True)
-    (ROOT / code / "index.html").write_text(h, encoding="utf-8")
+    (ROOT / code / "index.html").write_text(finalize(h), encoding="utf-8")
     print(code, "ok", len(h))
 
 for code in ("ja", "es", "ar", "pt"):
@@ -536,5 +609,5 @@ for code in ("ja", "es", "ar", "pt"):
         build_generic(code)
 
 (ROOT / "en" / "index.html").write_text(en, encoding="utf-8")
-(ROOT / "kr" / "index.html").write_text(kr, encoding="utf-8")
+(ROOT / "kr" / "index.html").write_text(finalize(kr), encoding="utf-8")
 print("ok", len(en), len(kr))

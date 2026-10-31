@@ -115,6 +115,14 @@
       "destination": "/api/blog?sitemap=1"
     },
     {
+      "source": "/:lang(en|kr|ja|es|ar|pt)/blog/latest.json",
+      "destination": "/api/blog?lang=:lang&latest=1"
+    },
+    {
+      "source": "/:lang(en|kr|ja|es|ar|pt)/legal/:doc",
+      "destination": "/api/blog?lang=:lang&legal=:doc"
+    },
+    {
       "source": "/:lang(en|kr|ja|es|ar|pt)/blog",
       "destination": "/api/blog?lang=:lang"
     },

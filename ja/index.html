@@ -282,6 +282,18 @@
   .faq-footnote{text-align:center; margin-top:44px; font-size:14px; color:var(--silver-500);}
   .faq-footnote a{color:var(--silver-100); border-bottom:1px solid var(--silver-500);}
 
+  .latest{padding:100px 0;}
+  .latest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  @media(max-width:900px){ .latest-grid{grid-template-columns:1fr;} }
+  .latest-card{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:border-color .2s ease, transform .2s ease;}
+  .latest-card:hover{border-color:var(--silver-700);transform:translateY(-2px);}
+  .latest-card .lc-thumb{aspect-ratio:16/9;background:linear-gradient(160deg,#2a2c31,#131417 60%,#1b1d21);}
+  .latest-card .lc-thumb img{width:100%;height:100%;object-fit:cover;}
+  .latest-card .lc-body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:10px;}
+  .latest-card .lc-meta{font-family:'JetBrains Mono','Noto Sans JP';font-size:11px;color:var(--text-dim);letter-spacing:0.04em;}
+  .latest-card h3{font-family:'Unbounded','Noto Sans JP';font-size:15px;font-weight:600;line-height:1.4;}
+  .latest-card p{font-size:13.5px;color:var(--silver-500);line-height:1.6;}
+  .latest-more{text-align:center;margin-top:36px;}
   .cta-band{padding:100px 0; text-align:center; border-top:1px solid var(--line);}
   .cta-band h2{font-family:'Unbounded','Noto Sans JP'; font-size:clamp(28px,4.6vw,44px); font-weight:600; margin-bottom:16px;}
   .cta-band p{color:var(--silver-500); margin-bottom:36px;}
@@ -375,7 +387,7 @@
 <section class="app-preview" id="appPreview">
   <div class="wrap">
     <div class="hero-visual-wrap">
-      <img src="/images/hero-visual.jpg" alt="ひとつのウォレットで、無限の可能性。デジタル資産を管理し、世界中で支払い、現実の世界で活用しましょう。" class="hero-visual-img">
+      <img src="/images/hero-visual.webp" alt="ひとつのウォレットで、無限の可能性。デジタル資産を管理し、世界中で支払い、現実の世界で活用しましょう。" class="hero-visual-img">
       <div class="hero-visual-screen" id="heroVisualScreen">
         <iframe id="heroVisualIframe" src="https://demo-brown-seven-24.vercel.app/" loading="lazy" title="Xerovanアプリのライブプレビュー"></iframe>
       </div>
@@ -420,7 +432,7 @@
       <div class="eco-card"><h4>獲得とリワード</h4><ul><li>ステーブルコインの利回り商品</li><li>暗号資産ステーキング</li><li>キャッシュバックリワード</li><li>ユーザーリワードプログラム</li><li>紹介リワード</li></ul></div>
       <div class="eco-card"><h4>旅行とライフスタイル</h4><ul><li>航空券</li><li>ホテル</li><li>ツアー・アクティビティ</li><li>eSIMサービス</li><li>Trateriaによる旅行マーケットプレイス</li></ul></div>
       <div class="eco-card"><h4>ビジネスとセキュリティ</h4><ul><li>法人カード</li><li>経費管理</li><li>取引承認ワークフロー</li><li>チームの支出管理</li><li>MPCウォレットセキュリティ</li><li>デバイス・取引認証</li></ul></div>
-      <div class="eco-card-visual"><img src="/images/ecosystem-visual.jpg" alt="世界とつながるXerovanカードとアプリ"></div>
+      <div class="eco-card-visual"><img loading="lazy" decoding="async" src="/images/ecosystem-visual.webp" alt="世界とつながるXerovanカードとアプリ"></div>
     </div>
   </div>
 </section>
@@ -450,7 +462,7 @@
         <p class="feature-close" style="margin-top:22px;">ウォレットはいつまでもあなたのもの。Xerovanはそれらを連携させるだけです。</p>
       </div>
       <div class="feature-visual no-pad">
-        <img src="/images/feature-01.jpg" alt="統合マルチウォレット管理 — ウォレットと資産内訳を表示するXerovanアプリ">
+        <img loading="lazy" decoding="async" src="/images/feature-01.webp" alt="統合マルチウォレット管理 — ウォレットと資産内訳を表示するXerovanアプリ">
       </div>
     </div>
 
@@ -469,7 +481,7 @@
         <p class="feature-close" style="margin-top:22px;">国境のないライフスタイルのための、一枚のカード。</p>
       </div>
       <div class="feature-visual no-pad">
-        <img src="/images/feature-02.jpg" alt="Visa暗号資産カード — 暗号資産を日常の支払い手段に">
+        <img loading="lazy" decoding="async" src="/images/feature-02.webp" alt="Visa暗号資産カード — 暗号資産を日常の支払い手段に">
       </div>
     </div>
 
@@ -485,7 +497,7 @@
         <div class="tag-row"><span class="tag">0x</span><span class="tag">LI.FI</span><span class="tag">Circle CCTP</span></div>
         <p class="feature-close" style="margin-top:22px;">摩擦は少なく、動く自由はもっと大きく。</p>
       </div>
-      <div class="feature-visual no-pad"><img src="/images/feature-03.jpg" alt="スマート暗号資産スワップ — 複雑さなしにチェーンを移動"></div>
+      <div class="feature-visual no-pad"><img loading="lazy" decoding="async" src="/images/feature-03.webp" alt="スマート暗号資産スワップ — 複雑さなしにチェーンを移動"></div>
     </div>
 
     <div class="feature">
@@ -498,7 +510,7 @@
         <ul class="feature-list"><li>ステーブルコインの利回り商品</li><li>暗号資産ステーキング</li><li>最大8%のキャッシュバックリワード</li></ul>
         <p class="feature-close" style="margin-top:22px;">ただ保有するだけでなく、デジタル資産からもっと多くを。</p>
       </div>
-      <div class="feature-visual no-pad"><img src="/images/feature-04.jpg" alt="獲得とリワード — 今月の獲得リワード合計8%"></div>
+      <div class="feature-visual no-pad"><img loading="lazy" decoding="async" src="/images/feature-04.webp" alt="獲得とリワード — 今月の獲得リワード合計8%"></div>
     </div>
 
     <div class="feature">
@@ -512,7 +524,7 @@
         <p class="feature-close" style="margin-top:22px;">一度チャージすれば、エコシステム全体でスムーズに。</p>
       </div>
       <div class="feature-visual no-pad">
-        <img src="/images/feature-05.jpg" alt="Xerovan残高 — エコシステム全体で使えるひとつの残高">
+        <img loading="lazy" decoding="async" src="/images/feature-05.webp" alt="Xerovan残高 — エコシステム全体で使えるひとつの残高">
       </div>
     </div>
 
@@ -529,7 +541,7 @@
         <p class="feature-close" style="margin-top:22px;">ウォレット、カード、そして旅が、ついにひとつに。</p>
       </div>
       <div class="feature-visual no-pad">
-        <img src="/images/feature-06.jpg" alt="旅行マーケットプレイス — 国境なく支払い、予約し、旅する">
+        <img loading="lazy" decoding="async" src="/images/feature-06.webp" alt="旅行マーケットプレイス — 国境なく支払い、予約し、旅する">
       </div>
     </div>
 
@@ -546,7 +558,7 @@
         <p class="feature-close" style="margin-top:22px;">財務管理を失わずに、チームに裁量を。</p>
       </div>
       <div class="feature-visual no-pad">
-        <img src="/images/feature-07.jpg" alt="法人カードと経費管理 — すべてのカードを管理し、すべての経費を追跡">
+        <img loading="lazy" decoding="async" src="/images/feature-07.webp" alt="法人カードと経費管理 — すべてのカードを管理し、すべての経費を追跡">
       </div>
     </div>
 
@@ -560,7 +572,7 @@
         <ul class="feature-list"><li>MPCウォレット基盤</li><li>データ暗号化</li><li>取引認証</li></ul>
         <p class="feature-close" style="margin-top:22px;">すべてのウォレット、カード、取引にセキュリティを標準搭載。</p>
       </div>
-      <div class="feature-visual no-pad"><img src="/images/feature-08.jpg" alt="セキュリティと資産保護 — すべてのウォレット、カード、取引を高度に保護"></div>
+      <div class="feature-visual no-pad"><img loading="lazy" decoding="async" src="/images/feature-08.webp" alt="セキュリティと資産保護 — すべてのウォレット、カード、取引を高度に保護"></div>
     </div>
 
     <div class="feature">
@@ -573,7 +585,7 @@
         <ul class="feature-list"><li>複数通貨対応</li><li>世界中のVisa加盟店で利用可能</li><li>個人・法人向けソリューション</li></ul>
         <p class="feature-close" style="margin-top:22px;">人生とビジネスがどこへ向かっても、ひとつのプラットフォームで。</p>
       </div>
-      <div class="feature-visual no-pad" style="aspect-ratio:1/1;"><img src="/images/feature-09.jpg" alt="グローバルアクセス — ひとつのプラットフォームで世界中へ"></div>
+      <div class="feature-visual no-pad" style="aspect-ratio:1/1;"><img loading="lazy" decoding="async" src="/images/feature-09.webp" alt="グローバルアクセス — ひとつのプラットフォームで世界中へ"></div>
     </div>
   </div>
 </section>
@@ -602,6 +614,17 @@
       <p>クライアントの広告予算管理、海外旅行、リモートワーク、海外サブスクリプションの支払い、日常での暗号資産利用、チームの経費管理まで — Xerovanはすべてをひとつのプラットフォームにまとめます。</p>
       <div class="tagline">暗号資産を管理。支出をコントロール。世界中で決済。どこへでも旅を。</div>
     </div>
+  </div>
+</section>
+
+<section id="latest" class="latest" hidden>
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow center">ブログ</span>
+      <h2>Xerovanチームによるガイドとお知らせ。</h2>
+    </div>
+    <div class="latest-grid" id="latestGrid"></div>
+    <div class="latest-more"><a href="/ja/blog" class="btn-ghost">すべての記事を見る</a></div>
   </div>
 </section>
 
@@ -657,9 +680,9 @@
         </div>
       </div>
       <div class="footer-cols">
-        <div class="footer-col"><h5>会社情報</h5><ul><li><a href="#">会社概要</a></li><li><a href="#">採用情報</a></li><li><a href="#">パートナー</a></li></ul></div>
-        <div class="footer-col"><h5>リソース</h5><ul><li><button type="button" class="legal-link-btn" id="helpTrigger3">ヘルプセンター</button></li><li><a href="#faq">FAQ</a></li><li><a href="/ja/blog">ブログ</a></li><li><a href="#">手数料</a></li></ul></div>
-        <div class="footer-col"><h5>法的情報</h5><ul id="legalLinks"><li><a href="#">利用規約</a></li><li><a href="#">プライバシーポリシー</a></li><li><a href="#">返金ポリシー</a></li><li><a href="#">リスク開示</a></li><li><a href="#">コンプライアンス</a></li></ul></div>
+        
+        <div class="footer-col"><h5>リソース</h5><ul><li><button type="button" class="legal-link-btn" id="helpTrigger3">ヘルプセンター</button></li><li><a href="#faq">FAQ</a></li><li><a href="/ja/blog">ブログ</a></li></ul></div>
+        <div class="footer-col"><h5>法的情報</h5><ul id="legalLinks"><li><a href="/ja/legal/terms">利用規約</a></li><li><a href="/ja/legal/privacy">プライバシーポリシー</a></li><li><a href="/ja/legal/refund">返金ポリシー</a></li><li><a href="/ja/legal/risk-disclosure">リスク開示</a></li><li><a href="/ja/legal/compliance">コンプライアンス</a></li></ul></div>
         <div class="footer-col"><h5>SNS</h5><div class="footer-social"><a href="https://x.com/XerovanC" target="_blank" rel="noopener">X</a><a href="https://www.instagram.com/xerovancard/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/profile.php?id=61594055002981" target="_blank" rel="noopener">Facebook</a><a href="https://discord.com/channels/@me" target="_blank" rel="noopener">Discord</a></div></div>
       </div>
     </div>
@@ -925,17 +948,7 @@
     form.reset();
   });
 
-  fetch(LEGAL_SHEET_URL)
-    .then(res => { if (!res.ok) throw new Error('sheet fetch failed'); return res.text(); })
-    .then(text => {
-      const rows = parseCSV(text);
-      rows.shift(); // drop header row (Title, Content)
-      const data = rows
-        .filter(r => r[0] && r[0].trim())
-        .map(r => ({ title: r[0].trim(), content: (r[1] || '').trim() }));
-      renderLegalLinks(data.length ? data : legalDataFallback);
-    })
-    .catch(() => { renderLegalLinks(legalDataFallback); });
+  /* Legal documents are served as pages at /{lang}/legal/{doc} (rendered from the same sheet). */
 
   /* ============================================================
      USE CASES CONTENT — edit this array to add / change / remove
@@ -960,7 +973,7 @@
       ],
       "value": "すべての予算を分け、すべての取引を管理し、すべてのキャンペーンを追跡。",
       "visual": "image",
-      "image": "/images/usecase-01.jpg"
+      "image": "/images/usecase-01.webp"
     },
     {
       "title": "海外を頻繁に訪れる旅行者",
@@ -979,7 +992,7 @@
       ],
       "value": "お金、カード、旅をひとつのプラットフォームで。",
       "visual": "image",
-      "image": "/images/usecase-02.jpg"
+      "image": "/images/usecase-02.webp"
     },
     {
       "title": "デジタルノマド・グローバルフリーランサー",
@@ -997,7 +1010,7 @@
       ],
       "value": "どこでも働き、どこでも支払い、常にコントロールを。",
       "visual": "image",
-      "image": "/images/usecase-03.jpg"
+      "image": "/images/usecase-03.webp"
     },
     {
       "title": "ドル建て・海外サブスクリプションの利用者",
@@ -1015,7 +1028,7 @@
       ],
       "value": "すべての海外サブスクリプションを、自分の手で管理。",
       "visual": "image",
-      "image": "/images/usecase-04.jpg",
+      "image": "/images/usecase-04.webp",
       "tags": [
         "クラウドインフラ",
         "AI・生産性ツール",
@@ -1043,7 +1056,7 @@
       ],
       "value": "デジタル資産を、現実の可能性に。",
       "visual": "image",
-      "image": "/images/usecase-05.jpg"
+      "image": "/images/usecase-05.webp"
     },
     {
       "title": "中小企業・分散型チーム",
@@ -1063,7 +1076,7 @@
       ],
       "value": "財務管理を保ちながら、チームに支出の柔軟性を。",
       "visual": "image",
-      "image": "/images/usecase-06.jpg"
+      "image": "/images/usecase-06.webp"
     }
   ];
 
@@ -1104,7 +1117,7 @@
 
   function buildVisual(uc){
     if(uc.visual === 'image'){
-      return `<img src="${uc.image}" alt="${uc.title}" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;">`;
+      return `<img src="${uc.image}" alt="${uc.title}" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;">`;
     }
     if(uc.visual === 'rows'){
       const rows = uc.rows.map(r => `<div class="mockup-row"><span class="l">${r[0]}</span><span class="r">${r[1]}</span></div>`).join('');
@@ -1264,6 +1277,24 @@
   window.addEventListener('load', fitHeroVisualIframe);
   window.addEventListener('resize', fitHeroVisualIframe);
   fitHeroVisualIframe();
+
+  /* Latest blog posts (hidden until at least one post exists) */
+  fetch('/ja/blog/latest.json').then(function (r) { return r.ok ? r.json() : []; }).then(function (posts) {
+    if (!posts || !posts.length) return;
+    var grid = document.getElementById('latestGrid');
+    posts.forEach(function (p) {
+      var a = document.createElement('a'); a.className = 'latest-card'; a.href = p.url;
+      var th = document.createElement('div'); th.className = 'lc-thumb';
+      if (p.image) { var im = document.createElement('img'); im.src = p.image; im.alt = p.title; im.loading = 'lazy'; im.decoding = 'async'; th.appendChild(im); }
+      var body = document.createElement('div'); body.className = 'lc-body';
+      var meta = document.createElement('div'); meta.className = 'lc-meta'; meta.textContent = [p.topic, p.date].filter(Boolean).join(' · ');
+      var h = document.createElement('h3'); h.textContent = p.title;
+      var ex = document.createElement('p'); ex.textContent = p.excerpt;
+      body.appendChild(meta); body.appendChild(h); body.appendChild(ex);
+      a.appendChild(th); a.appendChild(body); grid.appendChild(a);
+    });
+    document.getElementById('latest').hidden = false;
+  }).catch(function () {});
 
   document.querySelectorAll('.lang-list a').forEach(function(a){
     a.addEventListener('click', function(){
