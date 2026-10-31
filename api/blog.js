@@ -336,15 +336,20 @@ function messageView(lang, heading, text) {
 
 // ---------------------------------------------------------------- sitemap / rss
 async function sitemap() {
+  // Always returns a valid sitemap: blog index pages are listed even if WordPress is unreachable.
   const urls = [];
   for (const lang of Object.keys(LANGS)) {
     urls.push({ loc: `${SITE}/${lang}/blog`, lastmod: null });
-    const cat = await categoryId(lang).catch(() => null);
-    if (!cat) continue;
-    for (let page = 1; page <= 20; page++) {
-      const { data, pages } = await wp(`posts?categories=${cat}&per_page=100&page=${page}&_fields=slug,modified_gmt`);
-      data.forEach((p) => urls.push({ loc: `${SITE}/${lang}/blog/${p.slug}`, lastmod: p.modified_gmt ? p.modified_gmt + 'Z' : null }));
-      if (page >= pages) break;
+    try {
+      const cat = await categoryId(lang);
+      if (!cat) continue;
+      for (let page = 1; page <= 20; page++) {
+        const { data, pages } = await wp(`posts?categories=${cat}&per_page=100&page=${page}&_fields=slug,modified_gmt`);
+        data.forEach((p) => urls.push({ loc: `${SITE}/${lang}/blog/${p.slug}`, lastmod: p.modified_gmt ? p.modified_gmt + 'Z' : null }));
+        if (page >= pages) break;
+      }
+    } catch (e) {
+      console.error('[blog-sitemap]', lang, e.message);
     }
   }
   return `<?xml version="1.0" encoding="UTF-8"?>
