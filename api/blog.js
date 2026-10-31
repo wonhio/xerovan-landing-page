@@ -232,7 +232,7 @@ function shape(p, lang, tmap = {}) {
     modified: p.modified_gmt ? p.modified_gmt + 'Z' : p.modified,
     image: img,
     imageAlt: media?.alt_text || stripTags(p.title?.rendered),
-    author: isFounderAccount(p._embedded?.author?.[0]?.name) ? FOUNDER : p._embedded.author[0].name,
+    author: 'Admin', // shown on every post; structured data credits the Xerovan organization
     minutes: Math.max(1, Math.round(cjk ? chars / 500 : words / 220)),
     // Optional: a translation slug in another language, set via a WP custom field "translations" = "kr:slug-ko,ja:slug-ja"
     translations: Object.fromEntries(String(p.meta?.translations || '')
@@ -509,10 +509,7 @@ function postView(lang, p) {
       </header>
       ${p.image ? `<figure class="cover"><img src="${esc(p.image)}" alt="${esc(p.imageAlt)}"></figure>` : ''}
       <div class="prose">${p.content}</div>
-      ${p.author === FOUNDER ? `<aside class="author-box"><div class="avatar">JY</div><div>
-        <div class="lbl">${esc(ABOUT[lang].by)}</div>
-        <a class="nm" href="/${lang}/about">${esc(FOUNDER)}</a>
-        <p>${esc(ABOUT[lang].short)}</p></div></aside>` : ''}
+
       <div class="post-foot">
         <a class="btn" href="/${lang}/blog">${LANGS[lang].rtl ? '→' : '←'} ${esc(t.back)}</a>
         <a class="btn primary" href="/${lang}/#waitlist">Xerovan ${LANGS[lang].rtl ? '←' : '→'}</a>
@@ -728,7 +725,7 @@ module.exports = async (req, res) => {
           '@context': 'https://schema.org', '@type': 'BlogPosting', headline: p.title, description: p.excerpt,
           datePublished: p.date, dateModified: p.modified, inLanguage: LANGS[lang].hl,
           mainEntityOfPage: canonical, image: p.image ? `${SITE}${p.image}` : `${SITE}/images/og-preview.jpg`,
-          author: p.author === FOUNDER ? founderLD(lang) : { '@type': 'Person', name: p.author },
+          author: { '@type': 'Organization', name: 'Xerovan', url: `${SITE}/${lang}/about` },
           publisher: { '@type': 'Organization', name: 'Xerovan', logo: { '@type': 'ImageObject', url: `${SITE}/images/logo-icon.png` } },
         }],
       }));
