@@ -109,7 +109,7 @@ def common(html, lang, legal_names=None):
     html = must_re(html, r"  fetch\(LEGAL_SHEET_URL\).*?\.catch\(\(\) => \{ renderLegalLinks\(legalDataFallback\); \}\);\n",
         "  /* Legal documents are served as pages at /{lang}/legal/{doc} (rendered from the same sheet). */\n")
     lt = LATEST[lang]
-    html = must(html, '<div class="divider" id="dividerBars4"></div>',
+    html = must(html, '<section class="cta-band" id="waitlist">',
         f'''<section id="latest" class="latest" hidden>
   <div class="wrap">
     <div class="section-head center">
@@ -121,7 +121,7 @@ def common(html, lang, legal_names=None):
   </div>
 </section>
 
-<div class="divider" id="dividerBars4"></div>''')
+<section class="cta-band" id="waitlist">''')
     html = must(html, "  .cta-band{", """  .latest{padding:100px 0;}
   .latest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
   @media(max-width:900px){ .latest-grid{grid-template-columns:1fr;} }
