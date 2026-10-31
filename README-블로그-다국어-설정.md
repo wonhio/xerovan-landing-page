@@ -58,7 +58,17 @@ cms.xerovan.com             → Hostinger WordPress (글 작성 전용, 방문�
 | العربية | `ar` |
 | Português | `pt` |
 
-**글을 쓸 때**: 각 글에 언어 카테고리를 **하나만** 체크합니다. 대표 이미지(Featured Image)를 넣으면 목록 카드와 SNS 공유 이미지로 사용됩니다. 요약(Excerpt)을 쓰면 카드 설명/메타 설명이 되고, 비워두면 본문 앞부분이 사용됩니다.
+**주제 카테고리 3개** — 언어 카테고리와 같은 화면에서 아래 3개를 추가로 만듭니다:
+
+| 이름 (자유) | 슬러그 (정확히) | 블로그 탭 이름 (자동 번역) |
+|---|---|---|
+| Xerovan 소식 | `news` | Xerovan 소식 / Xerovan News … |
+| 매뉴얼 | `manual` | 매뉴얼 / Manual … |
+| 크립토·결제 가이드 | `guide` | 크립토·결제 가이드 / Crypto & Payments Guide … |
+
+주소: `xerovan.com/{언어}/blog/category/news` 등. 탭 이름은 6개 언어로 코드에서 자동 표시되므로 WordPress 이름은 아무거나 괜찮습니다.
+
+**글을 쓸 때**: 각 글에 **언어 카테고리 1개 + 주제 카테고리 1개**를 체크합니다 (예: `kr` + `guide`). 대표 이미지(Featured Image)를 넣으면 목록 카드와 SNS 공유 이미지로 사용됩니다. 요약(Excerpt)을 쓰면 카드 설명/메타 설명이 되고, 비워두면 본문 앞부분이 사용됩니다.
 
 **(권장) cms 프론트엔드를 공개 블로그로 보내기** — 외모 → 테마 파일 편집기 → `functions.php` 맨 아래, 또는 "Code Snippets" 플러그인에 추가:
 

@@ -1,30 +1,166 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
-    { "source": "/", "has": [{ "type": "cookie", "key": "xv_lang", "value": "(?<lang>en|kr|ja|es|ar|pt)" }], "destination": "/:lang/", "permanent": false },
-    { "source": "/", "has": [{ "type": "header", "key": "accept-language", "value": "ko.*" }], "destination": "/kr/", "permanent": false },
-    { "source": "/", "has": [{ "type": "header", "key": "accept-language", "value": "ja.*" }], "destination": "/ja/", "permanent": false },
-    { "source": "/", "has": [{ "type": "header", "key": "accept-language", "value": "es.*" }], "destination": "/es/", "permanent": false },
-    { "source": "/", "has": [{ "type": "header", "key": "accept-language", "value": "ar.*" }], "destination": "/ar/", "permanent": false },
-    { "source": "/", "has": [{ "type": "header", "key": "accept-language", "value": "pt.*" }], "destination": "/pt/", "permanent": false },
-    { "source": "/", "destination": "/en/", "permanent": false },
-
-    { "source": "/ko", "destination": "/kr/", "permanent": true },
-    { "source": "/ko/:path*", "destination": "/kr/:path*", "permanent": true },
-    { "source": "/blog", "destination": "/en/blog", "permanent": true },
-    { "source": "/blog/:path*", "destination": "/en/blog/:path*", "permanent": true },
-    { "source": "/:lang(en|kr|ja|es|ar|pt)/blog/page/1", "destination": "/:lang/blog", "permanent": true }
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "xv_lang",
+          "value": "(?<lang>en|kr|ja|es|ar|pt)"
+        }
+      ],
+      "destination": "/:lang/",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "ko.*"
+        }
+      ],
+      "destination": "/kr/",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "ja.*"
+        }
+      ],
+      "destination": "/ja/",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "es.*"
+        }
+      ],
+      "destination": "/es/",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "ar.*"
+        }
+      ],
+      "destination": "/ar/",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "pt.*"
+        }
+      ],
+      "destination": "/pt/",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "destination": "/en/",
+      "permanent": false
+    },
+    {
+      "source": "/ko",
+      "destination": "/kr/",
+      "permanent": true
+    },
+    {
+      "source": "/ko/:path*",
+      "destination": "/kr/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/en/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:path*",
+      "destination": "/en/blog/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:lang(en|kr|ja|es|ar|pt)/blog/page/1",
+      "destination": "/:lang/blog",
+      "permanent": true
+    },
+    {
+      "source": "/:lang(en|kr|ja|es|ar|pt)/blog/category/:topic/page/1",
+      "destination": "/:lang/blog/category/:topic",
+      "permanent": true
+    }
   ],
   "rewrites": [
-    { "source": "/blog-sitemap.xml", "destination": "/api/blog?sitemap=1" },
-    { "source": "/:lang(en|kr|ja|es|ar|pt)/blog", "destination": "/api/blog?lang=:lang" },
-    { "source": "/:lang(en|kr|ja|es|ar|pt)/blog/feed.xml", "destination": "/api/blog?lang=:lang&feed=1" },
-    { "source": "/:lang(en|kr|ja|es|ar|pt)/blog/page/:page(\\d+)", "destination": "/api/blog?lang=:lang&page=:page" },
-    { "source": "/:lang(en|kr|ja|es|ar|pt)/blog/:slug", "destination": "/api/blog?lang=:lang&slug=:slug" },
-    { "source": "/blog-media/:path*", "destination": "https://cms.xerovan.com/wp-content/uploads/:path*" }
+    {
+      "source": "/blog-sitemap.xml",
+      "destination": "/api/blog?sitemap=1"
+    },
+    {
+      "source": "/:lang(en|kr|ja|es|ar|pt)/blog",
+      "destination": "/api/blog?lang=:lang"
+    },
+    {
+      "source": "/:lang(en|kr|ja|es|ar|pt)/blog/feed.xml",
+      "destination": "/api/blog?lang=:lang&feed=1"
+    },
+    {
+      "source": "/:lang(en|kr|ja|es|ar|pt)/blog/page/:page(\\d+)",
+      "destination": "/api/blog?lang=:lang&page=:page"
+    },
+    {
+      "source": "/:lang(en|kr|ja|es|ar|pt)/blog/category/:topic",
+      "destination": "/api/blog?lang=:lang&topic=:topic"
+    },
+    {
+      "source": "/:lang(en|kr|ja|es|ar|pt)/blog/category/:topic/page/:page(\\d+)",
+      "destination": "/api/blog?lang=:lang&topic=:topic&page=:page"
+    },
+    {
+      "source": "/:lang(en|kr|ja|es|ar|pt)/blog/:slug",
+      "destination": "/api/blog?lang=:lang&slug=:slug"
+    },
+    {
+      "source": "/blog-media/:path*",
+      "destination": "https://cms.xerovan.com/wp-content/uploads/:path*"
+    }
   ],
   "headers": [
-    { "source": "/api/(.*)", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }] },
-    { "source": "/blog-media/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400, s-maxage=604800" }] }
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/blog-media/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, s-maxage=604800"
+        }
+      ]
+    }
   ]
 }

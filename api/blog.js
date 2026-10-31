@@ -39,6 +39,25 @@ const T = {
   pt: { blog: 'Blog', title: 'Blog da Xerovan', intro: 'Novidades do produto, guias e análises sobre pagamentos cripto, cartões e finanças sem fronteiras.', read: 'Ler artigo', back: 'Todos os artigos', newer: 'Mais recentes', older: 'Anteriores', empty: 'Ainda não há artigos. Volte em breve.', notFound: 'Artigo não encontrado', notFoundText: 'O artigo pode ter sido movido ou não está disponível neste idioma.', down: 'O blog está temporariamente indisponível', downText: 'Tente novamente em alguns minutos.', home: 'Início', min: 'min de leitura', page: 'Página' },
 };
 
+// Topic categories (WordPress category slugs). A post = one language category + one topic category.
+const TOPICS = ['news', 'manual', 'guide'];
+const TOPIC_LABEL = {
+  en: { all: 'All', news: 'Xerovan News', manual: 'Manual', guide: 'Crypto & Payments Guide' },
+  kr: { all: '전체', news: 'Xerovan 소식', manual: '매뉴얼', guide: '크립토·결제 가이드' },
+  ja: { all: 'すべて', news: 'Xerovanニュース', manual: 'マニュアル', guide: '暗号資産・決済ガイド' },
+  es: { all: 'Todo', news: 'Novedades de Xerovan', manual: 'Manual', guide: 'Guía de cripto y pagos' },
+  ar: { all: 'الكل', news: 'أخبار Xerovan', manual: 'دليل الاستخدام', guide: 'دليل العملات المشفرة والمدفوعات' },
+  pt: { all: 'Todos', news: 'Novidades da Xerovan', manual: 'Manual', guide: 'Guia de cripto e pagamentos' },
+};
+const TOPIC_INTRO = {
+  en: { news: 'Launch updates, new features and partnerships.', manual: 'Step-by-step help for using the Xerovan app.', guide: 'Crypto and blockchain basics, plus fixes for everyday payment, travel and business problems.' },
+  kr: { news: '출시 소식, 새 기능, 파트너십 소식을 전합니다.', manual: 'Xerovan 앱 사용법을 단계별로 안내합니다.', guide: '크립토·블록체인 기초와 해외결제·여행·비즈니스 결제 문제 해결법.' },
+  ja: { news: 'ローンチ情報、新機能、パートナーシップのお知らせ。', manual: 'Xerovanアプリの使い方をステップごとにご案内します。', guide: '暗号資産・ブロックチェーンの基礎と、決済・旅行・ビジネスの課題解決。' },
+  es: { news: 'Novedades del lanzamiento, nuevas funciones y alianzas.', manual: 'Ayuda paso a paso para usar la app Xerovan.', guide: 'Conceptos básicos de cripto y blockchain, y soluciones para pagos, viajes y negocios.' },
+  ar: { news: 'تحديثات الإطلاق والمزايا الجديدة والشراكات.', manual: 'إرشادات خطوة بخطوة لاستخدام تطبيق Xerovan.', guide: 'أساسيات العملات المشفرة والبلوكتشين، وحلول لمشكلات الدفع والسفر والأعمال.' },
+  pt: { news: 'Novidades do lançamento, novos recursos e parcerias.', manual: 'Ajuda passo a passo para usar o app Xerovan.', guide: 'Noções de cripto e blockchain, e soluções para pagamentos, viagens e negócios.' },
+};
+
 // ---------------------------------------------------------------- helpers
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const decode = (s) => String(s ?? '')
@@ -73,7 +92,34 @@ async function categoryId(lang) {
   return id;
 }
 
-function shape(p, lang) {
+let topicCache = { at: 0, map: null };
+/** { news: <id>, manual: <id>, guide: <id> } for the topic categories that exist in WordPress. */
+async function topicIds() {
+  if (topicCache.map && Date.now() - topicCache.at < 300000) return topicCache.map;
+  const { data } = await wp(`categories?slug=${TOPICS.join(',')}&per_page=20&_fields=id,slug`);
+  const map = {};
+  data.forEach((c) => { if (TOPICS.includes(c.slug)) map[c.slug] = c.id; });
+  topicCache = { at: Date.now(), map };
+  return map;
+}
+const topicOf = (raw, tmap) => TOPICS.find((t) => tmap[t] && (raw.categories || []).includes(tmap[t])) || null;
+
+const postsCache = new Map();
+/** All published posts of one language (newest first), cached briefly; topic filtering + paging happen here. */
+async function langPosts(lang, cat) {
+  const c = postsCache.get(lang);
+  if (c && Date.now() - c.at < 60000) return c.posts;
+  const out = [];
+  for (let page = 1; page <= 5; page++) {
+    const { data, pages } = await wp(`posts?categories=${cat}&per_page=100&page=${page}&_embed=wp:featuredmedia`);
+    out.push(...data);
+    if (page >= pages) break;
+  }
+  postsCache.set(lang, { at: Date.now(), posts: out });
+  return out;
+}
+
+function shape(p, lang, tmap = {}) {
   const media = p._embedded?.['wp:featuredmedia']?.[0];
   const img = media?.source_url ? publicize(media.source_url, lang) : null;
   const words = stripTags(p.content?.rendered).split(/\s+/).length;
@@ -81,6 +127,7 @@ function shape(p, lang) {
   const cjk = lang === 'kr' || lang === 'ja';
   return {
     slug: p.slug,
+    topic: topicOf(p, tmap),
     title: stripTags(p.title?.rendered),
     excerpt: clip(stripTags(p.excerpt?.rendered), 180),
     content: publicize(p.content?.rendered, lang),
@@ -183,7 +230,7 @@ function layout({ lang, title, description, canonical, alternates, ogImage, ogTy
     .blog-hero h1{font-family:var(--f-display);font-weight:600;font-size:clamp(30px,5vw,52px);line-height:1.08;letter-spacing:-.01em}
     .blog-hero p{margin-top:18px;max-width:600px;color:var(--silver-500);font-size:16px;line-height:1.65}
 
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding:56px 0 30px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding:32px 0 30px}
     @media(max-width:960px){.grid{grid-template-columns:1fr 1fr}}
     @media(max-width:620px){.grid{grid-template-columns:1fr}}
     .card{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:border-color .2s ease,transform .2s ease;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
@@ -202,6 +249,14 @@ function layout({ lang, title, description, canonical, alternates, ogImage, ogTy
     .card.featured h2{font-size:clamp(20px,2.6vw,28px)}
     @media(max-width:820px){.card.featured{flex-direction:column}.card.featured .thumb{aspect-ratio:16/9;min-height:0}.card.featured .body{padding:24px}}
 
+    .tabs{display:flex;gap:8px;overflow-x:auto;padding:30px 0 4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+    .tabs::-webkit-scrollbar{display:none}
+    .tab{white-space:nowrap;padding:10px 18px;border:1px solid var(--line);border-radius:100px;font-size:13.5px;font-weight:600;color:var(--silver-300);transition:border-color .2s ease,color .2s ease}
+    .tab:hover{border-color:var(--silver-500);color:var(--silver-100)}
+    .tab[aria-current="page"]{background:var(--silver-100);color:#0a0b0d;border-color:transparent}
+    .chip{display:inline-block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.06em;color:var(--ice);border:1px solid rgba(143,227,238,.35);padding:3px 9px;border-radius:100px;margin-inline-end:8px;vertical-align:1px}
+    .post-head .chip{margin-bottom:18px;font-size:11.5px;padding:5px 12px}
+    .post-head .chip:hover{border-color:var(--ice)}
     .pager{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:10px 0 90px;font-family:var(--f-mono);font-size:12px;color:var(--text-dim)}
     .pager a{padding:11px 20px;border:1px solid var(--line);border-radius:100px;color:var(--silver-300)}
     .pager a:hover{border-color:var(--silver-500);color:var(--silver-100)}
@@ -283,30 +338,36 @@ ${body}
 }
 
 // ---------------------------------------------------------------- views
-function listView(lang, posts, page, pages) {
-  const t = T[lang];
+function listView(lang, posts, page, pages, topic) {
+  const t = T[lang], TL = TOPIC_LABEL[lang], rtl = LANGS[lang].rtl;
+  const base = topic ? `/${lang}/blog/category/${topic}` : `/${lang}/blog`;
   const card = (p, featured) => `
     <a class="card${featured ? ' featured' : ''}" href="/${lang}/blog/${esc(p.slug)}">
       <div class="thumb${p.image ? '' : ' ph'}">${p.image ? `<img src="${esc(p.image)}" alt="${esc(p.imageAlt)}" loading="${featured ? 'eager' : 'lazy'}">` : ''}</div>
       <div class="body">
-        <div class="meta">${esc(fmtDate(p.date, lang))} · ${p.minutes} ${esc(t.min)}</div>
+        <div class="meta">${p.topic && !topic ? `<span class="chip">${esc(TL[p.topic])}</span>` : ''}${esc(fmtDate(p.date, lang))} · ${p.minutes} ${esc(t.min)}</div>
         <h2>${esc(p.title)}</h2>
         <p>${esc(p.excerpt)}</p>
-        <span class="more">${esc(t.read)} ${LANGS[lang].rtl ? '←' : '→'}</span>
+        <span class="more">${esc(t.read)} ${rtl ? '←' : '→'}</span>
       </div>
     </a>`;
+  const tabs = `<div class="tabs" role="navigation" aria-label="${esc(t.blog)}">
+      <a class="tab" href="/${lang}/blog"${!topic ? ' aria-current="page"' : ''}>${esc(TL.all)}</a>
+      ${TOPICS.map((k) => `<a class="tab" href="/${lang}/blog/category/${k}"${topic === k ? ' aria-current="page"' : ''}>${esc(TL[k])}</a>`).join('')}
+    </div>`;
   const cards = posts.length
     ? `<div class="grid">${posts.map((p, i) => card(p, page === 1 && i === 0 && posts.length > 2)).join('')}</div>`
     : `<p class="empty">${esc(t.empty)}</p>`;
-  const prev = page > 1 ? `<a href="/${lang}/blog${page - 1 > 1 ? `/page/${page - 1}` : ''}">${LANGS[lang].rtl ? '→' : '←'} ${esc(t.newer)}</a>` : '<span></span>';
-  const next = page < pages ? `<a href="/${lang}/blog/page/${page + 1}">${esc(t.older)} ${LANGS[lang].rtl ? '←' : '→'}</a>` : '<span></span>';
+  const prev = page > 1 ? `<a href="${base}${page - 1 > 1 ? `/page/${page - 1}` : ''}">${rtl ? '→' : '←'} ${esc(t.newer)}</a>` : '<span></span>';
+  const next = page < pages ? `<a href="${base}/page/${page + 1}">${esc(t.older)} ${rtl ? '←' : '→'}</a>` : '<span></span>';
   return `
   <section class="blog-hero"><div class="wrap">
-    <span class="eyebrow">${esc(t.blog)}</span>
-    <h1 class="metal">${esc(t.title)}</h1>
-    <p>${esc(t.intro)}</p>
+    <span class="eyebrow">${esc(topic ? t.title : t.blog)}</span>
+    <h1 class="metal">${esc(topic ? TL[topic] : t.title)}</h1>
+    <p>${esc(topic ? TOPIC_INTRO[lang][topic] : t.intro)}</p>
   </div></section>
   <div class="wrap">
+    ${tabs}
     ${cards}
     ${pages > 1 ? `<div class="pager">${prev}<span>${esc(t.page)} ${page} / ${pages}</span>${next}</div>` : '<div style="height:60px"></div>'}
   </div>`;
@@ -318,7 +379,8 @@ function postView(lang, p) {
   <article>
     <div class="wrap">
       <header class="post-head">
-        <div class="crumb"><a href="/${lang}/">${esc(t.home)}</a><span>/</span><a href="/${lang}/blog">${esc(t.blog)}</a></div>
+        <div class="crumb"><a href="/${lang}/">${esc(t.home)}</a><span>/</span><a href="/${lang}/blog">${esc(t.blog)}</a>${p.topic ? `<span>/</span><a href="/${lang}/blog/category/${p.topic}">${esc(TOPIC_LABEL[lang][p.topic])}</a>` : ''}</div>
+        ${p.topic ? `<a class="chip" href="/${lang}/blog/category/${p.topic}">${esc(TOPIC_LABEL[lang][p.topic])}</a>` : ''}
         <h1>${esc(p.title)}</h1>
         <div class="meta">${esc(fmtDate(p.date, lang))} · ${esc(p.author)} · ${p.minutes} ${esc(t.min)}</div>
       </header>
@@ -346,11 +408,17 @@ async function sitemap() {
     try {
       const cat = await categoryId(lang);
       if (!cat) continue;
+      const tmap = await topicIds().catch(() => ({}));
+      const used = new Set();
       for (let page = 1; page <= 20; page++) {
-        const { data, pages } = await wp(`posts?categories=${cat}&per_page=100&page=${page}&_fields=slug,modified_gmt`);
-        data.forEach((p) => urls.push({ loc: `${SITE}/${lang}/blog/${p.slug}`, lastmod: p.modified_gmt ? p.modified_gmt + 'Z' : null }));
+        const { data, pages } = await wp(`posts?categories=${cat}&per_page=100&page=${page}&_fields=slug,modified_gmt,categories`);
+        data.forEach((p) => {
+          urls.push({ loc: `${SITE}/${lang}/blog/${p.slug}`, lastmod: p.modified_gmt ? p.modified_gmt + 'Z' : null });
+          const tp = topicOf(p, tmap); if (tp) used.add(tp);
+        });
         if (page >= pages) break;
       }
+      TOPICS.filter((k) => used.has(k)).forEach((k) => urls.push({ loc: `${SITE}/${lang}/blog/category/${k}`, lastmod: null }));
     } catch (e) {
       console.error('[blog-sitemap]', lang, e.message);
     }
@@ -417,10 +485,11 @@ module.exports = async (req, res) => {
     if (slug) {
       const { data } = await wp(`posts?slug=${encodeURIComponent(slug)}&_embed=wp:featuredmedia,author`);
       const raw = data.find((p) => cat && (p.categories || []).includes(cat));
+      const tmap = raw ? await topicIds().catch(() => ({})) : {};
       if (!raw) {
         return send(404, layout({ lang, title: `${t.notFound} | Xerovan`, description: t.notFoundText, canonical: `${SITE}/${lang}/blog`, body: messageView(lang, t.notFound, t.notFoundText) }));
       }
-      const p = shape(raw, lang);
+      const p = shape(raw, lang, tmap);
       const canonical = `${SITE}/${lang}/blog/${p.slug}`;
       const alternates = [[lang, canonical], ...Object.entries(p.translations).map(([k, s]) => [k, `${SITE}/${k}/blog/${s}`])];
       return send(200, layout({
@@ -437,17 +506,27 @@ module.exports = async (req, res) => {
       }));
     }
 
-    const { data, pages } = cat
-      ? await wp(`posts?categories=${cat}&per_page=${PER_PAGE}&page=${page}&_embed=wp:featuredmedia`)
-      : { data: [], pages: 0 };
+    const topic = q.topic ? String(q.topic).toLowerCase() : null;
+    if (topic && !TOPICS.includes(topic)) {
+      return send(404, layout({ lang, title: `${t.notFound} | Xerovan`, description: t.notFoundText, canonical: `${SITE}/${lang}/blog`, body: messageView(lang, t.notFound, t.notFoundText) }));
+    }
+    const tmap = cat ? await topicIds().catch(() => ({})) : {};
+    let all = cat ? await langPosts(lang, cat) : [];
+    if (topic) all = tmap[topic] ? all.filter((p) => (p.categories || []).includes(tmap[topic])) : [];
+    const pages = Math.ceil(all.length / PER_PAGE);
+    const data = all.slice((page - 1) * PER_PAGE, page * PER_PAGE);
     if (page > 1 && !data.length) {
       return send(404, layout({ lang, title: `${t.notFound} | Xerovan`, description: t.notFoundText, canonical: `${SITE}/${lang}/blog`, body: messageView(lang, t.notFound, t.notFoundText) }));
     }
-    const canonical = `${SITE}/${lang}/blog${page > 1 ? `/page/${page}` : ''}`;
+    const basePath = topic ? `/blog/category/${topic}` : '/blog';
+    const canonical = `${SITE}/${lang}${basePath}${page > 1 ? `/page/${page}` : ''}`;
+    const heading = topic ? `${TOPIC_LABEL[lang][topic]} | ${t.title}` : t.title;
     return send(200, layout({
-      lang, title: page > 1 ? `${t.title} — ${t.page} ${page}` : t.title, description: t.intro, canonical,
-      body: listView(lang, data.map((p) => shape(p, lang)), page, pages),
-      jsonLd: { '@context': 'https://schema.org', '@type': 'Blog', name: t.title, url: `${SITE}/${lang}/blog`, inLanguage: LANGS[lang].hl },
+      lang, title: page > 1 ? `${heading} — ${t.page} ${page}` : heading,
+      description: topic ? TOPIC_INTRO[lang][topic] : t.intro, canonical,
+      alternates: Object.keys(LANGS).map((k) => [k, `${SITE}/${k}${basePath}`]),
+      body: listView(lang, data.map((p) => shape(p, lang, tmap)), page, pages, topic),
+      jsonLd: { '@context': 'https://schema.org', '@type': topic ? 'CollectionPage' : 'Blog', name: heading, url: `${SITE}/${lang}${basePath}`, inLanguage: LANGS[lang].hl },
     }));
   } catch (e) {
     console.error('[blog]', e);
