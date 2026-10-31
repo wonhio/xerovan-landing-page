@@ -49,6 +49,37 @@ LATEST = {
 }
 WEBP = ["hero-visual", "ecosystem-visual"] + [f"feature-0{i}" for i in range(1, 10)] + [f"usecase-0{i}" for i in range(1, 7)]
 
+MOBILE_CSS = """  .nav-end{display:flex;align-items:center;gap:10px;}
+  .menu-btn{display:none;width:40px;height:40px;border:1px solid var(--line);border-radius:100px;background:transparent;color:var(--silver-300);cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:4px;padding:0;}
+  .menu-btn span{display:block;width:16px;height:1.5px;background:currentColor;border-radius:2px;transition:transform .2s ease, opacity .2s ease;}
+  .menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(5.5px) rotate(45deg);}
+  .menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0;}
+  .menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg);}
+  .menu-btn:hover,.menu-btn[aria-expanded="true"]{color:var(--silver-100);border-color:var(--silver-500);}
+  .mobile-menu{display:flex;flex-direction:column;padding:6px 16px 14px;border-top:1px solid var(--line);background:rgba(10,11,13,0.97);}
+  .mobile-menu[hidden]{display:none;}
+  .mobile-menu a{padding:15px 8px;font-size:15px;font-weight:600;color:var(--silver-300);border-bottom:1px solid var(--line-soft);}
+  .mobile-menu a:last-child{border-bottom:none;}
+  .mobile-menu a:hover,.mobile-menu a[aria-current="page"]{color:var(--silver-100);}
+  @media(max-width:920px){ .menu-btn{display:flex;} }
+  @media(min-width:921px){ .mobile-menu{display:none !important;} }
+  @media(max-width:600px){ nav{padding:12px 16px;} }
+  @media(max-width:380px){ .brand img.brand-word-img{height:15px;} .brand{gap:8px;} }
+"""
+MOBILE_JS = """  /* Mobile menu (☰) */
+  (function () {
+    var b = document.querySelector('.menu-btn'), m = document.getElementById('mobileMenu');
+    if (!b || !m) return;
+    function set(open) { m.hidden = !open; b.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+    b.addEventListener('click', function (e) { e.stopPropagation(); set(m.hidden); var l = document.querySelector('.lang-menu'); if (l) l.open = false; });
+    m.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { set(false); }); });
+    document.addEventListener('click', function (e) { if (!m.hidden && !m.contains(e.target) && !b.contains(e.target)) set(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+  })();
+"""
+MENU_LABEL = {'en': 'Menu', 'kr': '메뉴', 'ja': 'メニュー', 'es': 'Menú', 'ar': 'القائمة', 'pt': 'Menu'}
+MENU_BTN = '<button type="button" class="menu-btn" aria-label="{label}" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>'
+
 PAGE_TITLE = {
     "en": "Xerovan — Crypto Wallet & Visa Card for Global Payments",
     "kr": "Xerovan — 크립토 지갑과 Visa 카드로 해외결제·여행까지",
@@ -242,6 +273,14 @@ def finalize(html, lang):
                "url": "https://www.xerovan.com/", "inLanguage": LANGS[lang][0]}
     html = must(html, '<link rel="preconnect" href="https://fonts.googleapis.com">',
                 '<script type="application/ld+json">' + _json.dumps(website, ensure_ascii=False) + '</script>\n<link rel="preconnect" href="https://fonts.googleapis.com">')
+    # mobile menu: ☰ button beside the language menu, opening the same links as the desktop nav
+    links = re.search(r'<div class="nav-links">\n(.*?)\n    </div>', html, re.S).group(1)
+    html = must(html, '    <details class="lang-menu">', '    <div class="nav-end">\n    <details class="lang-menu">', 1)
+    html = must(html, '    </details>\n  </nav>\n</header>',
+                '    </details>\n    ' + MENU_BTN.format(label=MENU_LABEL[lang]) + '\n    </div>\n  </nav>\n'
+                '  <div class="mobile-menu" id="mobileMenu" hidden>\n' + links + '\n  </div>\n</header>', 1)
+    html = must(html, '  .lang-menu{position:relative;}', MOBILE_CSS + '  .lang-menu{position:relative;}', 1)
+    html = must(html, '  /* Google Sheet waitlist webhook (Apps Script Web App) */', MOBILE_JS + '\n  /* Google Sheet waitlist webhook (Apps Script Web App) */', 1)
     return prerender(html)
 
 en = finalize(common(src, "en"), "en")

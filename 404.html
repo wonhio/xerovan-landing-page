@@ -20,6 +20,21 @@
   .nav-links{display:flex;gap:32px;font-size:13.5px;font-weight:600;color:var(--silver-300)}
   .nav-links a:hover{color:var(--silver-100)}
   @media(max-width:920px){.nav-links{display:none}}
+  :root{--line-soft:#1a1c20;--silver-500:#9ba0a8}
+  .nav-end{display:flex;align-items:center;gap:10px;}
+  .menu-btn{display:none;width:40px;height:40px;border:1px solid var(--line);border-radius:100px;background:transparent;color:var(--silver-300);cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:4px;padding:0;}
+  .menu-btn span{display:block;width:16px;height:1.5px;background:currentColor;border-radius:2px;transition:transform .2s ease, opacity .2s ease;}
+  .menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(5.5px) rotate(45deg);}
+  .menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0;}
+  .menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg);}
+  .menu-btn:hover,.menu-btn[aria-expanded="true"]{color:var(--silver-100);border-color:var(--silver-500);}
+  .mobile-menu{display:flex;flex-direction:column;padding:6px 16px 14px;border-top:1px solid var(--line);background:rgba(10,11,13,0.97);}
+  .mobile-menu[hidden]{display:none;}
+  .mobile-menu a{padding:15px 8px;font-size:15px;font-weight:600;color:var(--silver-300);border-bottom:1px solid var(--line-soft);}
+  .mobile-menu a:last-child{border-bottom:none;}
+  .mobile-menu a:hover,.mobile-menu a[aria-current="page"]{color:var(--silver-100);}
+  @media(max-width:920px){ .menu-btn{display:flex;} }
+  @media(min-width:921px){ .mobile-menu{display:none !important;} }
   main{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;padding:60px 20px;
     background:radial-gradient(ellipse 60% 45% at 50% 30%, rgba(143,227,238,0.07), transparent 70%)}
   .code{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.3em;color:var(--ice);margin-bottom:18px}
@@ -36,7 +51,9 @@
 <header><nav>
   <a href="/" id="home" class="brand"><img src="/images/logo-icon.png" alt="Xerovan"><img src="/images/logo-wordmark.png" alt="XEROVAN" class="wm"></a>
   <div class="nav-links" id="menu"></div>
-</nav></header>
+  <div class="nav-end"><button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu" hidden></div></header>
 <main>
   <div>
     <div class="code">404</div>
@@ -83,6 +100,19 @@
     ["#summary", "#features", "#usecases", "#faq", "blog"].forEach(function (h, i) {
       var a = document.createElement("a"); a.href = "/" + lang + "/" + h; a.textContent = MENU[lang][i]; menu.appendChild(a);
     });
+    var mm = document.getElementById("mobileMenu");
+    menu.querySelectorAll("a").forEach(function (a) { mm.appendChild(a.cloneNode(true)); });
+    document.querySelector(".menu-btn").setAttribute("aria-label", {en: "Menu", kr: "메뉴", ja: "メニュー", es: "Menú", ar: "القائمة", pt: "Menu"}[lang]);
+  })();
+  /* Mobile menu (☰) */
+  (function () {
+    var b = document.querySelector('.menu-btn'), m = document.getElementById('mobileMenu');
+    if (!b || !m) return;
+    function set(open) { m.hidden = !open; b.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+    b.addEventListener('click', function (e) { e.stopPropagation(); set(m.hidden); var l = document.querySelector('.lang-menu'); if (l) l.open = false; });
+    m.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { set(false); }); });
+    document.addEventListener('click', function (e) { if (!m.hidden && !m.contains(e.target) && !b.contains(e.target)) set(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
   })();
 </script>
 </body>

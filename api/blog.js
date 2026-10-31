@@ -163,6 +163,7 @@ const MENU = {
   pt: ['Resumo', 'Recursos', 'Casos de uso', 'FAQ', 'Blog'],
 };
 const MENU_ANCHORS = ['summary', 'features', 'usecases', 'faq'];
+const MENU_LABEL = {'en': 'Menu', 'kr': '메뉴', 'ja': 'メニュー', 'es': 'Menú', 'ar': 'القائمة', 'pt': 'Menu'};
 
 // ---------------------------------------------------------------- helpers
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -269,6 +270,8 @@ function layout({ lang, title, description, canonical, alternates, ogImage, ogTy
   const font = lang === 'kr' ? "'Noto Sans KR'," : lang === 'ja' ? "'Noto Sans JP'," : lang === 'ar' ? "'Noto Sans Arabic'," : '';
   const fontParam = lang === 'kr' ? '&family=Noto+Sans+KR:wght@400;500;700' : lang === 'ja' ? '&family=Noto+Sans+JP:wght@400;500;700' : lang === 'ar' ? '&family=Noto+Sans+Arabic:wght@400;500;700' : '';
 
+  const menuLinks = MENU_ANCHORS.map((a, i) => `<a href="/${lang}/#${a}">${esc(MENU[lang][i])}</a>`).join('')
+    + `<a href="/${lang}/blog"${/\/blog(\/|$)/.test(canonical) ? ' aria-current="page"' : ''}>${esc(MENU[lang][4])}</a>`;
   return `<!DOCTYPE html>
 <html lang="${L.hl}"${L.rtl ? ' dir="rtl"' : ''}>
 <head>
@@ -317,6 +320,21 @@ function layout({ lang, title, description, canonical, alternates, ogImage, ogTy
     .nav-links{display:flex;gap:32px;font-size:13.5px;font-weight:600;color:var(--silver-300)}
     .nav-links a:hover,.nav-links a[aria-current="page"]{color:var(--silver-100)}
     @media(max-width:920px){.nav-links{display:none}}
+    @media(max-width:380px){.brand img.wm{height:15px}.brand{gap:8px}}
+    .nav-end{display:flex;align-items:center;gap:10px;}
+    .menu-btn{display:none;width:40px;height:40px;border:1px solid var(--line);border-radius:100px;background:transparent;color:var(--silver-300);cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:4px;padding:0;}
+    .menu-btn span{display:block;width:16px;height:1.5px;background:currentColor;border-radius:2px;transition:transform .2s ease, opacity .2s ease;}
+    .menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(5.5px) rotate(45deg);}
+    .menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0;}
+    .menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg);}
+    .menu-btn:hover,.menu-btn[aria-expanded="true"]{color:var(--silver-100);border-color:var(--silver-500);}
+    .mobile-menu{display:flex;flex-direction:column;padding:6px 16px 14px;border-top:1px solid var(--line);background:rgba(10,11,13,0.97);}
+    .mobile-menu[hidden]{display:none;}
+    .mobile-menu a{padding:15px 8px;font-size:15px;font-weight:600;color:var(--silver-300);border-bottom:1px solid var(--line-soft);}
+    .mobile-menu a:last-child{border-bottom:none;}
+    .mobile-menu a:hover,.mobile-menu a[aria-current="page"]{color:var(--silver-100);}
+  @media(max-width:920px){ .menu-btn{display:flex;} }
+  @media(min-width:921px){ .mobile-menu{display:none !important;} }
     .lang-menu{position:relative}
     .lang-menu summary{list-style:none;cursor:pointer;padding:8px 14px;border:1px solid var(--line);border-radius:100px;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.1em;color:var(--silver-300);display:flex;gap:8px;align-items:center}
     .lang-menu summary::-webkit-details-marker{display:none}
@@ -437,15 +455,16 @@ function layout({ lang, title, description, canonical, alternates, ogImage, ogTy
       <img src="/images/logo-icon.png" alt="Xerovan">
       <img src="/images/logo-wordmark.png" alt="XEROVAN" class="wm">
     </a>
-    <div class="nav-links">
-      ${MENU_ANCHORS.map((a, i) => `<a href="/${lang}/#${a}">${esc(MENU[lang][i])}</a>`).join('\n      ')}
-      <a href="/${lang}/blog"${/\/blog(\/|$)/.test(canonical) ? ' aria-current="page"' : ''}>${esc(MENU[lang][4])}</a>
+    <div class="nav-links">${menuLinks}</div>
+    <div class="nav-end">
+      <details class="lang-menu">
+        <summary aria-label="Language">${L.short}</summary>
+        <div class="lang-list">${langLinks}</div>
+      </details>
+      <button type="button" class="menu-btn" aria-label="${esc(MENU_LABEL[lang])}" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
     </div>
-    <details class="lang-menu">
-      <summary aria-label="Language">${L.short}</summary>
-      <div class="lang-list">${langLinks}</div>
-    </details>
   </nav>
+  <div class="mobile-menu" id="mobileMenu" hidden>${menuLinks}</div>
 </header>
 <main>
 ${body}
@@ -461,6 +480,16 @@ ${body}
     a.addEventListener('click', function(){ document.cookie = 'xv_lang=' + a.dataset.lang + '; path=/; max-age=31536000; SameSite=Lax'; });
   });
   document.addEventListener('click', function(e){ var m=document.querySelector('.lang-menu'); if(m && m.open && !m.contains(e.target)) m.open=false; });
+  /* Mobile menu (☰) */
+  (function () {
+    var b = document.querySelector('.menu-btn'), m = document.getElementById('mobileMenu');
+    if (!b || !m) return;
+    function set(open) { m.hidden = !open; b.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+    b.addEventListener('click', function (e) { e.stopPropagation(); set(m.hidden); var l = document.querySelector('.lang-menu'); if (l) l.open = false; });
+    m.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { set(false); }); });
+    document.addEventListener('click', function (e) { if (!m.hidden && !m.contains(e.target) && !b.contains(e.target)) set(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+  })();
 </script>
 </body>
 </html>`;
