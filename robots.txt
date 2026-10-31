@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /api/
 
 Sitemap: https://www.xerovan.com/sitemap.xml
+Sitemap: https://www.xerovan.com/blog-sitemap.xml
