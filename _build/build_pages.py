@@ -49,6 +49,15 @@ LATEST = {
 }
 WEBP = ["hero-visual", "ecosystem-visual"] + [f"feature-0{i}" for i in range(1, 10)] + [f"usecase-0{i}" for i in range(1, 7)]
 
+PAGE_TITLE = {
+    "en": "Xerovan — Crypto Wallet & Visa Card for Global Payments",
+    "kr": "Xerovan — 크립토 지갑과 Visa 카드로 해외결제·여행까지",
+    "ja": "Xerovan — 暗号資産ウォレットとVisaカードで海外決済・旅行まで",
+    "es": "Xerovan — Billetera cripto y tarjeta Visa para pagos globales",
+    "ar": "Xerovan — محفظة عملات مشفرة وبطاقة Visa للمدفوعات العالمية",
+    "pt": "Xerovan — Carteira cripto e cartão Visa para pagamentos globais",
+}
+
 OG_TITLE = {
     "en": "Xerovan — Value in Motion",
     "kr": "Xerovan — 지갑·결제·리워드·여행을 하나로",
@@ -173,7 +182,48 @@ def common(html, lang, legal_names=None):
         "  (FAQ_SHEET_URL ? fetch(FAQ_SHEET_URL) : Promise.reject(new Error('no sheet')))\n")
     return html
 
-def finalize(html):
+import html as _html, json as _json, subprocess as _sp
+
+def _js_array(page, name):
+    """Evaluate a JS array literal declared in the page (const NAME = [...];) with node -> Python data."""
+    m = re.search(r"const " + name + r" = (\[.*?\n  \]);", page, re.S)
+    assert m, f"{name} not found"
+    out = _sp.run(["node", "-e", "process.stdout.write(JSON.stringify(eval(require('fs').readFileSync(0,'utf8'))))"],
+                  input=m.group(1), capture_output=True, text=True, check=True)
+    return _json.loads(out.stdout)
+
+def prerender(page):
+    """Write FAQ, use cases and the summary table into the HTML so crawlers see them without running scripts.
+    The page scripts still rebuild these blocks on load (FAQ from the sheet), clearing the pre-rendered copy first."""
+    e = lambda x: _html.escape(str(x), quote=True)
+    faq = _js_array(page, "faqDataFallback")
+    faq_html = "".join(f'<div class="faq-item"><button class="faq-q" aria-expanded="false"><span>{e(f["q"])}</span><span class="plus">+</span></button><div class="faq-a"><p>{e(f["a"])}</p></div></div>' for f in faq)
+    page = must(page, '<div class="faq-list" id="faqList"></div>', f'<div class="faq-list" id="faqList">{faq_html}</div>')
+
+    lab_common = re.search(r'<span class="tag-label">([^<]+)</span>\s*<ul>\$\{uc\.items', page).group(1)
+    lab_typical = re.search(r'const tagsHtml = uc\.tags \? `<span class="tag-label">([^<]+)</span>', page).group(1)
+    lab_value = re.search(r'<div class="uc-key-value">([^$]*)\$\{uc\.value\}', page).group(1)
+    ucs = _js_array(page, "useCaseData")
+    items = []
+    for i, uc in enumerate(ucs):
+        tags = (f'<span class="tag-label">{e(lab_typical)}</span><div class="tag-row">' + "".join(f'<span class="tag">{e(t)}</span>' for t in uc["tags"]) + "</div>") if uc.get("tags") else ""
+        img = f'<img src="{e(uc["image"])}" alt="{e(uc["title"])}" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;">' if uc.get("image") else ""
+        items.append(
+            f'<div class="uc-item"><button class="uc-head" aria-expanded="false"><span class="uc-num">0{i+1}</span>'
+            f'<span class="uc-head-text"><h3>{e(uc["title"])}</h3><p>{e(uc["tag"])}</p></span><span class="uc-plus">+</span></button>'
+            f'<div class="uc-body"><div class="uc-body-inner"><div><p class="lede">{e(uc["lede"])}</p>'
+            f'<span class="tag-label">{e(lab_common)}</span><ul>' + "".join(f"<li>{e(it)}</li>" for it in uc["items"]) + "</ul>"
+            f'{tags}<div class="uc-key-value">{e(lab_value)}{e(uc["value"])}</div></div>'
+            f'<div class="uc-visual" style="padding:0; overflow:hidden;">{img}</div></div></div></div>')
+    page = must(page, '<div class="uc-list" id="ucList"></div>', '<div class="uc-list" id="ucList">' + "".join(items) + "</div>")
+    rows = _js_array(page, "summaryTable")
+    page = must(page, '<tbody id="ucTableBody"></tbody>', '<tbody id="ucTableBody">' + "".join("<tr>" + "".join(f"<td>{e(c)}</td>" for c in r) + "</tr>" for r in rows) + "</tbody>")
+    # the scripts append on load: clear the pre-rendered copies first so nothing is duplicated
+    page = must(page, "  const ucList = document.getElementById('ucList');\n", "  const ucList = document.getElementById('ucList');\n  ucList.innerHTML = '';\n")
+    page = must(page, "  const ucTableBody = document.getElementById('ucTableBody');\n", "  const ucTableBody = document.getElementById('ucTableBody');\n  ucTableBody.innerHTML = '';\n")
+    return page
+
+def finalize(html, lang):
     # hide footer links that have no destination yet (Company column, Fees)
     html, n = re.subn(r'<div class="footer-col"><h5>[^<]*</h5><ul>(?:<li><a href="#">[^<]*</a></li>){3}</ul></div>', '', html)
     assert n == 1, "company column not found"
@@ -183,9 +233,14 @@ def finalize(html):
         html = html.replace(f'/images/{name}.jpg', f'/images/{name}.webp')
     html = re.sub(r'<img src="(/images/(?:feature|ecosystem)[^"]*)"', r'<img loading="lazy" decoding="async" src="\1"', html)
     html = html.replace('<img src="${uc.image}" alt="${uc.title}" style=', '<img src="${uc.image}" alt="${uc.title}" loading="lazy" decoding="async" style=')
-    return html
+    html = must_re(html, r"<title>[^<]*</title>", f"<title>{PAGE_TITLE[lang]}</title>")
+    website = {"@context": "https://schema.org", "@type": "WebSite", "name": "Xerovan", "alternateName": "XEROVAN",
+               "url": "https://www.xerovan.com/", "inLanguage": LANGS[lang][0]}
+    html = must(html, '<link rel="preconnect" href="https://fonts.googleapis.com">',
+                '<script type="application/ld+json">' + _json.dumps(website, ensure_ascii=False) + '</script>\n<link rel="preconnect" href="https://fonts.googleapis.com">')
+    return prerender(html)
 
-en = finalize(common(src, "en"))
+en = finalize(common(src, "en"), "en")
 
 # ---------------------------------------------------------------- Korean
 kr = common(src, "kr", LEGAL_NAMES_KR)
@@ -601,7 +656,7 @@ def build_generic(code):
     h = must_re(h, r"const useCaseData = \[.*?\n  \];", "const useCaseData = " + js(ucs) + ";")
     h = must_re(h, r"const summaryTable = \[.*?\n  \];", "const summaryTable = " + js(L.SUMMARY) + ";")
     (ROOT / code).mkdir(exist_ok=True)
-    (ROOT / code / "index.html").write_text(finalize(h), encoding="utf-8")
+    (ROOT / code / "index.html").write_text(finalize(h, code), encoding="utf-8")
     print(code, "ok", len(h))
 
 for code in ("ja", "es", "ar", "pt"):
@@ -609,5 +664,5 @@ for code in ("ja", "es", "ar", "pt"):
         build_generic(code)
 
 (ROOT / "en" / "index.html").write_text(en, encoding="utf-8")
-(ROOT / "kr" / "index.html").write_text(finalize(kr), encoding="utf-8")
+(ROOT / "kr" / "index.html").write_text(finalize(kr, "kr"), encoding="utf-8")
 print("ok", len(en), len(kr))

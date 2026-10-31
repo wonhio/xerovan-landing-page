@@ -1,0 +1,35 @@
+# Xerovan
+
+> Xerovan is a technology platform (pre-launch) that brings crypto wallets, payments, rewards, travel and business spending together in one secure app: a self-custodial MPC multi-wallet, crypto swaps and cross-chain bridging, virtual and physical Visa cards funded with crypto, staking and cashback rewards, a travel marketplace (flights, hotels, tours, eSIM) and business cards with expense controls. Xerovan is not a bank; card and payment services are provided by licensed partners, and availability varies by country.
+
+The site is available in English, Korean, Japanese, Spanish, Arabic and Portuguese. Xerovan has not launched yet; people can join the waitlist on any language page.
+
+## Main pages
+
+- [Xerovan (English)](https://www.xerovan.com/en/): product overview, features, use cases and FAQ
+- [Xerovan (한국어)](https://www.xerovan.com/kr/): Korean version
+- [Xerovan (日本語)](https://www.xerovan.com/ja/): Japanese version
+- [Xerovan (Español)](https://www.xerovan.com/es/): Spanish version
+- [Xerovan (العربية)](https://www.xerovan.com/ar/): Arabic version
+- [Xerovan (Português)](https://www.xerovan.com/pt/): Portuguese version
+
+## Blog
+
+- [Blog (English)](https://www.xerovan.com/en/blog): news, app manual, and guides on crypto and everyday payments
+- [Xerovan News](https://www.xerovan.com/en/blog/category/news): launch updates, features and partnerships
+- [Manual](https://www.xerovan.com/en/blog/category/manual): how to use the Xerovan app
+- [Crypto & Payments Guide](https://www.xerovan.com/en/blog/category/guide): crypto and blockchain basics, international payments, subscriptions, travel and business spending
+- [블로그 (한국어)](https://www.xerovan.com/kr/blog): Korean blog
+
+## Legal
+
+- [Terms & Conditions](https://www.xerovan.com/en/legal/terms)
+- [Privacy Policy](https://www.xerovan.com/en/legal/privacy)
+- [Risk Disclosure](https://www.xerovan.com/en/legal/risk-disclosure)
+
+## Optional
+
+- [Sitemap](https://www.xerovan.com/sitemap.xml)
+- [Blog sitemap](https://www.xerovan.com/blog-sitemap.xml)
+- [X (Twitter)](https://x.com/XerovanC)
+- [Instagram](https://www.instagram.com/xerovancard/)
