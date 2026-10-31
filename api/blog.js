@@ -153,6 +153,17 @@ const founderLD = (lang) => ({ '@type': 'Person', name: FOUNDER, jobTitle: 'Foun
 // WordPress accounts often show as "admin": posts by such an account are credited to the founder.
 const isFounderAccount = (name) => !name || /^(admin|administrator|xerovan|jay|jay yoon)$/i.test(String(name).trim());
 
+// Main menu — identical to the landing page nav (sections of /{lang}/ + Blog)
+const MENU = {
+  en: ['Summary', 'Features', 'Use Cases', 'FAQ', 'Blog'],
+  kr: ['개요', '기능', '활용 사례', 'FAQ', '블로그'],
+  ja: ['概要', '機能', '活用例', 'FAQ', 'ブログ'],
+  es: ['Resumen', 'Funciones', 'Casos de uso', 'FAQ', 'Blog'],
+  ar: ['نظرة عامة', 'المزايا', 'حالات الاستخدام', 'FAQ', 'المدونة'],
+  pt: ['Resumo', 'Recursos', 'Casos de uso', 'FAQ', 'Blog'],
+};
+const MENU_ANCHORS = ['summary', 'features', 'usecases', 'faq'];
+
 // ---------------------------------------------------------------- helpers
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const decode = (s) => String(s ?? '')
@@ -303,13 +314,13 @@ function layout({ lang, title, description, canonical, alternates, ogImage, ogTy
     @media(max-width:600px){nav{padding:12px 16px}}
     .brand{display:flex;align-items:center;gap:10px}
     .brand img{height:26px;width:auto}.brand img.wm{height:20px}
-    .nav-right{display:flex;align-items:center;gap:22px;font-size:13.5px;font-weight:600;color:var(--silver-300)}
-    .nav-right > a:hover{color:var(--silver-100)}
-    .nav-right > a[aria-current="page"]{color:var(--silver-100)}
-    @media(max-width:600px){.nav-right > a.hide-sm{display:none}}
+    .nav-links{display:flex;gap:32px;font-size:13.5px;font-weight:600;color:var(--silver-300)}
+    .nav-links a:hover,.nav-links a[aria-current="page"]{color:var(--silver-100)}
+    @media(max-width:920px){.nav-links{display:none}}
     .lang-menu{position:relative}
     .lang-menu summary{list-style:none;cursor:pointer;padding:8px 14px;border:1px solid var(--line);border-radius:100px;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.1em;color:var(--silver-300);display:flex;gap:8px;align-items:center}
     .lang-menu summary::-webkit-details-marker{display:none}
+    .lang-menu summary::before{content:'';width:13px;height:13px;border:1.4px solid currentColor;border-radius:50%;box-shadow:inset 0 0 0 3px var(--void),inset 0 0 0 4.4px currentColor;opacity:.8}
     .lang-menu summary::after{content:'▾';font-size:10px;opacity:.7}
     .lang-menu[open] summary,.lang-menu summary:hover{color:var(--silver-100);border-color:var(--silver-500)}
     .lang-list{position:absolute;top:calc(100% + 8px);inset-inline-end:0;min-width:170px;padding:6px;background:var(--panel);border:1px solid var(--line);border-radius:12px;box-shadow:0 24px 60px -20px rgba(0,0,0,.7);display:flex;flex-direction:column}
@@ -426,14 +437,14 @@ function layout({ lang, title, description, canonical, alternates, ogImage, ogTy
       <img src="/images/logo-icon.png" alt="Xerovan">
       <img src="/images/logo-wordmark.png" alt="XEROVAN" class="wm">
     </a>
-    <div class="nav-right">
-      <a href="/${lang}/" class="hide-sm">${esc(t.home)}</a>
-      <a href="/${lang}/blog" aria-current="page">${esc(t.blog)}</a>
-      <details class="lang-menu">
-        <summary aria-label="Language">${L.short}</summary>
-        <div class="lang-list">${langLinks}</div>
-      </details>
+    <div class="nav-links">
+      ${MENU_ANCHORS.map((a, i) => `<a href="/${lang}/#${a}">${esc(MENU[lang][i])}</a>`).join('\n      ')}
+      <a href="/${lang}/blog"${/\/blog(\/|$)/.test(canonical) ? ' aria-current="page"' : ''}>${esc(MENU[lang][4])}</a>
     </div>
+    <details class="lang-menu">
+      <summary aria-label="Language">${L.short}</summary>
+      <div class="lang-list">${langLinks}</div>
+    </details>
   </nav>
 </header>
 <main>
