@@ -31,9 +31,19 @@ LANGS = {
 }
 BLOG_LABEL = {"en": "Blog", "kr": "블로그", "ja": "ブログ", "es": "Blog", "ar": "المدونة", "pt": "Blog"}
 
+OG_TITLE = {
+    "en": "Xerovan — Value in Motion",
+    "kr": "Xerovan — 지갑·결제·리워드·여행을 하나로",
+    "ja": "Xerovan — ウォレット・決済・リワード・旅行をひとつに",
+    "es": "Xerovan — Wallets, pagos, recompensas y viajes en un solo lugar",
+    "ar": "Xerovan — المحافظ والمدفوعات والمكافآت والسفر في مكان واحد",
+    "pt": "Xerovan — Carteiras, pagamentos, recompensas e viagens em um só lugar",
+}
+
 def common(html, lang):
     hl, loc, _, short = LANGS[lang]
     html = html.replace('"images/', '"/images/')
+    html = must(html, 'content="Xerovan — Value in Motion"', f'content="{OG_TITLE[lang]}"', 2)  # og:title + twitter:title
     html = must(html, '<html lang="en">',
                 f'<html lang="{hl}"' + (' dir="rtl"' if lang == "ar" else '') + '>')
 

@@ -54,7 +54,7 @@ function publicize(html, lang) {
   const wpHost = WP.replace(/^https?:\/\//, '');
   return String(html ?? '')
     .replace(new RegExp(`https?://${wpHost.replace(/\./g, '\\.')}/wp-content/uploads/`, 'g'), '/blog-media/')
-    .replace(new RegExp(`https?://${wpHost.replace(/\./g, '\\.')}/(?:(?:${Object.keys(LANGS).join('|')})/)?([a-z0-9-]+)/?(?=["'#?])`, 'gi'), `/${lang}/blog/$1`);
+    .replace(new RegExp(`https?://${wpHost.replace(/\./g, '\\.')}/(?:(?:${Object.keys(LANGS).join('|')})/)?([a-z0-9%-]+)/?(?=["'#?])`, 'gi'), `/${lang}/blog/$1`);
 }
 
 async function wp(path) {
@@ -398,7 +398,10 @@ module.exports = async (req, res) => {
   const lang = LANGS[q.lang] ? q.lang : 'en';
   const t = T[lang];
   const page = Math.max(1, parseInt(q.page, 10) || 1);
-  const slug = typeof q.slug === 'string' ? q.slug.toLowerCase().replace(/[^a-z0-9%\-_]/g, '') : '';
+  // Accept ASCII and non-ASCII (e.g. Korean) slugs, whether the path arrives encoded or decoded.
+  let slug = typeof q.slug === 'string' ? q.slug : '';
+  try { slug = decodeURIComponent(slug); } catch { /* keep as is */ }
+  slug = slug.normalize('NFC').toLowerCase().replace(/[^\p{L}\p{N}\-_]/gu, '').slice(0, 200);
 
   try {
     const cat = await categoryId(lang);
