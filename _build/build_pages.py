@@ -31,6 +31,11 @@ LANGS = {
 }
 BLOG_LABEL = {"en": "Blog", "kr": "블로그", "ja": "ブログ", "es": "Blog", "ar": "المدونة", "pt": "Blog"}
 
+VERCEL_ANALYTICS = '''  <!-- Vercel Web Analytics -->
+  <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+  <script defer src="/_vercel/insights/script.js"></script>
+'''
+
 OG_TITLE = {
     "en": "Xerovan — Value in Motion",
     "kr": "Xerovan — 지갑·결제·리워드·여행을 하나로",
@@ -43,6 +48,7 @@ OG_TITLE = {
 def common(html, lang):
     hl, loc, _, short = LANGS[lang]
     html = html.replace('"images/', '"/images/')
+    html = must(html, '</head>', VERCEL_ANALYTICS + '</head>', 1)
     html = must(html, 'content="Xerovan — Value in Motion"', f'content="{OG_TITLE[lang]}"', 2)  # og:title + twitter:title
     html = must(html, '<html lang="en">',
                 f'<html lang="{hl}"' + (' dir="rtl"' if lang == "ar" else '') + '>')

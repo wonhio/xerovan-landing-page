@@ -242,6 +242,9 @@ function layout({ lang, title, description, canonical, alternates, ogImage, ogTy
     footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     footer a:hover{color:var(--silver-100)}
   </style>
+  <!-- Vercel Web Analytics -->
+  <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 <header>
