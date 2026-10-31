@@ -95,7 +95,9 @@ async function categoryId(lang) {
 let topicCache = { at: 0, map: null };
 /** { news: <id>, manual: <id>, guide: <id> } for the topic categories that exist in WordPress. */
 async function topicIds() {
-  if (topicCache.map && Date.now() - topicCache.at < 300000) return topicCache.map;
+  // Full map → keep 5 min; incomplete (a topic category not created yet) → re-check after 30 s.
+  const ttl = topicCache.map && Object.keys(topicCache.map).length === TOPICS.length ? 300000 : 30000;
+  if (topicCache.map && Date.now() - topicCache.at < ttl) return topicCache.map;
   const { data } = await wp(`categories?slug=${TOPICS.join(',')}&per_page=20&_fields=id,slug`);
   const map = {};
   data.forEach((c) => { if (TOPICS.includes(c.slug)) map[c.slug] = c.id; });
