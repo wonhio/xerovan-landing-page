@@ -299,6 +299,29 @@
   .faq-footnote{text-align:center; margin-top:44px; font-size:14px; color:var(--silver-500);}
   .faq-footnote a{color:var(--silver-100); border-bottom:1px solid var(--silver-500);}
 
+  /* ---------- Summary: 2 screens, crypto image behind, text in front ---------- */
+  .sx{position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center;padding:110px 0;isolation:isolate;}
+  .sx-bg{position:absolute;inset:0;z-index:-2;background-repeat:no-repeat;background-size:cover;}
+  .sx-1 .sx-bg{background-image:url("/images/summary-bg-1.webp");background-position:right center;}
+  .sx-2 .sx-bg{background-image:url("/images/summary-bg-2.webp");background-position:center;}
+  .sx::before{content:'';position:absolute;inset:0;z-index:-1;background:
+      linear-gradient(90deg,rgba(10,11,13,.94) 0%,rgba(10,11,13,.82) 42%,rgba(10,11,13,.45) 72%,rgba(10,11,13,.6) 100%),
+      linear-gradient(180deg,#0a0b0d 0%,rgba(10,11,13,0) 18%,rgba(10,11,13,0) 82%,#0a0b0d 100%);}
+  .sx-2::before{background:
+      radial-gradient(ellipse 60% 70% at 50% 50%,rgba(10,11,13,.55),rgba(10,11,13,.9) 75%),
+      linear-gradient(180deg,#0a0b0d 0%,rgba(10,11,13,0) 18%,rgba(10,11,13,0) 82%,#0a0b0d 100%);}
+  .sx .wrap{width:100%;}
+  .sx-head{max-width:760px;margin-bottom:44px;}
+  .sx-head h2{font-family:'Unbounded'; font-weight:600; font-size:clamp(24px,3.1vw,38px); line-height:1.3; margin-top:18px; text-shadow:0 2px 24px rgba(0,0,0,.7);}
+  .sx-2 .sx-head{margin:0 auto 40px;text-align:center;}
+  .sx-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:920px;}
+  .sx-2 .sx-grid{grid-template-columns:repeat(3,1fr);max-width:none;}
+  @media(max-width:900px){ .sx-grid,.sx-2 .sx-grid{grid-template-columns:1fr;} .sx{min-height:auto;padding:90px 0;} }
+  .sx-card{border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:24px 24px 26px;background:rgba(14,15,18,.62);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.06);}
+  .sx-num{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.16em;color:var(--ice);}
+  .sx-card h3{font-family:'Unbounded';font-size:17px;font-weight:600;line-height:1.35;margin:10px 0 4px;}
+  .sx-en{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.04em;color:var(--silver-500);margin-bottom:12px;}
+  .sx-card p{font-size:14.5px;line-height:1.7;color:var(--silver-300);}
   .latest{padding:100px 0;}
   .latest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
   @media(max-width:900px){ .latest-grid{grid-template-columns:1fr;} }
@@ -411,211 +434,13 @@
   </div>
 </section>
 
-<section class="app-preview" id="appPreview">
-  <div class="wrap">
-    <div class="hero-visual-wrap">
-      <img src="/images/hero-visual.webp" alt="ひとつのウォレットで、無限の可能性。デジタル資産を管理し、世界中で支払い、現実の世界で活用しましょう。" class="hero-visual-img">
-      <div class="hero-visual-screen" id="heroVisualScreen">
-        <iframe id="heroVisualIframe" src="https://demo-brown-seven-24.vercel.app/" loading="lazy" title="Xerovanアプリのライブプレビュー"></iframe>
-      </div>
-    </div>
-  </div>
-</section>
-
 <div class="divider" id="dividerBars1"></div>
 
-<section id="summary">
-  <div class="wrap">
-    <div class="section-head center">
-      <span class="eyebrow center">XEROVANを選ぶ理由</span>
-      <h2>暗号資産は、ウォレットに眠らせておくだけのものではありません。</h2>
-      <p>Xerovanは、デジタル資産の保有・管理から決済、旅行、ビジネス運営まで、すべてのプロセスをつなぎます。</p>
-    </div>
-    <div class="flow">
-      <span class="flow-step">管理</span><span class="flow-arrow">→</span>
-      <span class="flow-step">スワップ</span><span class="flow-arrow">→</span>
-      <span class="flow-step">決済</span><span class="flow-arrow">→</span>
-      <span class="flow-step">獲得</span><span class="flow-arrow">→</span>
-      <span class="flow-step">旅行</span>
-    </div>
-    <ul class="why-list">
-      <li>複数の暗号資産ウォレットをひとつに</li>
-      <li>対応する複数のブロックチェーンで資産を管理</li>
-      <li>少ないステップで資産をスワップ・ブリッジ</li>
-      <li>バーチャル・物理Visaカードで世界中で決済</li>
-      <li>利回り、ステーキング、キャッシュバック、紹介リワードを利用</li>
-      <li>航空券、ホテル、アクティビティ、eSIMを予約</li>
-      <li>法人カードとチームの経費を管理</li>
-    </ul>
-
-    <div class="section-head center" style="margin-top:110px;">
-      <span class="eyebrow center">XEROVANエコシステム</span>
-      <h2>すべてがつながり、何も分断されない。</h2>
-      <p>5つの主要サービスを、ひとつのシームレスなエコシステムに。</p>
-    </div>
-    <div class="eco-grid">
-      <div class="eco-card"><h4>デジタル資産管理</h4><ul><li>統合マルチウォレット管理</li><li>セルフカストディ型MPCウォレット</li><li>マルチチェーン資産対応</li><li>スマート暗号資産スワップ</li><li>クロスチェーンブリッジ</li></ul></div>
-      <div class="eco-card"><h4>グローバル決済</h4><ul><li>バーチャル・物理Visaカード</li><li>Xerovan残高</li><li>Apple Pay・Google Pay</li><li>世界中のVisa加盟店で利用可能</li><li>個人・ビジネスの支出管理</li></ul></div>
-      <div class="eco-card"><h4>獲得とリワード</h4><ul><li>ステーブルコインの利回り商品</li><li>暗号資産ステーキング</li><li>キャッシュバックリワード</li><li>ユーザーリワードプログラム</li><li>紹介リワード</li></ul></div>
-      <div class="eco-card"><h4>旅行とライフスタイル</h4><ul><li>航空券</li><li>ホテル</li><li>ツアー・アクティビティ</li><li>eSIMサービス</li><li>Trateriaによる旅行マーケットプレイス</li></ul></div>
-      <div class="eco-card"><h4>ビジネスとセキュリティ</h4><ul><li>法人カード</li><li>経費管理</li><li>取引承認ワークフロー</li><li>チームの支出管理</li><li>MPCウォレットセキュリティ</li><li>デバイス・取引認証</li></ul></div>
-      <div class="eco-card-visual"><img loading="lazy" decoding="async" src="/images/ecosystem-visual.webp" alt="世界とつながるXerovanカードとアプリ"></div>
-    </div>
-  </div>
-</section>
+<section id="summary" class="sx sx-1"><div class="sx-bg" role="img" aria-label="Xerovan app and card"></div><div class="wrap"><div class="sx-head"><span class="eyebrow">Xerovanの主な機能</span><h2>Xerovanは、決済、グローバルな支払い、法人支出、資産管理、リワードをひとつにつなぐ、オールインワンの暗号資産金融プラットフォームです。</h2></div><div class="sx-grid"><article class="sx-card"><div class="sx-num">01</div><h3>ウォレットから直接決済</h3><div class="sx-en">Direct Wallet Payments</div><p>事前のチャージは不要。ご自身で管理するノンカストディアルウォレットの資産で、そのまま支払えます。</p></article><article class="sx-card"><div class="sx-num">02</div><h3>法人支出管理 — Media Buyer Suite</h3><div class="sx-en">Business Spend Management — Media Buyer Suite</div><p>クライアントやアカウントごとにカードを発行し、領収書、承認フロー、利用限度額を一元管理。マーケティングエージェンシーや企業の支出を、効率的かつ透明に運用できます。</p></article><article class="sx-card"><div class="sx-num">03</div><h3>グローバルペイアウト</h3><div class="sx-en">Global Payouts</div><p>企業や個人が、世界中のパートナー、顧客、メンバーの銀行口座へ暗号資産をすばやく簡単に支払えます。国境を越えて拡張できる支払い環境を提供します。</p></article><article class="sx-card"><div class="sx-num">04</div><h3>資産の一元管理</h3><div class="sx-en">Unified Asset Management</div><p>無料のノンカストディアルウォレットと外部ウォレットをひとつの場所で管理し、使っていない資産をステーキングなどさまざまな運用商品につなげられます。</p></article></div></div></section>
 
 <div class="divider" id="dividerBars2"></div>
 
-<section id="features">
-  <div class="wrap">
-    <div class="section-head center">
-      <span class="eyebrow center">機能</span>
-      <h2>ひとつのプラットフォームで、あらゆる動きを。</h2>
-      <p>音が空気を伝わるように、資産を自在に動かすための9つの機能。</p>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">01 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="14" rx="3"/><path d="M2 10h20"/><circle cx="17" cy="15" r="1.4" fill="currentColor" stroke="none"/></svg></div>
-        <h3>統合マルチウォレット管理</h3>
-        <div class="feature-kicker">すべてのウォレット、すべての資産を、ひとつの安全な画面で。</div>
-        <p class="feature-lede">対応する暗号資産ウォレットをインポートまたは接続し、統合されたセルフカストディ型インターフェースですべての資産を管理できます。</p>
-        <ul class="feature-list">
-          <li>セルフカストディ型ウォレット体験</li><li>外部ウォレットのインポート・接続</li><li>安全なMPCウォレット技術</li>
-        </ul>
-        <span class="tag-label">対応ネットワーク</span>
-        <div class="tag-row"><span class="tag">Ethereum</span><span class="tag">Base</span><span class="tag">Arbitrum</span><span class="tag">Polygon</span><span class="tag">BNB Chain</span><span class="tag">Solana</span><span class="tag">TRON</span><span class="tag">Bitcoin</span><span class="tag">TON</span><span class="tag">Avalanche</span></div>
-        <p class="feature-close" style="margin-top:22px;">ウォレットはいつまでもあなたのもの。Xerovanはそれらを連携させるだけです。</p>
-      </div>
-      <div class="feature-visual no-pad">
-        <img loading="lazy" decoding="async" src="/images/feature-01.webp" alt="統合マルチウォレット管理 — ウォレットと資産内訳を表示するXerovanアプリ">
-      </div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">02 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/><path d="M6 15h4"/></svg></div>
-        <h3>Visa暗号資産カード</h3>
-        <div class="feature-kicker">暗号資産を、日常の支払い手段に。</div>
-        <p class="feature-lede">XerovanのバーチャルカードとVisa物理カードなら、Visaが使える場所ならどこでも暗号資産を実際の購買力に変えられます。</p>
-        <ul class="feature-list">
-          <li>Apple Pay・Google Pay対応</li><li>カードの即時凍結・解除</li><li>利用限度額のカスタマイズ</li>
-        </ul>
-        <span class="tag-label">こんな方に</span>
-        <div class="tag-row"><span class="tag">海外旅行者</span><span class="tag">デジタルノマド</span><span class="tag">グローバルフリーランサー</span><span class="tag">メディアバイヤー</span><span class="tag">暗号資産ユーザー</span><span class="tag">一般消費者</span></div>
-        <p class="feature-close" style="margin-top:22px;">国境のないライフスタイルのための、一枚のカード。</p>
-      </div>
-      <div class="feature-visual no-pad">
-        <img loading="lazy" decoding="async" src="/images/feature-02.webp" alt="Visa暗号資産カード — 暗号資産を日常の支払い手段に">
-      </div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">03 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M4 8h13M17 8l-3-3M17 8l-3 3"/><path d="M20 16H7M7 16l3-3M7 16l3 3"/></svg></div>
-        <h3>スマート暗号資産スワップ</h3>
-        <div class="feature-kicker">複雑さなしに、チェーンを越えて。</div>
-        <p class="feature-lede">Xerovanのスマートルーティングで、対応ネットワーク間の資産をワンクリックで簡単にスワップ・ブリッジできます。</p>
-        <ul class="feature-list"><li>スマート価格ルーティング</li><li>競争力のあるネットワーク手数料</li><li>シンプルなワンクリック体験</li></ul>
-        <span class="tag-label">技術パートナー</span>
-        <div class="tag-row"><span class="tag">0x</span><span class="tag">LI.FI</span><span class="tag">Circle CCTP</span></div>
-        <p class="feature-close" style="margin-top:22px;">摩擦は少なく、動く自由はもっと大きく。</p>
-      </div>
-      <div class="feature-visual no-pad"><img loading="lazy" decoding="async" src="/images/feature-03.webp" alt="スマート暗号資産スワップ — 複雑さなしにチェーンを移動"></div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">04 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></div>
-        <h3>獲得とリワード</h3>
-        <div class="feature-kicker">すべての資産とすべての取引に、もっと働いてもらう。</div>
-        <p class="feature-lede">Xerovanはステーキング、キャッシュバック、紹介リワードをまとめ、あなたの資産と取引が価値を生み続けるようにします。</p>
-        <ul class="feature-list"><li>ステーブルコインの利回り商品</li><li>暗号資産ステーキング</li><li>最大8%のキャッシュバックリワード</li></ul>
-        <p class="feature-close" style="margin-top:22px;">ただ保有するだけでなく、デジタル資産からもっと多くを。</p>
-      </div>
-      <div class="feature-visual no-pad"><img loading="lazy" decoding="async" src="/images/feature-04.webp" alt="獲得とリワード — 今月の獲得リワード合計8%"></div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">05 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg></div>
-        <h3>Xerovan残高</h3>
-        <div class="feature-kicker">ひとつの残高で、すべてのXerovan体験を。</div>
-        <p class="feature-lede">暗号資産でXerovan残高をチャージし、エコシステム内のすべての商品・サービスを即座に支払えます。</p>
-        <ul class="feature-list"><li>暗号資産でチャージ</li><li>アプリ内で即時決済</li><li>対応する旅行商品の支払い</li></ul>
-        <p class="feature-close" style="margin-top:22px;">一度チャージすれば、エコシステム全体でスムーズに。</p>
-      </div>
-      <div class="feature-visual no-pad">
-        <img loading="lazy" decoding="async" src="/images/feature-05.webp" alt="Xerovan残高 — エコシステム全体で使えるひとつの残高">
-      </div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">06 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M2 12l9-8 2 3h9l-3 5 3 5h-9l-2 3-9-8z"/></svg></div>
-        <h3>旅行マーケットプレイス</h3>
-        <div class="feature-kicker">国境なく支払い、予約し、旅しよう。</div>
-        <p class="feature-lede">Xerovanは航空券、ホテル、ツアー、eSIMをひとつのマーケットプレイスにまとめ、Xerovan残高で支払えます。</p>
-        <span class="tag-label">旅行商品</span>
-        <div class="tag-row"><span class="tag">航空券</span><span class="tag">ホテル</span><span class="tag">ツアー・アクティビティ</span><span class="tag">eSIMサービス</span></div>
-        <ul class="feature-list" style="margin-top:20px;"><li>Trateriaによる旅行マーケットプレイス</li><li>多言語での商品検索</li><li>暗号資産に対応した支払いオプション</li></ul>
-        <p class="feature-close" style="margin-top:22px;">ウォレット、カード、そして旅が、ついにひとつに。</p>
-      </div>
-      <div class="feature-visual no-pad">
-        <img loading="lazy" decoding="async" src="/images/feature-06.webp" alt="旅行マーケットプレイス — 国境なく支払い、予約し、旅する">
-      </div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">07 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></div>
-        <h3>法人カードと経費管理</h3>
-        <div class="feature-kicker">すべてのカードを管理し、すべての経費を追跡し、自信を持って成長を。</div>
-        <p class="feature-lede">Xerovanなら、ひとつのダッシュボードでカードを発行し、支出ポリシーを設定し、すべての経費を追跡できます。</p>
-        <ul class="feature-list"><li>加盟店カテゴリーの制限を適用</li><li>領収書ベースの承認ワークフローを作成</li><li>従業員・チーム・カテゴリー別に支出を管理</li></ul>
-        <span class="tag-label">こんな方に</span>
-        <div class="tag-row"><span class="tag">中小企業</span><span class="tag">マーケティングエージェンシー</span><span class="tag">メディアバイイングチーム</span><span class="tag">グローバルフリーランサー</span><span class="tag">リモートチーム</span><span class="tag">海外経費の多い企業</span></div>
-        <p class="feature-close" style="margin-top:22px;">財務管理を失わずに、チームに裁量を。</p>
-      </div>
-      <div class="feature-visual no-pad">
-        <img loading="lazy" decoding="async" src="/images/feature-07.webp" alt="法人カードと経費管理 — すべてのカードを管理し、すべての経費を追跡">
-      </div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">08 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6l8-4z"/></svg></div>
-        <h3>セキュリティと資産保護</h3>
-        <div class="feature-kicker">あなたの資産を、あなたの管理で、高度に保護。</div>
-        <p class="feature-lede">Xerovanは、セルフカストディ型MPCウォレット基盤に暗号化と認証を組み合わせ、すべてのウォレット、カード、取引を保護します。</p>
-        <ul class="feature-list"><li>MPCウォレット基盤</li><li>データ暗号化</li><li>取引認証</li></ul>
-        <p class="feature-close" style="margin-top:22px;">すべてのウォレット、カード、取引にセキュリティを標準搭載。</p>
-      </div>
-      <div class="feature-visual no-pad"><img loading="lazy" decoding="async" src="/images/feature-08.webp" alt="セキュリティと資産保護 — すべてのウォレット、カード、取引を高度に保護"></div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">09 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.6 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.6-3.8-9S9.5 5.5 12 3z"/></svg></div>
-        <h3>グローバルアクセス</h3>
-        <div class="feature-kicker">金融の国境がない世界のために。</div>
-        <p class="feature-lede">Xerovanは、国やデジタルネットワークを越えて暮らし、支払い、旅する個人と企業のために作られています。</p>
-        <ul class="feature-list"><li>複数通貨対応</li><li>世界中のVisa加盟店で利用可能</li><li>個人・法人向けソリューション</li></ul>
-        <p class="feature-close" style="margin-top:22px;">人生とビジネスがどこへ向かっても、ひとつのプラットフォームで。</p>
-      </div>
-      <div class="feature-visual no-pad" style="aspect-ratio:1/1;"><img loading="lazy" decoding="async" src="/images/feature-09.webp" alt="グローバルアクセス — ひとつのプラットフォームで世界中へ"></div>
-    </div>
-  </div>
-</section>
+<section id="features" class="sx sx-2"><div class="sx-bg" role="img" aria-label="Global network"></div><div class="wrap"><div class="sx-head"><span class="eyebrow center">Xerovanの主な機能</span></div><div class="sx-grid"><article class="sx-card"><div class="sx-num">05</div><h3>スマートルーティング</h3><div class="sx-en">Smart Routing</div><p>暗号資産の送金・受取・交換時に最適なルートを自動で探し、効率的な取引と競争力のある手数料を実現します。</p></article><article class="sx-card"><div class="sx-num">06</div><h3>安全なカード共有</h3><div class="sx-en">Secure Card Sharing</div><p>家族やほかのXerovanユーザーとカードの利用権限を安全に共有し、利用限度額や権限をいつでも管理できます。カードの最終的な管理権限はカード所有者に残ります。</p></article><article class="sx-card"><div class="sx-num">07</div><h3>旅行とリワードのエコシステム</h3><div class="sx-en">Travel &amp; Rewards Ecosystem</div><p>Xerovanトークンを基盤としたマーケットプレイスで旅行予約やeSIMサービスを利用し、キャッシュバック、ボーナス、提携プログラム、dAppサービスをひとつのエコシステムで体験できます。</p></article></div></div></section>
 
 <div class="divider" id="dividerBars3"></div>
 
@@ -1285,7 +1110,7 @@
   fillDivider('dividerBars4', 40);
 
   document.getElementById('exploreBtn').addEventListener('click', () => {
-    document.getElementById('appPreview').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('summary').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
   /* Render the live preview at a normal mobile width (390px) so its own

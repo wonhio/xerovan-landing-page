@@ -1,0 +1,117 @@
+# New "Summary" section (2 screens): Xerovan one-line definition + 7 core features.
+# Korean text is the owner's original copy (do not edit); other languages are translations.
+import html as _html
+
+E = lambda s: _html.escape(s, quote=True)
+
+# feature: (English name, {lang: (title, description)})
+FEATURES = [
+    ("Direct Wallet Payments", {
+        "kr": ("지갑에서 바로 결제", "별도의 충전 없이, 사용자가 직접 관리하는 비수탁 지갑의 자산으로 결제할 수 있습니다."),
+        "en": ("Direct Wallet Payments", "Pay with the assets in your own non-custodial wallet. No top-ups needed."),
+        "ja": ("ウォレットから直接決済", "事前のチャージは不要。ご自身で管理するノンカストディアルウォレットの資産で、そのまま支払えます。"),
+        "es": ("Pagos directos desde tu wallet", "Paga con los activos de tu propia wallet sin custodia, sin necesidad de recargas previas."),
+        "ar": ("الدفع مباشرة من المحفظة", "ادفع بالأصول الموجودة في محفظتك غير الاحتجازية التي تديرها بنفسك، دون الحاجة إلى شحن مسبق."),
+        "pt": ("Pagamentos direto da carteira", "Pague com os ativos da sua própria carteira sem custódia, sem precisar recarregar antes."),
+    }),
+    ("Business Spend Management — Media Buyer Suite", {
+        "kr": ("기업 지출 관리 — Media Buyer Suite", "고객과 계정별로 카드를 발급하고 영수증, 승인 절차, 지출 한도를 통합 관리합니다. 마케팅 에이전시와 기업이 지출을 효율적이고 투명하게 운영할 수 있도록 지원합니다."),
+        "en": ("Business Spend Management — Media Buyer Suite", "Issue cards for each client and account, and manage receipts, approvals and spending limits in one place. Built to help marketing agencies and businesses run their spending efficiently and transparently."),
+        "ja": ("法人支出管理 — Media Buyer Suite", "クライアントやアカウントごとにカードを発行し、領収書、承認フロー、利用限度額を一元管理。マーケティングエージェンシーや企業の支出を、効率的かつ透明に運用できます。"),
+        "es": ("Gestión del gasto empresarial — Media Buyer Suite", "Emite tarjetas por cliente y por cuenta, y gestiona recibos, aprobaciones y límites de gasto en un solo lugar. Ayuda a agencias de marketing y empresas a gestionar su gasto de forma eficiente y transparente."),
+        "ar": ("إدارة نفقات الأعمال — Media Buyer Suite", "أصدر بطاقات لكل عميل وكل حساب، وأدِر الإيصالات ومسارات الاعتماد وحدود الإنفاق في مكان واحد. صُممت لمساعدة وكالات التسويق والشركات على إدارة إنفاقها بكفاءة وشفافية."),
+        "pt": ("Gestão de gastos empresariais — Media Buyer Suite", "Emita cartões por cliente e por conta e gerencie comprovantes, aprovações e limites de gastos em um só lugar. Ajuda agências de marketing e empresas a gerir seus gastos com eficiência e transparência."),
+    }),
+    ("Global Payouts", {
+        "kr": ("글로벌 Payout", "기업과 개인이 전 세계의 파트너, 고객 및 구성원의 은행 통장으로 크립토 자산을 빠르고 간편하게 지급할 수 있습니다. 국경을 넘어 확장 가능한 지급 환경을 제공합니다."),
+        "en": ("Global Payouts", "Businesses and individuals can pay out crypto quickly and easily to the bank accounts of partners, customers and team members around the world, with a payout setup that scales across borders."),
+        "ja": ("グローバルペイアウト", "企業や個人が、世界中のパートナー、顧客、メンバーの銀行口座へ暗号資産をすばやく簡単に支払えます。国境を越えて拡張できる支払い環境を提供します。"),
+        "es": ("Pagos globales", "Empresas y particulares pueden pagar en cripto, de forma rápida y sencilla, a las cuentas bancarias de socios, clientes y miembros del equipo en todo el mundo, con un sistema de pagos que escala más allá de las fronteras."),
+        "ar": ("المدفوعات العالمية", "يمكن للشركات والأفراد تحويل الأصول المشفرة بسرعة وسهولة إلى الحسابات المصرفية للشركاء والعملاء وأعضاء الفريق حول العالم، عبر بيئة دفع قابلة للتوسع عبر الحدود."),
+        "pt": ("Pagamentos globais", "Empresas e pessoas podem pagar em cripto, de forma rápida e simples, nas contas bancárias de parceiros, clientes e membros da equipe no mundo todo, com uma estrutura de pagamentos que cresce além das fronteiras."),
+    }),
+    ("Unified Asset Management", {
+        "kr": ("통합 자산 관리", "무료 비수탁 지갑과 외부 지갑을 한곳에서 관리하고, 사용하지 않는 자산을 스테이킹 등 다양한 자산 운용 상품과 연결할 수 있습니다."),
+        "en": ("Unified Asset Management", "Manage your free non-custodial wallet and external wallets in one place, and put idle assets to work with staking and other earning products."),
+        "ja": ("資産の一元管理", "無料のノンカストディアルウォレットと外部ウォレットをひとつの場所で管理し、使っていない資産をステーキングなどさまざまな運用商品につなげられます。"),
+        "es": ("Gestión unificada de activos", "Gestiona tu wallet gratuita sin custodia y tus wallets externas en un solo lugar, y pon a trabajar tus activos inactivos con staking y otros productos de rendimiento."),
+        "ar": ("إدارة موحدة للأصول", "أدِر محفظتك المجانية غير الاحتجازية ومحافظك الخارجية في مكان واحد، واربط أصولك غير المستخدمة بمنتجات استثمار متنوعة مثل التخزين (Staking)."),
+        "pt": ("Gestão unificada de ativos", "Gerencie sua carteira gratuita sem custódia e suas carteiras externas em um só lugar, e coloque ativos parados para render com staking e outros produtos."),
+    }),
+    ("Smart Routing", {
+        "kr": ("스마트 라우팅", "크립토 송금, 수신 및 변환 시 최적의 경로를 자동으로 탐색하여 효율적인 거래와 경쟁력 있는 수수료를 제공합니다."),
+        "en": ("Smart Routing", "When you send, receive or convert crypto, Xerovan automatically finds the best route for efficient transactions and competitive fees."),
+        "ja": ("スマートルーティング", "暗号資産の送金・受取・交換時に最適なルートを自動で探し、効率的な取引と競争力のある手数料を実現します。"),
+        "es": ("Enrutamiento inteligente", "Al enviar, recibir o convertir cripto, Xerovan encuentra automáticamente la mejor ruta para operaciones eficientes y comisiones competitivas."),
+        "ar": ("التوجيه الذكي", "عند إرسال الأصول المشفرة أو استلامها أو تحويلها، يبحث Xerovan تلقائيًا عن أفضل مسار لمعاملات فعّالة ورسوم تنافسية."),
+        "pt": ("Roteamento inteligente", "Ao enviar, receber ou converter cripto, a Xerovan encontra automaticamente a melhor rota para transações eficientes e taxas competitivas."),
+    }),
+    ("Secure Card Sharing", {
+        "kr": ("안전한 카드 공유", "가족이나 다른 Xerovan 사용자에게 카드 사용 권한을 안전하게 공유하고, 사용 한도와 권한을 언제든지 관리할 수 있습니다. 카드에 대한 최종 관리 권한은 카드 소유자에게 유지됩니다."),
+        "en": ("Secure Card Sharing", "Safely share card access with family or other Xerovan users, and adjust spending limits and permissions at any time. The card owner always keeps final control."),
+        "ja": ("安全なカード共有", "家族やほかのXerovanユーザーとカードの利用権限を安全に共有し、利用限度額や権限をいつでも管理できます。カードの最終的な管理権限はカード所有者に残ります。"),
+        "es": ("Tarjetas compartidas con seguridad", "Comparte de forma segura el uso de tu tarjeta con tu familia u otros usuarios de Xerovan y ajusta los límites y permisos cuando quieras. El titular de la tarjeta conserva siempre el control final."),
+        "ar": ("مشاركة آمنة للبطاقة", "شارك صلاحية استخدام بطاقتك بأمان مع عائلتك أو مستخدمي Xerovan الآخرين، وعدّل حدود الإنفاق والصلاحيات في أي وقت. ويحتفظ مالك البطاقة دائمًا بالتحكم النهائي فيها."),
+        "pt": ("Compartilhamento seguro de cartões", "Compartilhe com segurança o uso do cartão com sua família ou outros usuários da Xerovan e ajuste limites e permissões quando quiser. O titular do cartão mantém sempre o controle final."),
+    }),
+    ("Travel & Rewards Ecosystem", {
+        "kr": ("여행 및 리워드 생태계", "Xerovan 토큰 기반 마켓플레이스를 통해 여행 예약과 eSIM 서비스를 이용하고, 캐시백, 보너스, 제휴 프로그램 및 dApp 서비스를 하나의 생태계에서 경험할 수 있습니다."),
+        "en": ("Travel & Rewards Ecosystem", "Book travel and eSIM services on the Xerovan token-based marketplace, and enjoy cashback, bonuses, partner programs and dApp services in one ecosystem."),
+        "ja": ("旅行とリワードのエコシステム", "Xerovanトークンを基盤としたマーケットプレイスで旅行予約やeSIMサービスを利用し、キャッシュバック、ボーナス、提携プログラム、dAppサービスをひとつのエコシステムで体験できます。"),
+        "es": ("Ecosistema de viajes y recompensas", "Reserva viajes y servicios eSIM en el marketplace basado en el token de Xerovan, y disfruta de cashback, bonificaciones, programas de socios y servicios dApp en un solo ecosistema."),
+        "ar": ("منظومة السفر والمكافآت", "احجز رحلاتك وخدمات eSIM عبر سوق Xerovan القائم على الرموز، واستمتع بالاسترداد النقدي والمكافآت وبرامج الشركاء وخدمات dApp في منظومة واحدة."),
+        "pt": ("Ecossistema de viagens e recompensas", "Reserve viagens e serviços de eSIM no marketplace baseado no token da Xerovan e aproveite cashback, bônus, programas de parceiros e serviços dApp em um só ecossistema."),
+    }),
+]
+
+DEFINITION = {
+    "kr": "Xerovan은 결제, 글로벌 지급, 기업 지출, 자산 관리와 리워드를 하나로 연결하는 올인원 크립토 금융 플랫폼입니다.",
+    "en": "Xerovan is an all-in-one crypto finance platform connecting payments, global payouts, business spending, asset management, and rewards.",
+    "ja": "Xerovanは、決済、グローバルな支払い、法人支出、資産管理、リワードをひとつにつなぐ、オールインワンの暗号資産金融プラットフォームです。",
+    "es": "Xerovan es una plataforma financiera cripto todo en uno que conecta pagos, pagos globales, gasto empresarial, gestión de activos y recompensas.",
+    "ar": "Xerovan منصة مالية متكاملة للعملات المشفرة تجمع المدفوعات والتحويلات العالمية ونفقات الأعمال وإدارة الأصول والمكافآت في مكان واحد.",
+    "pt": "A Xerovan é uma plataforma financeira cripto completa que conecta pagamentos, pagamentos globais, gastos empresariais, gestão de ativos e recompensas.",
+}
+EYEBROW = {"kr": "Xerovan 핵심 기능", "en": "Xerovan core features", "ja": "Xerovanの主な機能",
+           "es": "Funciones clave de Xerovan", "ar": "المزايا الأساسية لـ Xerovan", "pt": "Principais recursos da Xerovan"}
+
+CSS = """  /* ---------- Summary: 2 screens, crypto image behind, text in front ---------- */
+  .sx{position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center;padding:110px 0;isolation:isolate;}
+  .sx-bg{position:absolute;inset:0;z-index:-2;background-repeat:no-repeat;background-size:cover;}
+  .sx-1 .sx-bg{background-image:url("/images/summary-bg-1.webp");background-position:right center;}
+  .sx-2 .sx-bg{background-image:url("/images/summary-bg-2.webp");background-position:center;}
+  .sx::before{content:'';position:absolute;inset:0;z-index:-1;background:
+      linear-gradient(90deg,rgba(10,11,13,.94) 0%,rgba(10,11,13,.82) 42%,rgba(10,11,13,.45) 72%,rgba(10,11,13,.6) 100%),
+      linear-gradient(180deg,#0a0b0d 0%,rgba(10,11,13,0) 18%,rgba(10,11,13,0) 82%,#0a0b0d 100%);}
+  .sx-2::before{background:
+      radial-gradient(ellipse 60% 70% at 50% 50%,rgba(10,11,13,.55),rgba(10,11,13,.9) 75%),
+      linear-gradient(180deg,#0a0b0d 0%,rgba(10,11,13,0) 18%,rgba(10,11,13,0) 82%,#0a0b0d 100%);}
+  .sx .wrap{width:100%;}
+  .sx-head{max-width:760px;margin-bottom:44px;}
+  .sx-head h2{font-family:'Unbounded'; font-weight:600; font-size:clamp(24px,3.1vw,38px); line-height:1.3; margin-top:18px; text-shadow:0 2px 24px rgba(0,0,0,.7);}
+  .sx-2 .sx-head{margin:0 auto 40px;text-align:center;}
+  .sx-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:920px;}
+  .sx-2 .sx-grid{grid-template-columns:repeat(3,1fr);max-width:none;}
+  @media(max-width:900px){ .sx-grid,.sx-2 .sx-grid{grid-template-columns:1fr;} .sx{min-height:auto;padding:90px 0;} }
+  .sx-card{border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:24px 24px 26px;background:rgba(14,15,18,.62);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.06);}
+  .sx-num{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.16em;color:var(--ice);}
+  .sx-card h3{font-family:'Unbounded';font-size:17px;font-weight:600;line-height:1.35;margin:10px 0 4px;}
+  .sx-en{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.04em;color:var(--silver-500);margin-bottom:12px;}
+  .sx-card p{font-size:14.5px;line-height:1.7;color:var(--silver-300);}
+"""
+
+
+def section(lang, eyebrow_center=False):
+    def card(i):
+        en_name, tr = FEATURES[i]
+        title, desc = tr[lang]
+        sub = "" if lang == "en" else f'<div class="sx-en">{E(en_name)}</div>'
+        return (f'<article class="sx-card"><div class="sx-num">{i+1:02d}</div><h3>{E(title)}</h3>{sub}'
+                f'<p>{E(desc)}</p></article>')
+    page1 = (f'<section id="summary" class="sx sx-1"><div class="sx-bg" role="img" aria-label="Xerovan app and card"></div><div class="wrap">'
+             f'<div class="sx-head"><span class="eyebrow">{E(EYEBROW[lang])}</span><h2>{E(DEFINITION[lang])}</h2></div>'
+             f'<div class="sx-grid">{"".join(card(i) for i in range(4))}</div></div></section>')
+    page2 = (f'<section id="features" class="sx sx-2"><div class="sx-bg" role="img" aria-label="Global network"></div><div class="wrap">'
+             f'<div class="sx-head"><span class="eyebrow center">{E(EYEBROW[lang])}</span></div>'
+             f'<div class="sx-grid">{"".join(card(i) for i in range(4, 7))}</div></div></section>')
+    return page1, page2

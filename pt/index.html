@@ -298,6 +298,29 @@
   .faq-footnote{text-align:center; margin-top:44px; font-size:14px; color:var(--silver-500);}
   .faq-footnote a{color:var(--silver-100); border-bottom:1px solid var(--silver-500);}
 
+  /* ---------- Summary: 2 screens, crypto image behind, text in front ---------- */
+  .sx{position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center;padding:110px 0;isolation:isolate;}
+  .sx-bg{position:absolute;inset:0;z-index:-2;background-repeat:no-repeat;background-size:cover;}
+  .sx-1 .sx-bg{background-image:url("/images/summary-bg-1.webp");background-position:right center;}
+  .sx-2 .sx-bg{background-image:url("/images/summary-bg-2.webp");background-position:center;}
+  .sx::before{content:'';position:absolute;inset:0;z-index:-1;background:
+      linear-gradient(90deg,rgba(10,11,13,.94) 0%,rgba(10,11,13,.82) 42%,rgba(10,11,13,.45) 72%,rgba(10,11,13,.6) 100%),
+      linear-gradient(180deg,#0a0b0d 0%,rgba(10,11,13,0) 18%,rgba(10,11,13,0) 82%,#0a0b0d 100%);}
+  .sx-2::before{background:
+      radial-gradient(ellipse 60% 70% at 50% 50%,rgba(10,11,13,.55),rgba(10,11,13,.9) 75%),
+      linear-gradient(180deg,#0a0b0d 0%,rgba(10,11,13,0) 18%,rgba(10,11,13,0) 82%,#0a0b0d 100%);}
+  .sx .wrap{width:100%;}
+  .sx-head{max-width:760px;margin-bottom:44px;}
+  .sx-head h2{font-family:'Unbounded'; font-weight:600; font-size:clamp(24px,3.1vw,38px); line-height:1.3; margin-top:18px; text-shadow:0 2px 24px rgba(0,0,0,.7);}
+  .sx-2 .sx-head{margin:0 auto 40px;text-align:center;}
+  .sx-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:920px;}
+  .sx-2 .sx-grid{grid-template-columns:repeat(3,1fr);max-width:none;}
+  @media(max-width:900px){ .sx-grid,.sx-2 .sx-grid{grid-template-columns:1fr;} .sx{min-height:auto;padding:90px 0;} }
+  .sx-card{border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:24px 24px 26px;background:rgba(14,15,18,.62);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.06);}
+  .sx-num{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.16em;color:var(--ice);}
+  .sx-card h3{font-family:'Unbounded';font-size:17px;font-weight:600;line-height:1.35;margin:10px 0 4px;}
+  .sx-en{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.04em;color:var(--silver-500);margin-bottom:12px;}
+  .sx-card p{font-size:14.5px;line-height:1.7;color:var(--silver-300);}
   .latest{padding:100px 0;}
   .latest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
   @media(max-width:900px){ .latest-grid{grid-template-columns:1fr;} }
@@ -410,211 +433,13 @@
   </div>
 </section>
 
-<section class="app-preview" id="appPreview">
-  <div class="wrap">
-    <div class="hero-visual-wrap">
-      <img src="/images/hero-visual.webp" alt="Uma carteira. Possibilidades infinitas. Gerencie ativos digitais, pague no mundo todo e dê utilidade real a eles." class="hero-visual-img">
-      <div class="hero-visual-screen" id="heroVisualScreen">
-        <iframe id="heroVisualIframe" src="https://demo-brown-seven-24.vercel.app/" loading="lazy" title="Prévia ao vivo do app Xerovan"></iframe>
-      </div>
-    </div>
-  </div>
-</section>
-
 <div class="divider" id="dividerBars1"></div>
 
-<section id="summary">
-  <div class="wrap">
-    <div class="section-head center">
-      <span class="eyebrow center">POR QUE A XEROVAN</span>
-      <h2>Cripto deveria fazer mais do que ficar parada em uma carteira.</h2>
-      <p>A Xerovan conecta toda a jornada — de guardar e gerenciar ativos digitais a gastar, viajar e administrar um negócio.</p>
-    </div>
-    <div class="flow">
-      <span class="flow-step">Gerencie</span><span class="flow-arrow">→</span>
-      <span class="flow-step">Troque</span><span class="flow-arrow">→</span>
-      <span class="flow-step">Gaste</span><span class="flow-arrow">→</span>
-      <span class="flow-step">Ganhe</span><span class="flow-arrow">→</span>
-      <span class="flow-step">Viaje</span>
-    </div>
-    <ul class="why-list">
-      <li>Reúna várias carteiras cripto em um só lugar</li>
-      <li>Gerencie ativos nas redes blockchain compatíveis</li>
-      <li>Troque e transfira ativos entre redes com menos etapas</li>
-      <li>Pague no mundo todo com cartões Visa virtuais e físicos</li>
-      <li>Acesse rendimentos, staking, cashback e recompensas por indicação</li>
-      <li>Reserve voos, hotéis, atividades e serviços de eSIM</li>
-      <li>Controle cartões corporativos e despesas da equipe</li>
-    </ul>
-
-    <div class="section-head center" style="margin-top:110px;">
-      <span class="eyebrow center">O ECOSSISTEMA XEROVAN</span>
-      <h2>Tudo conectado. Nada fragmentado.</h2>
-      <p>Cinco pilares essenciais de produto, reunidos em um ecossistema integrado.</p>
-    </div>
-    <div class="eco-grid">
-      <div class="eco-card"><h4>Gestão de ativos digitais</h4><ul><li>Gestão unificada de várias carteiras</li><li>Carteira MPC de autocustódia</li><li>Suporte a ativos multichain</li><li>Trocas cripto inteligentes</li><li>Pontes entre redes</li></ul></div>
-      <div class="eco-card"><h4>Pagamentos globais</h4><ul><li>Cartões Visa virtuais e físicos</li><li>Saldo Xerovan</li><li>Apple Pay e Google Pay</li><li>Aceitação Visa no mundo todo</li><li>Controles de gastos pessoais e empresariais</li></ul></div>
-      <div class="eco-card"><h4>Ganhos e recompensas</h4><ul><li>Oportunidades de rendimento em stablecoins</li><li>Staking de cripto</li><li>Recompensas de cashback</li><li>Programas de recompensas</li><li>Recompensas por indicação</li></ul></div>
-      <div class="eco-card"><h4>Viagens e estilo de vida</h4><ul><li>Voos</li><li>Hotéis</li><li>Passeios e atividades</li><li>Serviços de eSIM</li><li>Marketplace de viagens com tecnologia Trateria</li></ul></div>
-      <div class="eco-card"><h4>Empresas e segurança</h4><ul><li>Cartões corporativos</li><li>Gestão de despesas</li><li>Fluxos de aprovação de transações</li><li>Controles de gastos da equipe</li><li>Segurança de carteira MPC</li><li>Verificação de dispositivo e de transações</li></ul></div>
-      <div class="eco-card-visual"><img loading="lazy" decoding="async" src="/images/ecosystem-visual.webp" alt="Cartão e app Xerovan conectados no mundo todo"></div>
-    </div>
-  </div>
-</section>
+<section id="summary" class="sx sx-1"><div class="sx-bg" role="img" aria-label="Xerovan app and card"></div><div class="wrap"><div class="sx-head"><span class="eyebrow">Principais recursos da Xerovan</span><h2>A Xerovan é uma plataforma financeira cripto completa que conecta pagamentos, pagamentos globais, gastos empresariais, gestão de ativos e recompensas.</h2></div><div class="sx-grid"><article class="sx-card"><div class="sx-num">01</div><h3>Pagamentos direto da carteira</h3><div class="sx-en">Direct Wallet Payments</div><p>Pague com os ativos da sua própria carteira sem custódia, sem precisar recarregar antes.</p></article><article class="sx-card"><div class="sx-num">02</div><h3>Gestão de gastos empresariais — Media Buyer Suite</h3><div class="sx-en">Business Spend Management — Media Buyer Suite</div><p>Emita cartões por cliente e por conta e gerencie comprovantes, aprovações e limites de gastos em um só lugar. Ajuda agências de marketing e empresas a gerir seus gastos com eficiência e transparência.</p></article><article class="sx-card"><div class="sx-num">03</div><h3>Pagamentos globais</h3><div class="sx-en">Global Payouts</div><p>Empresas e pessoas podem pagar em cripto, de forma rápida e simples, nas contas bancárias de parceiros, clientes e membros da equipe no mundo todo, com uma estrutura de pagamentos que cresce além das fronteiras.</p></article><article class="sx-card"><div class="sx-num">04</div><h3>Gestão unificada de ativos</h3><div class="sx-en">Unified Asset Management</div><p>Gerencie sua carteira gratuita sem custódia e suas carteiras externas em um só lugar, e coloque ativos parados para render com staking e outros produtos.</p></article></div></div></section>
 
 <div class="divider" id="dividerBars2"></div>
 
-<section id="features">
-  <div class="wrap">
-    <div class="section-head center">
-      <span class="eyebrow center">RECURSOS</span>
-      <h2>Uma plataforma. Todos os movimentos.</h2>
-      <p>Nove recursos criados para movimentar seus ativos com a mesma facilidade com que o som viaja pelo ar.</p>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">01 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="14" rx="3"/><path d="M2 10h20"/><circle cx="17" cy="15" r="1.4" fill="currentColor" stroke="none"/></svg></div>
-        <h3>Gestão unificada de carteiras</h3>
-        <div class="feature-kicker">Todas as carteiras. Todos os ativos. Uma visão segura.</div>
-        <p class="feature-lede">Importe ou conecte carteiras cripto compatíveis e gerencie todos os seus ativos em uma interface unificada e de autocustódia.</p>
-        <ul class="feature-list">
-          <li>Experiência de carteira de autocustódia</li><li>Importe ou conecte carteiras externas</li><li>Tecnologia segura de carteira MPC</li>
-        </ul>
-        <span class="tag-label">Redes compatíveis</span>
-        <div class="tag-row"><span class="tag">Ethereum</span><span class="tag">Base</span><span class="tag">Arbitrum</span><span class="tag">Polygon</span><span class="tag">BNB Chain</span><span class="tag">Solana</span><span class="tag">TRON</span><span class="tag">Bitcoin</span><span class="tag">TON</span><span class="tag">Avalanche</span></div>
-        <p class="feature-close" style="margin-top:22px;">Suas carteiras continuam sendo suas. A Xerovan só faz com que elas trabalhem juntas.</p>
-      </div>
-      <div class="feature-visual no-pad">
-        <img loading="lazy" decoding="async" src="/images/feature-01.webp" alt="Gestão unificada de carteiras — app Xerovan mostrando carteiras e composição dos ativos">
-      </div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">02 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/><path d="M6 15h4"/></svg></div>
-        <h3>Cartão Visa cripto</h3>
-        <div class="feature-kicker">Transforme cripto em poder de compra no dia a dia.</div>
-        <p class="feature-lede">Os cartões Visa virtuais e físicos da Xerovan transformam suas cripto em poder de compra real, onde quer que a Visa seja aceita.</p>
-        <ul class="feature-list">
-          <li>Compatível com Apple Pay e Google Pay</li><li>Bloqueio e desbloqueio instantâneo do cartão</li><li>Limites de gastos personalizados</li>
-        </ul>
-        <span class="tag-label">Feito para</span>
-        <div class="tag-row"><span class="tag">Viajantes internacionais</span><span class="tag">Nômades digitais</span><span class="tag">Freelancers globais</span><span class="tag">Media buyers</span><span class="tag">Usuários de cripto</span><span class="tag">Consumidores do dia a dia</span></div>
-        <p class="feature-close" style="margin-top:22px;">Um cartão para um estilo de vida sem fronteiras.</p>
-      </div>
-      <div class="feature-visual no-pad">
-        <img loading="lazy" decoding="async" src="/images/feature-02.webp" alt="Cartão Visa cripto — transforme cripto em poder de compra no dia a dia">
-      </div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">03 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M4 8h13M17 8l-3-3M17 8l-3 3"/><path d="M20 16H7M7 16l3-3M7 16l3 3"/></svg></div>
-        <h3>Trocas cripto inteligentes</h3>
-        <div class="feature-kicker">Mova-se entre redes sem complicação.</div>
-        <p class="feature-lede">Troque e transfira ativos entre redes compatíveis com o roteamento inteligente da Xerovan, em uma experiência de um clique.</p>
-        <ul class="feature-list"><li>Roteamento inteligente de preços</li><li>Taxas de rede competitivas</li><li>Experiência simplificada de um clique</li></ul>
-        <span class="tag-label">Tecnologia de</span>
-        <div class="tag-row"><span class="tag">0x</span><span class="tag">LI.FI</span><span class="tag">Circle CCTP</span></div>
-        <p class="feature-close" style="margin-top:22px;">Menos atrito. Mais liberdade para se mover.</p>
-      </div>
-      <div class="feature-visual no-pad"><img loading="lazy" decoding="async" src="/images/feature-03.webp" alt="Trocas cripto inteligentes — mova-se entre redes sem complicação"></div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">04 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></div>
-        <h3>Ganhos e recompensas</h3>
-        <div class="feature-kicker">Faça cada ativo e cada transação render mais.</div>
-        <p class="feature-lede">A Xerovan reúne staking, cashback e recompensas por indicação para que seus ativos e transações continuem trabalhando por você.</p>
-        <ul class="feature-list"><li>Oportunidades de rendimento em stablecoins</li><li>Staking de cripto</li><li>Cashback de até 8%</li></ul>
-        <p class="feature-close" style="margin-top:22px;">Não fique só guardando. Tire mais dos seus ativos digitais.</p>
-      </div>
-      <div class="feature-visual no-pad"><img loading="lazy" decoding="async" src="/images/feature-04.webp" alt="Ganhos e recompensas — 8% em recompensas totais neste mês"></div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">05 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg></div>
-        <h3>Saldo Xerovan</h3>
-        <div class="feature-kicker">Um saldo. Toda a experiência Xerovan.</div>
-        <p class="feature-lede">Recarregue seu Saldo Xerovan com cripto e pague na hora por qualquer produto ou serviço do ecossistema.</p>
-        <ul class="feature-list"><li>Recarregue com cripto</li><li>Pagamentos instantâneos no app</li><li>Pague produtos de viagem compatíveis</li></ul>
-        <p class="feature-close" style="margin-top:22px;">Recarregue uma vez. Gaste sem atrito em todo o ecossistema.</p>
-      </div>
-      <div class="feature-visual no-pad">
-        <img loading="lazy" decoding="async" src="/images/feature-05.webp" alt="Saldo Xerovan — um saldo para todo o ecossistema">
-      </div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">06 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M2 12l9-8 2 3h9l-3 5 3 5h-9l-2 3-9-8z"/></svg></div>
-        <h3>Marketplace de viagens</h3>
-        <div class="feature-kicker">Pague, reserve e viaje sem fronteiras.</div>
-        <p class="feature-lede">A Xerovan reúne voos, hotéis, passeios e eSIMs em um marketplace conectado que você pode pagar com o Saldo Xerovan.</p>
-        <span class="tag-label">Produtos de viagem</span>
-        <div class="tag-row"><span class="tag">Voos</span><span class="tag">Hotéis</span><span class="tag">Passeios e atividades</span><span class="tag">Serviços de eSIM</span></div>
-        <ul class="feature-list" style="margin-top:20px;"><li>Marketplace de viagens com tecnologia Trateria</li><li>Busca de produtos em vários idiomas</li><li>Opções de pagamento compatíveis com cripto</li></ul>
-        <p class="feature-close" style="margin-top:22px;">Sua carteira, seu cartão e sua viagem — finalmente conectados.</p>
-      </div>
-      <div class="feature-visual no-pad">
-        <img loading="lazy" decoding="async" src="/images/feature-06.webp" alt="Marketplace de viagens — pague, reserve e viaje sem fronteiras">
-      </div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">07 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></div>
-        <h3>Cartões corporativos e gestão de despesas</h3>
-        <div class="feature-kicker">Controle cada cartão. Acompanhe cada despesa. Cresça com confiança.</div>
-        <p class="feature-lede">A Xerovan permite que empresas emitam cartões, definam políticas de gastos e acompanhem cada despesa em um painel centralizado.</p>
-        <ul class="feature-list"><li>Aplique restrições por categoria de estabelecimento</li><li>Crie fluxos de aprovação baseados em comprovantes</li><li>Controle gastos por funcionário, equipe ou categoria</li></ul>
-        <span class="tag-label">Feito para</span>
-        <div class="tag-row"><span class="tag">PMEs</span><span class="tag">Agências de marketing</span><span class="tag">Equipes de compra de mídia</span><span class="tag">Freelancers globais</span><span class="tag">Equipes remotas</span><span class="tag">Despesas internacionais frequentes</span></div>
-        <p class="feature-close" style="margin-top:22px;">Dê autonomia à sua equipe sem perder o controle financeiro.</p>
-      </div>
-      <div class="feature-visual no-pad">
-        <img loading="lazy" decoding="async" src="/images/feature-07.webp" alt="Cartões corporativos e gestão de despesas — controle cada cartão, acompanhe cada despesa">
-      </div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">08 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6l8-4z"/></svg></div>
-        <h3>Segurança e proteção de ativos</h3>
-        <div class="feature-kicker">Seus ativos. Seu controle. Proteção avançada.</div>
-        <p class="feature-lede">A Xerovan combina infraestrutura de carteira MPC de autocustódia com criptografia e verificação para proteger cada carteira, cartão e transação.</p>
-        <ul class="feature-list"><li>Infraestrutura de carteira MPC</li><li>Criptografia de dados</li><li>Verificação de transações</li></ul>
-        <p class="feature-close" style="margin-top:22px;">Segurança integrada a cada carteira, cartão e transação.</p>
-      </div>
-      <div class="feature-visual no-pad"><img loading="lazy" decoding="async" src="/images/feature-08.webp" alt="Segurança e proteção de ativos — proteção avançada para cada carteira, cartão e transação"></div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">09 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.6 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.6-3.8-9S9.5 5.5 12 3z"/></svg></div>
-        <h3>Acesso global</h3>
-        <div class="feature-kicker">Feito para um mundo sem fronteiras financeiras.</div>
-        <p class="feature-lede">A Xerovan foi criada para pessoas e empresas que vivem, gastam e viajam entre países e redes digitais.</p>
-        <ul class="feature-list"><li>Suporte a várias moedas</li><li>Aceitação Visa no mundo todo</li><li>Soluções para pessoas e empresas</li></ul>
-        <p class="feature-close" style="margin-top:22px;">Uma plataforma para onde quer que a vida e os negócios levem você.</p>
-      </div>
-      <div class="feature-visual no-pad" style="aspect-ratio:1/1;"><img loading="lazy" decoding="async" src="/images/feature-09.webp" alt="Acesso global — uma plataforma, acesso global"></div>
-    </div>
-  </div>
-</section>
+<section id="features" class="sx sx-2"><div class="sx-bg" role="img" aria-label="Global network"></div><div class="wrap"><div class="sx-head"><span class="eyebrow center">Principais recursos da Xerovan</span></div><div class="sx-grid"><article class="sx-card"><div class="sx-num">05</div><h3>Roteamento inteligente</h3><div class="sx-en">Smart Routing</div><p>Ao enviar, receber ou converter cripto, a Xerovan encontra automaticamente a melhor rota para transações eficientes e taxas competitivas.</p></article><article class="sx-card"><div class="sx-num">06</div><h3>Compartilhamento seguro de cartões</h3><div class="sx-en">Secure Card Sharing</div><p>Compartilhe com segurança o uso do cartão com sua família ou outros usuários da Xerovan e ajuste limites e permissões quando quiser. O titular do cartão mantém sempre o controle final.</p></article><article class="sx-card"><div class="sx-num">07</div><h3>Ecossistema de viagens e recompensas</h3><div class="sx-en">Travel &amp; Rewards Ecosystem</div><p>Reserve viagens e serviços de eSIM no marketplace baseado no token da Xerovan e aproveite cashback, bônus, programas de parceiros e serviços dApp em um só ecossistema.</p></article></div></div></section>
 
 <div class="divider" id="dividerBars3"></div>
 
@@ -1284,7 +1109,7 @@
   fillDivider('dividerBars4', 40);
 
   document.getElementById('exploreBtn').addEventListener('click', () => {
-    document.getElementById('appPreview').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('summary').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
   /* Render the live preview at a normal mobile width (390px) so its own

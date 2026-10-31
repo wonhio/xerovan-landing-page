@@ -731,11 +731,24 @@ module.exports = async (req, res) => {
 
     if (q.latest) {
       const tmap = cat ? await topicIds().catch(() => ({})) : {};
-      const posts = cat ? (await langPosts(lang, cat)).slice(0, 3).map((p) => shape(p, lang, tmap)) : [];
-      return send(200, JSON.stringify(posts.map((p) => ({
-        title: p.title, excerpt: clip(p.excerpt, 120), url: `/${lang}/blog/${p.slug}`, image: p.image,
-        date: fmtDate(p.date, lang), topic: p.topic ? TOPIC_LABEL[lang][p.topic] : null,
-      }))), 'application/json; charset=utf-8');
+      // This language first; if it has fewer than 3 posts, fill with the newest posts from other languages
+      // (each linked to its own language's blog), so the section is never empty while any post exists.
+      const picked = [];
+      if (cat) (await langPosts(lang, cat)).slice(0, 3).forEach((p) => picked.push([lang, p]));
+      if (picked.length < 3) {
+        const others = [];
+        for (const l of Object.keys(LANGS).filter((k) => k !== lang)) {
+          const c = await categoryId(l).catch(() => null);
+          if (c) (await langPosts(l, c).catch(() => [])).forEach((p) => others.push([l, p]));
+        }
+        others.sort((a, b) => String(b[1].date_gmt || b[1].date).localeCompare(String(a[1].date_gmt || a[1].date)));
+        picked.push(...others.slice(0, 3 - picked.length));
+      }
+      return send(200, JSON.stringify(picked.map(([l, raw]) => {
+        const p = shape(raw, l, tmap);
+        return { title: p.title, excerpt: clip(p.excerpt, 120), url: `/${l}/blog/${p.slug}`, image: p.image, lang: l,
+          date: fmtDate(p.date, lang), topic: p.topic ? TOPIC_LABEL[lang][p.topic] : null };
+      })), 'application/json; charset=utf-8');
     }
 
     if (q.feed) {

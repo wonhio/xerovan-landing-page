@@ -298,6 +298,29 @@
   .faq-footnote{text-align:center; margin-top:44px; font-size:14px; color:var(--silver-500);}
   .faq-footnote a{color:var(--silver-100); border-bottom:1px solid var(--silver-500);}
 
+  /* ---------- Summary: 2 screens, crypto image behind, text in front ---------- */
+  .sx{position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center;padding:110px 0;isolation:isolate;}
+  .sx-bg{position:absolute;inset:0;z-index:-2;background-repeat:no-repeat;background-size:cover;}
+  .sx-1 .sx-bg{background-image:url("/images/summary-bg-1.webp");background-position:right center;}
+  .sx-2 .sx-bg{background-image:url("/images/summary-bg-2.webp");background-position:center;}
+  .sx::before{content:'';position:absolute;inset:0;z-index:-1;background:
+      linear-gradient(90deg,rgba(10,11,13,.94) 0%,rgba(10,11,13,.82) 42%,rgba(10,11,13,.45) 72%,rgba(10,11,13,.6) 100%),
+      linear-gradient(180deg,#0a0b0d 0%,rgba(10,11,13,0) 18%,rgba(10,11,13,0) 82%,#0a0b0d 100%);}
+  .sx-2::before{background:
+      radial-gradient(ellipse 60% 70% at 50% 50%,rgba(10,11,13,.55),rgba(10,11,13,.9) 75%),
+      linear-gradient(180deg,#0a0b0d 0%,rgba(10,11,13,0) 18%,rgba(10,11,13,0) 82%,#0a0b0d 100%);}
+  .sx .wrap{width:100%;}
+  .sx-head{max-width:760px;margin-bottom:44px;}
+  .sx-head h2{font-family:'Unbounded'; font-weight:600; font-size:clamp(24px,3.1vw,38px); line-height:1.3; margin-top:18px; text-shadow:0 2px 24px rgba(0,0,0,.7);}
+  .sx-2 .sx-head{margin:0 auto 40px;text-align:center;}
+  .sx-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:920px;}
+  .sx-2 .sx-grid{grid-template-columns:repeat(3,1fr);max-width:none;}
+  @media(max-width:900px){ .sx-grid,.sx-2 .sx-grid{grid-template-columns:1fr;} .sx{min-height:auto;padding:90px 0;} }
+  .sx-card{border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:24px 24px 26px;background:rgba(14,15,18,.62);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.06);}
+  .sx-num{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.16em;color:var(--ice);}
+  .sx-card h3{font-family:'Unbounded';font-size:17px;font-weight:600;line-height:1.35;margin:10px 0 4px;}
+  .sx-en{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.04em;color:var(--silver-500);margin-bottom:12px;}
+  .sx-card p{font-size:14.5px;line-height:1.7;color:var(--silver-300);}
   .latest{padding:100px 0;}
   .latest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
   @media(max-width:900px){ .latest-grid{grid-template-columns:1fr;} }
@@ -417,211 +440,13 @@
   </div>
 </section>
 
-<section class="app-preview" id="appPreview">
-  <div class="wrap">
-    <div class="hero-visual-wrap">
-      <img src="/images/hero-visual.webp" alt="محفظة واحدة، وإمكانات لا حدود لها. أدِر أصولك الرقمية، وادفع حول العالم، واستفد منها في حياتك اليومية." class="hero-visual-img">
-      <div class="hero-visual-screen" id="heroVisualScreen">
-        <iframe id="heroVisualIframe" src="https://demo-brown-seven-24.vercel.app/" loading="lazy" title="معاينة مباشرة لتطبيق Xerovan"></iframe>
-      </div>
-    </div>
-  </div>
-</section>
-
 <div class="divider" id="dividerBars1"></div>
 
-<section id="summary">
-  <div class="wrap">
-    <div class="section-head center">
-      <span class="eyebrow center">لماذا XEROVAN</span>
-      <h2>العملات المشفرة يجب أن تفعل أكثر من مجرد البقاء في محفظة.</h2>
-      <p>تربط Xerovan الرحلة بأكملها — من الاحتفاظ بالأصول الرقمية وإدارتها إلى الإنفاق والسفر وإدارة الأعمال.</p>
-    </div>
-    <div class="flow">
-      <span class="flow-step">أدِر</span><span class="flow-arrow">←</span>
-      <span class="flow-step">بادِل</span><span class="flow-arrow">←</span>
-      <span class="flow-step">أنفِق</span><span class="flow-arrow">←</span>
-      <span class="flow-step">اكسب</span><span class="flow-arrow">←</span>
-      <span class="flow-step">سافِر</span>
-    </div>
-    <ul class="why-list">
-      <li>اجمع محافظ العملات المشفرة المتعددة في مكان واحد</li>
-      <li>أدِر أصولك عبر شبكات البلوكتشين المدعومة</li>
-      <li>بادِل الأصول وانقلها بين الشبكات بخطوات أقل</li>
-      <li>ادفع حول العالم ببطاقات Visa الافتراضية والفعلية</li>
-      <li>استفد من العوائد والتخزين (Staking) والاسترداد النقدي ومكافآت الإحالة</li>
-      <li>احجز الرحلات والفنادق والأنشطة وخدمات eSIM</li>
-      <li>تحكّم في بطاقات الشركة ونفقات الفريق</li>
-    </ul>
-
-    <div class="section-head center" style="margin-top:110px;">
-      <span class="eyebrow center">منظومة XEROVAN</span>
-      <h2>كل شيء متصل. لا شيء متفرق.</h2>
-      <p>خمس ركائز أساسية للمنتج، مجتمعة في منظومة واحدة متكاملة.</p>
-    </div>
-    <div class="eco-grid">
-      <div class="eco-card"><h4>إدارة الأصول الرقمية</h4><ul><li>إدارة موحدة لمحافظ متعددة</li><li>محفظة MPC ذاتية الحفظ</li><li>دعم الأصول متعددة الشبكات</li><li>مبادلات ذكية للعملات المشفرة</li><li>الجسور بين الشبكات</li></ul></div>
-      <div class="eco-card"><h4>المدفوعات العالمية</h4><ul><li>بطاقات Visa افتراضية وفعلية</li><li>رصيد Xerovan</li><li>Apple Pay وGoogle Pay</li><li>قبول Visa حول العالم</li><li>ضوابط الإنفاق الشخصي والتجاري</li></ul></div>
-      <div class="eco-card"><h4>الأرباح والمكافآت</h4><ul><li>فرص عوائد العملات المستقرة</li><li>تخزين العملات المشفرة (Staking)</li><li>مكافآت الاسترداد النقدي</li><li>برامج مكافآت المستخدمين</li><li>مكافآت الإحالة</li></ul></div>
-      <div class="eco-card"><h4>السفر ونمط الحياة</h4><ul><li>رحلات الطيران</li><li>الفنادق</li><li>الجولات والأنشطة</li><li>خدمات eSIM</li><li>سوق سفر مدعوم من Trateria</li></ul></div>
-      <div class="eco-card"><h4>الأعمال والأمان</h4><ul><li>بطاقات الشركات</li><li>إدارة النفقات</li><li>مسارات اعتماد المعاملات</li><li>ضوابط إنفاق الفريق</li><li>أمان محفظة MPC</li><li>التحقق من الجهاز والمعاملات</li></ul></div>
-      <div class="eco-card-visual"><img loading="lazy" decoding="async" src="/images/ecosystem-visual.webp" alt="بطاقة وتطبيق Xerovan متصلان حول العالم"></div>
-    </div>
-  </div>
-</section>
+<section id="summary" class="sx sx-1"><div class="sx-bg" role="img" aria-label="Xerovan app and card"></div><div class="wrap"><div class="sx-head"><span class="eyebrow">المزايا الأساسية لـ Xerovan</span><h2>Xerovan منصة مالية متكاملة للعملات المشفرة تجمع المدفوعات والتحويلات العالمية ونفقات الأعمال وإدارة الأصول والمكافآت في مكان واحد.</h2></div><div class="sx-grid"><article class="sx-card"><div class="sx-num">01</div><h3>الدفع مباشرة من المحفظة</h3><div class="sx-en">Direct Wallet Payments</div><p>ادفع بالأصول الموجودة في محفظتك غير الاحتجازية التي تديرها بنفسك، دون الحاجة إلى شحن مسبق.</p></article><article class="sx-card"><div class="sx-num">02</div><h3>إدارة نفقات الأعمال — Media Buyer Suite</h3><div class="sx-en">Business Spend Management — Media Buyer Suite</div><p>أصدر بطاقات لكل عميل وكل حساب، وأدِر الإيصالات ومسارات الاعتماد وحدود الإنفاق في مكان واحد. صُممت لمساعدة وكالات التسويق والشركات على إدارة إنفاقها بكفاءة وشفافية.</p></article><article class="sx-card"><div class="sx-num">03</div><h3>المدفوعات العالمية</h3><div class="sx-en">Global Payouts</div><p>يمكن للشركات والأفراد تحويل الأصول المشفرة بسرعة وسهولة إلى الحسابات المصرفية للشركاء والعملاء وأعضاء الفريق حول العالم، عبر بيئة دفع قابلة للتوسع عبر الحدود.</p></article><article class="sx-card"><div class="sx-num">04</div><h3>إدارة موحدة للأصول</h3><div class="sx-en">Unified Asset Management</div><p>أدِر محفظتك المجانية غير الاحتجازية ومحافظك الخارجية في مكان واحد، واربط أصولك غير المستخدمة بمنتجات استثمار متنوعة مثل التخزين (Staking).</p></article></div></div></section>
 
 <div class="divider" id="dividerBars2"></div>
 
-<section id="features">
-  <div class="wrap">
-    <div class="section-head center">
-      <span class="eyebrow center">المزايا</span>
-      <h2>منصة واحدة. لكل خطوة.</h2>
-      <p>تسع مزايا صُممت لتحريك أصولك بسهولة انتقال الصوت عبر الهواء.</p>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">01 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="14" rx="3"/><path d="M2 10h20"/><circle cx="17" cy="15" r="1.4" fill="currentColor" stroke="none"/></svg></div>
-        <h3>إدارة موحدة للمحافظ</h3>
-        <div class="feature-kicker">كل محفظة. كل أصل. واجهة واحدة آمنة.</div>
-        <p class="feature-lede">استورد محافظ العملات المشفرة المتوافقة أو اربطها، وأدِر جميع أصولك عبر واجهة موحدة ذاتية الحفظ.</p>
-        <ul class="feature-list">
-          <li>تجربة محفظة ذاتية الحفظ</li><li>استيراد المحافظ الخارجية أو ربطها</li><li>تقنية محفظة MPC آمنة</li>
-        </ul>
-        <span class="tag-label">الشبكات المدعومة</span>
-        <div class="tag-row"><span class="tag">Ethereum</span><span class="tag">Base</span><span class="tag">Arbitrum</span><span class="tag">Polygon</span><span class="tag">BNB Chain</span><span class="tag">Solana</span><span class="tag">TRON</span><span class="tag">Bitcoin</span><span class="tag">TON</span><span class="tag">Avalanche</span></div>
-        <p class="feature-close" style="margin-top:22px;">محافظك تبقى ملكك. Xerovan تجعلها تعمل معًا فقط.</p>
-      </div>
-      <div class="feature-visual no-pad">
-        <img loading="lazy" decoding="async" src="/images/feature-01.webp" alt="إدارة موحدة للمحافظ — تطبيق Xerovan يعرض المحافظ وتوزيع الأصول">
-      </div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">02 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/><path d="M6 15h4"/></svg></div>
-        <h3>بطاقة Visa للعملات المشفرة</h3>
-        <div class="feature-kicker">حوّل عملاتك المشفرة إلى قوة شرائية يومية.</div>
-        <p class="feature-lede">تحوّل بطاقات Visa الافتراضية والفعلية من Xerovan عملاتك المشفرة إلى قوة شرائية حقيقية أينما قُبلت Visa.</p>
-        <ul class="feature-list">
-          <li>دعم Apple Pay وGoogle Pay</li><li>تجميد البطاقة وإلغاء تجميدها فورًا</li><li>حدود إنفاق مخصصة</li>
-        </ul>
-        <span class="tag-label">مصمم لـ</span>
-        <div class="tag-row"><span class="tag">المسافرون الدوليون</span><span class="tag">الرحّالة الرقميون</span><span class="tag">المستقلون حول العالم</span><span class="tag">مشترو الإعلانات</span><span class="tag">مستخدمو العملات المشفرة</span><span class="tag">المستهلكون اليوميون</span></div>
-        <p class="feature-close" style="margin-top:22px;">بطاقة واحدة لأسلوب حياة بلا حدود.</p>
-      </div>
-      <div class="feature-visual no-pad">
-        <img loading="lazy" decoding="async" src="/images/feature-02.webp" alt="بطاقة Visa للعملات المشفرة — حوّل عملاتك المشفرة إلى قوة شرائية يومية">
-      </div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">03 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M4 8h13M17 8l-3-3M17 8l-3 3"/><path d="M20 16H7M7 16l3-3M7 16l3 3"/></svg></div>
-        <h3>مبادلات ذكية للعملات المشفرة</h3>
-        <div class="feature-kicker">تنقّل بين الشبكات دون تعقيد.</div>
-        <p class="feature-lede">بادِل الأصول وانقلها بين الشبكات المدعومة عبر التوجيه الذكي من Xerovan، بتجربة مبسطة بنقرة واحدة.</p>
-        <ul class="feature-list"><li>توجيه ذكي للأسعار</li><li>رسوم شبكة تنافسية</li><li>تجربة مبسطة بنقرة واحدة</li></ul>
-        <span class="tag-label">بدعم من</span>
-        <div class="tag-row"><span class="tag">0x</span><span class="tag">LI.FI</span><span class="tag">Circle CCTP</span></div>
-        <p class="feature-close" style="margin-top:22px;">احتكاك أقل. حرية أكبر في الحركة.</p>
-      </div>
-      <div class="feature-visual no-pad"><img loading="lazy" decoding="async" src="/images/feature-03.webp" alt="مبادلات ذكية للعملات المشفرة — تنقّل بين الشبكات دون تعقيد"></div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">04 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></div>
-        <h3>الأرباح والمكافآت</h3>
-        <div class="feature-kicker">اجعل كل أصل وكل معاملة يعملان بجهد أكبر.</div>
-        <p class="feature-lede">تجمع Xerovan بين التخزين والاسترداد النقدي ومكافآت الإحالة لتواصل أصولك ومعاملاتك العمل لصالحك.</p>
-        <ul class="feature-list"><li>فرص عوائد العملات المستقرة</li><li>تخزين العملات المشفرة (Staking)</li><li>استرداد نقدي يصل إلى 8%</li></ul>
-        <p class="feature-close" style="margin-top:22px;">لا تكتفِ بالاحتفاظ. احصل على المزيد من أصولك الرقمية.</p>
-      </div>
-      <div class="feature-visual no-pad"><img loading="lazy" decoding="async" src="/images/feature-04.webp" alt="الأرباح والمكافآت — إجمالي مكافآت 8% هذا الشهر"></div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">05 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg></div>
-        <h3>رصيد Xerovan</h3>
-        <div class="feature-kicker">رصيد واحد. لكل تجارب Xerovan.</div>
-        <p class="feature-lede">اشحن رصيد Xerovan بالعملات المشفرة وادفع فورًا مقابل جميع المنتجات والخدمات في المنظومة.</p>
-        <ul class="feature-list"><li>الشحن بالعملات المشفرة</li><li>مدفوعات فورية داخل التطبيق</li><li>الدفع مقابل منتجات السفر المدعومة</li></ul>
-        <p class="feature-close" style="margin-top:22px;">اشحن مرة واحدة. وأنفِق بسلاسة عبر المنظومة.</p>
-      </div>
-      <div class="feature-visual no-pad">
-        <img loading="lazy" decoding="async" src="/images/feature-05.webp" alt="رصيد Xerovan — رصيد واحد عبر المنظومة">
-      </div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">06 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M2 12l9-8 2 3h9l-3 5 3 5h-9l-2 3-9-8z"/></svg></div>
-        <h3>سوق السفر</h3>
-        <div class="feature-kicker">ادفع واحجز وسافر بلا حدود.</div>
-        <p class="feature-lede">تجمع Xerovan رحلات الطيران والفنادق والجولات وشرائح eSIM في سوق واحد متصل يمكنك الدفع فيه برصيد Xerovan.</p>
-        <span class="tag-label">منتجات السفر</span>
-        <div class="tag-row"><span class="tag">رحلات الطيران</span><span class="tag">الفنادق</span><span class="tag">الجولات والأنشطة</span><span class="tag">خدمات eSIM</span></div>
-        <ul class="feature-list" style="margin-top:20px;"><li>سوق سفر مدعوم من Trateria</li><li>اكتشاف المنتجات بلغات متعددة</li><li>خيارات دفع تدعم العملات المشفرة</li></ul>
-        <p class="feature-close" style="margin-top:22px;">محفظتك وبطاقتك ورحلتك — متصلة أخيرًا.</p>
-      </div>
-      <div class="feature-visual no-pad">
-        <img loading="lazy" decoding="async" src="/images/feature-06.webp" alt="سوق السفر — ادفع واحجز وسافر بلا حدود">
-      </div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">07 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></div>
-        <h3>بطاقات الشركات وإدارة النفقات</h3>
-        <div class="feature-kicker">تحكّم في كل بطاقة. تتبّع كل نفقة. توسّع بثقة.</div>
-        <p class="feature-lede">تتيح Xerovan للشركات إصدار البطاقات ووضع سياسات الإنفاق وتتبّع كل نفقة من لوحة تحكم مركزية واحدة.</p>
-        <ul class="feature-list"><li>تطبيق قيود على فئات التجار</li><li>إنشاء مسارات اعتماد قائمة على الإيصالات</li><li>التحكم في الإنفاق حسب الموظف أو الفريق أو الفئة</li></ul>
-        <span class="tag-label">مصمم لـ</span>
-        <div class="tag-row"><span class="tag">الشركات الصغيرة والمتوسطة</span><span class="tag">وكالات التسويق</span><span class="tag">فرق شراء الإعلانات</span><span class="tag">المستقلون حول العالم</span><span class="tag">الفرق العاملة عن بُعد</span><span class="tag">نفقات دولية متكررة</span></div>
-        <p class="feature-close" style="margin-top:22px;">امنح فريقك المرونة دون أن تفقد السيطرة المالية.</p>
-      </div>
-      <div class="feature-visual no-pad">
-        <img loading="lazy" decoding="async" src="/images/feature-07.webp" alt="بطاقات الشركات وإدارة النفقات — تحكّم في كل بطاقة وتتبّع كل نفقة">
-      </div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">08 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6l8-4z"/></svg></div>
-        <h3>الأمان وحماية الأصول</h3>
-        <div class="feature-kicker">أصولك. تحكّمك. حماية متقدمة.</div>
-        <p class="feature-lede">تجمع Xerovan بين بنية محفظة MPC ذاتية الحفظ والتشفير والتحقق لحماية كل محفظة وبطاقة ومعاملة.</p>
-        <ul class="feature-list"><li>بنية محفظة MPC</li><li>تشفير البيانات</li><li>التحقق من المعاملات</li></ul>
-        <p class="feature-close" style="margin-top:22px;">أمان مدمج في كل محفظة وبطاقة ومعاملة.</p>
-      </div>
-      <div class="feature-visual no-pad"><img loading="lazy" decoding="async" src="/images/feature-08.webp" alt="الأمان وحماية الأصول — حماية متقدمة لكل محفظة وبطاقة ومعاملة"></div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">09 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.6 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.6-3.8-9S9.5 5.5 12 3z"/></svg></div>
-        <h3>وصول عالمي</h3>
-        <div class="feature-kicker">صُممت لعالم بلا حدود مالية.</div>
-        <p class="feature-lede">صُممت Xerovan للأفراد والشركات الذين يعيشون وينفقون ويسافرون عبر الدول والشبكات الرقمية.</p>
-        <ul class="feature-list"><li>دعم عملات متعددة</li><li>قبول Visa حول العالم</li><li>حلول للأفراد والشركات</li></ul>
-        <p class="feature-close" style="margin-top:22px;">منصة واحدة أينما أخذتك الحياة والأعمال.</p>
-      </div>
-      <div class="feature-visual no-pad" style="aspect-ratio:1/1;"><img loading="lazy" decoding="async" src="/images/feature-09.webp" alt="وصول عالمي — منصة واحدة، وصول عالمي"></div>
-    </div>
-  </div>
-</section>
+<section id="features" class="sx sx-2"><div class="sx-bg" role="img" aria-label="Global network"></div><div class="wrap"><div class="sx-head"><span class="eyebrow center">المزايا الأساسية لـ Xerovan</span></div><div class="sx-grid"><article class="sx-card"><div class="sx-num">05</div><h3>التوجيه الذكي</h3><div class="sx-en">Smart Routing</div><p>عند إرسال الأصول المشفرة أو استلامها أو تحويلها، يبحث Xerovan تلقائيًا عن أفضل مسار لمعاملات فعّالة ورسوم تنافسية.</p></article><article class="sx-card"><div class="sx-num">06</div><h3>مشاركة آمنة للبطاقة</h3><div class="sx-en">Secure Card Sharing</div><p>شارك صلاحية استخدام بطاقتك بأمان مع عائلتك أو مستخدمي Xerovan الآخرين، وعدّل حدود الإنفاق والصلاحيات في أي وقت. ويحتفظ مالك البطاقة دائمًا بالتحكم النهائي فيها.</p></article><article class="sx-card"><div class="sx-num">07</div><h3>منظومة السفر والمكافآت</h3><div class="sx-en">Travel &amp; Rewards Ecosystem</div><p>احجز رحلاتك وخدمات eSIM عبر سوق Xerovan القائم على الرموز، واستمتع بالاسترداد النقدي والمكافآت وبرامج الشركاء وخدمات dApp في منظومة واحدة.</p></article></div></div></section>
 
 <div class="divider" id="dividerBars3"></div>
 
@@ -1291,7 +1116,7 @@
   fillDivider('dividerBars4', 40);
 
   document.getElementById('exploreBtn').addEventListener('click', () => {
-    document.getElementById('appPreview').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('summary').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
   /* Render the live preview at a normal mobile width (390px) so its own

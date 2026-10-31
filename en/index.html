@@ -298,6 +298,29 @@
   .faq-footnote{text-align:center; margin-top:44px; font-size:14px; color:var(--silver-500);}
   .faq-footnote a{color:var(--silver-100); border-bottom:1px solid var(--silver-500);}
 
+  /* ---------- Summary: 2 screens, crypto image behind, text in front ---------- */
+  .sx{position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center;padding:110px 0;isolation:isolate;}
+  .sx-bg{position:absolute;inset:0;z-index:-2;background-repeat:no-repeat;background-size:cover;}
+  .sx-1 .sx-bg{background-image:url("/images/summary-bg-1.webp");background-position:right center;}
+  .sx-2 .sx-bg{background-image:url("/images/summary-bg-2.webp");background-position:center;}
+  .sx::before{content:'';position:absolute;inset:0;z-index:-1;background:
+      linear-gradient(90deg,rgba(10,11,13,.94) 0%,rgba(10,11,13,.82) 42%,rgba(10,11,13,.45) 72%,rgba(10,11,13,.6) 100%),
+      linear-gradient(180deg,#0a0b0d 0%,rgba(10,11,13,0) 18%,rgba(10,11,13,0) 82%,#0a0b0d 100%);}
+  .sx-2::before{background:
+      radial-gradient(ellipse 60% 70% at 50% 50%,rgba(10,11,13,.55),rgba(10,11,13,.9) 75%),
+      linear-gradient(180deg,#0a0b0d 0%,rgba(10,11,13,0) 18%,rgba(10,11,13,0) 82%,#0a0b0d 100%);}
+  .sx .wrap{width:100%;}
+  .sx-head{max-width:760px;margin-bottom:44px;}
+  .sx-head h2{font-family:'Unbounded'; font-weight:600; font-size:clamp(24px,3.1vw,38px); line-height:1.3; margin-top:18px; text-shadow:0 2px 24px rgba(0,0,0,.7);}
+  .sx-2 .sx-head{margin:0 auto 40px;text-align:center;}
+  .sx-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:920px;}
+  .sx-2 .sx-grid{grid-template-columns:repeat(3,1fr);max-width:none;}
+  @media(max-width:900px){ .sx-grid,.sx-2 .sx-grid{grid-template-columns:1fr;} .sx{min-height:auto;padding:90px 0;} }
+  .sx-card{border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:24px 24px 26px;background:rgba(14,15,18,.62);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.06);}
+  .sx-num{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.16em;color:var(--ice);}
+  .sx-card h3{font-family:'Unbounded';font-size:17px;font-weight:600;line-height:1.35;margin:10px 0 4px;}
+  .sx-en{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.04em;color:var(--silver-500);margin-bottom:12px;}
+  .sx-card p{font-size:14.5px;line-height:1.7;color:var(--silver-300);}
   .latest{padding:100px 0;}
   .latest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
   @media(max-width:900px){ .latest-grid{grid-template-columns:1fr;} }
@@ -410,211 +433,13 @@
   </div>
 </section>
 
-<section class="app-preview" id="appPreview">
-  <div class="wrap">
-    <div class="hero-visual-wrap">
-      <img src="/images/hero-visual.webp" alt="One Wallet. Endless Possibilities. Manage digital assets, pay globally, and unlock real-world utility." class="hero-visual-img">
-      <div class="hero-visual-screen" id="heroVisualScreen">
-        <iframe id="heroVisualIframe" src="https://demo-brown-seven-24.vercel.app/" loading="lazy" title="Xerovan live app preview"></iframe>
-      </div>
-    </div>
-  </div>
-</section>
-
 <div class="divider" id="dividerBars1"></div>
 
-<section id="summary">
-  <div class="wrap">
-    <div class="section-head center">
-      <span class="eyebrow center">WHY XEROVAN</span>
-      <h2>Crypto should do more than sit in a wallet.</h2>
-      <p>Xerovan connects the entire journey — from holding and managing digital assets to spending, traveling, and running a business.</p>
-    </div>
-    <div class="flow">
-      <span class="flow-step">Manage</span><span class="flow-arrow">→</span>
-      <span class="flow-step">Swap</span><span class="flow-arrow">→</span>
-      <span class="flow-step">Spend</span><span class="flow-arrow">→</span>
-      <span class="flow-step">Earn</span><span class="flow-arrow">→</span>
-      <span class="flow-step">Travel</span>
-    </div>
-    <ul class="why-list">
-      <li>Bring multiple crypto wallets together</li>
-      <li>Manage assets across supported blockchain networks</li>
-      <li>Swap and bridge assets with fewer steps</li>
-      <li>Spend globally with virtual and physical Visa cards</li>
-      <li>Access yield, staking, cashback, and referral rewards</li>
-      <li>Book flights, hotels, activities, and eSIM services</li>
-      <li>Control business cards and team expenses</li>
-    </ul>
-
-    <div class="section-head center" style="margin-top:110px;">
-      <span class="eyebrow center">THE XEROVAN ECOSYSTEM</span>
-      <h2>Everything Connected. Nothing Fragmented.</h2>
-      <p>Five essential product pillars, brought together in one seamless ecosystem.</p>
-    </div>
-    <div class="eco-grid">
-      <div class="eco-card"><h4>Digital Asset Management</h4><ul><li>Unified multi-wallet management</li><li>Self-custodial MPC wallet</li><li>Multi-chain asset support</li><li>Smart crypto swaps</li><li>Cross-chain bridging</li></ul></div>
-      <div class="eco-card"><h4>Global Payments</h4><ul><li>Virtual and physical Visa cards</li><li>Xerovan Balance</li><li>Apple Pay and Google Pay</li><li>Global Visa acceptance</li><li>Personal and business spending controls</li></ul></div>
-      <div class="eco-card"><h4>Earn and Rewards</h4><ul><li>Stablecoin yield opportunities</li><li>Crypto staking</li><li>Cashback rewards</li><li>User reward programs</li><li>Referral rewards</li></ul></div>
-      <div class="eco-card"><h4>Travel and Lifestyle</h4><ul><li>Flights</li><li>Hotels</li><li>Tours and activities</li><li>eSIM services</li><li>Trateria-powered Travel Marketplace</li></ul></div>
-      <div class="eco-card"><h4>Business and Security</h4><ul><li>Business cards</li><li>Expense management</li><li>Transaction approval workflows</li><li>Team spending controls</li><li>MPC wallet security</li><li>Device and transaction verification</li></ul></div>
-      <div class="eco-card-visual"><img loading="lazy" decoding="async" src="/images/ecosystem-visual.webp" alt="Xerovan card and app connected globally"></div>
-    </div>
-  </div>
-</section>
+<section id="summary" class="sx sx-1"><div class="sx-bg" role="img" aria-label="Xerovan app and card"></div><div class="wrap"><div class="sx-head"><span class="eyebrow">Xerovan core features</span><h2>Xerovan is an all-in-one crypto finance platform connecting payments, global payouts, business spending, asset management, and rewards.</h2></div><div class="sx-grid"><article class="sx-card"><div class="sx-num">01</div><h3>Direct Wallet Payments</h3><p>Pay with the assets in your own non-custodial wallet. No top-ups needed.</p></article><article class="sx-card"><div class="sx-num">02</div><h3>Business Spend Management — Media Buyer Suite</h3><p>Issue cards for each client and account, and manage receipts, approvals and spending limits in one place. Built to help marketing agencies and businesses run their spending efficiently and transparently.</p></article><article class="sx-card"><div class="sx-num">03</div><h3>Global Payouts</h3><p>Businesses and individuals can pay out crypto quickly and easily to the bank accounts of partners, customers and team members around the world, with a payout setup that scales across borders.</p></article><article class="sx-card"><div class="sx-num">04</div><h3>Unified Asset Management</h3><p>Manage your free non-custodial wallet and external wallets in one place, and put idle assets to work with staking and other earning products.</p></article></div></div></section>
 
 <div class="divider" id="dividerBars2"></div>
 
-<section id="features">
-  <div class="wrap">
-    <div class="section-head center">
-      <span class="eyebrow center">FEATURES</span>
-      <h2>One Platform. Every Move.</h2>
-      <p>Nine capabilities, built to move your assets as easily as sound moves through the air.</p>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">01 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="14" rx="3"/><path d="M2 10h20"/><circle cx="17" cy="15" r="1.4" fill="currentColor" stroke="none"/></svg></div>
-        <h3>Unified Multi-Wallet Management</h3>
-        <div class="feature-kicker">Every Wallet. Every Asset. One Secure View.</div>
-        <p class="feature-lede">Import or connect compatible crypto wallets and manage every asset through one unified, self-custodial interface.</p>
-        <ul class="feature-list">
-          <li>Self-custodial wallet experience</li><li>Import or connect external wallets</li><li>Secure MPC wallet technology</li>
-        </ul>
-        <span class="tag-label">Supported Networks</span>
-        <div class="tag-row"><span class="tag">Ethereum</span><span class="tag">Base</span><span class="tag">Arbitrum</span><span class="tag">Polygon</span><span class="tag">BNB Chain</span><span class="tag">Solana</span><span class="tag">TRON</span><span class="tag">Bitcoin</span><span class="tag">TON</span><span class="tag">Avalanche</span></div>
-        <p class="feature-close" style="margin-top:22px;">Your wallets stay yours. Xerovan simply makes them work together.</p>
-      </div>
-      <div class="feature-visual no-pad">
-        <img loading="lazy" decoding="async" src="/images/feature-01.webp" alt="Unified Multi-Wallet Management — Xerovan app showing wallets and asset breakdown">
-      </div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">02 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/><path d="M6 15h4"/></svg></div>
-        <h3>Visa Crypto Card</h3>
-        <div class="feature-kicker">Turn Crypto into Everyday Spending Power.</div>
-        <p class="feature-lede">Xerovan's virtual and physical Visa cards turn your crypto into real-world spending power, wherever Visa is accepted.</p>
-        <ul class="feature-list">
-          <li>Apple Pay and Google Pay support</li><li>Instant card freeze and unfreeze</li><li>Custom spending limits</li>
-        </ul>
-        <span class="tag-label">Built For</span>
-        <div class="tag-row"><span class="tag">International travelers</span><span class="tag">Digital nomads</span><span class="tag">Global freelancers</span><span class="tag">Media buyers</span><span class="tag">Crypto users</span><span class="tag">Everyday consumers</span></div>
-        <p class="feature-close" style="margin-top:22px;">One card for a borderless lifestyle.</p>
-      </div>
-      <div class="feature-visual no-pad">
-        <img loading="lazy" decoding="async" src="/images/feature-02.webp" alt="Visa Crypto Card — turn crypto into everyday spending power">
-      </div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">03 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M4 8h13M17 8l-3-3M17 8l-3 3"/><path d="M20 16H7M7 16l3-3M7 16l3 3"/></svg></div>
-        <h3>Smart Crypto Swaps</h3>
-        <div class="feature-kicker">Move Across Chains Without the Complexity.</div>
-        <p class="feature-lede">Swap and bridge assets across supported networks through Xerovan's smart routing, in a streamlined one-click experience.</p>
-        <ul class="feature-list"><li>Smart price routing</li><li>Competitive network fees</li><li>Streamlined one-click experience</li></ul>
-        <span class="tag-label">Powered By</span>
-        <div class="tag-row"><span class="tag">0x</span><span class="tag">LI.FI</span><span class="tag">Circle CCTP</span></div>
-        <p class="feature-close" style="margin-top:22px;">Less friction. More freedom to move.</p>
-      </div>
-      <div class="feature-visual no-pad"><img loading="lazy" decoding="async" src="/images/feature-03.webp" alt="Smart Crypto Swaps — move across chains without the complexity"></div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">04 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></div>
-        <h3>Earn and Rewards</h3>
-        <div class="feature-kicker">Make Every Asset and Every Transaction Work Harder.</div>
-        <p class="feature-lede">Xerovan brings staking, cashback, and referral rewards together so your assets and transactions keep working for you.</p>
-        <ul class="feature-list"><li>Stablecoin yield opportunities</li><li>Crypto staking</li><li>Cashback rewards of up to 8%</li></ul>
-        <p class="feature-close" style="margin-top:22px;">Hold less passively. Get more from your digital assets.</p>
-      </div>
-      <div class="feature-visual no-pad"><img loading="lazy" decoding="async" src="/images/feature-04.webp" alt="Earn and Rewards — 8% total rewards earned this month"></div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">05 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg></div>
-        <h3>Xerovan Balance</h3>
-        <div class="feature-kicker">One Balance. Every Xerovan Experience.</div>
-        <p class="feature-lede">Top up Xerovan Balance with crypto and pay instantly across every product and service in the ecosystem.</p>
-        <ul class="feature-list"><li>Top up using crypto</li><li>Make instant in-app payments</li><li>Pay for supported travel products</li></ul>
-        <p class="feature-close" style="margin-top:22px;">Fund once. Spend seamlessly across the ecosystem.</p>
-      </div>
-      <div class="feature-visual no-pad">
-        <img loading="lazy" decoding="async" src="/images/feature-05.webp" alt="Xerovan Balance — one balance across the ecosystem">
-      </div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">06 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M2 12l9-8 2 3h9l-3 5 3 5h-9l-2 3-9-8z"/></svg></div>
-        <h3>Travel Marketplace</h3>
-        <div class="feature-kicker">Pay, Book, and Travel Without Borders.</div>
-        <p class="feature-lede">Xerovan brings flights, hotels, tours, and eSIMs into one connected marketplace you can pay for with Xerovan Balance.</p>
-        <span class="tag-label">Travel Products</span>
-        <div class="tag-row"><span class="tag">Flights</span><span class="tag">Hotels</span><span class="tag">Tours & activities</span><span class="tag">eSIM services</span></div>
-        <ul class="feature-list" style="margin-top:20px;"><li>Travel marketplace powered by Trateria</li><li>Multilingual product discovery</li><li>Crypto-friendly payment options</li></ul>
-        <p class="feature-close" style="margin-top:22px;">Your wallet, card, and journey — finally connected.</p>
-      </div>
-      <div class="feature-visual no-pad">
-        <img loading="lazy" decoding="async" src="/images/feature-06.webp" alt="Travel Marketplace — pay, book, and travel without borders">
-      </div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">07 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></div>
-        <h3>Business Cards and Expense Management</h3>
-        <div class="feature-kicker">Control Every Card. Track Every Expense. Scale with Confidence.</div>
-        <p class="feature-lede">Xerovan lets companies issue cards, set spending policies, and track every expense from one centralized dashboard.</p>
-        <ul class="feature-list"><li>Apply merchant category restrictions</li><li>Create receipt-based approval workflows</li><li>Control spending by employee, team, or category</li></ul>
-        <span class="tag-label">Built For</span>
-        <div class="tag-row"><span class="tag">SMBs</span><span class="tag">Marketing agencies</span><span class="tag">Media-buying teams</span><span class="tag">Global freelancers</span><span class="tag">Remote teams</span><span class="tag">Frequent int'l expenses</span></div>
-        <p class="feature-close" style="margin-top:22px;">Empower your team without losing financial control.</p>
-      </div>
-      <div class="feature-visual no-pad">
-        <img loading="lazy" decoding="async" src="/images/feature-07.webp" alt="Business Cards and Expense Management — control every card, track every expense">
-      </div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">08 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6l8-4z"/></svg></div>
-        <h3>Security and Asset Protection</h3>
-        <div class="feature-kicker">Your Assets. Your Control. Advanced Protection.</div>
-        <p class="feature-lede">Xerovan combines self-custodial MPC wallet infrastructure with encryption and verification to protect every wallet, card, and transaction.</p>
-        <ul class="feature-list"><li>MPC wallet infrastructure</li><li>Data encryption</li><li>Transaction verification</li></ul>
-        <p class="feature-close" style="margin-top:22px;">Security built into every wallet, card, and transaction.</p>
-      </div>
-      <div class="feature-visual no-pad"><img loading="lazy" decoding="async" src="/images/feature-08.webp" alt="Security and Asset Protection — advanced protection for every wallet, card, and transaction"></div>
-    </div>
-
-    <div class="feature">
-      <div>
-        <span class="feature-num">09 / 09</span>
-        <div class="icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.6 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.6-3.8-9S9.5 5.5 12 3z"/></svg></div>
-        <h3>Global Access</h3>
-        <div class="feature-kicker">Built for a World Without Financial Borders.</div>
-        <p class="feature-lede">Xerovan is built for people and businesses that live, spend, and travel across countries and digital networks.</p>
-        <ul class="feature-list"><li>Multiple currency support</li><li>Global Visa acceptance</li><li>Solutions for individuals and businesses</li></ul>
-        <p class="feature-close" style="margin-top:22px;">One platform for wherever life and business take you.</p>
-      </div>
-      <div class="feature-visual no-pad" style="aspect-ratio:1/1;"><img loading="lazy" decoding="async" src="/images/feature-09.webp" alt="Global Access — one platform, global access"></div>
-    </div>
-  </div>
-</section>
+<section id="features" class="sx sx-2"><div class="sx-bg" role="img" aria-label="Global network"></div><div class="wrap"><div class="sx-head"><span class="eyebrow center">Xerovan core features</span></div><div class="sx-grid"><article class="sx-card"><div class="sx-num">05</div><h3>Smart Routing</h3><p>When you send, receive or convert crypto, Xerovan automatically finds the best route for efficient transactions and competitive fees.</p></article><article class="sx-card"><div class="sx-num">06</div><h3>Secure Card Sharing</h3><p>Safely share card access with family or other Xerovan users, and adjust spending limits and permissions at any time. The card owner always keeps final control.</p></article><article class="sx-card"><div class="sx-num">07</div><h3>Travel &amp; Rewards Ecosystem</h3><p>Book travel and eSIM services on the Xerovan token-based marketplace, and enjoy cashback, bonuses, partner programs and dApp services in one ecosystem.</p></article></div></div></section>
 
 <div class="divider" id="dividerBars3"></div>
 
@@ -1147,7 +972,7 @@
   fillDivider('dividerBars4', 40);
 
   document.getElementById('exploreBtn').addEventListener('click', () => {
-    document.getElementById('appPreview').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('summary').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
   /* Render the live preview at a normal mobile width (390px) so its own

@@ -254,7 +254,21 @@ def prerender(page):
     page = must(page, "  const ucTableBody = document.getElementById('ucTableBody');\n", "  const ucTableBody = document.getElementById('ucTableBody');\n  ucTableBody.innerHTML = '';\n")
     return page
 
+import importlib.util as _ilu
+_spec = _ilu.spec_from_file_location("summary", ROOT / "_build" / "summary.py"); SUM = _ilu.module_from_spec(_spec); _spec.loader.exec_module(SUM)
+
+def restructure(html, lang):
+    """Remove the live app preview, replace Summary + Features with the 2-screen Summary (7 core features)."""
+    html, n = re.subn(r'<section class="app-preview" id="appPreview">.*?</section>\n\n', '', html, flags=re.S); assert n == 1
+    page1, page2 = SUM.section(lang)
+    html, n = re.subn(r'<section id="summary">.*?</section>', lambda m: page1, html, flags=re.S); assert n == 1
+    html, n = re.subn(r'<section id="features">.*?</section>', lambda m: page2, html, flags=re.S); assert n == 1
+    html = must(html, "    document.getElementById('appPreview').scrollIntoView(", "    document.getElementById('summary').scrollIntoView(")
+    html = must(html, "  .latest{padding:100px 0;}", SUM.CSS + "  .latest{padding:100px 0;}")
+    return html
+
 def finalize(html, lang):
+    html = restructure(html, lang)
     # hide footer links that have no destination yet (Company column, Fees)
     # Company column: keep only "About Us" (now a real page), drop Careers / Partners until they exist
     html, n = re.subn(r'<div class="footer-col"><h5>([^<]*)</h5><ul><li><a href="#">([^<]*)</a></li>(?:<li><a href="#">[^<]*</a></li>){2}</ul></div>',
