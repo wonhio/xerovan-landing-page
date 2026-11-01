@@ -79,6 +79,11 @@
       "permanent": false
     },
     {
+      "source": "/kr/blog/custodial-vs-non-custodial",
+      "destination": "/kr/blog/custodial-vs-non-custodial-crypto-card-ko",
+      "permanent": true
+    },
+    {
       "source": "/ko",
       "destination": "/kr/",
       "permanent": true
