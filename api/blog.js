@@ -312,7 +312,7 @@ function layout({ lang, title, description, canonical, alternates, ogImage, ogTy
     .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
     @media(max-width:600px){.wrap{padding:0 16px}}
 
-    header{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(10,11,13,.78);border-bottom:1px solid var(--line)}
+    body>header{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(10,11,13,.78);border-bottom:1px solid var(--line)}
     nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 32px;max-width:1180px;margin:0 auto}
     @media(max-width:600px){nav{padding:12px 16px}}
     .brand{display:flex;align-items:center;gap:10px}
