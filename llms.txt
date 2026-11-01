@@ -13,6 +13,14 @@ The site is available in English, Korean, Japanese, Spanish, Arabic and Portugue
 - [Xerovan (العربية)](https://www.xerovan.com/ar/): Arabic version
 - [Xerovan (Português)](https://www.xerovan.com/pt/): Portuguese version
 
+## Solutions
+
+- [Virtual cards for ad spend](https://www.xerovan.com/en/solutions/crypto-card-for-ads): dedicated cards per client, campaign and ad platform, funded with crypto
+- [Card for international subscriptions](https://www.xerovan.com/en/solutions/card-for-international-subscriptions): a virtual Visa card for USD-billed AI, SaaS, cloud and streaming services
+- [Crypto travel card](https://www.xerovan.com/en/solutions/crypto-travel-card): spend abroad with Visa, Apple Pay and Google Pay, and book flights, hotels and eSIM
+- [Spend crypto with Visa](https://www.xerovan.com/en/solutions/spend-crypto-with-visa): self-custodial multi-chain wallet connected to a Visa card
+- Each page is also available in Korean, Japanese, Spanish, Arabic and Portuguese (replace /en/ with /kr/, /ja/, /es/, /ar/ or /pt/)
+
 ## Company
 
 - [About Xerovan](https://www.xerovan.com/en/about): mission, founder (Jay Yoon), headquarters (Dubai, UAE) and contact (hello@xerovan.com)

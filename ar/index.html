@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Xerovan — محفظة عملات مشفرة وبطاقة Visa للمدفوعات العالمية</title>
-    <meta name="description" content="تجمع Xerovan محافظك ومدفوعاتك ومكافآتك وسفرك ونفقات أعمالك في منصة واحدة آمنة.">
+    <meta name="description" content="أنفق عملاتك المشفرة أينما تُقبل Visa. محفظة ذاتية الحفظ وبطاقات Visa تُشحن بالعملات المشفرة ومكافآت وحجوزات سفر في تطبيق واحد.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Xerovan">
     <meta property="og:title" content="Xerovan — المحافظ والمدفوعات والمكافآت والسفر في مكان واحد">
@@ -134,14 +134,15 @@
     52%{opacity:0.9; transform:translate(0,-3px) scale(1);}
     100%{opacity:0; transform:translate(var(--sx,4px),-30px) scale(0.25);}
   }
-  h1.hero-title{font-family:'Unbounded','Noto Sans Arabic'; font-weight:700; font-size:clamp(38px, 7.2vw, 84px); line-height:1; letter-spacing:-0.01em; position:relative; z-index:1;}
-  h1.hero-title .metal{
+  .hero-title{font-family:'Unbounded','Noto Sans Arabic'; font-weight:700; font-size:clamp(38px, 7.2vw, 84px); line-height:1; letter-spacing:-0.01em; position:relative; z-index:1;}
+  .hero-title .metal{
     background:linear-gradient(100deg, var(--silver-500) 0%, var(--silver-100) 22%, #ffffff 38%, var(--silver-300) 52%, var(--silver-500) 70%, var(--silver-100) 100%);
     background-size:260% 100%;
     -webkit-background-clip:text; background-clip:text; color:transparent;
   }
-  @media (prefers-reduced-motion:no-preference){ h1.hero-title .metal{ animation:text-shine 6.5s ease-in-out infinite; } }
+  @media (prefers-reduced-motion:no-preference){ .hero-title .metal{ animation:text-shine 6.5s ease-in-out infinite; } }
   @keyframes text-shine{ 0%{background-position:0% 50%;} 100%{background-position:100% 50%;} }
+  h1.hero-sub{font-family:inherit; font-weight:400; letter-spacing:normal;}
   .hero-sub{max-width:540px; margin:22px auto 40px; font-size:16.5px; line-height:1.65; color:var(--silver-500); position:relative; z-index:1;}
   .hero-ctas{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; position:relative; z-index:2;}
 
@@ -463,8 +464,8 @@
 
 <section class="hero" id="top">
   <div class="waveform" id="heroWave"></div>
-  <h1 class="hero-title"><span class="metal">Value in Motion</span></h1>
-  <p class="hero-sub">تجمع Xerovan محافظك ومدفوعاتك ومكافآتك وسفرك ونفقات أعمالك في منصة واحدة آمنة.</p>
+  <p class="hero-title"><span class="metal">Value in Motion</span></p>
+  <h1 class="hero-sub">محفظة عملات مشفرة وبطاقة Visa للمدفوعات العالمية — المحافظ والمكافآت والسفر ونفقات الأعمال في تطبيق واحد آمن.</h1>
   <div class="hero-ctas">
     <a href="#waitlist" class="btn-primary">انضم إلى قائمة الانتظار</a>
     <button class="btn-ghost" id="exploreBtn">استكشف التطبيق</button>
@@ -555,6 +556,7 @@
         <div class="footer-col"><h5>الشركة</h5><ul><li><a href="/ar/about">من نحن</a></li></ul></div>
         <div class="footer-col"><h5>الموارد</h5><ul><li><button type="button" class="legal-link-btn" id="helpTrigger3">مركز المساعدة</button></li><li><a href="#faq">FAQ</a></li><li><a href="/ar/blog">المدونة</a></li></ul></div>
         <div class="footer-col"><h5>قانوني</h5><ul id="legalLinks"><li><a href="/ar/legal/terms">الشروط والأحكام</a></li><li><a href="/ar/legal/privacy">سياسة الخصوصية</a></li><li><a href="/ar/legal/refund">سياسة الاسترداد</a></li><li><a href="/ar/legal/risk-disclosure">الإفصاح عن المخاطر</a></li><li><a href="/ar/legal/compliance">الامتثال</a></li></ul></div>
+        <div class="footer-col"><h5>الحلول</h5><ul><li><a href="/ar/solutions/crypto-card-for-ads">بطاقات الإنفاق الإعلاني</a></li><li><a href="/ar/solutions/card-for-international-subscriptions">بطاقة الاشتراكات الدولية</a></li><li><a href="/ar/solutions/crypto-travel-card">بطاقة سفر بالعملات المشفرة</a></li><li><a href="/ar/solutions/spend-crypto-with-visa">أنفق العملات المشفرة عبر Visa</a></li></ul></div>
         <div class="footer-col"><h5>SNS</h5><div class="footer-social"><a href="https://x.com/XerovanC" target="_blank" rel="noopener">X</a><a href="https://www.instagram.com/xerovancard/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/profile.php?id=61594055002981" target="_blank" rel="noopener">Facebook</a><a href="https://discord.com/channels/@me" target="_blank" rel="noopener">Discord</a></div></div>
       </div>
     </div>

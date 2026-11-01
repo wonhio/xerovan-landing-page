@@ -17,6 +17,7 @@
  *   SITE_URL    default https://www.xerovan.com
  */
 
+const SOL = require('./_solutions.js');
 const WP = (process.env.WP_ORIGIN || 'https://cms.xerovan.com').replace(/\/$/, '');
 const SITE = (process.env.SITE_URL || 'https://www.xerovan.com').replace(/\/$/, '');
 const PER_PAGE = 9;
@@ -261,7 +262,7 @@ const fmtDate = (iso, lang) => {
 function layout({ lang, title, description, canonical, alternates, ogImage, ogType = 'website', body, jsonLd, noindex = false, hreflang = true }) {
   const L = LANGS[lang], t = T[lang];
   const alts = !hreflang ? '' : (alternates || Object.keys(LANGS).map((k) => [k, `${SITE}/${k}/blog`]))
-    .map(([k, href]) => `<link rel="alternate" hreflang="${LANGS[k].hl}" href="${esc(href)}">`).join('\n  ');
+    .map(([k, href]) => `<link rel="alternate" hreflang="${k === 'x-default' ? 'x-default' : LANGS[k].hl}" href="${esc(href)}">`).join('\n  ');
   const langLinks = Object.entries(LANGS).map(([k, v]) => {
     const alt = (alternates || []).find(([a]) => a === k);
     const href = alt ? alt[1].replace(SITE, '') : `/${k}/blog`;
@@ -440,6 +441,26 @@ function layout({ lang, title, description, canonical, alternates, ogImage, ogTy
     .btn:hover{border-color:var(--silver-500);color:var(--silver-100)}
     .btn.primary{background:linear-gradient(180deg,#fff 0%,#e2e6ea 35%,#b7bec4 60%,#eef1f3 100%);color:#0a0b0d;border:none}
 
+    .sol-hero p.lede{max-width:680px;margin:18px auto 0;color:var(--silver-300);font-size:17px;line-height:1.75}
+    .sol-hero .cta-row{margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .sol{max-width:820px;margin:0 auto;padding:10px 0 40px}
+    .sol section{margin-top:54px}
+    .sol h2{font-family:var(--f-display);font-size:22px;line-height:1.3;color:var(--silver-100);margin-bottom:16px}
+    .sol p{color:var(--silver-300);font-size:16px;line-height:1.8}
+    .sol-list{list-style:none;display:grid;gap:12px}
+    .sol-list li{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;color:var(--silver-300);font-size:15.5px;line-height:1.6;padding-inline-start:44px;position:relative}
+    .sol-list li::before{content:"";position:absolute;inset-inline-start:18px;top:23px;width:8px;height:8px;border-radius:50%;background:var(--ice)}
+    .sol-steps{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;counter-reset:s}
+    @media(max-width:760px){.sol-steps{grid-template-columns:1fr}}
+    .sol-steps li{counter-increment:s;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;color:var(--silver-300);font-size:15px;line-height:1.6}
+    .sol-steps li::before{content:"0" counter(s);display:block;font-family:var(--f-mono);color:var(--ice);font-size:12px;letter-spacing:.15em;margin-bottom:10px}
+    .sol-faq details{border-bottom:1px solid var(--line);padding:18px 0}
+    .sol-faq summary{cursor:pointer;font-weight:600;color:var(--silver-100);font-size:16px;line-height:1.5}
+    .sol-faq details p{margin-top:12px;font-size:15.5px}
+    .sol-cta{margin-top:60px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:34px;text-align:center}
+    .sol-cta h2{margin-bottom:20px}
+    .sol-note{margin-top:22px;font-size:13px !important;color:var(--text-dim) !important;line-height:1.6 !important}
+    .sol-more{display:flex;gap:10px;flex-wrap:wrap}
     footer{padding:44px 0;border-top:1px solid var(--line);background:var(--panel-3);font-family:var(--f-mono);font-size:11px;color:var(--text-dim)}
     footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     footer a:hover{color:var(--silver-100)}
@@ -472,6 +493,7 @@ ${body}
 <footer>
   <div class="wrap">
     <span>© ${new Date().getFullYear()} Xerovan. All rights reserved.</span>
+    <span>${SOL.SLUGS.map((k, i) => `<a href="/${lang}/solutions/${k}">${esc(SOL.UI[lang].short[i])}</a>`).join(' · ')}</span>
     <span><a href="/${lang}/">xerovan.com</a> · <a href="/${lang}/about">${esc(ABOUT[lang].eyebrow)}</a> · <a href="/${lang}/blog/feed.xml">RSS</a></span>
   </div>
 </footer>
@@ -607,6 +629,30 @@ function legalView(lang, doc, slug) {
   </article>`;
 }
 
+function solutionView(lang, slug) {
+  const U = SOL.UI[lang], t = T[lang];
+  const [, , h1, lede, problemH, problem, features, steps, faq] = SOL.P[slug][lang];
+  const name = U.short[SOL.SLUGS.indexOf(slug)];
+  const more = SOL.SLUGS.filter((k) => k !== slug).map((k) => `<a class="chip" href="/${lang}/solutions/${k}">${esc(U.short[SOL.SLUGS.indexOf(k)])}</a>`).join('');
+  return `
+  <section class="blog-hero sol-hero"><div class="wrap">
+    <div class="crumb" style="font-family:var(--f-mono);font-size:12px;color:var(--text-dim);margin-bottom:26px"><a href="/${lang}/">${esc(t.home)}</a> / ${esc(U.eyebrow)} / ${esc(name)}</div>
+    <span class="eyebrow">${esc(U.eyebrow)}</span>
+    <h1 class="metal">${esc(h1)}</h1>
+    <p class="lede">${esc(lede)}</p>
+    <div class="cta-row"><a class="btn primary" href="/${lang}/#waitlist">${esc(U.cta)}</a></div>
+  </div></section>
+  <div class="wrap"><div class="sol">
+    <section><h2>${esc(problemH)}</h2><p>${esc(problem)}</p></section>
+    <section><h2>${esc(U.featuresH)}</h2><ul class="sol-list">${features.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></section>
+    <section><h2>${esc(U.stepsH)}</h2><ol class="sol-steps">${steps.map((x) => `<li>${esc(x)}</li>`).join('')}</ol></section>
+    <section class="sol-faq"><h2>${esc(U.faqH)}</h2>${faq.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</section>
+    <div class="sol-cta"><h2>${esc(U.ctaH)}</h2><a class="btn primary" href="/${lang}/#waitlist">${esc(U.cta)}</a><p class="sol-note">${esc(U.note)}</p></div>
+    <section><h2>${esc(U.moreH)}</h2><div class="sol-more">${more}<a class="chip" href="/${lang}/blog/category/guide">${esc(TOPIC_LABEL[lang].guide)}</a></div></section>
+    <div style="height:60px"></div>
+  </div></div>`;
+}
+
 function messageView(lang, heading, text) {
   return `<section class="blog-hero"><div class="wrap"><h1 class="metal">${esc(heading)}</h1><p>${esc(text)}</p>
     <p style="margin-top:30px"><a class="btn" href="/${lang}/blog">${esc(T[lang].back)}</a></p></div></section><div style="height:120px"></div>`;
@@ -618,6 +664,7 @@ async function sitemap() {
   const urls = [];
   for (const lang of Object.keys(LANGS)) {
     urls.push({ loc: `${SITE}/${lang}/about`, lastmod: null });
+    SOL.SLUGS.forEach((k) => urls.push({ loc: `${SITE}/${lang}/solutions/${k}`, lastmod: null }));
     urls.push({ loc: `${SITE}/${lang}/blog`, lastmod: null });
     try {
       const cat = await categoryId(lang);
@@ -691,6 +738,26 @@ module.exports = async (req, res) => {
   let slug = typeof q.slug === 'string' ? q.slug : '';
   try { slug = decodeURIComponent(slug); } catch { /* keep as is */ }
   slug = slug.normalize('NFC').toLowerCase().replace(/[^\p{L}\p{N}\-_]/gu, '').slice(0, 200);
+
+  if (q.solution) {
+    const sslug = String(q.solution).toLowerCase();
+    if (!SOL.P[sslug]) {
+      return send(404, layout({ lang, title: `${t.notFound} | Xerovan`, description: t.notFoundText, canonical: `${SITE}/${lang}/`, body: messageView(lang, t.notFound, t.notFoundText), noindex: true }));
+    }
+    const [title, description, h1, , , , , , faq] = SOL.P[sslug][lang];
+    const url = `${SITE}/${lang}/solutions/${sslug}`;
+    const U = SOL.UI[lang];
+    return send(200, layout({
+      lang, title, description, canonical: url,
+      alternates: [...Object.keys(LANGS).map((k) => [k, `${SITE}/${k}/solutions/${sslug}`]), ['x-default', `${SITE}/en/solutions/${sslug}`]],
+      body: solutionView(lang, sslug),
+      jsonLd: [crumbs([['Xerovan', `${SITE}/${lang}/`], [U.short[SOL.SLUGS.indexOf(sslug)], url]]),
+        { '@context': 'https://schema.org', '@type': 'WebPage', name: h1, description, url, inLanguage: LANGS[lang].hl,
+          isPartOf: { '@type': 'WebSite', name: 'Xerovan', url: `${SITE}/` } },
+        { '@context': 'https://schema.org', '@type': 'FAQPage', inLanguage: LANGS[lang].hl,
+          mainEntity: faq.map(([q2, a]) => ({ '@type': 'Question', name: q2, acceptedAnswer: { '@type': 'Answer', text: a } })) }],
+    }), 'text/html; charset=utf-8', 's-maxage=3600, stale-while-revalidate=86400');
+  }
 
   if (q.about) {
     const A = ABOUT[lang];
