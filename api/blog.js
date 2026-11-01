@@ -229,6 +229,25 @@ async function langPosts(lang, cat) {
   return out;
 }
 
+/** The post page already prints the title as its only <h1>: drop a leading <h1> that repeats it, demote any other <h1> to <h2>. */
+function tidyHeadings(html) {
+  return String(html || '')
+    .replace(/^\s*(<!--[^>]*-->\s*)?<h1\b[^>]*>[\s\S]*?<\/h1>\s*/i, '')
+    .replace(/<h1\b/gi, '<h2').replace(/<\/h1>/gi, '</h2>');
+}
+
+/** Meta description: the editor's excerpt when one was written; otherwise the opening text without headings,
+ *  so an auto-excerpt that starts with the repeated title is not used. */
+function describe(p) {
+  const raw = clip(stripTags(p.excerpt?.rendered), 180);
+  const heading = stripTags((String(p.content?.rendered || '').match(/<h[1-6]\b[^>]*>([\s\S]*?)<\/h[1-6]>/i) || [])[1] || '');
+  const title = stripTags(p.title?.rendered);
+  const starts = (x) => x && raw.slice(0, 20) && x.startsWith(raw.slice(0, 20));
+  if (raw && !starts(heading) && !starts(title)) return raw;
+  const body = String(p.content?.rendered || '').replace(/<(h[1-6]|figure|table)\b[\s\S]*?<\/\1>/gi, ' ');
+  return clip(stripTags(body).replace(/\s+/g, ' ').trim(), 155) || raw;
+}
+
 function shape(p, lang, tmap = {}) {
   const media = p._embedded?.['wp:featuredmedia']?.[0];
   const img = media?.source_url ? publicize(media.source_url, lang) : null;
@@ -239,13 +258,13 @@ function shape(p, lang, tmap = {}) {
     slug: p.slug,
     topic: topicOf(p, tmap),
     title: stripTags(p.title?.rendered),
-    excerpt: clip(stripTags(p.excerpt?.rendered), 180),
-    content: publicize(p.content?.rendered, lang),
+    excerpt: describe(p),
+    content: publicize(tidyHeadings(p.content?.rendered), lang),
     date: p.date_gmt ? p.date_gmt + 'Z' : p.date,
     modified: p.modified_gmt ? p.modified_gmt + 'Z' : p.modified,
     image: img,
     imageAlt: media?.alt_text || stripTags(p.title?.rendered),
-    author: 'Admin', // shown on every post; structured data credits the Xerovan organization
+    author: FOUNDER, // shown on every post and credited in structured data (links to the About page)
     minutes: Math.max(1, Math.round(cjk ? chars / 500 : words / 220)),
     // Optional: a translation slug in another language, set via a WP custom field "translations" = "kr:slug-ko,ja:slug-ja"
     translations: Object.fromEntries(String(p.meta?.translations || '')
@@ -567,10 +586,13 @@ function postView(lang, p) {
         <div class="crumb"><a href="/${lang}/">${esc(t.home)}</a><span>/</span><a href="/${lang}/blog">${esc(t.blog)}</a>${p.topic ? `<span>/</span><a href="/${lang}/blog/category/${p.topic}">${esc(TOPIC_LABEL[lang][p.topic])}</a>` : ''}</div>
         ${p.topic ? `<a class="chip" href="/${lang}/blog/category/${p.topic}">${esc(TOPIC_LABEL[lang][p.topic])}</a>` : ''}
         <h1>${esc(p.title)}</h1>
-        <div class="meta">${esc(fmtDate(p.date, lang))} · ${esc(p.author)} · ${p.minutes} ${esc(t.min)}</div>
+        <div class="meta">${esc(fmtDate(p.date, lang))} · <a href="/${lang}/about">${esc(p.author)}</a> · ${p.minutes} ${esc(t.min)}</div>
       </header>
       ${p.image ? `<figure class="cover"><img src="${esc(p.image)}" alt="${esc(p.imageAlt)}"></figure>` : ''}
       <div class="prose">${p.content}</div>
+      <nav class="post-foot" style="border-top:none;padding:0 0 26px;justify-content:flex-start" aria-label="${esc(SOL.UI[lang].eyebrow)}">
+        ${SOL.SLUGS.map((k, i) => `<a class="chip" href="/${lang}/solutions/${k}">${esc(SOL.UI[lang].short[i])}</a>`).join('')}
+      </nav>
 
       <div class="post-foot">
         <a class="btn" href="/${lang}/blog">${LANGS[lang].rtl ? '→' : '←'} ${esc(t.back)}</a>
@@ -833,7 +855,7 @@ module.exports = async (req, res) => {
           '@context': 'https://schema.org', '@type': 'BlogPosting', headline: p.title, description: p.excerpt,
           datePublished: p.date, dateModified: p.modified, inLanguage: LANGS[lang].hl,
           mainEntityOfPage: canonical, image: p.image ? `${SITE}${p.image}` : `${SITE}/images/og-preview.jpg`,
-          author: { '@type': 'Organization', name: 'Xerovan', url: `${SITE}/${lang}/about` },
+          author: founderLD(lang),
           publisher: { '@type': 'Organization', name: 'Xerovan', logo: { '@type': 'ImageObject', url: `${SITE}/images/logo-icon.png` } },
         }],
       }));
