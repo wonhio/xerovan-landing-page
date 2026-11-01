@@ -285,6 +285,43 @@ def drop_usecase_extras(html):
     html, n = re.subn(r"  const ucTableBody = document.getElementById\('ucTableBody'\);\n  ucTableBody.innerHTML = '';\n  summaryTable.forEach\(row => \{.*?\n  \}\);\n", '', html, flags=re.S); assert n == 1
     return html
 
+
+# SEO: a descriptive H1 (the "Value in Motion" tagline stays as the visual headline)
+HERO_H1 = {
+    "en": "Crypto wallet and Visa card for global payments — wallets, rewards, travel and business spending in one secure app.",
+    "kr": "크립토 지갑과 Visa 카드로 해외결제까지 — 지갑, 리워드, 여행, 비즈니스 지출을 하나의 안전한 앱에서.",
+    "ja": "暗号資産ウォレットとVisaカードで海外決済まで — ウォレット、リワード、旅行、ビジネス支出をひとつの安全なアプリで。",
+    "es": "Billetera cripto y tarjeta Visa para pagos globales: billeteras, recompensas, viajes y gastos de empresa en una sola app segura.",
+    "ar": "محفظة عملات مشفرة وبطاقة Visa للمدفوعات العالمية — المحافظ والمكافآت والسفر ونفقات الأعمال في تطبيق واحد آمن.",
+    "pt": "Carteira cripto e cartão Visa para pagamentos globais: carteiras, recompensas, viagens e gastos empresariais em um só app seguro.",
+}
+META_DESC = {
+    "en": "Spend crypto wherever Visa is accepted. Self-custodial wallet, crypto-funded Visa cards, rewards and travel booking in one app. Join the Xerovan waitlist.",
+    "kr": "Visa 가맹점 어디서나 크립토로 결제하세요. 셀프 커스터디 지갑, 크립토 충전 Visa 카드, 리워드, 여행 예약을 하나의 앱에서. Xerovan 대기자 명단에 등록하세요.",
+    "ja": "Visa加盟店で暗号資産を使って支払い。セルフカストディ型ウォレット、暗号資産でチャージするVisaカード、リワード、旅行予約をひとつのアプリで。",
+    "es": "Gasta cripto donde se acepte Visa. Billetera de autocustodia, tarjetas Visa recargadas con cripto, recompensas y reservas de viaje en una app.",
+    "ar": "أنفق عملاتك المشفرة أينما تُقبل Visa. محفظة ذاتية الحفظ وبطاقات Visa تُشحن بالعملات المشفرة ومكافآت وحجوزات سفر في تطبيق واحد.",
+    "pt": "Gaste cripto onde a Visa é aceita. Carteira de autocustódia, cartões Visa recarregados com cripto, recompensas e reservas de viagem em um só app.",
+}
+import subprocess as _sp, json as _json2
+_SOL = _json2.loads(_sp.run(["node", "-e", "const s=require(process.argv[1]);console.log(JSON.stringify({slugs:s.SLUGS,ui:Object.fromEntries(Object.entries(s.UI).map(([k,v])=>[k,{h:v.eyebrow,short:v.short}]))}))",
+                             str(ROOT / "api" / "_solutions.js")], capture_output=True, text=True, check=True).stdout)
+
+def seo_home(html, lang):
+    html, n = re.subn(r'<h1 class="hero-title">(<span class="metal">[^<]*</span>)</h1>\n  <p class="hero-sub">[^<]*</p>',
+                      lambda m: f'<p class="hero-title">{m.group(1)}</p>\n  <h1 class="hero-sub">{_html.escape(HERO_H1[lang], quote=False)}</h1>', html)
+    assert n == 1, "hero not found"
+    html = html.replace("h1.hero-title", ".hero-title")
+    html = must(html, "  .hero-sub{", "  h1.hero-sub{font-family:inherit; font-weight:400; letter-spacing:normal;}\n  .hero-sub{", 1)
+    html, n = re.subn(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{_html.escape(META_DESC[lang])}">', html)
+    assert n == 1, "meta description not found"
+    U = _SOL["ui"][lang]
+    col = (f'<div class="footer-col"><h5>{U["h"]}</h5><ul>'
+           + "".join(f'<li><a href="/{lang}/solutions/{k}">{_html.escape(U["short"][i])}</a></li>' for i, k in enumerate(_SOL["slugs"]))
+           + '</ul></div>\n        ')
+    html = must(html, '<div class="footer-col"><h5>SNS</h5>', col + '<div class="footer-col"><h5>SNS</h5>', 1)
+    return html
+
 def finalize(html, lang):
     html = restructure(html, lang)
     # hide footer links that have no destination yet (Company column, Fees)
@@ -313,7 +350,7 @@ def finalize(html, lang):
                 '  <div class="mobile-menu" id="mobileMenu" hidden>\n' + links + '\n  </div>\n</header>', 1)
     html = must(html, '  .lang-menu{position:relative;}', MOBILE_CSS + '  .lang-menu{position:relative;}', 1)
     html = must(html, '  /* Google Sheet waitlist webhook (Apps Script Web App) */', MOBILE_JS + '\n  /* Google Sheet waitlist webhook (Apps Script Web App) */', 1)
-    return faq_schema(drop_usecase_extras(prerender(html)), lang)
+    return seo_home(faq_schema(drop_usecase_extras(prerender(html)), lang), lang)
 
 def faq_schema(html, lang):
     """FAQPage structured data built from the same FAQ that is pre-rendered on the page (rich results in Google)."""

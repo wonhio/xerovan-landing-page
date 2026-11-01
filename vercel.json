@@ -123,6 +123,10 @@
       "destination": "/api/blog?lang=:lang&legal=:doc"
     },
     {
+      "source": "/:lang(en|kr|ja|es|ar|pt)/solutions/:solution",
+      "destination": "/api/blog?lang=:lang&solution=:solution"
+    },
+    {
       "source": "/:lang(en|kr|ja|es|ar|pt)/about",
       "destination": "/api/blog?lang=:lang&about=1"
     },
