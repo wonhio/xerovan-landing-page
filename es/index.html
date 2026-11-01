@@ -328,10 +328,10 @@
   .hero{background-image:url("/images/bg-hero.webp");background-position:center;}
   #usecases{background-image:url("/images/bg-usecases.webp");background-position:center;}
   #usecases .uc-item{background:rgba(16,17,20,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:rgba(255,255,255,.1);}
-  @media(max-width:1000px){ #faq{background-image:linear-gradient(rgba(11,12,14,.75),rgba(11,12,14,.75)),url("/images/bg-faq.webp");} }
   #faq{background-image:url("/images/bg-faq.webp");background-position:center;}
-  #waitlist{background-image:url("/images/bg-cta.webp");background-position:center bottom;}
-  @media(max-width:760px){ .hero{background-position:84% 30%;} .hero::after{background:radial-gradient(ellipse 70% 40% at 50% 52%,rgba(8,8,10,.82),rgba(8,8,10,.4) 70%,transparent 90%) !important;} #usecases{background-position:18% center;} }
+  #waitlist{background-image:url("/images/bg-cta.webp");background-position:center bottom;padding-bottom:430px;}
+  @media(max-width:760px){ #waitlist{padding-bottom:340px;background-size:auto 100%;} }
+  @media(max-width:760px){ .hero{background-position:84% 30%;} .hero::after{background:radial-gradient(ellipse 70% 40% at 50% 52%,rgba(8,8,10,.82),rgba(8,8,10,.4) 70%,transparent 90%) !important;} #usecases{background-position:center;} }
   .divider{background:rgba(19,20,23,0.7) !important;}
   /* calm pool behind the hero copy */
   .hero::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 40% 44% at 50% 54%,rgba(8,8,10,.7),rgba(8,8,10,.3) 60%,transparent 80%);}
