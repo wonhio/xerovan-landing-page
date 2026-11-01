@@ -264,8 +264,18 @@ def restructure(html, lang):
     html, n = re.subn(r'<section id="summary">.*?</section>\n\n<div class="divider" id="dividerBars2"></div>\n\n', '', html, flags=re.S); assert n == 1
     html, n = re.subn(r'<section id="features">.*?</section>', lambda m: SUM.section(lang), html, flags=re.S); assert n == 1
     html, n = re.subn(r'<a href="#summary">[^<]*</a>', f'<a href="#top">{SUM.HOME[lang]}</a>', html); assert n >= 1
-    html = must(html, "    document.getElementById('appPreview').scrollIntoView(", "    document.getElementById('features').scrollIntoView(")
-    html = must(html, "  .latest{padding:100px 0;}", SUM.CSS + SUM.SITE_BG_CSS + "  .latest{padding:100px 0;}")
+    # "Explore the app" -> app download (store by device, or the download panel); drop the old scroll handler
+    html, n = re.subn(r"  document.getElementById\('exploreBtn'\).addEventListener\('click', \(\) => \{\n    document.getElementById\('appPreview'\).scrollIntoView\([^\n]*\n  \}\);\n", "", html); assert n == 1
+    html = html.replace('<a href="#" class="store-badge">', '<a href="#" class="store-badge" data-store="ios">', 1)
+    html = html.replace('<a href="#" class="store-badge">', '<a href="#" class="store-badge" data-store="android">', 1)
+    assert 'data-store="android"' in html
+    badges = re.search(r'<div class="store-badges">\s*(.*?)\s*</div>\n      </div>', html, re.S).group(1)
+    modal_badges = re.sub(r' data-store="[a-z]+"', '', badges)
+    if not (SUM.APP_STORE_URL or SUM.PLAY_STORE_URL):
+        modal_badges = modal_badges.replace('class="store-badge"', 'class="store-badge soon" aria-disabled="true"')
+    html = must(html, "</body>", SUM.app_modal(lang, modal_badges) + "\n</body>", 1)
+    html = must(html, '  /* Google Sheet waitlist webhook (Apps Script Web App) */', SUM.app_js() + '\n  /* Google Sheet waitlist webhook (Apps Script Web App) */', 1)
+    html = must(html, "  .latest{padding:100px 0;}", SUM.CSS + SUM.SITE_BG_CSS + SUM.APP_CSS + "  .latest{padding:100px 0;}")
     html = must(html, "<body>", '<body>\n<div class="site-bg" aria-hidden="true"></div>', 1)
     return html
 

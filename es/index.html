@@ -319,9 +319,25 @@
   .sx-card p{font-size:13.5px;line-height:1.65;color:var(--silver-300);}
   /* site-wide crypto background (fixed behind every section) */
   .site-bg{position:fixed;inset:0;z-index:-1;pointer-events:none;background:#07080a url("/images/site-bg.webp") left top / cover no-repeat;}
-  @media(max-width:760px){ .site-bg{background-position:22% top;} }
+  @media(max-width:760px){ .site-bg{background-position:72% top;} }
+  /* calm pool behind the hero copy so the globe never competes with the headline */
+  .hero::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 42% 46% at 50% 54%,rgba(6,8,12,.78),rgba(6,8,12,.35) 60%,transparent 80%);}
+  .hero > *{position:relative;z-index:1;}
+  .hero .btn-ghost{background:rgba(10,11,13,.6);backdrop-filter:blur(6px);}
   .divider{background:rgba(19,20,23,0.55) !important;backdrop-filter:blur(6px);}
   footer{background:rgba(9,10,12,0.88) !important;}
+  .app-dl{position:fixed;inset:0;z-index:400;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(5,7,11,.72);backdrop-filter:blur(8px);}
+  .app-dl[hidden]{display:none;}
+  .app-dl-box{position:relative;width:min(440px,100%);border:1px solid var(--line);border-radius:22px;padding:34px 30px 30px;text-align:center;background:linear-gradient(180deg,#14161b,#0d0e11);box-shadow:0 40px 90px -30px rgba(0,0,0,.9);}
+  .app-dl-box h3{font-family:'Unbounded';font-size:20px;font-weight:600;margin:6px 0 8px;}
+  .app-dl-box p{color:var(--silver-500);font-size:14.5px;line-height:1.6;}
+  .app-dl-stores{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:22px 0 4px;}
+  .app-dl-stores .store-badge{padding:12px 18px;}
+  .app-dl-stores .store-badge.soon{opacity:.55;pointer-events:none;}
+  .app-dl-soon{margin-top:14px;}
+  .app-dl-soon .btn-primary{margin-top:16px;display:inline-flex;}
+  .app-dl-x{position:absolute;top:12px;right:14px;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--silver-300);font-size:18px;cursor:pointer;}
+  [dir="rtl"] .app-dl-x{right:auto;left:14px;}
   .latest{padding:100px 0;}
   .latest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
   @media(max-width:900px){ .latest-grid{grid-template-columns:1fr;} }
@@ -505,11 +521,11 @@
         </div>
         <p><strong style="color:var(--silver-100);">Gestiona. Gana. Gasta. Viaja.</strong><br>La plataforma financiera Web3 todo en uno para usuarios modernos.</p>
         <div class="store-badges">
-          <a href="#" class="store-badge">
+          <a href="#" class="store-badge" data-store="ios">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 3c.2 1.3-.3 2.6-1 3.5-.8.9-2 1.6-3.2 1.5-.2-1.3.4-2.6 1.1-3.4.8-.9 2.1-1.5 3.1-1.6z"/><path d="M20.7 16.3c-.5 1.3-.8 1.9-1.5 3-1 1.6-2.4 3.5-4.2 3.5-1.6 0-2-1-3.9-1-2 0-2.5 1-4 1-1.7 0-3.1-1.7-4.1-3.3C0.7 16.4-.3 12 1.9 9c1.1-1.5 2.8-2.3 4.4-2.3 1.6 0 2.7.9 4 .9 1.3 0 2.1-.9 4-.9 1.5 0 3 .8 4.1 2.1-3.6 2-3 7.1 1.8 7.6-.2.6.3-.1.5-.1z"/></svg>
             <span class="store-text"><span class="small">Download on the</span><span class="big">App Store</span></span>
           </a>
-          <a href="#" class="store-badge">
+          <a href="#" class="store-badge" data-store="android">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.4 2.7 14 12 4.4 21.3c-.5-.3-.9-.8-.9-1.5V4.2c0-.7.4-1.2.9-1.5z"/><path d="M15 13l2.9-2.9 3.6 2c.9.5.9 1.8 0 2.3l-3.6 2L15 13z"/><path d="M14 12 4.4 2.7c.1-.1.3-.1.4-.1.3 0 .6.1.9.2l10.8 6.1L14 12z"/><path d="M14 12l2.5 2.9-10.8 6.1c-.3.2-.6.2-.9.2-.1 0-.3 0-.4-.1L14 12z"/></svg>
             <span class="store-text"><span class="small">Get it on</span><span class="big">Google Play</span></span>
           </a>
@@ -1086,9 +1102,6 @@
   fillDivider('dividerBars3', 40);
   fillDivider('dividerBars4', 40);
 
-  document.getElementById('exploreBtn').addEventListener('click', () => {
-    document.getElementById('features').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
 
   /* Render the live preview at a normal mobile width (390px) so its own
      responsive layout doesn't squish, then scale the whole iframe down
@@ -1137,6 +1150,30 @@
     if (m && m.open && !m.contains(e.target)) m.open = false;
   });
 
+  /* App download: iOS -> App Store, Android -> Google Play, otherwise a panel with both stores */
+  (function () {
+    var IOS = '', ANDROID = '';
+    var ua = navigator.userAgent || '', isIOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1), isAndroid = /Android/i.test(ua);
+    function box() { return document.getElementById('appDl'); }
+    function show(o) { var b = box(); if (b) b.hidden = !o; }
+    function openApp(e) {
+      if (e) e.preventDefault();
+      if (isIOS && IOS) { location.href = IOS; return; }
+      if (isAndroid && ANDROID) { location.href = ANDROID; return; }
+      show(true);
+    }
+    var ex = document.getElementById('exploreBtn'); if (ex) ex.addEventListener('click', openApp, true);
+    document.querySelectorAll('.store-badges .store-badge').forEach(function (a) {
+      var url = a.dataset.store === 'ios' ? IOS : ANDROID;
+      if (url) { a.href = url; a.target = '_blank'; a.rel = 'noopener'; } else a.addEventListener('click', openApp);
+    });
+    document.addEventListener('click', function (e) {
+      var b = box(); if (!b || b.hidden) return;
+      if (e.target === b || e.target.closest('#appDlClose') || e.target.closest('#appDlWait')) show(false);
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') show(false); });
+  })();
+
   /* Mobile menu (☰) */
   (function () {
     var b = document.querySelector('.menu-btn'), m = document.getElementById('mobileMenu');
@@ -1177,5 +1214,13 @@
   }
   wireForm('footerForm', 'footerSuccess');
 </script>
+<div class="app-dl" id="appDl" hidden role="dialog" aria-modal="true" aria-labelledby="appDlTitle"><div class="app-dl-box"><button type="button" class="app-dl-x" id="appDlClose" aria-label="Cerrar">&times;</button><span class="eyebrow center">Xerovan</span><h3 id="appDlTitle">Descarga la app de Xerovan</h3><p></p><div class="app-dl-stores"><a href="#" class="store-badge soon" aria-disabled="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 3c.2 1.3-.3 2.6-1 3.5-.8.9-2 1.6-3.2 1.5-.2-1.3.4-2.6 1.1-3.4.8-.9 2.1-1.5 3.1-1.6z"/><path d="M20.7 16.3c-.5 1.3-.8 1.9-1.5 3-1 1.6-2.4 3.5-4.2 3.5-1.6 0-2-1-3.9-1-2 0-2.5 1-4 1-1.7 0-3.1-1.7-4.1-3.3C0.7 16.4-.3 12 1.9 9c1.1-1.5 2.8-2.3 4.4-2.3 1.6 0 2.7.9 4 .9 1.3 0 2.1-.9 4-.9 1.5 0 3 .8 4.1 2.1-3.6 2-3 7.1 1.8 7.6-.2.6.3-.1.5-.1z"/></svg>
+            <span class="store-text"><span class="small">Download on the</span><span class="big">App Store</span></span>
+          </a>
+          <a href="#" class="store-badge soon" aria-disabled="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.4 2.7 14 12 4.4 21.3c-.5-.3-.9-.8-.9-1.5V4.2c0-.7.4-1.2.9-1.5z"/><path d="M15 13l2.9-2.9 3.6 2c.9.5.9 1.8 0 2.3l-3.6 2L15 13z"/><path d="M14 12 4.4 2.7c.1-.1.3-.1.4-.1.3 0 .6.1.9.2l10.8 6.1L14 12z"/><path d="M14 12l2.5 2.9-10.8 6.1c-.3.2-.6.2-.9.2-.1 0-.3 0-.4-.1L14 12z"/></svg>
+            <span class="store-text"><span class="small">Get it on</span><span class="big">Google Play</span></span>
+          </a></div><div class="app-dl-soon"><p>Xerovan llegará pronto a App Store y Google Play. Únete a la lista de espera para enterarte primero.</p><a href="#waitlist" class="btn-primary" id="appDlWait">Únete a la lista de espera</a></div></div></div>
 </body>
 </html>

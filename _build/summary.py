@@ -111,7 +111,75 @@ HOME = {"en": "Home", "kr": "홈", "ja": "ホーム", "es": "Inicio", "ar": "ا�
 
 SITE_BG_CSS = """  /* site-wide crypto background (fixed behind every section) */
   .site-bg{position:fixed;inset:0;z-index:-1;pointer-events:none;background:#07080a url("/images/site-bg.webp") left top / cover no-repeat;}
-  @media(max-width:760px){ .site-bg{background-position:22% top;} }
+  @media(max-width:760px){ .site-bg{background-position:72% top;} }
+  /* calm pool behind the hero copy so the globe never competes with the headline */
+  .hero::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 42% 46% at 50% 54%,rgba(6,8,12,.78),rgba(6,8,12,.35) 60%,transparent 80%);}
+  .hero > *{position:relative;z-index:1;}
+  .hero .btn-ghost{background:rgba(10,11,13,.6);backdrop-filter:blur(6px);}
   .divider{background:rgba(19,20,23,0.55) !important;backdrop-filter:blur(6px);}
   footer{background:rgba(9,10,12,0.88) !important;}
+"""
+
+# ---------------------------------------------------------------- app download
+# Paste the store URLs here when the app is live; until then the button shows "coming soon" + waitlist.
+APP_STORE_URL = ""     # e.g. "https://apps.apple.com/app/xerovan/id0000000000"
+PLAY_STORE_URL = ""    # e.g. "https://play.google.com/store/apps/details?id=com.xerovan.app"
+
+APP_T = {
+    "en": ("Get the Xerovan app", "Download Xerovan on your phone.", "Coming soon", "Xerovan is launching soon on the App Store and Google Play. Join the waitlist to be notified first.", "Join the Waitlist", "Close"),
+    "kr": ("Xerovan 앱 받기", "휴대폰에서 Xerovan을 다운로드하세요.", "출시 예정", "Xerovan은 곧 App Store와 Google Play에 출시됩니다. 대기자 명단에 등록하고 가장 먼저 소식을 받아보세요.", "대기자 명단 등록", "닫기"),
+    "ja": ("Xerovanアプリを入手", "スマートフォンにXerovanをダウンロード。", "近日公開", "XerovanはまもなくApp StoreとGoogle Playで公開予定です。ウェイトリストに登録して、いち早くお知らせを受け取りましょう。", "ウェイトリストに登録", "閉じる"),
+    "es": ("Descarga la app de Xerovan", "Descarga Xerovan en tu móvil.", "Próximamente", "Xerovan llegará pronto a App Store y Google Play. Únete a la lista de espera para enterarte primero.", "Únete a la lista de espera", "Cerrar"),
+    "ar": ("احصل على تطبيق Xerovan", "حمّل Xerovan على هاتفك.", "قريبًا", "سيُطلق Xerovan قريبًا على App Store وGoogle Play. انضم إلى قائمة الانتظار لتكون أول من يعلم.", "انضم إلى قائمة الانتظار", "إغلاق"),
+    "pt": ("Baixe o app da Xerovan", "Baixe a Xerovan no seu celular.", "Em breve", "A Xerovan chega em breve à App Store e ao Google Play. Entre na lista de espera para saber primeiro.", "Entrar na lista de espera", "Fechar"),
+}
+
+APP_CSS = """  .app-dl{position:fixed;inset:0;z-index:400;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(5,7,11,.72);backdrop-filter:blur(8px);}
+  .app-dl[hidden]{display:none;}
+  .app-dl-box{position:relative;width:min(440px,100%);border:1px solid var(--line);border-radius:22px;padding:34px 30px 30px;text-align:center;background:linear-gradient(180deg,#14161b,#0d0e11);box-shadow:0 40px 90px -30px rgba(0,0,0,.9);}
+  .app-dl-box h3{font-family:'Unbounded';font-size:20px;font-weight:600;margin:6px 0 8px;}
+  .app-dl-box p{color:var(--silver-500);font-size:14.5px;line-height:1.6;}
+  .app-dl-stores{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:22px 0 4px;}
+  .app-dl-stores .store-badge{padding:12px 18px;}
+  .app-dl-stores .store-badge.soon{opacity:.55;pointer-events:none;}
+  .app-dl-soon{margin-top:14px;}
+  .app-dl-soon .btn-primary{margin-top:16px;display:inline-flex;}
+  .app-dl-x{position:absolute;top:12px;right:14px;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--silver-300);font-size:18px;cursor:pointer;}
+  [dir="rtl"] .app-dl-x{right:auto;left:14px;}
+"""
+
+def app_modal(lang, badges_html):
+    t = APP_T[lang]
+    live = APP_STORE_URL or PLAY_STORE_URL
+    return (f'<div class="app-dl" id="appDl" hidden role="dialog" aria-modal="true" aria-labelledby="appDlTitle"><div class="app-dl-box">'
+            f'<button type="button" class="app-dl-x" id="appDlClose" aria-label="{E(t[5])}">&times;</button>'
+            f'<span class="eyebrow center">Xerovan</span><h3 id="appDlTitle">{E(t[0])}</h3><p>{E(t[1]) if live else ""}</p>'
+            f'<div class="app-dl-stores">{badges_html}</div>'
+            + ("" if live else f'<div class="app-dl-soon"><p>{E(t[3])}</p><a href="#waitlist" class="btn-primary" id="appDlWait">{E(t[4])}</a></div>')
+            + '</div></div>')
+
+def app_js():
+    return f"""  /* App download: iOS -> App Store, Android -> Google Play, otherwise a panel with both stores */
+  (function () {{
+    var IOS = {APP_STORE_URL!r}, ANDROID = {PLAY_STORE_URL!r};
+    var ua = navigator.userAgent || '', isIOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1), isAndroid = /Android/i.test(ua);
+    function box() {{ return document.getElementById('appDl'); }}
+    function show(o) {{ var b = box(); if (b) b.hidden = !o; }}
+    function openApp(e) {{
+      if (e) e.preventDefault();
+      if (isIOS && IOS) {{ location.href = IOS; return; }}
+      if (isAndroid && ANDROID) {{ location.href = ANDROID; return; }}
+      show(true);
+    }}
+    var ex = document.getElementById('exploreBtn'); if (ex) ex.addEventListener('click', openApp, true);
+    document.querySelectorAll('.store-badges .store-badge').forEach(function (a) {{
+      var url = a.dataset.store === 'ios' ? IOS : ANDROID;
+      if (url) {{ a.href = url; a.target = '_blank'; a.rel = 'noopener'; }} else a.addEventListener('click', openApp);
+    }});
+    document.addEventListener('click', function (e) {{
+      var b = box(); if (!b || b.hidden) return;
+      if (e.target === b || e.target.closest('#appDlClose') || e.target.closest('#appDlWait')) show(false);
+    }});
+    document.addEventListener('keydown', function (e) {{ if (e.key === 'Escape') show(false); }});
+  }})();
 """
