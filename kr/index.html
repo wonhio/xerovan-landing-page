@@ -299,29 +299,30 @@
   .faq-footnote{text-align:center; margin-top:44px; font-size:14px; color:var(--silver-500);}
   .faq-footnote a{color:var(--silver-100); border-bottom:1px solid var(--silver-500);}
 
-  /* ---------- Summary: 2 screens, crypto image behind, text in front ---------- */
-  .sx{position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center;padding:110px 0;isolation:isolate;}
-  .sx-bg{position:absolute;inset:0;z-index:-2;background-repeat:no-repeat;background-size:cover;}
-  .sx-1 .sx-bg{background-image:url("/images/summary-bg-1.webp");background-position:right center;}
-  .sx-2 .sx-bg{background-image:url("/images/summary-bg-2.webp");background-position:center;}
+  /* ---------- Features: one continuous section, 7 core features, crypto image behind, text in front ---------- */
+  .sx{position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center;padding:100px 0 70px;isolation:isolate;}
+  .sx-bg{position:absolute;inset:0;z-index:-2;background:url("/images/summary-bg-1.webp") right center / auto 100% no-repeat;opacity:.55;}
   .sx::before{content:'';position:absolute;inset:0;z-index:-1;background:
-      linear-gradient(90deg,rgba(10,11,13,.94) 0%,rgba(10,11,13,.82) 42%,rgba(10,11,13,.45) 72%,rgba(10,11,13,.6) 100%),
-      linear-gradient(180deg,#0a0b0d 0%,rgba(10,11,13,0) 18%,rgba(10,11,13,0) 82%,#0a0b0d 100%);}
-  .sx-2::before{background:
-      radial-gradient(ellipse 60% 70% at 50% 50%,rgba(10,11,13,.55),rgba(10,11,13,.9) 75%),
-      linear-gradient(180deg,#0a0b0d 0%,rgba(10,11,13,0) 18%,rgba(10,11,13,0) 82%,#0a0b0d 100%);}
+      linear-gradient(90deg,rgba(10,11,13,.92) 0%,rgba(10,11,13,.7) 45%,rgba(10,11,13,.35) 75%,rgba(10,11,13,.55) 100%),
+      linear-gradient(180deg,rgba(10,11,13,.9) 0%,rgba(10,11,13,0) 20%,rgba(10,11,13,0) 80%,rgba(10,11,13,.9) 100%);}
   .sx .wrap{width:100%;}
-  .sx-head{max-width:760px;margin-bottom:44px;}
-  .sx-head h2{font-family:'Unbounded'; font-weight:600; font-size:clamp(24px,3.1vw,38px); line-height:1.3; margin-top:18px; text-shadow:0 2px 24px rgba(0,0,0,.7);}
-  .sx-2 .sx-head{margin:0 auto 40px;text-align:center;}
-  .sx-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:920px;}
-  .sx-2 .sx-grid{grid-template-columns:repeat(3,1fr);max-width:none;}
-  @media(max-width:900px){ .sx-grid,.sx-2 .sx-grid{grid-template-columns:1fr;} .sx{min-height:auto;padding:90px 0;} }
-  .sx-card{border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:24px 24px 26px;background:rgba(14,15,18,.62);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.06);}
+  .sx-head{max-width:900px;margin-bottom:34px;}
+  .sx-head h2{font-family:'Unbounded'; font-weight:600; font-size:clamp(20px,2.3vw,30px); line-height:1.35; margin-top:16px; text-shadow:0 2px 24px rgba(0,0,0,.7);}
+  .sx-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .sx-grid .sx-card:nth-child(n+5){grid-column:span 1;}
+  .sx-grid .sx-card:nth-child(5){grid-column:1 / span 1;}
+  @media(max-width:1100px){ .sx-grid{grid-template-columns:repeat(2,1fr);} .sx-grid .sx-card:nth-child(5){grid-column:auto;} }
+  @media(max-width:640px){ .sx-grid{grid-template-columns:1fr;} .sx{min-height:auto;padding:90px 0 60px;} }
+  .sx-card{border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px 20px 22px;background:rgba(14,15,18,.66);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.06);}
   .sx-num{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.16em;color:var(--ice);}
-  .sx-card h3{font-family:'Unbounded';font-size:17px;font-weight:600;line-height:1.35;margin:10px 0 4px;}
-  .sx-en{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.04em;color:var(--silver-500);margin-bottom:12px;}
-  .sx-card p{font-size:14.5px;line-height:1.7;color:var(--silver-300);}
+  .sx-card h3{font-family:'Unbounded';font-size:15px;font-weight:600;line-height:1.35;margin:9px 0 3px;}
+  .sx-en{font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.03em;color:var(--silver-500);margin-bottom:10px;}
+  .sx-card p{font-size:13.5px;line-height:1.65;color:var(--silver-300);}
+  /* site-wide crypto background (fixed behind every section) */
+  .site-bg{position:fixed;inset:0;z-index:-1;pointer-events:none;background:#07080a url("/images/site-bg.webp") left top / cover no-repeat;}
+  @media(max-width:760px){ .site-bg{background-position:22% top;} }
+  .divider{background:rgba(19,20,23,0.55) !important;backdrop-filter:blur(6px);}
+  footer{background:rgba(9,10,12,0.88) !important;}
   .latest{padding:100px 0;}
   .latest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
   @media(max-width:900px){ .latest-grid{grid-template-columns:1fr;} }
@@ -386,6 +387,7 @@
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
+<div class="site-bg" aria-hidden="true"></div>
 
 <header>
   <nav>
@@ -394,7 +396,7 @@
       <img src="/images/logo-wordmark.png" alt="XEROVAN" class="brand-word-img">
     </a>
     <div class="nav-links">
-      <a href="#summary">개요</a>
+      <a href="#top">홈</a>
       <a href="#features">기능</a>
       <a href="#usecases">활용 사례</a>
       <a href="#faq">FAQ</a>
@@ -416,7 +418,7 @@
     </div>
   </nav>
   <div class="mobile-menu" id="mobileMenu" hidden>
-      <a href="#summary">개요</a>
+      <a href="#top">홈</a>
       <a href="#features">기능</a>
       <a href="#usecases">활용 사례</a>
       <a href="#faq">FAQ</a>
@@ -436,11 +438,7 @@
 
 <div class="divider" id="dividerBars1"></div>
 
-<section id="summary" class="sx sx-1"><div class="sx-bg" role="img" aria-label="Xerovan app and card"></div><div class="wrap"><div class="sx-head"><span class="eyebrow">Xerovan 핵심 기능</span><h2>Xerovan은 결제, 글로벌 지급, 기업 지출, 자산 관리와 리워드를 하나로 연결하는 올인원 크립토 금융 플랫폼입니다.</h2></div><div class="sx-grid"><article class="sx-card"><div class="sx-num">01</div><h3>지갑에서 바로 결제</h3><div class="sx-en">Direct Wallet Payments</div><p>별도의 충전 없이, 사용자가 직접 관리하는 비수탁 지갑의 자산으로 결제할 수 있습니다.</p></article><article class="sx-card"><div class="sx-num">02</div><h3>기업 지출 관리 — Media Buyer Suite</h3><div class="sx-en">Business Spend Management — Media Buyer Suite</div><p>고객과 계정별로 카드를 발급하고 영수증, 승인 절차, 지출 한도를 통합 관리합니다. 마케팅 에이전시와 기업이 지출을 효율적이고 투명하게 운영할 수 있도록 지원합니다.</p></article><article class="sx-card"><div class="sx-num">03</div><h3>글로벌 Payout</h3><div class="sx-en">Global Payouts</div><p>기업과 개인이 전 세계의 파트너, 고객 및 구성원의 은행 통장으로 크립토 자산을 빠르고 간편하게 지급할 수 있습니다. 국경을 넘어 확장 가능한 지급 환경을 제공합니다.</p></article><article class="sx-card"><div class="sx-num">04</div><h3>통합 자산 관리</h3><div class="sx-en">Unified Asset Management</div><p>무료 비수탁 지갑과 외부 지갑을 한곳에서 관리하고, 사용하지 않는 자산을 스테이킹 등 다양한 자산 운용 상품과 연결할 수 있습니다.</p></article></div></div></section>
-
-<div class="divider" id="dividerBars2"></div>
-
-<section id="features" class="sx sx-2"><div class="sx-bg" role="img" aria-label="Global network"></div><div class="wrap"><div class="sx-head"><span class="eyebrow center">Xerovan 핵심 기능</span></div><div class="sx-grid"><article class="sx-card"><div class="sx-num">05</div><h3>스마트 라우팅</h3><div class="sx-en">Smart Routing</div><p>크립토 송금, 수신 및 변환 시 최적의 경로를 자동으로 탐색하여 효율적인 거래와 경쟁력 있는 수수료를 제공합니다.</p></article><article class="sx-card"><div class="sx-num">06</div><h3>안전한 카드 공유</h3><div class="sx-en">Secure Card Sharing</div><p>가족이나 다른 Xerovan 사용자에게 카드 사용 권한을 안전하게 공유하고, 사용 한도와 권한을 언제든지 관리할 수 있습니다. 카드에 대한 최종 관리 권한은 카드 소유자에게 유지됩니다.</p></article><article class="sx-card"><div class="sx-num">07</div><h3>여행 및 리워드 생태계</h3><div class="sx-en">Travel &amp; Rewards Ecosystem</div><p>Xerovan 토큰 기반 마켓플레이스를 통해 여행 예약과 eSIM 서비스를 이용하고, 캐시백, 보너스, 제휴 프로그램 및 dApp 서비스를 하나의 생태계에서 경험할 수 있습니다.</p></article></div></div></section>
+<section id="features" class="sx"><div class="sx-bg" role="img" aria-label="Xerovan app and card"></div><div class="wrap"><div class="sx-head"><span class="eyebrow">Xerovan 핵심 기능</span><h2>Xerovan은 결제, 글로벌 지급, 기업 지출, 자산 관리와 리워드를 하나로 연결하는 올인원 크립토 금융 플랫폼입니다.</h2></div><div class="sx-grid"><article class="sx-card"><div class="sx-num">01</div><h3>지갑에서 바로 결제</h3><div class="sx-en">Direct Wallet Payments</div><p>별도의 충전 없이, 사용자가 직접 관리하는 비수탁 지갑의 자산으로 결제할 수 있습니다.</p></article><article class="sx-card"><div class="sx-num">02</div><h3>기업 지출 관리 — Media Buyer Suite</h3><div class="sx-en">Business Spend Management — Media Buyer Suite</div><p>고객과 계정별로 카드를 발급하고 영수증, 승인 절차, 지출 한도를 통합 관리합니다. 마케팅 에이전시와 기업이 지출을 효율적이고 투명하게 운영할 수 있도록 지원합니다.</p></article><article class="sx-card"><div class="sx-num">03</div><h3>글로벌 Payout</h3><div class="sx-en">Global Payouts</div><p>기업과 개인이 전 세계의 파트너, 고객 및 구성원의 은행 통장으로 크립토 자산을 빠르고 간편하게 지급할 수 있습니다. 국경을 넘어 확장 가능한 지급 환경을 제공합니다.</p></article><article class="sx-card"><div class="sx-num">04</div><h3>통합 자산 관리</h3><div class="sx-en">Unified Asset Management</div><p>무료 비수탁 지갑과 외부 지갑을 한곳에서 관리하고, 사용하지 않는 자산을 스테이킹 등 다양한 자산 운용 상품과 연결할 수 있습니다.</p></article><article class="sx-card"><div class="sx-num">05</div><h3>스마트 라우팅</h3><div class="sx-en">Smart Routing</div><p>크립토 송금, 수신 및 변환 시 최적의 경로를 자동으로 탐색하여 효율적인 거래와 경쟁력 있는 수수료를 제공합니다.</p></article><article class="sx-card"><div class="sx-num">06</div><h3>안전한 카드 공유</h3><div class="sx-en">Secure Card Sharing</div><p>가족이나 다른 Xerovan 사용자에게 카드 사용 권한을 안전하게 공유하고, 사용 한도와 권한을 언제든지 관리할 수 있습니다. 카드에 대한 최종 관리 권한은 카드 소유자에게 유지됩니다.</p></article><article class="sx-card"><div class="sx-num">07</div><h3>여행 및 리워드 생태계</h3><div class="sx-en">Travel &amp; Rewards Ecosystem</div><p>Xerovan 토큰 기반 마켓플레이스를 통해 여행 예약과 eSIM 서비스를 이용하고, 캐시백, 보너스, 제휴 프로그램 및 dApp 서비스를 하나의 생태계에서 경험할 수 있습니다.</p></article></div></div></section>
 
 <div class="divider" id="dividerBars3"></div>
 
@@ -453,19 +451,6 @@
     </div>
 
     <div class="uc-list" id="ucList"><div class="uc-item"><button class="uc-head" aria-expanded="false"><span class="uc-num">01</span><span class="uc-head-text"><h3>마케팅 에이전시 및 미디어 바이어</h3><p>여러 고객사, 팀, 플랫폼의 광고비를 한 번에 관리하세요.</p></span><span class="uc-plus">+</span></button><div class="uc-body"><div class="uc-body-inner"><div><p class="lede">마케팅 에이전시와 미디어 바이어는 예산, 고객사, 승인 기준이 각기 다른 여러 광고 계정을 운영합니다. Xerovan으로 전용 카드를 발급하고, 지출을 통제하고, 모든 거래를 한곳에서 추적하세요.</p><span class="tag-label">주요 활용 사례</span><ul><li>고객사·캠페인별 가상 카드 개별 발급</li><li>Google Ads, Meta Ads, TikTok Ads 등 플랫폼별 전용 카드 지정</li><li>고객사·직원·캠페인별 지출 한도 설정</li><li>가맹점 업종 제한 적용</li><li>카드 즉시 정지 및 해제</li><li>영수증 및 증빙 서류 수집</li><li>영수증 기반 거래 승인 워크플로 구성</li><li>통합 대시보드에서 광고비 모니터링</li><li>고객사·팀·프로젝트별 경비 리포트 생성</li></ul><div class="uc-key-value">핵심 가치: 모든 예산을 분리하고, 모든 거래를 통제하고, 모든 캠페인을 추적하세요.</div></div><div class="uc-visual" style="padding:0; overflow:hidden;"><img src="/images/usecase-01.webp" alt="마케팅 에이전시 및 미디어 바이어" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;"></div></div></div></div><div class="uc-item"><button class="uc-head" aria-expanded="false"><span class="uc-num">02</span><span class="uc-head-text"><h3>해외를 자주 오가는 여행자</h3><p>자금, 결제, 여행 서비스를 하나의 플랫폼에서.</p></span><span class="uc-plus">+</span></button><div class="uc-body"><div class="uc-body-inner"><div><p class="lede">잦은 여행에는 어디서나 믿을 수 있는 자금 접근성, 글로벌 결제 수단, 필수 여행 서비스가 필요합니다. Xerovan은 디지털 자산, Visa 카드 결제, 여행 예약을 하나의 경험으로 연결합니다.</p><span class="tag-label">주요 활용 사례</span><ul><li>Visa 가맹점이라면 전 세계 어디서나 결제</li><li>여행 중 가상·실물 카드 사용</li><li>Apple Pay 또는 Google Pay에 카드 등록</li><li>지원되는 디지털 자산으로 카드 충전</li><li>분실·도난 카드 즉시 정지</li><li>앱에서 바로 카드 정지 해제</li><li>실시간 거래 내역 확인</li><li>항공권, 호텔, 투어, 액티비티, eSIM 예약</li><li>여러 통화와 네트워크의 자산 관리</li></ul><div class="uc-key-value">핵심 가치: 자금, 카드, 여행을 하나의 플랫폼으로.</div></div><div class="uc-visual" style="padding:0; overflow:hidden;"><img src="/images/usecase-02.webp" alt="해외를 자주 오가는 여행자" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;"></div></div></div></div><div class="uc-item"><button class="uc-head" aria-expanded="false"><span class="uc-num">03</span><span class="uc-head-text"><h3>디지털 노마드 및 글로벌 프리랜서</h3><p>어디서든 일할 수 있는 금융의 유연함.</p></span><span class="uc-plus">+</span></button><div class="uc-body"><div class="uc-body-inner"><div><p class="lede">디지털 노마드와 프리랜서는 여러 국가와 통화에 걸쳐 수입을 받고, 결제하고, 지출을 관리합니다. Xerovan은 특정 지역에 묶이지 않고 디지털 자산과 일상 지출을 관리할 수 있게 해줍니다.</p><span class="tag-label">주요 활용 사례</span><ul><li>하나의 인터페이스에서 여러 암호화폐 지갑 관리</li><li>지원 네트워크 전반의 자산 보유 및 관리</li><li>필요할 때 자산 스왑</li><li>Xerovan Visa 카드로 전 세계 결제</li><li>소프트웨어, 숙소, 교통, 생활비 결제</li><li>Xerovan 여행 마켓플레이스에서 여행 예약</li><li>해외 통신을 위한 eSIM 구매</li><li>개인·업무 거래를 한곳에서 확인</li></ul><div class="uc-key-value">핵심 가치: 어디서든 일하고, 어디서든 결제하고, 언제나 통제하세요.</div></div><div class="uc-visual" style="padding:0; overflow:hidden;"><img src="/images/usecase-03.webp" alt="디지털 노마드 및 글로벌 프리랜서" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;"></div></div></div></div><div class="uc-item"><button class="uc-head" aria-expanded="false"><span class="uc-num">04</span><span class="uc-head-text"><h3>달러·해외 구독 서비스 이용자</h3><p>전용 카드로 반복되는 해외 결제를 관리하세요.</p></span><span class="uc-plus">+</span></button><div class="uc-body"><div class="uc-body-inner"><div><p class="lede">많은 국가의 사용자들이 해외 소프트웨어, 클라우드, 스트리밍, 달러 결제 구독 서비스 이용에 어려움을 겪습니다. Xerovan은 반복 결제를 편리하게 정리하고 통제할 수 있는 방법을 제공합니다.</p><span class="tag-label">주요 활용 사례</span><ul><li>구독 결제 전용 가상 카드 생성</li><li>지원되는 해외·달러 결제 서비스 이용</li><li>업무용·개인용 구독 카드 분리</li><li>구독 카테고리별 지출 한도 설정</li><li>반복 결제 실시간 모니터링</li><li>더 이상 필요 없는 구독은 카드 정지</li><li>예상치 못한 결제나 무단 결제 위험 감소</li><li>SaaS, 클라우드, 생산성, 디지털 서비스 결제 추적</li></ul><span class="tag-label">대표 서비스</span><div class="tag-row"><span class="tag">클라우드 인프라</span><span class="tag">AI 및 생산성 도구</span><span class="tag">디자인·협업 소프트웨어</span><span class="tag">마케팅 플랫폼</span><span class="tag">스트리밍 및 디지털 콘텐츠</span><span class="tag">비즈니스 SaaS 구독</span></div><div class="uc-key-value">핵심 가치: 모든 해외 구독을 직접 통제하세요.</div></div><div class="uc-visual" style="padding:0; overflow:hidden;"><img src="/images/usecase-04.webp" alt="달러·해외 구독 서비스 이용자" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;"></div></div></div></div><div class="uc-item"><button class="uc-head" aria-expanded="false"><span class="uc-num">05</span><span class="uc-head-text"><h3>실생활 활용을 원하는 크립토 보유자</h3><p>보유를 넘어, 디지털 자산을 실제로 사용하세요.</p></span><span class="uc-plus">+</span></button><div class="uc-body"><div class="uc-body-inner"><div><p class="lede">많은 크립토 사용자가 여러 지갑과 블록체인에 자산을 나눠 보유하지만, 일상에서 쓸 간단한 방법이 없습니다. Xerovan은 지갑 관리, 스왑, 결제, 리워드, 여행을 하나로 연결합니다.</p><span class="tag-label">주요 활용 사례</span><ul><li>호환 지갑을 가져와 한곳에서 관리</li><li>외부 지갑 연결</li><li>멀티체인 자산 조회 및 관리</li><li>암호화폐 송금 및 수신</li><li>지원 네트워크 간 자산 스왑</li><li>지원 체인 간 자산 브리지</li><li>Xerovan 잔액 또는 카드 충전</li><li>Visa 네트워크에서 결제</li><li>지원되는 여행 상품·서비스를 암호화폐로 결제</li><li>스테이킹, 이자, 캐시백, 추천 리워드 이용</li></ul><div class="uc-key-value">핵심 가치: 디지털 자산을 현실의 가능성으로 바꾸세요.</div></div><div class="uc-visual" style="padding:0; overflow:hidden;"><img src="/images/usecase-05.webp" alt="실생활 활용을 원하는 크립토 보유자" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;"></div></div></div></div><div class="uc-item"><button class="uc-head" aria-expanded="false"><span class="uc-num">06</span><span class="uc-head-text"><h3>중소기업 및 분산 근무 팀</h3><p>직원, 팀, 국가에 걸친 비즈니스 지출을 간단하게.</p></span><span class="uc-plus">+</span></button><div class="uc-body"><div class="uc-body-inner"><div><p class="lede">중소기업에는 직원 지출에 대한 더 나은 가시성과 통제가 필요합니다. Xerovan으로 카드를 발급하고, 지출 정책을 정하고, 경비를 중앙에서 관리하세요.</p><span class="tag-label">주요 활용 사례</span><ul><li>직원 또는 부서별 다수 카드 발급</li><li>출장, 마케팅, 소프트웨어, 운영용 카드 분리</li><li>직원·팀·경비 항목별 지출 한도 설정</li><li>승인된 가맹점 업종으로 카드 사용 제한</li><li>카드 즉시 정지 및 해제</li><li>영수증 기반 경비 승인 워크플로 구성</li><li>직원 영수증 수집 및 정리</li><li>비즈니스 거래 실시간 모니터링</li><li>통합 경비 리포트 생성</li><li>해외 사업·출장 경비 관리</li></ul><div class="uc-key-value">핵심 가치: 재무 통제는 지키면서 팀에 지출의 유연함을 주세요.</div></div><div class="uc-visual" style="padding:0; overflow:hidden;"><img src="/images/usecase-06.webp" alt="중소기업 및 분산 근무 팀" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;"></div></div></div></div></div>
-
-    <div class="uc-table-wrap">
-      <table class="uc-table">
-        <thead><tr><th>고객군</th><th>주요 니즈</th><th>Xerovan 솔루션</th></tr></thead>
-        <tbody id="ucTableBody"><tr><td>마케팅 에이전시·미디어 바이어</td><td>고객사별 광고 예산 분리 및 통제</td><td>다수 카드, 지출 한도, 가맹점 제한, 경비 추적</td></tr><tr><td>해외를 자주 오가는 여행자</td><td>전 세계 결제 및 여행 관리</td><td>Visa 카드, 카드 통제, 여행 예약, eSIM</td></tr><tr><td>디지털 노마드·프리랜서</td><td>국경을 넘는 수입과 지출 관리</td><td>멀티 지갑 관리, 스왑, 글로벌 결제, 여행 서비스</td></tr><tr><td>해외 구독 서비스 이용자</td><td>반복되는 해외 서비스 결제 및 통제</td><td>전용 가상 카드, 지출 한도, 거래 모니터링</td></tr><tr><td>크립토 보유자</td><td>보관·거래를 넘어선 디지털 자산 활용</td><td>지갑 관리, 스왑, 카드 결제, 리워드, 여행</td></tr><tr><td>중소기업·분산 근무 팀</td><td>직원·부서 경비 통제</td><td>법인 카드, 승인 워크플로, 영수증 관리, 리포트</td></tr></tbody>
-      </table>
-    </div>
-
-    <div class="closing-band">
-      <h3>국경 없는 개인과 기업을 위한 플랫폼</h3>
-      <p>고객사 광고 예산 관리, 해외 여행, 원격 근무, 글로벌 구독 결제, 일상 속 암호화폐 사용, 팀 경비 관리까지 — Xerovan은 이 모든 것을 하나로 연결된 플랫폼에 담았습니다.</p>
-      <div class="tagline">암호화폐 관리. 지출 통제. 글로벌 결제. 어디든 여행.</div>
-    </div>
   </div>
 </section>
 
@@ -891,13 +876,6 @@
     });
   });
 
-  const ucTableBody = document.getElementById('ucTableBody');
-  ucTableBody.innerHTML = '';
-  summaryTable.forEach(row => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${row[0]}</td><td>${row[1]}</td><td>${row[2]}</td>`;
-    ucTableBody.appendChild(tr);
-  });
 
   /* ---------- waveform hero (audio-equalizer feel) ---------- */
   const heroWave = document.getElementById('heroWave');
@@ -975,7 +953,7 @@
   fillDivider('dividerBars4', 40);
 
   document.getElementById('exploreBtn').addEventListener('click', () => {
-    document.getElementById('summary').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('features').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
   /* Render the live preview at a normal mobile width (390px) so its own

@@ -79,9 +79,9 @@
     };
     var HL = { en: "en", kr: "ko", ja: "ja", es: "es", ar: "ar", pt: "pt" };
     var MENU = {
-      en: ["Summary", "Features", "Use Cases", "FAQ", "Blog"], kr: ["개요", "기능", "활용 사례", "FAQ", "블로그"],
-      ja: ["概要", "機能", "活用例", "FAQ", "ブログ"], es: ["Resumen", "Funciones", "Casos de uso", "FAQ", "Blog"],
-      ar: ["نظرة عامة", "المزايا", "حالات الاستخدام", "FAQ", "المدونة"], pt: ["Resumo", "Recursos", "Casos de uso", "FAQ", "Blog"]
+      en: ["Home", "Features", "Use Cases", "FAQ", "Blog"], kr: ["홈", "기능", "활용 사례", "FAQ", "블로그"],
+      ja: ["ホーム", "機能", "活用例", "FAQ", "ブログ"], es: ["Inicio", "Funciones", "Casos de uso", "FAQ", "Blog"],
+      ar: ["الرئيسية", "المزايا", "حالات الاستخدام", "FAQ", "المدونة"], pt: ["Início", "Recursos", "Casos de uso", "FAQ", "Blog"]
     };
     var seg = (location.pathname.split("/")[1] || "").toLowerCase();
     var lang = T[seg] ? seg : "en", t = T[lang];
@@ -97,7 +97,7 @@
     a3.textContent = t[4]; a3.href = "/" + lang + "/#waitlist";
     document.getElementById("home").href = "/" + lang + "/";
     var menu = document.getElementById("menu");
-    ["#summary", "#features", "#usecases", "#faq", "blog"].forEach(function (h, i) {
+    ["#top", "#features", "#usecases", "#faq", "blog"].forEach(function (h, i) {
       var a = document.createElement("a"); a.href = "/" + lang + "/" + h; a.textContent = MENU[lang][i]; menu.appendChild(a);
     });
     var mm = document.getElementById("mobileMenu");

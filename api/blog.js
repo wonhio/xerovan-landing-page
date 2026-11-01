@@ -155,14 +155,14 @@ const isFounderAccount = (name) => !name || /^(admin|administrator|xerovan|jay|j
 
 // Main menu — identical to the landing page nav (sections of /{lang}/ + Blog)
 const MENU = {
-  en: ['Summary', 'Features', 'Use Cases', 'FAQ', 'Blog'],
-  kr: ['개요', '기능', '활용 사례', 'FAQ', '블로그'],
-  ja: ['概要', '機能', '活用例', 'FAQ', 'ブログ'],
-  es: ['Resumen', 'Funciones', 'Casos de uso', 'FAQ', 'Blog'],
-  ar: ['نظرة عامة', 'المزايا', 'حالات الاستخدام', 'FAQ', 'المدونة'],
-  pt: ['Resumo', 'Recursos', 'Casos de uso', 'FAQ', 'Blog'],
+  en: ['Home', 'Features', 'Use Cases', 'FAQ', 'Blog'],
+  kr: ['홈', '기능', '활용 사례', 'FAQ', '블로그'],
+  ja: ['ホーム', '機能', '活用例', 'FAQ', 'ブログ'],
+  es: ['Inicio', 'Funciones', 'Casos de uso', 'FAQ', 'Blog'],
+  ar: ['الرئيسية', 'المزايا', 'حالات الاستخدام', 'FAQ', 'المدونة'],
+  pt: ['Início', 'Recursos', 'Casos de uso', 'FAQ', 'Blog'],
 };
-const MENU_ANCHORS = ['summary', 'features', 'usecases', 'faq'];
+const MENU_ANCHORS = ['top', 'features', 'usecases', 'faq'];
 const MENU_LABEL = {'en': 'Menu', 'kr': '메뉴', 'ja': 'メニュー', 'es': 'Menú', 'ar': 'القائمة', 'pt': 'Menu'};
 
 // ---------------------------------------------------------------- helpers

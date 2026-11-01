@@ -298,29 +298,30 @@
   .faq-footnote{text-align:center; margin-top:44px; font-size:14px; color:var(--silver-500);}
   .faq-footnote a{color:var(--silver-100); border-bottom:1px solid var(--silver-500);}
 
-  /* ---------- Summary: 2 screens, crypto image behind, text in front ---------- */
-  .sx{position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center;padding:110px 0;isolation:isolate;}
-  .sx-bg{position:absolute;inset:0;z-index:-2;background-repeat:no-repeat;background-size:cover;}
-  .sx-1 .sx-bg{background-image:url("/images/summary-bg-1.webp");background-position:right center;}
-  .sx-2 .sx-bg{background-image:url("/images/summary-bg-2.webp");background-position:center;}
+  /* ---------- Features: one continuous section, 7 core features, crypto image behind, text in front ---------- */
+  .sx{position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center;padding:100px 0 70px;isolation:isolate;}
+  .sx-bg{position:absolute;inset:0;z-index:-2;background:url("/images/summary-bg-1.webp") right center / auto 100% no-repeat;opacity:.55;}
   .sx::before{content:'';position:absolute;inset:0;z-index:-1;background:
-      linear-gradient(90deg,rgba(10,11,13,.94) 0%,rgba(10,11,13,.82) 42%,rgba(10,11,13,.45) 72%,rgba(10,11,13,.6) 100%),
-      linear-gradient(180deg,#0a0b0d 0%,rgba(10,11,13,0) 18%,rgba(10,11,13,0) 82%,#0a0b0d 100%);}
-  .sx-2::before{background:
-      radial-gradient(ellipse 60% 70% at 50% 50%,rgba(10,11,13,.55),rgba(10,11,13,.9) 75%),
-      linear-gradient(180deg,#0a0b0d 0%,rgba(10,11,13,0) 18%,rgba(10,11,13,0) 82%,#0a0b0d 100%);}
+      linear-gradient(90deg,rgba(10,11,13,.92) 0%,rgba(10,11,13,.7) 45%,rgba(10,11,13,.35) 75%,rgba(10,11,13,.55) 100%),
+      linear-gradient(180deg,rgba(10,11,13,.9) 0%,rgba(10,11,13,0) 20%,rgba(10,11,13,0) 80%,rgba(10,11,13,.9) 100%);}
   .sx .wrap{width:100%;}
-  .sx-head{max-width:760px;margin-bottom:44px;}
-  .sx-head h2{font-family:'Unbounded'; font-weight:600; font-size:clamp(24px,3.1vw,38px); line-height:1.3; margin-top:18px; text-shadow:0 2px 24px rgba(0,0,0,.7);}
-  .sx-2 .sx-head{margin:0 auto 40px;text-align:center;}
-  .sx-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:920px;}
-  .sx-2 .sx-grid{grid-template-columns:repeat(3,1fr);max-width:none;}
-  @media(max-width:900px){ .sx-grid,.sx-2 .sx-grid{grid-template-columns:1fr;} .sx{min-height:auto;padding:90px 0;} }
-  .sx-card{border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:24px 24px 26px;background:rgba(14,15,18,.62);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.06);}
+  .sx-head{max-width:900px;margin-bottom:34px;}
+  .sx-head h2{font-family:'Unbounded'; font-weight:600; font-size:clamp(20px,2.3vw,30px); line-height:1.35; margin-top:16px; text-shadow:0 2px 24px rgba(0,0,0,.7);}
+  .sx-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .sx-grid .sx-card:nth-child(n+5){grid-column:span 1;}
+  .sx-grid .sx-card:nth-child(5){grid-column:1 / span 1;}
+  @media(max-width:1100px){ .sx-grid{grid-template-columns:repeat(2,1fr);} .sx-grid .sx-card:nth-child(5){grid-column:auto;} }
+  @media(max-width:640px){ .sx-grid{grid-template-columns:1fr;} .sx{min-height:auto;padding:90px 0 60px;} }
+  .sx-card{border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px 20px 22px;background:rgba(14,15,18,.66);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.06);}
   .sx-num{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.16em;color:var(--ice);}
-  .sx-card h3{font-family:'Unbounded';font-size:17px;font-weight:600;line-height:1.35;margin:10px 0 4px;}
-  .sx-en{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.04em;color:var(--silver-500);margin-bottom:12px;}
-  .sx-card p{font-size:14.5px;line-height:1.7;color:var(--silver-300);}
+  .sx-card h3{font-family:'Unbounded';font-size:15px;font-weight:600;line-height:1.35;margin:9px 0 3px;}
+  .sx-en{font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.03em;color:var(--silver-500);margin-bottom:10px;}
+  .sx-card p{font-size:13.5px;line-height:1.65;color:var(--silver-300);}
+  /* site-wide crypto background (fixed behind every section) */
+  .site-bg{position:fixed;inset:0;z-index:-1;pointer-events:none;background:#07080a url("/images/site-bg.webp") left top / cover no-repeat;}
+  @media(max-width:760px){ .site-bg{background-position:22% top;} }
+  .divider{background:rgba(19,20,23,0.55) !important;backdrop-filter:blur(6px);}
+  footer{background:rgba(9,10,12,0.88) !important;}
   .latest{padding:100px 0;}
   .latest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
   @media(max-width:900px){ .latest-grid{grid-template-columns:1fr;} }
@@ -385,6 +386,7 @@
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
+<div class="site-bg" aria-hidden="true"></div>
 
 <header>
   <nav>
@@ -393,7 +395,7 @@
       <img src="/images/logo-wordmark.png" alt="XEROVAN" class="brand-word-img">
     </a>
     <div class="nav-links">
-      <a href="#summary">Resumo</a>
+      <a href="#top">Início</a>
       <a href="#features">Recursos</a>
       <a href="#usecases">Casos de uso</a>
       <a href="#faq">FAQ</a>
@@ -415,7 +417,7 @@
     </div>
   </nav>
   <div class="mobile-menu" id="mobileMenu" hidden>
-      <a href="#summary">Resumo</a>
+      <a href="#top">Início</a>
       <a href="#features">Recursos</a>
       <a href="#usecases">Casos de uso</a>
       <a href="#faq">FAQ</a>
@@ -435,11 +437,7 @@
 
 <div class="divider" id="dividerBars1"></div>
 
-<section id="summary" class="sx sx-1"><div class="sx-bg" role="img" aria-label="Xerovan app and card"></div><div class="wrap"><div class="sx-head"><span class="eyebrow">Principais recursos da Xerovan</span><h2>A Xerovan é uma plataforma financeira cripto completa que conecta pagamentos, pagamentos globais, gastos empresariais, gestão de ativos e recompensas.</h2></div><div class="sx-grid"><article class="sx-card"><div class="sx-num">01</div><h3>Pagamentos direto da carteira</h3><div class="sx-en">Direct Wallet Payments</div><p>Pague com os ativos da sua própria carteira sem custódia, sem precisar recarregar antes.</p></article><article class="sx-card"><div class="sx-num">02</div><h3>Gestão de gastos empresariais — Media Buyer Suite</h3><div class="sx-en">Business Spend Management — Media Buyer Suite</div><p>Emita cartões por cliente e por conta e gerencie comprovantes, aprovações e limites de gastos em um só lugar. Ajuda agências de marketing e empresas a gerir seus gastos com eficiência e transparência.</p></article><article class="sx-card"><div class="sx-num">03</div><h3>Pagamentos globais</h3><div class="sx-en">Global Payouts</div><p>Empresas e pessoas podem pagar em cripto, de forma rápida e simples, nas contas bancárias de parceiros, clientes e membros da equipe no mundo todo, com uma estrutura de pagamentos que cresce além das fronteiras.</p></article><article class="sx-card"><div class="sx-num">04</div><h3>Gestão unificada de ativos</h3><div class="sx-en">Unified Asset Management</div><p>Gerencie sua carteira gratuita sem custódia e suas carteiras externas em um só lugar, e coloque ativos parados para render com staking e outros produtos.</p></article></div></div></section>
-
-<div class="divider" id="dividerBars2"></div>
-
-<section id="features" class="sx sx-2"><div class="sx-bg" role="img" aria-label="Global network"></div><div class="wrap"><div class="sx-head"><span class="eyebrow center">Principais recursos da Xerovan</span></div><div class="sx-grid"><article class="sx-card"><div class="sx-num">05</div><h3>Roteamento inteligente</h3><div class="sx-en">Smart Routing</div><p>Ao enviar, receber ou converter cripto, a Xerovan encontra automaticamente a melhor rota para transações eficientes e taxas competitivas.</p></article><article class="sx-card"><div class="sx-num">06</div><h3>Compartilhamento seguro de cartões</h3><div class="sx-en">Secure Card Sharing</div><p>Compartilhe com segurança o uso do cartão com sua família ou outros usuários da Xerovan e ajuste limites e permissões quando quiser. O titular do cartão mantém sempre o controle final.</p></article><article class="sx-card"><div class="sx-num">07</div><h3>Ecossistema de viagens e recompensas</h3><div class="sx-en">Travel &amp; Rewards Ecosystem</div><p>Reserve viagens e serviços de eSIM no marketplace baseado no token da Xerovan e aproveite cashback, bônus, programas de parceiros e serviços dApp em um só ecossistema.</p></article></div></div></section>
+<section id="features" class="sx"><div class="sx-bg" role="img" aria-label="Xerovan app and card"></div><div class="wrap"><div class="sx-head"><span class="eyebrow">Principais recursos da Xerovan</span><h2>A Xerovan é uma plataforma financeira cripto completa que conecta pagamentos, pagamentos globais, gastos empresariais, gestão de ativos e recompensas.</h2></div><div class="sx-grid"><article class="sx-card"><div class="sx-num">01</div><h3>Pagamentos direto da carteira</h3><div class="sx-en">Direct Wallet Payments</div><p>Pague com os ativos da sua própria carteira sem custódia, sem precisar recarregar antes.</p></article><article class="sx-card"><div class="sx-num">02</div><h3>Gestão de gastos empresariais — Media Buyer Suite</h3><div class="sx-en">Business Spend Management — Media Buyer Suite</div><p>Emita cartões por cliente e por conta e gerencie comprovantes, aprovações e limites de gastos em um só lugar. Ajuda agências de marketing e empresas a gerir seus gastos com eficiência e transparência.</p></article><article class="sx-card"><div class="sx-num">03</div><h3>Pagamentos globais</h3><div class="sx-en">Global Payouts</div><p>Empresas e pessoas podem pagar em cripto, de forma rápida e simples, nas contas bancárias de parceiros, clientes e membros da equipe no mundo todo, com uma estrutura de pagamentos que cresce além das fronteiras.</p></article><article class="sx-card"><div class="sx-num">04</div><h3>Gestão unificada de ativos</h3><div class="sx-en">Unified Asset Management</div><p>Gerencie sua carteira gratuita sem custódia e suas carteiras externas em um só lugar, e coloque ativos parados para render com staking e outros produtos.</p></article><article class="sx-card"><div class="sx-num">05</div><h3>Roteamento inteligente</h3><div class="sx-en">Smart Routing</div><p>Ao enviar, receber ou converter cripto, a Xerovan encontra automaticamente a melhor rota para transações eficientes e taxas competitivas.</p></article><article class="sx-card"><div class="sx-num">06</div><h3>Compartilhamento seguro de cartões</h3><div class="sx-en">Secure Card Sharing</div><p>Compartilhe com segurança o uso do cartão com sua família ou outros usuários da Xerovan e ajuste limites e permissões quando quiser. O titular do cartão mantém sempre o controle final.</p></article><article class="sx-card"><div class="sx-num">07</div><h3>Ecossistema de viagens e recompensas</h3><div class="sx-en">Travel &amp; Rewards Ecosystem</div><p>Reserve viagens e serviços de eSIM no marketplace baseado no token da Xerovan e aproveite cashback, bônus, programas de parceiros e serviços dApp em um só ecossistema.</p></article></div></div></section>
 
 <div class="divider" id="dividerBars3"></div>
 
@@ -452,19 +450,6 @@
     </div>
 
     <div class="uc-list" id="ucList"><div class="uc-item"><button class="uc-head" aria-expanded="false"><span class="uc-num">01</span><span class="uc-head-text"><h3>Agências de marketing e media buyers</h3><p>Gerencie verbas de publicidade entre clientes, equipes e plataformas.</p></span><span class="uc-plus">+</span></button><div class="uc-body"><div class="uc-body-inner"><div><p class="lede">Agências de marketing e media buyers costumam gerenciar várias contas de anúncios com orçamentos, clientes e exigências de aprovação diferentes. A Xerovan facilita emitir cartões dedicados, controlar gastos e acompanhar cada transação em um só lugar.</p><span class="tag-label">Casos de uso comuns</span><ul><li>Emita cartões virtuais separados para cada cliente ou campanha</li><li>Atribua cartões dedicados ao Google Ads, Meta Ads, TikTok Ads e outras plataformas</li><li>Defina limites de gastos por cliente, funcionário ou campanha</li><li>Aplique restrições por categoria de estabelecimento</li><li>Bloqueie ou desbloqueie cartões na hora</li><li>Reúna comprovantes e documentos de apoio</li><li>Crie fluxos de aprovação de transações baseados em comprovantes</li><li>Acompanhe os gastos com anúncios em um painel centralizado</li><li>Gere relatórios de despesas por cliente, equipe ou projeto</li></ul><div class="uc-key-value">Valor principal: Separe cada orçamento. Controle cada transação. Acompanhe cada campanha.</div></div><div class="uc-visual" style="padding:0; overflow:hidden;"><img src="/images/usecase-01.webp" alt="Agências de marketing e media buyers" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;"></div></div></div></div><div class="uc-item"><button class="uc-head" aria-expanded="false"><span class="uc-num">02</span><span class="uc-head-text"><h3>Viajantes internacionais frequentes</h3><p>Gerencie dinheiro, pagamentos e serviços de viagem em uma plataforma.</p></span><span class="uc-plus">+</span></button><div class="uc-body"><div class="uc-body-inner"><div><p class="lede">Quem viaja com frequência precisa de acesso confiável aos fundos, opções de pagamento globais e serviços de viagem essenciais aonde quer que vá. A Xerovan conecta ativos digitais, pagamentos com cartão Visa e reservas de viagem em uma única experiência.</p><span class="tag-label">Casos de uso comuns</span><ul><li>Pague no mundo todo onde a Visa é aceita</li><li>Use cartões virtuais e físicos durante a viagem</li><li>Adicione cartões ao Apple Pay ou Google Pay</li><li>Recarregue o cartão com ativos digitais compatíveis</li><li>Bloqueie na hora um cartão perdido ou roubado</li><li>Desbloqueie o cartão direto pelo app</li><li>Acompanhe as transações em tempo real</li><li>Reserve voos, hotéis, passeios, atividades e eSIM</li><li>Gerencie ativos em várias moedas e redes</li></ul><div class="uc-key-value">Valor principal: Uma plataforma para seu dinheiro, seu cartão e sua viagem.</div></div><div class="uc-visual" style="padding:0; overflow:hidden;"><img src="/images/usecase-02.webp" alt="Viajantes internacionais frequentes" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;"></div></div></div></div><div class="uc-item"><button class="uc-head" aria-expanded="false"><span class="uc-num">03</span><span class="uc-head-text"><h3>Nômades digitais e freelancers globais</h3><p>A flexibilidade financeira para trabalhar de qualquer lugar.</p></span><span class="uc-plus">+</span></button><div class="uc-body"><div class="uc-body-inner"><div><p class="lede">Nômades digitais e freelancers costumam receber, pagar e gerenciar despesas em diferentes países e moedas. A Xerovan ajuda a gerenciar ativos digitais e gastos do dia a dia sem ficar preso a um único lugar.</p><span class="tag-label">Casos de uso comuns</span><ul><li>Gerencie várias carteiras cripto em uma única interface</li><li>Guarde e gerencie ativos nas redes compatíveis</li><li>Troque ativos quando precisar</li><li>Pague no mundo todo com um cartão Visa Xerovan</li><li>Pague softwares, hospedagem, transporte e despesas diárias</li><li>Reserve viagens pelo Marketplace de viagens da Xerovan</li><li>Compre eSIM para se conectar no exterior</li><li>Revise transações pessoais e profissionais em um só lugar</li></ul><div class="uc-key-value">Valor principal: Trabalhe de qualquer lugar. Pague em qualquer lugar. Mantenha o controle.</div></div><div class="uc-visual" style="padding:0; overflow:hidden;"><img src="/images/usecase-03.webp" alt="Nômades digitais e freelancers globais" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;"></div></div></div></div><div class="uc-item"><button class="uc-head" aria-expanded="false"><span class="uc-num">04</span><span class="uc-head-text"><h3>Usuários de assinaturas em dólar e internacionais</h3><p>Gerencie pagamentos globais recorrentes com cartões dedicados.</p></span><span class="uc-plus">+</span></button><div class="uc-body"><div class="uc-body-inner"><div><p class="lede">Em muitos países, usuários enfrentam dificuldades para pagar softwares internacionais, serviços em nuvem, plataformas de streaming e assinaturas em dólar. A Xerovan oferece uma forma prática de organizar e controlar pagamentos recorrentes.</p><span class="tag-label">Casos de uso comuns</span><ul><li>Crie um cartão virtual dedicado a assinaturas</li><li>Pague serviços internacionais e em dólar compatíveis</li><li>Use cartões separados para assinaturas pessoais e da empresa</li><li>Defina limites de gastos por categoria de assinatura</li><li>Acompanhe cobranças recorrentes em tempo real</li><li>Bloqueie o cartão quando não precisar mais da assinatura</li><li>Reduza o risco de cobranças inesperadas ou não autorizadas</li><li>Acompanhe pagamentos de SaaS, nuvem, produtividade e serviços digitais</li></ul><span class="tag-label">Serviços comuns</span><div class="tag-row"><span class="tag">Infraestrutura em nuvem</span><span class="tag">Ferramentas de IA e produtividade</span><span class="tag">Softwares de design e colaboração</span><span class="tag">Plataformas de marketing</span><span class="tag">Streaming e conteúdo digital</span><span class="tag">Assinaturas SaaS empresariais</span></div><div class="uc-key-value">Valor principal: Assuma o controle de cada assinatura internacional.</div></div><div class="uc-visual" style="padding:0; overflow:hidden;"><img src="/images/usecase-04.webp" alt="Usuários de assinaturas em dólar e internacionais" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;"></div></div></div></div><div class="uc-item"><button class="uc-head" aria-expanded="false"><span class="uc-num">05</span><span class="uc-head-text"><h3>Detentores de cripto em busca de utilidade real</h3><p>Vá além de guardar e comece a usar seus ativos digitais.</p></span><span class="uc-plus">+</span></button><div class="uc-body"><div class="uc-body-inner"><div><p class="lede">Muitos usuários de cripto têm ativos espalhados por várias carteiras e redes blockchain, mas não têm uma forma simples de usá-los no dia a dia. A Xerovan conecta gestão de carteiras, trocas, pagamentos, recompensas e viagens.</p><span class="tag-label">Casos de uso comuns</span><ul><li>Importe e gerencie carteiras compatíveis em um só lugar</li><li>Conecte carteiras externas</li><li>Visualize e gerencie ativos multichain</li><li>Envie e receba cripto</li><li>Troque ativos entre redes compatíveis</li><li>Transfira ativos entre redes compatíveis</li><li>Recarregue o Saldo Xerovan ou cartões compatíveis</li><li>Pague pela rede Visa</li><li>Use cripto em produtos e serviços de viagem compatíveis</li><li>Acesse staking, rendimentos, cashback e recompensas por indicação</li></ul><div class="uc-key-value">Valor principal: Transforme ativos digitais em possibilidades reais.</div></div><div class="uc-visual" style="padding:0; overflow:hidden;"><img src="/images/usecase-05.webp" alt="Detentores de cripto em busca de utilidade real" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;"></div></div></div></div><div class="uc-item"><button class="uc-head" aria-expanded="false"><span class="uc-num">06</span><span class="uc-head-text"><h3>PMEs e equipes distribuídas</h3><p>Simplifique os gastos da empresa entre funcionários, equipes e países.</p></span><span class="uc-plus">+</span></button><div class="uc-body"><div class="uc-body-inner"><div><p class="lede">Pequenas e médias empresas precisam de mais visibilidade e controle sobre os gastos dos funcionários. A Xerovan permite emitir cartões, definir políticas de gastos e gerenciar despesas de forma centralizada.</p><span class="tag-label">Casos de uso comuns</span><ul><li>Emita vários cartões para funcionários ou departamentos</li><li>Crie cartões separados para viagens, marketing, software e operações</li><li>Defina limites de gastos por funcionário, equipe ou categoria</li><li>Restrinja cartões a categorias de estabelecimento aprovadas</li><li>Bloqueie ou desbloqueie cartões na hora</li><li>Crie fluxos de aprovação de despesas baseados em comprovantes</li><li>Reúna e organize os comprovantes dos funcionários</li><li>Acompanhe as transações da empresa em tempo real</li><li>Gere relatórios de despesas centralizados</li><li>Gerencie despesas internacionais e de viagens a trabalho</li></ul><div class="uc-key-value">Valor principal: Dê flexibilidade de gastos às equipes sem perder o controle financeiro.</div></div><div class="uc-visual" style="padding:0; overflow:hidden;"><img src="/images/usecase-06.webp" alt="PMEs e equipes distribuídas" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;"></div></div></div></div></div>
-
-    <div class="uc-table-wrap">
-      <table class="uc-table">
-        <thead><tr><th>Segmento de clientes</th><th>Necessidade principal</th><th>Solução Xerovan</th></tr></thead>
-        <tbody id="ucTableBody"><tr><td>Agências de marketing e media buyers</td><td>Separar e controlar verbas de publicidade dos clientes</td><td>Vários cartões, limites de gastos, controles por estabelecimento e acompanhamento de despesas</td></tr><tr><td>Viajantes internacionais frequentes</td><td>Pagar e gerenciar viagens no mundo todo</td><td>Cartão Visa, controles do cartão, reservas de viagem e eSIM</td></tr><tr><td>Nômades digitais e freelancers</td><td>Gerenciar renda e gastos entre países</td><td>Gestão de várias carteiras, trocas, pagamentos globais e serviços de viagem</td></tr><tr><td>Usuários de assinaturas internacionais</td><td>Pagar e controlar serviços globais recorrentes</td><td>Cartões virtuais dedicados, limites de gastos e monitoramento de transações</td></tr><tr><td>Detentores de cripto</td><td>Usar ativos digitais além de guardar e negociar</td><td>Gestão de carteiras, trocas, pagamentos com cartão, recompensas e viagens</td></tr><tr><td>PMEs e equipes distribuídas</td><td>Controlar despesas de funcionários e departamentos</td><td>Cartões corporativos, fluxos de aprovação, gestão de comprovantes e relatórios</td></tr></tbody>
-      </table>
-    </div>
-
-    <div class="closing-band">
-      <h3>Feito para pessoas e empresas sem fronteiras</h3>
-      <p>Seja para gerenciar verbas de publicidade de clientes, viajar para o exterior, trabalhar remotamente, pagar assinaturas globais, usar cripto no dia a dia ou controlar despesas da equipe, a Xerovan reúne tudo em uma plataforma conectada.</p>
-      <div class="tagline">GERENCIE CRIPTO. CONTROLE GASTOS. PAGUE NO MUNDO TODO. VIAJE PARA QUALQUER LUGAR.</div>
-    </div>
   </div>
 </section>
 
@@ -1025,13 +1010,6 @@
     });
   });
 
-  const ucTableBody = document.getElementById('ucTableBody');
-  ucTableBody.innerHTML = '';
-  summaryTable.forEach(row => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${row[0]}</td><td>${row[1]}</td><td>${row[2]}</td>`;
-    ucTableBody.appendChild(tr);
-  });
 
   /* ---------- waveform hero (audio-equalizer feel) ---------- */
   const heroWave = document.getElementById('heroWave');
@@ -1109,7 +1087,7 @@
   fillDivider('dividerBars4', 40);
 
   document.getElementById('exploreBtn').addEventListener('click', () => {
-    document.getElementById('summary').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('features').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
   /* Render the live preview at a normal mobile width (390px) so its own

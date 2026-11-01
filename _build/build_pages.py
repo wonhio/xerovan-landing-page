@@ -258,13 +258,22 @@ import importlib.util as _ilu
 _spec = _ilu.spec_from_file_location("summary", ROOT / "_build" / "summary.py"); SUM = _ilu.module_from_spec(_spec); _spec.loader.exec_module(SUM)
 
 def restructure(html, lang):
-    """Remove the live app preview, replace Summary + Features with the 2-screen Summary (7 core features)."""
+    """Remove the app preview; replace Summary + Features with one continuous Features section;
+    nav 'Summary' becomes 'Home' (#top); add the site-wide crypto background."""
     html, n = re.subn(r'<section class="app-preview" id="appPreview">.*?</section>\n\n', '', html, flags=re.S); assert n == 1
-    page1, page2 = SUM.section(lang)
-    html, n = re.subn(r'<section id="summary">.*?</section>', lambda m: page1, html, flags=re.S); assert n == 1
-    html, n = re.subn(r'<section id="features">.*?</section>', lambda m: page2, html, flags=re.S); assert n == 1
-    html = must(html, "    document.getElementById('appPreview').scrollIntoView(", "    document.getElementById('summary').scrollIntoView(")
-    html = must(html, "  .latest{padding:100px 0;}", SUM.CSS + "  .latest{padding:100px 0;}")
+    html, n = re.subn(r'<section id="summary">.*?</section>\n\n<div class="divider" id="dividerBars2"></div>\n\n', '', html, flags=re.S); assert n == 1
+    html, n = re.subn(r'<section id="features">.*?</section>', lambda m: SUM.section(lang), html, flags=re.S); assert n == 1
+    html, n = re.subn(r'<a href="#summary">[^<]*</a>', f'<a href="#top">{SUM.HOME[lang]}</a>', html); assert n >= 1
+    html = must(html, "    document.getElementById('appPreview').scrollIntoView(", "    document.getElementById('features').scrollIntoView(")
+    html = must(html, "  .latest{padding:100px 0;}", SUM.CSS + SUM.SITE_BG_CSS + "  .latest{padding:100px 0;}")
+    html = must(html, "<body>", '<body>\n<div class="site-bg" aria-hidden="true"></div>', 1)
+    return html
+
+def drop_usecase_extras(html):
+    """Remove the summary table and the closing band under Use Cases (and the script that filled the table)."""
+    html, n = re.subn(r'\s*<div class="uc-table-wrap">.*?</table>\s*</div>', '', html, flags=re.S); assert n == 1
+    html, n = re.subn(r'\s*<div class="closing-band">.*?<div class="tagline">[^<]*</div>\s*</div>', '', html, flags=re.S); assert n == 1
+    html, n = re.subn(r"  const ucTableBody = document.getElementById\('ucTableBody'\);\n  ucTableBody.innerHTML = '';\n  summaryTable.forEach\(row => \{.*?\n  \}\);\n", '', html, flags=re.S); assert n == 1
     return html
 
 def finalize(html, lang):
@@ -295,7 +304,7 @@ def finalize(html, lang):
                 '  <div class="mobile-menu" id="mobileMenu" hidden>\n' + links + '\n  </div>\n</header>', 1)
     html = must(html, '  .lang-menu{position:relative;}', MOBILE_CSS + '  .lang-menu{position:relative;}', 1)
     html = must(html, '  /* Google Sheet waitlist webhook (Apps Script Web App) */', MOBILE_JS + '\n  /* Google Sheet waitlist webhook (Apps Script Web App) */', 1)
-    return prerender(html)
+    return drop_usecase_extras(prerender(html))
 
 en = finalize(common(src, "en"), "en")
 

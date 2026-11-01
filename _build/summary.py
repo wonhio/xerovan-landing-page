@@ -75,43 +75,43 @@ DEFINITION = {
 EYEBROW = {"kr": "Xerovan 핵심 기능", "en": "Xerovan core features", "ja": "Xerovanの主な機能",
            "es": "Funciones clave de Xerovan", "ar": "المزايا الأساسية لـ Xerovan", "pt": "Principais recursos da Xerovan"}
 
-CSS = """  /* ---------- Summary: 2 screens, crypto image behind, text in front ---------- */
-  .sx{position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center;padding:110px 0;isolation:isolate;}
-  .sx-bg{position:absolute;inset:0;z-index:-2;background-repeat:no-repeat;background-size:cover;}
-  .sx-1 .sx-bg{background-image:url("/images/summary-bg-1.webp");background-position:right center;}
-  .sx-2 .sx-bg{background-image:url("/images/summary-bg-2.webp");background-position:center;}
+CSS = """  /* ---------- Features: one continuous section, 7 core features, crypto image behind, text in front ---------- */
+  .sx{position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center;padding:100px 0 70px;isolation:isolate;}
+  .sx-bg{position:absolute;inset:0;z-index:-2;background:url("/images/summary-bg-1.webp") right center / auto 100% no-repeat;opacity:.55;}
   .sx::before{content:'';position:absolute;inset:0;z-index:-1;background:
-      linear-gradient(90deg,rgba(10,11,13,.94) 0%,rgba(10,11,13,.82) 42%,rgba(10,11,13,.45) 72%,rgba(10,11,13,.6) 100%),
-      linear-gradient(180deg,#0a0b0d 0%,rgba(10,11,13,0) 18%,rgba(10,11,13,0) 82%,#0a0b0d 100%);}
-  .sx-2::before{background:
-      radial-gradient(ellipse 60% 70% at 50% 50%,rgba(10,11,13,.55),rgba(10,11,13,.9) 75%),
-      linear-gradient(180deg,#0a0b0d 0%,rgba(10,11,13,0) 18%,rgba(10,11,13,0) 82%,#0a0b0d 100%);}
+      linear-gradient(90deg,rgba(10,11,13,.92) 0%,rgba(10,11,13,.7) 45%,rgba(10,11,13,.35) 75%,rgba(10,11,13,.55) 100%),
+      linear-gradient(180deg,rgba(10,11,13,.9) 0%,rgba(10,11,13,0) 20%,rgba(10,11,13,0) 80%,rgba(10,11,13,.9) 100%);}
   .sx .wrap{width:100%;}
-  .sx-head{max-width:760px;margin-bottom:44px;}
-  .sx-head h2{font-family:'Unbounded'; font-weight:600; font-size:clamp(24px,3.1vw,38px); line-height:1.3; margin-top:18px; text-shadow:0 2px 24px rgba(0,0,0,.7);}
-  .sx-2 .sx-head{margin:0 auto 40px;text-align:center;}
-  .sx-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:920px;}
-  .sx-2 .sx-grid{grid-template-columns:repeat(3,1fr);max-width:none;}
-  @media(max-width:900px){ .sx-grid,.sx-2 .sx-grid{grid-template-columns:1fr;} .sx{min-height:auto;padding:90px 0;} }
-  .sx-card{border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:24px 24px 26px;background:rgba(14,15,18,.62);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.06);}
+  .sx-head{max-width:900px;margin-bottom:34px;}
+  .sx-head h2{font-family:'Unbounded'; font-weight:600; font-size:clamp(20px,2.3vw,30px); line-height:1.35; margin-top:16px; text-shadow:0 2px 24px rgba(0,0,0,.7);}
+  .sx-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .sx-grid .sx-card:nth-child(n+5){grid-column:span 1;}
+  .sx-grid .sx-card:nth-child(5){grid-column:1 / span 1;}
+  @media(max-width:1100px){ .sx-grid{grid-template-columns:repeat(2,1fr);} .sx-grid .sx-card:nth-child(5){grid-column:auto;} }
+  @media(max-width:640px){ .sx-grid{grid-template-columns:1fr;} .sx{min-height:auto;padding:90px 0 60px;} }
+  .sx-card{border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px 20px 22px;background:rgba(14,15,18,.66);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.06);}
   .sx-num{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.16em;color:var(--ice);}
-  .sx-card h3{font-family:'Unbounded';font-size:17px;font-weight:600;line-height:1.35;margin:10px 0 4px;}
-  .sx-en{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.04em;color:var(--silver-500);margin-bottom:12px;}
-  .sx-card p{font-size:14.5px;line-height:1.7;color:var(--silver-300);}
+  .sx-card h3{font-family:'Unbounded';font-size:15px;font-weight:600;line-height:1.35;margin:9px 0 3px;}
+  .sx-en{font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.03em;color:var(--silver-500);margin-bottom:10px;}
+  .sx-card p{font-size:13.5px;line-height:1.65;color:var(--silver-300);}
 """
 
 
-def section(lang, eyebrow_center=False):
-    def card(i):
-        en_name, tr = FEATURES[i]
+def section(lang):
+    cards = []
+    for i, (en_name, tr) in enumerate(FEATURES):
         title, desc = tr[lang]
         sub = "" if lang == "en" else f'<div class="sx-en">{E(en_name)}</div>'
-        return (f'<article class="sx-card"><div class="sx-num">{i+1:02d}</div><h3>{E(title)}</h3>{sub}'
-                f'<p>{E(desc)}</p></article>')
-    page1 = (f'<section id="summary" class="sx sx-1"><div class="sx-bg" role="img" aria-label="Xerovan app and card"></div><div class="wrap">'
-             f'<div class="sx-head"><span class="eyebrow">{E(EYEBROW[lang])}</span><h2>{E(DEFINITION[lang])}</h2></div>'
-             f'<div class="sx-grid">{"".join(card(i) for i in range(4))}</div></div></section>')
-    page2 = (f'<section id="features" class="sx sx-2"><div class="sx-bg" role="img" aria-label="Global network"></div><div class="wrap">'
-             f'<div class="sx-head"><span class="eyebrow center">{E(EYEBROW[lang])}</span></div>'
-             f'<div class="sx-grid">{"".join(card(i) for i in range(4, 7))}</div></div></section>')
-    return page1, page2
+        cards.append(f'<article class="sx-card"><div class="sx-num">{i+1:02d}</div><h3>{E(title)}</h3>{sub}<p>{E(desc)}</p></article>')
+    return (f'<section id="features" class="sx"><div class="sx-bg" role="img" aria-label="Xerovan app and card"></div><div class="wrap">'
+            f'<div class="sx-head"><span class="eyebrow">{E(EYEBROW[lang])}</span><h2>{E(DEFINITION[lang])}</h2></div>'
+            f'<div class="sx-grid">{"".join(cards)}</div></div></section>')
+
+HOME = {"en": "Home", "kr": "홈", "ja": "ホーム", "es": "Inicio", "ar": "الرئيسية", "pt": "Início"}
+
+SITE_BG_CSS = """  /* site-wide crypto background (fixed behind every section) */
+  .site-bg{position:fixed;inset:0;z-index:-1;pointer-events:none;background:#07080a url("/images/site-bg.webp") left top / cover no-repeat;}
+  @media(max-width:760px){ .site-bg{background-position:22% top;} }
+  .divider{background:rgba(19,20,23,0.55) !important;backdrop-filter:blur(6px);}
+  footer{background:rgba(9,10,12,0.88) !important;}
+"""
