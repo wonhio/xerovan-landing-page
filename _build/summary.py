@@ -94,7 +94,15 @@ CSS = """  /* ---------- Features: one continuous section, 7 core features, cryp
   .sx-card h3{font-family:'Unbounded';font-size:15px;font-weight:600;line-height:1.35;margin:9px 0 3px;}
   .sx-en{font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.03em;color:var(--silver-500);margin-bottom:10px;}
   .sx-card p{font-size:13.5px;line-height:1.65;color:var(--silver-300);}
+  /* 8th cell: Xerovan crypto card visual next to feature 07 */
+  .sx-visual{position:relative;display:flex;align-items:center;justify-content:center;min-height:200px;}
+  .sx-visual img{width:min(118%,380px);max-width:none;height:auto;margin:-6% -9%;filter:drop-shadow(0 18px 40px rgba(0,0,0,.6));}
+  @media(max-width:640px){ .sx-visual{display:none;} }
 """
+
+
+VISUAL = ('<div class="sx-visual"><img src="/images/feature-cards.webp" width="900" height="700" '
+          'alt="Xerovan Visa crypto cards with USDC and USDT"></div>')
 
 
 def section(lang):
@@ -105,7 +113,7 @@ def section(lang):
         cards.append(f'<article class="sx-card"><div class="sx-num">{i+1:02d}</div><h3>{E(title)}</h3>{sub}<p>{E(desc)}</p></article>')
     return (f'<section id="features" class="sx"><div class="sx-bg" role="img" aria-label="Xerovan app and card"></div><div class="wrap">'
             f'<div class="sx-head"><span class="eyebrow">{E(EYEBROW[lang])}</span><h2>{E(DEFINITION[lang])}</h2></div>'
-            f'<div class="sx-grid">{"".join(cards)}</div></div></section>')
+            f'<div class="sx-grid">{"".join(cards)}{VISUAL}</div></div></section>')
 
 HOME = {"en": "Home", "kr": "홈", "ja": "ホーム", "es": "Inicio", "ar": "الرئيسية", "pt": "Início"}
 
@@ -115,6 +123,10 @@ SITE_BG_CSS = """  /* Page backgrounds scroll with the content: one image per se
   .hero, #usecases, #faq, #waitlist{background-color:#0b0c0e;background-repeat:no-repeat;background-size:cover;}
   .hero{background-image:url("/images/bg-hero.webp");background-position:center;}
   #usecases{background-image:url("/images/bg-usecases.webp");background-position:right center;}
+  @media(min-width:1200px){ html:not([dir=rtl]) #usecases .section-head,html:not([dir=rtl]) #usecases .uc-list{max-width:600px;margin-left:0;text-align:left;} html:not([dir=rtl]) #usecases .section-head .eyebrow{justify-content:flex-start;} }
+  html[dir=rtl] #usecases{background-image:linear-gradient(rgba(11,12,14,.72),rgba(11,12,14,.72)),url("/images/bg-usecases.webp");}
+  @media(max-width:1199px){ #usecases{background-image:linear-gradient(rgba(11,12,14,.72),rgba(11,12,14,.72)),url("/images/bg-usecases.webp");} }
+  @media(max-width:1000px){ #faq{background-image:linear-gradient(rgba(11,12,14,.75),rgba(11,12,14,.75)),url("/images/bg-faq.webp");} }
   #faq{background-image:url("/images/bg-faq.webp");background-position:center;}
   #waitlist{background-image:url("/images/bg-cta.webp");background-position:center bottom;}
   @media(max-width:760px){ .hero{background-position:84% 30%;} .hero::after{background:radial-gradient(ellipse 70% 40% at 50% 52%,rgba(8,8,10,.82),rgba(8,8,10,.4) 70%,transparent 90%) !important;} #usecases{background-position:78% center;} }
