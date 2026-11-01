@@ -313,7 +313,17 @@ def finalize(html, lang):
                 '  <div class="mobile-menu" id="mobileMenu" hidden>\n' + links + '\n  </div>\n</header>', 1)
     html = must(html, '  .lang-menu{position:relative;}', MOBILE_CSS + '  .lang-menu{position:relative;}', 1)
     html = must(html, '  /* Google Sheet waitlist webhook (Apps Script Web App) */', MOBILE_JS + '\n  /* Google Sheet waitlist webhook (Apps Script Web App) */', 1)
-    return drop_usecase_extras(prerender(html))
+    return faq_schema(drop_usecase_extras(prerender(html)), lang)
+
+def faq_schema(html, lang):
+    """FAQPage structured data built from the same FAQ that is pre-rendered on the page (rich results in Google)."""
+    faq = _js_array(html, "faqDataFallback")
+    data = {"@context": "https://schema.org", "@type": "FAQPage", "inLanguage": LANGS[lang][0],
+            "mainEntity": [{"@type": "Question", "name": _html.unescape(f["q"]),
+                            "acceptedAnswer": {"@type": "Answer", "text": _html.unescape(f["a"])}} for f in faq]}
+    tag = '<script type="application/ld+json">' + _json.dumps(data, ensure_ascii=False).replace("</", "<\\/") + '</script>\n'
+    return must(html, '<link rel="preconnect" href="https://fonts.googleapis.com">',
+                tag + '<link rel="preconnect" href="https://fonts.googleapis.com">', 1)
 
 en = finalize(common(src, "en"), "en")
 
