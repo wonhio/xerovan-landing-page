@@ -276,7 +276,6 @@ def restructure(html, lang):
     html = must(html, "</body>", SUM.app_modal(lang, modal_badges) + "\n</body>", 1)
     html = must(html, '  /* Google Sheet waitlist webhook (Apps Script Web App) */', SUM.app_js() + '\n  /* Google Sheet waitlist webhook (Apps Script Web App) */', 1)
     html = must(html, "  .latest{padding:100px 0;}", SUM.CSS + SUM.SITE_BG_CSS + SUM.APP_CSS + "  .latest{padding:100px 0;}")
-    html = must(html, "<body>", '<body>\n<div class="site-bg" aria-hidden="true"></div>', 1)
     return html
 
 def drop_usecase_extras(html):
