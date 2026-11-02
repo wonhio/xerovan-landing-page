@@ -85,6 +85,25 @@ function parseCSV(text) {
   return rows.filter((r) => r.some((x) => x.trim() !== ''));
 }
 
+/** Unfinished sheet rows: too short, or just the title repeated ("Privacy PolicyPrivacy Policy…"). These stay noindex and out of the sitemap. */
+function isPlaceholderDoc(title, content) {
+  const body = String(content || '').trim();
+  const name = String(title || '').trim();
+  const rest = name ? body.split(name).join('').replace(/\s+/g, '') : body;
+  return body.length < 120 || rest.length < 120;
+}
+
+// Confirmed values for the sheet's bracketed fields. Safe to keep once the sheet itself is corrected.
+const CONTACT_EMAIL = 'hello@xerovan.com';
+const LEGAL_ENTITY = 'MARU EVENT TOURISM LLC';
+const LEGAL_ADDRESS = 'Prime Business Centre Tower B Unit 12B05, JVC, Dubai, UAE';
+const LEGAL_FILL = {
+  '[Aug 5, 2026]': 'Aug 5, 2026', '[MARU EVEN TOURISM LLC]': LEGAL_ENTITY, 'MARU EVEN TOURISM LLC': LEGAL_ENTITY, '[UAE]': 'UAE',
+  [`[${LEGAL_ADDRESS}]`]: LEGAL_ADDRESS, '[Jurisdiction]': 'Dubai, UAE', '[Legal Entity Name]': LEGAL_ENTITY,
+  '[Support Email]': CONTACT_EMAIL, '[Registered Address]': LEGAL_ADDRESS,
+};
+const fillLegal = (text) => Object.entries(LEGAL_FILL).reduce((out, [k, v]) => out.split(k).join(v), text);
+
 let legalCache = { at: 0, docs: null };
 /** { terms: {title, content}, ... } for documents that have real content (≥ 120 characters). */
 async function legalDocs() {
@@ -95,7 +114,7 @@ async function legalDocs() {
   const docs = {};
   for (const [slug, kw] of Object.entries(LEGAL_DOCS)) {
     const row = rows.find((x) => (x[0] || '').toLowerCase().includes(kw));
-    if (row && (row[1] || '').trim().length >= 120) docs[slug] = { title: row[0].trim(), content: row[1].trim() };
+    if (row && !isPlaceholderDoc(row[0], row[1])) docs[slug] = { title: row[0].trim(), content: fillLegal(row[1].trim()) };
   }
   legalCache = { at: Date.now(), docs };
   return docs;
@@ -103,7 +122,6 @@ async function legalDocs() {
 
 // About page + founder (used on /{lang}/about and in the author box under posts)
 const FOUNDER = 'Jay Yoon';
-const CONTACT_EMAIL = 'hello@xerovan.com';
 const HQ = 'Dubai, UAE';
 const ABOUT = {
   en: { title: 'About Xerovan', eyebrow: 'About', h1: 'Moving money across borders, without the borders.',
@@ -149,10 +167,34 @@ const ABOUT = {
     company: 'Empresa', hq: 'Sede', contact: 'Contato', cta: 'Entrar na lista de espera',
     short: 'Fundador da Xerovan. Administra negócios internacionais entre Singapura, Dubai e Geórgia.', by: 'Escrito por' },
 };
+const ABOUT_META = {
+  en: ['About Xerovan — Crypto Payments Built in Dubai', 'Xerovan is building stablecoin payments, from a self-custodial wallet to a Visa card and travel and business spending. Meet the founder and the company.'],
+  kr: ['Xerovan 소개 — 두바이에서 만드는 크립토 결제', 'Xerovan은 셀프 커스터디 지갑부터 Visa 카드, 여행·비즈니스 결제까지 스테이블코인 결제를 만듭니다. 창업자와 회사 정보를 확인하세요.'],
+  ja: ['Xerovanについて — ドバイ発の暗号資産決済', 'Xerovanは、セルフカストディ型ウォレットからVisaカード、旅行・ビジネスの支払いまで、ステーブルコイン決済を構築しています。創業者と会社情報をご覧ください。'],
+  es: ['Sobre Xerovan — Pagos cripto creados en Dubái', 'Xerovan crea pagos con stablecoins: desde una wallet de autocustodia hasta una tarjeta Visa, viajes y gastos de empresa. Conoce al fundador y la empresa.'],
+  ar: ['عن Xerovan — مدفوعات مشفرة من دبي', 'تبني Xerovan مدفوعات بالعملات المستقرة، من محفظة ذاتية الحفظ إلى بطاقة Visa ومدفوعات السفر والأعمال. تعرّف على المؤسس والشركة.'],
+  pt: ['Sobre a Xerovan — Pagamentos cripto criados em Dubai', 'A Xerovan cria pagamentos com stablecoins: de uma carteira de autocustódia a um cartão Visa, viagens e gastos empresariais. Conheça o fundador e a empresa.'],
+};
 const founderLD = (lang) => ({ '@type': 'Person', name: FOUNDER, jobTitle: 'Founder', url: `${SITE}/${lang}/about`,
   worksFor: { '@type': 'Organization', name: 'Xerovan', url: `${SITE}/` } });
 // WordPress accounts often show as "admin": posts by such an account are credited to the founder.
 const isFounderAccount = (name) => !name || /^(admin|administrator|xerovan|jay|jay yoon)$/i.test(String(name).trim());
+
+// Search title / description per post, where the WordPress title or excerpt is too long for results. Keyed by "lang/slug".
+const POST_SEO = {
+  'en/custodial-vs-non-custodial-crypto-cards-whats-the-difference-and-why-does-it-matter': {
+    title: 'Custodial vs Non-Custodial Crypto Cards Explained | Xerovan',
+    description: 'What separates custodial and non-custodial crypto cards: who holds your keys, when funds leave your wallet, and how to compare fees and risks.' },
+  'kr/custodial-vs-non-custodial-crypto-card-ko': {
+    title: '수탁형 vs 비수탁형 크립토 카드 차이점 비교 | Xerovan',
+    description: '수탁형과 비수탁형 크립토 카드의 차이를 비교합니다. 개인 키를 누가 보관하는지, 자금이 언제 지갑을 떠나는지, 수수료와 위험은 어떻게 다른지 정리했습니다.' },
+  'kr/crypto-card-marketing-agencies-ko': { title: '마케팅 에이전시를 위한 크립토 카드 가이드 | Xerovan' },
+};
+// Same article in different languages. Language menu and hreflang are built from these groups.
+const TRANSLATIONS = [
+  { en: 'custodial-vs-non-custodial-crypto-cards-whats-the-difference-and-why-does-it-matter', kr: 'custodial-vs-non-custodial-crypto-card-ko' },
+];
+const translationsOf = (lang, slug) => TRANSLATIONS.find((g) => g[lang] === slug) || null;
 
 // Main menu — identical to the landing page nav (sections of /{lang}/ + Blog)
 const MENU = {
@@ -180,6 +222,7 @@ const clip = (s, n) => (s.length > n ? s.slice(0, n - 1).trimEnd() + '…' : s);
 function publicize(html, lang) {
   const wpHost = WP.replace(/^https?:\/\//, '');
   return String(html ?? '')
+    .replace(/https?:\/\/(?:www\.)?xerovan\.com\/?(?=["'])/gi, `${SITE}/${lang}/`)
     .replace(new RegExp(`https?://${wpHost.replace(/\./g, '\\.')}/wp-content/uploads/`, 'g'), '/blog-media/')
     .replace(new RegExp(`https?://${wpHost.replace(/\./g, '\\.')}/(?:(?:${Object.keys(LANGS).join('|')})/)?([a-z0-9%-]+)/?(?=["'#?])`, 'gi'), `/${lang}/blog/$1`);
 }
@@ -227,6 +270,16 @@ async function langPosts(lang, cat) {
   }
   postsCache.set(lang, { at: Date.now(), posts: out });
   return out;
+}
+
+/** Language code when that language has a post (in this topic, if given); errors count as "has posts" so indexing never flips on a CMS hiccup. */
+async function hasPosts(lang, topic, tmap) {
+  try {
+    const cat = await categoryId(lang);
+    if (!cat) return null;
+    const posts = await langPosts(lang, cat);
+    return (topic ? posts.some((p) => tmap[topic] && (p.categories || []).includes(tmap[topic])) : posts.length > 0) ? lang : null;
+  } catch { return lang; }
 }
 
 /** The post page already prints the title as its only <h1>: drop a leading <h1> that repeats it, demote any other <h1> to <h2>. */
@@ -682,37 +735,47 @@ function messageView(lang, heading, text) {
 
 // ---------------------------------------------------------------- sitemap / rss
 async function sitemap() {
-  // Always returns a valid sitemap: blog index pages are listed even if WordPress is unreachable.
+  // Always valid: if WordPress is unreachable, blog indexes are still listed rather than dropped.
   const urls = [];
+  const set = (make) => [...Object.keys(LANGS).map((k) => [LANGS[k].hl, make(k)]), ['x-default', make('en')]];
+  const counts = {};
   for (const lang of Object.keys(LANGS)) {
-    urls.push({ loc: `${SITE}/${lang}/about`, lastmod: null });
-    SOL.SLUGS.forEach((k) => urls.push({ loc: `${SITE}/${lang}/solutions/${k}`, lastmod: null }));
-    urls.push({ loc: `${SITE}/${lang}/blog`, lastmod: null });
+    urls.push({ loc: `${SITE}/${lang}/about`, alt: set((k) => `${SITE}/${k}/about`) });
+    SOL.SLUGS.forEach((s) => urls.push({ loc: `${SITE}/${lang}/solutions/${s}`, alt: set((k) => `${SITE}/${k}/solutions/${s}`) }));
     try {
       const cat = await categoryId(lang);
-      if (!cat) continue;
+      if (!cat) { counts[lang] = 0; continue; }
       const tmap = await topicIds().catch(() => ({}));
       const used = new Set();
+      let n = 0;
       for (let page = 1; page <= 20; page++) {
         const { data, pages } = await wp(`posts?categories=${cat}&per_page=100&page=${page}&_fields=slug,modified_gmt,categories`);
         data.forEach((p) => {
-          urls.push({ loc: `${SITE}/${lang}/blog/${p.slug}`, lastmod: p.modified_gmt ? p.modified_gmt + 'Z' : null });
+          n++;
+          const g = translationsOf(lang, p.slug);
+          urls.push({ loc: `${SITE}/${lang}/blog/${p.slug}`, lastmod: p.modified_gmt ? p.modified_gmt + 'Z' : null,
+            alt: g ? [...Object.entries(g).map(([k, v]) => [LANGS[k].hl, `${SITE}/${k}/blog/${v}`]), ['x-default', `${SITE}/${g.en ? 'en' : lang}/blog/${g.en || p.slug}`]] : null });
           const tp = topicOf(p, tmap); if (tp) used.add(tp);
         });
         if (page >= pages) break;
       }
-      TOPICS.filter((k) => used.has(k)).forEach((k) => urls.push({ loc: `${SITE}/${lang}/blog/category/${k}`, lastmod: null }));
+      counts[lang] = n;
+      TOPICS.filter((k) => used.has(k)).forEach((k) => urls.push({ loc: `${SITE}/${lang}/blog/category/${k}` }));
     } catch (e) {
       console.error('[blog-sitemap]', lang, e.message);
+      counts[lang] = null;
     }
   }
+  const blogLangs = Object.keys(LANGS).filter((k) => counts[k] !== 0);
+  blogLangs.forEach((lang) => urls.push({ loc: `${SITE}/${lang}/blog`,
+    alt: blogLangs.length > 1 ? blogLangs.map((k) => [LANGS[k].hl, `${SITE}/${k}/blog`]) : null }));
   try {
     const docs = await legalDocs();
-    Object.keys(docs).forEach((k) => urls.push({ loc: `${SITE}/en/legal/${k}`, lastmod: null }));
+    Object.keys(docs).forEach((k) => urls.push({ loc: `${SITE}/en/legal/${k}` }));
   } catch (e) { console.error('[blog-sitemap] legal', e.message); }
   return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map((u) => `  <url><loc>${esc(u.loc)}</loc>${u.lastmod ? `<lastmod>${u.lastmod.slice(0, 10)}</lastmod>` : ''}</url>`).join('\n')}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${urls.map((u) => `  <url><loc>${esc(u.loc)}</loc>${u.lastmod ? `<lastmod>${u.lastmod.slice(0, 10)}</lastmod>` : ''}${(u.alt || []).map(([h, href]) => `<xhtml:link rel="alternate" hreflang="${h}" href="${esc(href)}"/>`).join('')}</url>`).join('\n')}
 </urlset>`;
 }
 
@@ -784,8 +847,8 @@ module.exports = async (req, res) => {
   if (q.about) {
     const A = ABOUT[lang];
     return send(200, layout({
-      lang, title: `${A.title} | Xerovan`, description: A.p[0], canonical: `${SITE}/${lang}/about`,
-      alternates: Object.keys(LANGS).map((k) => [k, `${SITE}/${k}/about`]),
+      lang, title: ABOUT_META[lang][0], description: ABOUT_META[lang][1], canonical: `${SITE}/${lang}/about`,
+      alternates: [...Object.keys(LANGS).map((k) => [k, `${SITE}/${k}/about`]), ['x-default', `${SITE}/en/about`]],
       body: aboutView(lang),
       jsonLd: [crumbs([['Xerovan', `${SITE}/${lang}/`], [A.eyebrow, `${SITE}/${lang}/about`]]), {
         '@context': 'https://schema.org', '@type': 'AboutPage', name: A.title, url: `${SITE}/${lang}/about`, inLanguage: LANGS[lang].hl,
@@ -842,9 +905,13 @@ module.exports = async (req, res) => {
       }
       const p = shape(raw, lang, tmap);
       const canonical = `${SITE}/${lang}/blog/${p.slug}`;
-      const alternates = [[lang, canonical], ...Object.entries(p.translations).map(([k, s]) => [k, `${SITE}/${k}/blog/${s}`])];
+      const group = translationsOf(lang, p.slug);
+      const alternates = group
+        ? [...Object.entries(group).map(([k, s]) => [k, `${SITE}/${k}/blog/${s}`]), ['x-default', `${SITE}/${group.en ? 'en' : lang}/blog/${group.en || p.slug}`]]
+        : [[lang, canonical]];
+      const seo = POST_SEO[`${lang}/${p.slug}`] || {};
       return send(200, layout({
-        lang, title: `${p.title} | Xerovan`, description: p.excerpt, canonical, alternates,
+        lang, title: seo.title || `${p.title} | Xerovan`, description: seo.description || p.excerpt, canonical, alternates,
         ogImage: p.image ? `${SITE}${p.image}` : null, ogType: 'article',
         body: postView(lang, p),
         jsonLd: [crumbs([
@@ -876,10 +943,14 @@ module.exports = async (req, res) => {
     const basePath = topic ? `/blog/category/${topic}` : '/blog';
     const canonical = `${SITE}/${lang}${basePath}${page > 1 ? `/page/${page}` : ''}`;
     const heading = topic ? `${TOPIC_LABEL[lang][topic]} | ${t.title}` : t.title;
+    // hreflang only between list pages that have articles; an empty list stays out of the index.
+    const filled = (await Promise.all(Object.keys(LANGS).map((k) => hasPosts(k, topic, tmap)))).filter(Boolean);
     return send(200, layout({
       lang, title: page > 1 ? `${heading} — ${t.page} ${page}` : heading,
       description: topic ? TOPIC_INTRO[lang][topic] : t.intro, canonical,
-      alternates: Object.keys(LANGS).map((k) => [k, `${SITE}/${k}${basePath}`]),
+      noindex: !all.length,
+      hreflang: all.length > 0,
+      alternates: filled.map((k) => [k, `${SITE}/${k}${basePath}`]),
       body: listView(lang, data.map((p) => shape(p, lang, tmap)), page, pages, topic),
       jsonLd: [crumbs([
         ['Xerovan', `${SITE}/${lang}/`], [t.blog, `${SITE}/${lang}/blog`],

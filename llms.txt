@@ -32,12 +32,12 @@ The site is available in English, Korean, Japanese, Spanish, Arabic and Portugue
 - [Manual](https://www.xerovan.com/en/blog/category/manual): how to use the Xerovan app
 - [Crypto & Payments Guide](https://www.xerovan.com/en/blog/category/guide): crypto and blockchain basics, international payments, subscriptions, travel and business spending
 - [블로그 (한국어)](https://www.xerovan.com/kr/blog): Korean blog
+- [수탁형 vs 비수탁형 크립토 카드](https://www.xerovan.com/kr/blog/custodial-vs-non-custodial-crypto-card-ko): Korean guide comparing custodial and non-custodial crypto cards
+- [마케팅 에이전시를 위한 크립토 카드](https://www.xerovan.com/kr/blog/crypto-card-marketing-agencies-ko): Korean guide to crypto cards for marketing agencies
 
 ## Legal
 
 - [Terms & Conditions](https://www.xerovan.com/en/legal/terms)
-- [Privacy Policy](https://www.xerovan.com/en/legal/privacy)
-- [Risk Disclosure](https://www.xerovan.com/en/legal/risk-disclosure)
 
 ## Optional
 

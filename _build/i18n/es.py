@@ -163,7 +163,7 @@ FOOTER_LEGAL = """
 """
 
 FAQ = [
- ("¿Qué países están disponibles actualmente?", "Xerovan amplía su disponibilidad de forma gradual. La creación de wallets, la emisión de tarjetas y algunos servicios pueden variar según tu país de residencia. Consulta nuestra página de países compatibles para ver la disponibilidad más reciente."),
+ ("¿Qué países están disponibles actualmente?", "Xerovan amplía su disponibilidad de forma gradual. La creación de wallets, la emisión de tarjetas y algunos servicios pueden variar según tu país de residencia."),
  ("¿Qué blockchains admite Xerovan?", "Xerovan admite varias de las principales redes blockchain, como Ethereum, Base, Arbitrum, Polygon, BNB Chain, Solana, TRON y Bitcoin. Se irán añadiendo más redes con el tiempo."),
  ("¿Cómo recargo mi tarjeta Visa?", "Transfiere cripto compatibles a tu wallet Xerovan y recarga tu tarjeta con unos pocos toques. Según el activo y la red elegidos, los fondos se convierten y quedan disponibles para pagar con la tarjeta."),
  ("¿Qué comisiones cobra Xerovan?", "Las transferencias, los intercambios y las recargas de tarjeta pueden tener comisiones de red o de servicio según la operación. Todas las comisiones se muestran con transparencia antes de confirmar."),

@@ -307,7 +307,18 @@ import subprocess as _sp, json as _json2
 _SOL = _json2.loads(_sp.run(["node", "-e", "const s=require(process.argv[1]);console.log(JSON.stringify({slugs:s.SLUGS,ui:Object.fromEntries(Object.entries(s.UI).map(([k,v])=>[k,{h:v.eyebrow,short:v.short}]))}))",
                              str(ROOT / "api" / "_solutions.js")], capture_output=True, text=True, check=True).stdout)
 
+COMING_SOON = {"en": "Coming soon", "kr": "출시 예정", "ja": "近日公開", "es": "Próximamente", "ar": "قريبًا", "pt": "Em breve"}
+CARD_ALT = {
+    "en": "Xerovan Visa crypto cards with USDC and USDT",
+    "kr": "USDC와 USDT를 사용하는 Xerovan Visa 크립토 카드",
+    "ja": "USDCとUSDTに対応したXerovan Visa暗号資産カード",
+    "es": "Tarjetas cripto Visa de Xerovan con USDC y USDT",
+    "ar": "بطاقات Xerovan Visa المشفرة مع USDC وUSDT",
+    "pt": "Cartões cripto Visa da Xerovan com USDC e USDT",
+}
+
 def seo_home(html, lang):
+    html = html.replace('alt="Xerovan Visa crypto cards with USDC and USDT"', f'alt="{CARD_ALT[lang]}"')
     html, n = re.subn(r'<h1 class="hero-title">(<span class="metal">[^<]*</span>)</h1>\n  <p class="hero-sub">[^<]*</p>',
                       lambda m: f'<p class="hero-title">{m.group(1)}</p>\n  <h1 class="hero-sub">{_html.escape(HERO_H1[lang], quote=False)}</h1>', html)
     assert n == 1, "hero not found"
@@ -350,7 +361,20 @@ def finalize(html, lang):
                 '  <div class="mobile-menu" id="mobileMenu" hidden>\n' + links + '\n  </div>\n</header>', 1)
     html = must(html, '  .lang-menu{position:relative;}', MOBILE_CSS + '  .lang-menu{position:relative;}', 1)
     html = must(html, '  /* Google Sheet waitlist webhook (Apps Script Web App) */', MOBILE_JS + '\n  /* Google Sheet waitlist webhook (Apps Script Web App) */', 1)
-    return seo_home(faq_schema(drop_usecase_extras(prerender(html)), lang), lang)
+    html = seo_home(faq_schema(drop_usecase_extras(prerender(html)), lang), lang)
+    # footer column labels are not document headings
+    html = re.sub(r'<div class="footer-col"><h5>([^<]*)</h5>', r'<div class="footer-col"><div class="footer-label">\1</div>', html)
+    html = must(html, '.footer-col h5{', '.footer-col .footer-label{', 1)
+    # apps not released: inert "Coming soon" badges instead of href="#"
+    if not (SUM.APP_STORE_URL or SUM.PLAY_STORE_URL):
+        def soon(m):
+            inner = re.sub(r'<span class="small">[^<]*</span>', f'<span class="small">{COMING_SOON[lang]}</span>', m.group(1))
+            return f'<span class="store-badge soon" aria-disabled="true">{inner}</span>'
+        html, n = re.subn(r'<a href="#" class="store-badge[^"]*"[^>]*>(.*?)</a>', soon, html, flags=re.S)
+        assert n >= 2, "store badges not found"
+        html = must(html, '  .store-badge:hover{', '  .store-badge.soon{opacity:.55;cursor:default;}\n  .store-badge:hover{', 1)
+        html = html.replace('.store-badge:hover{border-color', '.store-badge:not(.soon):hover{border-color')
+    return html
 
 def faq_schema(html, lang):
     """FAQPage structured data built from the same FAQ that is pre-rendered on the page (rich results in Google)."""
@@ -623,7 +647,7 @@ kr = must_re(kr, r"const FAQ_SHEET_URL = '[^']*';",
  "  const FAQ_SHEET_URL = '';")
 
 kr = must_re(kr, r"const faqDataFallback = \[.*?\n  \];", '''const faqDataFallback = [
-    { q: "현재 어떤 국가에서 이용할 수 있나요?", a: "Xerovan은 이용 가능 지역을 단계적으로 확대하고 있습니다. 지갑 생성, 카드 발급 및 일부 서비스는 거주 국가에 따라 달라질 수 있습니다. 최신 이용 가능 지역은 지원 국가 페이지에서 확인해 주세요." },
+    { q: "현재 어떤 국가에서 이용할 수 있나요?", a: "Xerovan은 이용 가능 지역을 단계적으로 확대하고 있습니다. 지갑 생성, 카드 발급 및 일부 서비스는 거주 국가에 따라 달라질 수 있습니다." },
     { q: "Xerovan은 어떤 블록체인을 지원하나요?", a: "Xerovan은 Ethereum, Base, Arbitrum, Polygon, BNB Chain, Solana, TRON, Bitcoin 등 주요 블록체인 네트워크를 지원하며, 지원 네트워크는 계속 추가될 예정입니다." },
     { q: "Visa 카드는 어떻게 충전하나요?", a: "지원되는 암호화폐를 Xerovan 지갑으로 전송한 뒤 몇 번의 탭으로 카드를 충전하면 됩니다. 선택한 자산과 네트워크에 따라 자금이 변환되어 카드 결제에 사용할 수 있게 됩니다." },
     { q: "Xerovan의 수수료는 어떻게 되나요?", a: "지갑 전송, 스왑, 카드 충전 시 거래 유형에 따라 네트워크 수수료나 서비스 수수료가 발생할 수 있습니다. 모든 수수료는 거래 확정 전에 투명하게 표시됩니다." },
