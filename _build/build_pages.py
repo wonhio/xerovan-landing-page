@@ -307,6 +307,11 @@ import subprocess as _sp, json as _json2
 _SOL = _json2.loads(_sp.run(["node", "-e", "const s=require(process.argv[1]);console.log(JSON.stringify({slugs:s.SLUGS,ui:Object.fromEntries(Object.entries(s.UI).map(([k,v])=>[k,{h:v.eyebrow,short:v.short}]))}))",
                              str(ROOT / "api" / "_solutions.js")], capture_output=True, text=True, check=True).stdout)
 
+def hero_h1(lang):
+    # Only the key phrase is the H1; the rest of the sentence stays next to it, so the hero reads the same.
+    key, sep, rest = re.match(r'(.*?)( — |: )(.*)', HERO_H1[lang], re.S).groups()
+    return f'<h1>{_html.escape(key, quote=False)}</h1>{_html.escape(sep + rest, quote=False)}'
+
 COMING_SOON = {"en": "Coming soon", "kr": "출시 예정", "ja": "近日公開", "es": "Próximamente", "ar": "قريبًا", "pt": "Em breve"}
 CARD_ALT = {
     "en": "Xerovan Visa crypto cards with USDC and USDT",
@@ -320,10 +325,10 @@ CARD_ALT = {
 def seo_home(html, lang):
     html = html.replace('alt="Xerovan Visa crypto cards with USDC and USDT"', f'alt="{CARD_ALT[lang]}"')
     html, n = re.subn(r'<h1 class="hero-title">(<span class="metal">[^<]*</span>)</h1>\n  <p class="hero-sub">[^<]*</p>',
-                      lambda m: f'<p class="hero-title">{m.group(1)}</p>\n  <h1 class="hero-sub">{_html.escape(HERO_H1[lang], quote=False)}</h1>', html)
+                      lambda m: f'<p class="hero-title">{m.group(1)}</p>\n  <div class="hero-sub">{hero_h1(lang)}</div>', html)
     assert n == 1, "hero not found"
     html = html.replace("h1.hero-title", ".hero-title")
-    html = must(html, "  .hero-sub{", "  h1.hero-sub{font-family:inherit; font-weight:400; letter-spacing:normal;}\n  .hero-sub{", 1)
+    html = must(html, "  .hero-sub{", "  .hero-sub h1{display:inline; font:inherit; letter-spacing:normal; color:inherit;}\n  .hero-sub{", 1)
     html, n = re.subn(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{_html.escape(META_DESC[lang])}">', html)
     assert n == 1, "meta description not found"
     U = _SOL["ui"][lang]
@@ -365,6 +370,8 @@ def finalize(html, lang):
     # footer column labels are not document headings
     html = re.sub(r'<div class="footer-col"><h5>([^<]*)</h5>', r'<div class="footer-col"><div class="footer-label">\1</div>', html)
     html = must(html, '.footer-col h5{', '.footer-col .footer-label{', 1)
+    sol_label = _SOL["ui"][lang]["h"]
+    html = must(html, f'<div class="footer-label">{sol_label}</div>', f'<div class="footer-label"><a href="/{lang}/solutions" style="font:inherit;color:inherit">{sol_label}</a></div>', 1)
     # apps not released: inert "Coming soon" badges instead of href="#"
     if not (SUM.APP_STORE_URL or SUM.PLAY_STORE_URL):
         def soon(m):

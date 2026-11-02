@@ -133,6 +133,10 @@
       "destination": "/api/blog?lang=:lang&legal=:doc"
     },
     {
+      "source": "/:lang(en|kr|ja|es|ar|pt)/solutions",
+      "destination": "/api/blog?lang=:lang&hub=1"
+    },
+    {
       "source": "/:lang(en|kr|ja|es|ar|pt)/solutions/:solution",
       "destination": "/api/blog?lang=:lang&solution=:solution"
     },

@@ -83,6 +83,7 @@ CSS = """  /* ---------- Features: one continuous section, 7 core features, cryp
       linear-gradient(180deg,rgba(10,11,13,.9) 0%,rgba(10,11,13,0) 20%,rgba(10,11,13,0) 80%,rgba(10,11,13,.9) 100%);}
   .sx .wrap{width:100%;}
   .sx-head{max-width:900px;margin-bottom:34px;}
+  .sx-def{margin-top:16px;max-width:720px;color:var(--silver-300);font-size:16px;line-height:1.7;text-shadow:0 2px 24px rgba(0,0,0,.7);}
   .sx-head h2{font-family:'Unbounded'; font-weight:600; font-size:clamp(20px,2.3vw,30px); line-height:1.35; margin-top:16px; text-shadow:0 2px 24px rgba(0,0,0,.7);}
   .sx-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
   .sx-grid .sx-card:nth-child(n+5){grid-column:span 1;}
@@ -101,6 +102,14 @@ CSS = """  /* ---------- Features: one continuous section, 7 core features, cryp
 """
 
 
+SECTION_H2 = {
+    "en": "All-in-one crypto finance platform",
+    "kr": "올인원 크립토 금융 플랫폼",
+    "ja": "オールインワンの暗号資産金融プラットフォーム",
+    "es": "Plataforma financiera cripto todo en uno",
+    "ar": "منصة مالية متكاملة للعملات المشفرة",
+    "pt": "Plataforma financeira cripto completa",
+}
 VISUAL = ('<div class="sx-visual"><img src="/images/feature-cards.webp" width="900" height="700" '
           'alt="Xerovan Visa crypto cards with USDC and USDT"></div>')
 
@@ -112,7 +121,7 @@ def section(lang):
         sub = "" if lang == "en" else f'<div class="sx-en">{E(en_name)}</div>'
         cards.append(f'<article class="sx-card"><div class="sx-num">{i+1:02d}</div><h3>{E(title)}</h3>{sub}<p>{E(desc)}</p></article>')
     return (f'<section id="features" class="sx"><div class="sx-bg" role="img" aria-label="Xerovan app and card"></div><div class="wrap">'
-            f'<div class="sx-head"><span class="eyebrow">{E(EYEBROW[lang])}</span><h2>{E(DEFINITION[lang])}</h2></div>'
+            f'<div class="sx-head"><span class="eyebrow">{E(EYEBROW[lang])}</span><h2>{E(SECTION_H2[lang])}</h2><p class="sx-def">{E(DEFINITION[lang])}</p></div>'
             f'<div class="sx-grid">{"".join(cards)}{VISUAL}</div></div></section>')
 
 HOME = {"en": "Home", "kr": "홈", "ja": "ホーム", "es": "Inicio", "ar": "الرئيسية", "pt": "Início"}

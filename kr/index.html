@@ -143,7 +143,7 @@
   }
   @media (prefers-reduced-motion:no-preference){ .hero-title .metal{ animation:text-shine 6.5s ease-in-out infinite; } }
   @keyframes text-shine{ 0%{background-position:0% 50%;} 100%{background-position:100% 50%;} }
-  h1.hero-sub{font-family:inherit; font-weight:400; letter-spacing:normal;}
+  .hero-sub h1{display:inline; font:inherit; letter-spacing:normal; color:inherit;}
   .hero-sub{max-width:540px; margin:22px auto 40px; font-size:16.5px; line-height:1.65; color:var(--silver-500); position:relative; z-index:1;}
   .hero-ctas{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; position:relative; z-index:2;}
 
@@ -309,6 +309,7 @@
       linear-gradient(180deg,rgba(10,11,13,.9) 0%,rgba(10,11,13,0) 20%,rgba(10,11,13,0) 80%,rgba(10,11,13,.9) 100%);}
   .sx .wrap{width:100%;}
   .sx-head{max-width:900px;margin-bottom:34px;}
+  .sx-def{margin-top:16px;max-width:720px;color:var(--silver-300);font-size:16px;line-height:1.7;text-shadow:0 2px 24px rgba(0,0,0,.7);}
   .sx-head h2{font-family:'Unbounded'; font-weight:600; font-size:clamp(20px,2.3vw,30px); line-height:1.35; margin-top:16px; text-shadow:0 2px 24px rgba(0,0,0,.7);}
   .sx-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
   .sx-grid .sx-card:nth-child(n+5){grid-column:span 1;}
@@ -460,7 +461,7 @@
 <section class="hero" id="top">
   <div class="waveform" id="heroWave"></div>
   <p class="hero-title"><span class="metal">Value in Motion</span></p>
-  <h1 class="hero-sub">크립토 지갑과 Visa 카드로 해외결제까지 — 지갑, 리워드, 여행, 비즈니스 지출을 하나의 안전한 앱에서.</h1>
+  <div class="hero-sub"><h1>크립토 지갑과 Visa 카드로 해외결제까지</h1> — 지갑, 리워드, 여행, 비즈니스 지출을 하나의 안전한 앱에서.</div>
   <div class="hero-ctas">
     <a href="#waitlist" class="btn-primary">대기자 명단 등록</a>
     <button class="btn-ghost" id="exploreBtn">앱 둘러보기</button>
@@ -469,7 +470,7 @@
 
 <div class="divider" id="dividerBars1"></div>
 
-<section id="features" class="sx"><div class="sx-bg" role="img" aria-label="Xerovan app and card"></div><div class="wrap"><div class="sx-head"><span class="eyebrow">Xerovan 핵심 기능</span><h2>Xerovan은 결제, 글로벌 지급, 기업 지출, 자산 관리와 리워드를 하나로 연결하는 올인원 크립토 금융 플랫폼입니다.</h2></div><div class="sx-grid"><article class="sx-card"><div class="sx-num">01</div><h3>지갑에서 바로 결제</h3><div class="sx-en">Direct Wallet Payments</div><p>별도의 충전 없이, 사용자가 직접 관리하는 비수탁 지갑의 자산으로 결제할 수 있습니다.</p></article><article class="sx-card"><div class="sx-num">02</div><h3>기업 지출 관리 — Media Buyer Suite</h3><div class="sx-en">Business Spend Management — Media Buyer Suite</div><p>고객과 계정별로 카드를 발급하고 영수증, 승인 절차, 지출 한도를 통합 관리합니다. 마케팅 에이전시와 기업이 지출을 효율적이고 투명하게 운영할 수 있도록 지원합니다.</p></article><article class="sx-card"><div class="sx-num">03</div><h3>글로벌 Payout</h3><div class="sx-en">Global Payouts</div><p>기업과 개인이 전 세계의 파트너, 고객 및 구성원의 은행 통장으로 크립토 자산을 빠르고 간편하게 지급할 수 있습니다. 국경을 넘어 확장 가능한 지급 환경을 제공합니다.</p></article><article class="sx-card"><div class="sx-num">04</div><h3>통합 자산 관리</h3><div class="sx-en">Unified Asset Management</div><p>무료 비수탁 지갑과 외부 지갑을 한곳에서 관리하고, 사용하지 않는 자산을 스테이킹 등 다양한 자산 운용 상품과 연결할 수 있습니다.</p></article><article class="sx-card"><div class="sx-num">05</div><h3>스마트 라우팅</h3><div class="sx-en">Smart Routing</div><p>크립토 송금, 수신 및 변환 시 최적의 경로를 자동으로 탐색하여 효율적인 거래와 경쟁력 있는 수수료를 제공합니다.</p></article><article class="sx-card"><div class="sx-num">06</div><h3>안전한 카드 공유</h3><div class="sx-en">Secure Card Sharing</div><p>가족이나 다른 Xerovan 사용자에게 카드 사용 권한을 안전하게 공유하고, 사용 한도와 권한을 언제든지 관리할 수 있습니다. 카드에 대한 최종 관리 권한은 카드 소유자에게 유지됩니다.</p></article><article class="sx-card"><div class="sx-num">07</div><h3>여행 및 리워드 생태계</h3><div class="sx-en">Travel &amp; Rewards Ecosystem</div><p>Xerovan 토큰 기반 마켓플레이스를 통해 여행 예약과 eSIM 서비스를 이용하고, 캐시백, 보너스, 제휴 프로그램 및 dApp 서비스를 하나의 생태계에서 경험할 수 있습니다.</p></article><div class="sx-visual"><img loading="lazy" decoding="async" src="/images/feature-cards.webp" width="900" height="700" alt="USDC와 USDT를 사용하는 Xerovan Visa 크립토 카드"></div></div></div></section>
+<section id="features" class="sx"><div class="sx-bg" role="img" aria-label="Xerovan app and card"></div><div class="wrap"><div class="sx-head"><span class="eyebrow">Xerovan 핵심 기능</span><h2>올인원 크립토 금융 플랫폼</h2><p class="sx-def">Xerovan은 결제, 글로벌 지급, 기업 지출, 자산 관리와 리워드를 하나로 연결하는 올인원 크립토 금융 플랫폼입니다.</p></div><div class="sx-grid"><article class="sx-card"><div class="sx-num">01</div><h3>지갑에서 바로 결제</h3><div class="sx-en">Direct Wallet Payments</div><p>별도의 충전 없이, 사용자가 직접 관리하는 비수탁 지갑의 자산으로 결제할 수 있습니다.</p></article><article class="sx-card"><div class="sx-num">02</div><h3>기업 지출 관리 — Media Buyer Suite</h3><div class="sx-en">Business Spend Management — Media Buyer Suite</div><p>고객과 계정별로 카드를 발급하고 영수증, 승인 절차, 지출 한도를 통합 관리합니다. 마케팅 에이전시와 기업이 지출을 효율적이고 투명하게 운영할 수 있도록 지원합니다.</p></article><article class="sx-card"><div class="sx-num">03</div><h3>글로벌 Payout</h3><div class="sx-en">Global Payouts</div><p>기업과 개인이 전 세계의 파트너, 고객 및 구성원의 은행 통장으로 크립토 자산을 빠르고 간편하게 지급할 수 있습니다. 국경을 넘어 확장 가능한 지급 환경을 제공합니다.</p></article><article class="sx-card"><div class="sx-num">04</div><h3>통합 자산 관리</h3><div class="sx-en">Unified Asset Management</div><p>무료 비수탁 지갑과 외부 지갑을 한곳에서 관리하고, 사용하지 않는 자산을 스테이킹 등 다양한 자산 운용 상품과 연결할 수 있습니다.</p></article><article class="sx-card"><div class="sx-num">05</div><h3>스마트 라우팅</h3><div class="sx-en">Smart Routing</div><p>크립토 송금, 수신 및 변환 시 최적의 경로를 자동으로 탐색하여 효율적인 거래와 경쟁력 있는 수수료를 제공합니다.</p></article><article class="sx-card"><div class="sx-num">06</div><h3>안전한 카드 공유</h3><div class="sx-en">Secure Card Sharing</div><p>가족이나 다른 Xerovan 사용자에게 카드 사용 권한을 안전하게 공유하고, 사용 한도와 권한을 언제든지 관리할 수 있습니다. 카드에 대한 최종 관리 권한은 카드 소유자에게 유지됩니다.</p></article><article class="sx-card"><div class="sx-num">07</div><h3>여행 및 리워드 생태계</h3><div class="sx-en">Travel &amp; Rewards Ecosystem</div><p>Xerovan 토큰 기반 마켓플레이스를 통해 여행 예약과 eSIM 서비스를 이용하고, 캐시백, 보너스, 제휴 프로그램 및 dApp 서비스를 하나의 생태계에서 경험할 수 있습니다.</p></article><div class="sx-visual"><img loading="lazy" decoding="async" src="/images/feature-cards.webp" width="900" height="700" alt="USDC와 USDT를 사용하는 Xerovan Visa 크립토 카드"></div></div></div></section>
 
 <div class="divider" id="dividerBars3"></div>
 
@@ -551,7 +552,7 @@
         <div class="footer-col"><div class="footer-label">회사</div><ul><li><a href="/kr/about">회사 소개</a></li></ul></div>
         <div class="footer-col"><div class="footer-label">리소스</div><ul><li><button type="button" class="legal-link-btn" id="helpTrigger3">고객센터</button></li><li><a href="#faq">FAQ</a></li><li><a href="/kr/blog">블로그</a></li></ul></div>
         <div class="footer-col"><div class="footer-label">법적 고지</div><ul id="legalLinks"><li><a href="/kr/legal/terms">이용약관</a></li><li><a href="/kr/legal/privacy">개인정보 처리방침</a></li><li><a href="/kr/legal/refund">환불 정책</a></li><li><a href="/kr/legal/risk-disclosure">위험 고지</a></li><li><a href="/kr/legal/compliance">컴플라이언스</a></li></ul></div>
-        <div class="footer-col"><div class="footer-label">솔루션</div><ul><li><a href="/kr/solutions/crypto-card-for-ads">광고비 결제 카드</a></li><li><a href="/kr/solutions/card-for-international-subscriptions">해외 구독 결제 카드</a></li><li><a href="/kr/solutions/crypto-travel-card">크립토 여행 카드</a></li><li><a href="/kr/solutions/spend-crypto-with-visa">크립토 Visa 결제</a></li></ul></div>
+        <div class="footer-col"><div class="footer-label"><a href="/kr/solutions" style="font:inherit;color:inherit">솔루션</a></div><ul><li><a href="/kr/solutions/crypto-card-for-ads">광고비 결제 카드</a></li><li><a href="/kr/solutions/card-for-international-subscriptions">해외 구독 결제 카드</a></li><li><a href="/kr/solutions/crypto-travel-card">크립토 여행 카드</a></li><li><a href="/kr/solutions/spend-crypto-with-visa">크립토 Visa 결제</a></li></ul></div>
         <div class="footer-col"><div class="footer-label">SNS</div><div class="footer-social"><a href="https://x.com/XerovanC" target="_blank" rel="noopener">X</a><a href="https://www.instagram.com/xerovancard/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/profile.php?id=61594055002981" target="_blank" rel="noopener">Facebook</a></div></div>
       </div>
     </div>
