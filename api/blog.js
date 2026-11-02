@@ -711,7 +711,7 @@ function solutionView(lang, slug) {
   const more = SOL.SLUGS.filter((k) => k !== slug).map((k) => `<a class="chip" href="/${lang}/solutions/${k}">${esc(U.short[SOL.SLUGS.indexOf(k)])}</a>`).join('');
   return `
   <section class="blog-hero sol-hero"><div class="wrap">
-    <div class="crumb" style="font-family:var(--f-mono);font-size:12px;color:var(--text-dim);margin-bottom:26px"><a href="/${lang}/">${esc(t.home)}</a> / ${esc(U.eyebrow)} / ${esc(name)}</div>
+    <div class="crumb" style="font-family:var(--f-mono);font-size:12px;color:var(--text-dim);margin-bottom:26px"><a href="/${lang}/">${esc(t.home)}</a> / <a href="/${lang}/solutions">${esc(U.eyebrow)}</a> / ${esc(name)}</div>
     <span class="eyebrow">${esc(U.eyebrow)}</span>
     <h1 class="metal">${esc(h1)}</h1>
     <p class="lede">${esc(lede)}</p>
@@ -728,6 +728,36 @@ function solutionView(lang, slug) {
   </div></div>`;
 }
 
+const HUB = {
+  en: ['Crypto Card Solutions | Xerovan', 'Crypto card solutions', 'See how Xerovan fits ad spend, international subscriptions, travel and everyday spending with crypto and a Visa card.'],
+  kr: ['크립토 카드 솔루션 | Xerovan', '크립토 카드 솔루션', '광고비, 해외 구독, 여행, 일상 결제까지 크립토와 Visa 카드로 Xerovan을 활용하는 방법을 확인하세요.'],
+  ja: ['暗号資産カードのソリューション | Xerovan', '暗号資産カードのソリューション', '広告費、海外サブスク、旅行、日常の支払いに、暗号資産とVisaカードでXerovanを活用する方法をご覧ください。'],
+  es: ['Soluciones de tarjeta cripto | Xerovan', 'Soluciones de tarjeta cripto', 'Descubre cómo usar Xerovan para publicidad, suscripciones internacionales, viajes y gastos diarios con cripto y una tarjeta Visa.'],
+  ar: ['حلول بطاقات العملات المشفرة | Xerovan', 'حلول بطاقات العملات المشفرة', 'اكتشف كيف تناسب Xerovan الإنفاق الإعلاني والاشتراكات الدولية والسفر والمدفوعات اليومية بالعملات المشفرة وبطاقة Visa.'],
+  pt: ['Soluções de cartão cripto | Xerovan', 'Soluções de cartão cripto', 'Veja como usar a Xerovan em anúncios, assinaturas internacionais, viagens e gastos do dia a dia com cripto e cartão Visa.'],
+};
+
+function hubView(lang) {
+  const U = SOL.UI[lang], t = T[lang], rtl = LANGS[lang].rtl;
+  return `
+  <section class="blog-hero"><div class="wrap">
+    <div class="crumb" style="font-family:var(--f-mono);font-size:12px;color:var(--text-dim);margin-bottom:26px"><a href="/${lang}/">${esc(t.home)}</a> / ${esc(U.eyebrow)}</div>
+    <span class="eyebrow">${esc(U.eyebrow)}</span>
+    <h1 class="metal">${esc(HUB[lang][1])}</h1>
+    <p>${esc(HUB[lang][2])}</p>
+  </div></section>
+  <div class="wrap">
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))">${SOL.SLUGS.map((k, i) => `
+      <a class="card" href="/${lang}/solutions/${k}"><div class="body">
+        <h2>${esc(U.short[i])}</h2>
+        <p>${esc(SOL.P[k][lang][3])}</p>
+        <span class="more">${rtl ? '←' : '→'}</span>
+      </div></a>`).join('')}
+    </div>
+    <p class="sol-note" style="padding-bottom:70px">${esc(U.note)}</p>
+  </div>`;
+}
+
 function messageView(lang, heading, text) {
   return `<section class="blog-hero"><div class="wrap"><h1 class="metal">${esc(heading)}</h1><p>${esc(text)}</p>
     <p style="margin-top:30px"><a class="btn" href="/${lang}/blog">${esc(T[lang].back)}</a></p></div></section><div style="height:120px"></div>`;
@@ -741,6 +771,7 @@ async function sitemap() {
   const counts = {};
   for (const lang of Object.keys(LANGS)) {
     urls.push({ loc: `${SITE}/${lang}/about`, alt: set((k) => `${SITE}/${k}/about`) });
+    urls.push({ loc: `${SITE}/${lang}/solutions`, alt: set((k) => `${SITE}/${k}/solutions`) });
     SOL.SLUGS.forEach((s) => urls.push({ loc: `${SITE}/${lang}/solutions/${s}`, alt: set((k) => `${SITE}/${k}/solutions/${s}`) }));
     try {
       const cat = await categoryId(lang);
@@ -824,19 +855,31 @@ module.exports = async (req, res) => {
   try { slug = decodeURIComponent(slug); } catch { /* keep as is */ }
   slug = slug.normalize('NFC').toLowerCase().replace(/[^\p{L}\p{N}\-_]/gu, '').slice(0, 200);
 
+  if (q.hub) {
+    const url = `${SITE}/${lang}/solutions`;
+    return send(200, layout({
+      lang, title: HUB[lang][0], description: HUB[lang][2], canonical: url,
+      alternates: [...Object.keys(LANGS).map((k) => [k, `${SITE}/${k}/solutions`]), ['x-default', `${SITE}/en/solutions`]],
+      body: hubView(lang),
+      jsonLd: [crumbs([['Xerovan', `${SITE}/${lang}/`], [SOL.UI[lang].eyebrow, url]]),
+        { '@context': 'https://schema.org', '@type': 'CollectionPage', name: HUB[lang][1], description: HUB[lang][2], url, inLanguage: LANGS[lang].hl }],
+    }), 'text/html; charset=utf-8', 's-maxage=3600, stale-while-revalidate=86400');
+  }
+
   if (q.solution) {
     const sslug = String(q.solution).toLowerCase();
     if (!SOL.P[sslug]) {
       return send(404, layout({ lang, title: `${t.notFound} | Xerovan`, description: t.notFoundText, canonical: `${SITE}/${lang}/`, body: messageView(lang, t.notFound, t.notFoundText), noindex: true }));
     }
-    const [title, description, h1, , , , , , faq] = SOL.P[sslug][lang];
+    const [rawTitle, description, h1, , , , , , faq] = SOL.P[sslug][lang];
+    const title = rawTitle.replace(/ \| Xerovan$/, ''); // same pattern on every solution page; these titles are keyword-led and long already
     const url = `${SITE}/${lang}/solutions/${sslug}`;
     const U = SOL.UI[lang];
     return send(200, layout({
       lang, title, description, canonical: url,
       alternates: [...Object.keys(LANGS).map((k) => [k, `${SITE}/${k}/solutions/${sslug}`]), ['x-default', `${SITE}/en/solutions/${sslug}`]],
       body: solutionView(lang, sslug),
-      jsonLd: [crumbs([['Xerovan', `${SITE}/${lang}/`], [U.short[SOL.SLUGS.indexOf(sslug)], url]]),
+      jsonLd: [crumbs([['Xerovan', `${SITE}/${lang}/`], [U.eyebrow, `${SITE}/${lang}/solutions`], [U.short[SOL.SLUGS.indexOf(sslug)], url]]),
         { '@context': 'https://schema.org', '@type': 'WebPage', name: h1, description, url, inLanguage: LANGS[lang].hl,
           isPartOf: { '@type': 'WebSite', name: 'Xerovan', url: `${SITE}/` } },
         { '@context': 'https://schema.org', '@type': 'FAQPage', inLanguage: LANGS[lang].hl,

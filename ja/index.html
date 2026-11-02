@@ -143,7 +143,7 @@
   }
   @media (prefers-reduced-motion:no-preference){ .hero-title .metal{ animation:text-shine 6.5s ease-in-out infinite; } }
   @keyframes text-shine{ 0%{background-position:0% 50%;} 100%{background-position:100% 50%;} }
-  h1.hero-sub{font-family:inherit; font-weight:400; letter-spacing:normal;}
+  .hero-sub h1{display:inline; font:inherit; letter-spacing:normal; color:inherit;}
   .hero-sub{max-width:540px; margin:22px auto 40px; font-size:16.5px; line-height:1.65; color:var(--silver-500); position:relative; z-index:1;}
   .hero-ctas{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; position:relative; z-index:2;}
 
@@ -309,6 +309,7 @@
       linear-gradient(180deg,rgba(10,11,13,.9) 0%,rgba(10,11,13,0) 20%,rgba(10,11,13,0) 80%,rgba(10,11,13,.9) 100%);}
   .sx .wrap{width:100%;}
   .sx-head{max-width:900px;margin-bottom:34px;}
+  .sx-def{margin-top:16px;max-width:720px;color:var(--silver-300);font-size:16px;line-height:1.7;text-shadow:0 2px 24px rgba(0,0,0,.7);}
   .sx-head h2{font-family:'Unbounded'; font-weight:600; font-size:clamp(20px,2.3vw,30px); line-height:1.35; margin-top:16px; text-shadow:0 2px 24px rgba(0,0,0,.7);}
   .sx-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
   .sx-grid .sx-card:nth-child(n+5){grid-column:span 1;}
@@ -460,7 +461,7 @@
 <section class="hero" id="top">
   <div class="waveform" id="heroWave"></div>
   <p class="hero-title"><span class="metal">Value in Motion</span></p>
-  <h1 class="hero-sub">暗号資産ウォレットとVisaカードで海外決済まで — ウォレット、リワード、旅行、ビジネス支出をひとつの安全なアプリで。</h1>
+  <div class="hero-sub"><h1>暗号資産ウォレットとVisaカードで海外決済まで</h1> — ウォレット、リワード、旅行、ビジネス支出をひとつの安全なアプリで。</div>
   <div class="hero-ctas">
     <a href="#waitlist" class="btn-primary">ウェイトリストに登録</a>
     <button class="btn-ghost" id="exploreBtn">アプリを見る</button>
@@ -469,7 +470,7 @@
 
 <div class="divider" id="dividerBars1"></div>
 
-<section id="features" class="sx"><div class="sx-bg" role="img" aria-label="Xerovan app and card"></div><div class="wrap"><div class="sx-head"><span class="eyebrow">Xerovanの主な機能</span><h2>Xerovanは、決済、グローバルな支払い、法人支出、資産管理、リワードをひとつにつなぐ、オールインワンの暗号資産金融プラットフォームです。</h2></div><div class="sx-grid"><article class="sx-card"><div class="sx-num">01</div><h3>ウォレットから直接決済</h3><div class="sx-en">Direct Wallet Payments</div><p>事前のチャージは不要。ご自身で管理するノンカストディアルウォレットの資産で、そのまま支払えます。</p></article><article class="sx-card"><div class="sx-num">02</div><h3>法人支出管理 — Media Buyer Suite</h3><div class="sx-en">Business Spend Management — Media Buyer Suite</div><p>クライアントやアカウントごとにカードを発行し、領収書、承認フロー、利用限度額を一元管理。マーケティングエージェンシーや企業の支出を、効率的かつ透明に運用できます。</p></article><article class="sx-card"><div class="sx-num">03</div><h3>グローバルペイアウト</h3><div class="sx-en">Global Payouts</div><p>企業や個人が、世界中のパートナー、顧客、メンバーの銀行口座へ暗号資産をすばやく簡単に支払えます。国境を越えて拡張できる支払い環境を提供します。</p></article><article class="sx-card"><div class="sx-num">04</div><h3>資産の一元管理</h3><div class="sx-en">Unified Asset Management</div><p>無料のノンカストディアルウォレットと外部ウォレットをひとつの場所で管理し、使っていない資産をステーキングなどさまざまな運用商品につなげられます。</p></article><article class="sx-card"><div class="sx-num">05</div><h3>スマートルーティング</h3><div class="sx-en">Smart Routing</div><p>暗号資産の送金・受取・交換時に最適なルートを自動で探し、効率的な取引と競争力のある手数料を実現します。</p></article><article class="sx-card"><div class="sx-num">06</div><h3>安全なカード共有</h3><div class="sx-en">Secure Card Sharing</div><p>家族やほかのXerovanユーザーとカードの利用権限を安全に共有し、利用限度額や権限をいつでも管理できます。カードの最終的な管理権限はカード所有者に残ります。</p></article><article class="sx-card"><div class="sx-num">07</div><h3>旅行とリワードのエコシステム</h3><div class="sx-en">Travel &amp; Rewards Ecosystem</div><p>Xerovanトークンを基盤としたマーケットプレイスで旅行予約やeSIMサービスを利用し、キャッシュバック、ボーナス、提携プログラム、dAppサービスをひとつのエコシステムで体験できます。</p></article><div class="sx-visual"><img loading="lazy" decoding="async" src="/images/feature-cards.webp" width="900" height="700" alt="USDCとUSDTに対応したXerovan Visa暗号資産カード"></div></div></div></section>
+<section id="features" class="sx"><div class="sx-bg" role="img" aria-label="Xerovan app and card"></div><div class="wrap"><div class="sx-head"><span class="eyebrow">Xerovanの主な機能</span><h2>オールインワンの暗号資産金融プラットフォーム</h2><p class="sx-def">Xerovanは、決済、グローバルな支払い、法人支出、資産管理、リワードをひとつにつなぐ、オールインワンの暗号資産金融プラットフォームです。</p></div><div class="sx-grid"><article class="sx-card"><div class="sx-num">01</div><h3>ウォレットから直接決済</h3><div class="sx-en">Direct Wallet Payments</div><p>事前のチャージは不要。ご自身で管理するノンカストディアルウォレットの資産で、そのまま支払えます。</p></article><article class="sx-card"><div class="sx-num">02</div><h3>法人支出管理 — Media Buyer Suite</h3><div class="sx-en">Business Spend Management — Media Buyer Suite</div><p>クライアントやアカウントごとにカードを発行し、領収書、承認フロー、利用限度額を一元管理。マーケティングエージェンシーや企業の支出を、効率的かつ透明に運用できます。</p></article><article class="sx-card"><div class="sx-num">03</div><h3>グローバルペイアウト</h3><div class="sx-en">Global Payouts</div><p>企業や個人が、世界中のパートナー、顧客、メンバーの銀行口座へ暗号資産をすばやく簡単に支払えます。国境を越えて拡張できる支払い環境を提供します。</p></article><article class="sx-card"><div class="sx-num">04</div><h3>資産の一元管理</h3><div class="sx-en">Unified Asset Management</div><p>無料のノンカストディアルウォレットと外部ウォレットをひとつの場所で管理し、使っていない資産をステーキングなどさまざまな運用商品につなげられます。</p></article><article class="sx-card"><div class="sx-num">05</div><h3>スマートルーティング</h3><div class="sx-en">Smart Routing</div><p>暗号資産の送金・受取・交換時に最適なルートを自動で探し、効率的な取引と競争力のある手数料を実現します。</p></article><article class="sx-card"><div class="sx-num">06</div><h3>安全なカード共有</h3><div class="sx-en">Secure Card Sharing</div><p>家族やほかのXerovanユーザーとカードの利用権限を安全に共有し、利用限度額や権限をいつでも管理できます。カードの最終的な管理権限はカード所有者に残ります。</p></article><article class="sx-card"><div class="sx-num">07</div><h3>旅行とリワードのエコシステム</h3><div class="sx-en">Travel &amp; Rewards Ecosystem</div><p>Xerovanトークンを基盤としたマーケットプレイスで旅行予約やeSIMサービスを利用し、キャッシュバック、ボーナス、提携プログラム、dAppサービスをひとつのエコシステムで体験できます。</p></article><div class="sx-visual"><img loading="lazy" decoding="async" src="/images/feature-cards.webp" width="900" height="700" alt="USDCとUSDTに対応したXerovan Visa暗号資産カード"></div></div></div></section>
 
 <div class="divider" id="dividerBars3"></div>
 
@@ -551,7 +552,7 @@
         <div class="footer-col"><div class="footer-label">会社情報</div><ul><li><a href="/ja/about">会社概要</a></li></ul></div>
         <div class="footer-col"><div class="footer-label">リソース</div><ul><li><button type="button" class="legal-link-btn" id="helpTrigger3">ヘルプセンター</button></li><li><a href="#faq">FAQ</a></li><li><a href="/ja/blog">ブログ</a></li></ul></div>
         <div class="footer-col"><div class="footer-label">法的情報</div><ul id="legalLinks"><li><a href="/ja/legal/terms">利用規約</a></li><li><a href="/ja/legal/privacy">プライバシーポリシー</a></li><li><a href="/ja/legal/refund">返金ポリシー</a></li><li><a href="/ja/legal/risk-disclosure">リスク開示</a></li><li><a href="/ja/legal/compliance">コンプライアンス</a></li></ul></div>
-        <div class="footer-col"><div class="footer-label">ソリューション</div><ul><li><a href="/ja/solutions/crypto-card-for-ads">広告費決済カード</a></li><li><a href="/ja/solutions/card-for-international-subscriptions">海外サブスク用カード</a></li><li><a href="/ja/solutions/crypto-travel-card">暗号資産トラベルカード</a></li><li><a href="/ja/solutions/spend-crypto-with-visa">暗号資産をVisaで使う</a></li></ul></div>
+        <div class="footer-col"><div class="footer-label"><a href="/ja/solutions" style="font:inherit;color:inherit">ソリューション</a></div><ul><li><a href="/ja/solutions/crypto-card-for-ads">広告費決済カード</a></li><li><a href="/ja/solutions/card-for-international-subscriptions">海外サブスク用カード</a></li><li><a href="/ja/solutions/crypto-travel-card">暗号資産トラベルカード</a></li><li><a href="/ja/solutions/spend-crypto-with-visa">暗号資産をVisaで使う</a></li></ul></div>
         <div class="footer-col"><div class="footer-label">SNS</div><div class="footer-social"><a href="https://x.com/XerovanC" target="_blank" rel="noopener">X</a><a href="https://www.instagram.com/xerovancard/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/profile.php?id=61594055002981" target="_blank" rel="noopener">Facebook</a></div></div>
       </div>
     </div>
