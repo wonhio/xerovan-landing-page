@@ -93,6 +93,17 @@ function isPlaceholderDoc(title, content) {
   return body.length < 120 || rest.length < 120;
 }
 
+// Confirmed values for the sheet's bracketed fields. Safe to keep once the sheet itself is corrected.
+const CONTACT_EMAIL = 'hello@xerovan.com';
+const LEGAL_ENTITY = 'MARU EVENT TOURISM LLC';
+const LEGAL_ADDRESS = 'Prime Business Centre Tower B Unit 12B05, JVC, Dubai, UAE';
+const LEGAL_FILL = {
+  '[Aug 5, 2026]': 'Aug 5, 2026', '[MARU EVEN TOURISM LLC]': LEGAL_ENTITY, 'MARU EVEN TOURISM LLC': LEGAL_ENTITY, '[UAE]': 'UAE',
+  [`[${LEGAL_ADDRESS}]`]: LEGAL_ADDRESS, '[Jurisdiction]': 'Dubai, UAE', '[Legal Entity Name]': LEGAL_ENTITY,
+  '[Support Email]': CONTACT_EMAIL, '[Registered Address]': LEGAL_ADDRESS,
+};
+const fillLegal = (text) => Object.entries(LEGAL_FILL).reduce((out, [k, v]) => out.split(k).join(v), text);
+
 let legalCache = { at: 0, docs: null };
 /** { terms: {title, content}, ... } for documents that have real content (≥ 120 characters). */
 async function legalDocs() {
@@ -103,7 +114,7 @@ async function legalDocs() {
   const docs = {};
   for (const [slug, kw] of Object.entries(LEGAL_DOCS)) {
     const row = rows.find((x) => (x[0] || '').toLowerCase().includes(kw));
-    if (row && !isPlaceholderDoc(row[0], row[1])) docs[slug] = { title: row[0].trim(), content: row[1].trim() };
+    if (row && !isPlaceholderDoc(row[0], row[1])) docs[slug] = { title: row[0].trim(), content: fillLegal(row[1].trim()) };
   }
   legalCache = { at: Date.now(), docs };
   return docs;
@@ -111,7 +122,6 @@ async function legalDocs() {
 
 // About page + founder (used on /{lang}/about and in the author box under posts)
 const FOUNDER = 'Jay Yoon';
-const CONTACT_EMAIL = 'hello@xerovan.com';
 const HQ = 'Dubai, UAE';
 const ABOUT = {
   en: { title: 'About Xerovan', eyebrow: 'About', h1: 'Moving money across borders, without the borders.',

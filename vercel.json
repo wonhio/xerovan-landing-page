@@ -84,6 +84,11 @@
       "permanent": true
     },
     {
+      "source": "/kr/blog/xerovan-blog-luanch",
+      "destination": "/kr/blog",
+      "permanent": true
+    },
+    {
       "source": "/ko",
       "destination": "/kr/",
       "permanent": true
