@@ -189,12 +189,23 @@ const POST_SEO = {
     title: '수탁형 vs 비수탁형 크립토 카드 차이점 비교 | Xerovan',
     description: '수탁형과 비수탁형 크립토 카드의 차이를 비교합니다. 개인 키를 누가 보관하는지, 자금이 언제 지갑을 떠나는지, 수수료와 위험은 어떻게 다른지 정리했습니다.' },
   'kr/crypto-card-marketing-agencies-ko': { title: '마케팅 에이전시를 위한 크립토 카드 가이드 | Xerovan' },
+  'en/meta-ads-payment-declined': { title: 'Meta Ads Payment Declined? 7 Causes and Fixes | Xerovan' },
+  'kr/meta-ads-payment-declined-ko': { title: '메타 광고비 결제 거절 원인 7가지와 해결법 | Xerovan' },
+  'en/international-subscription-card': { title: 'Subscription Card Declined? How to Fix It | Xerovan' },
+  'kr/international-subscription-card-ko': { title: '해외 구독 결제 카드 거절 원인과 해결법 | Xerovan' },
 };
 // Same article in different languages. Language menu and hreflang are built from these groups.
 const TRANSLATIONS = [
   { en: 'custodial-vs-non-custodial-crypto-cards-whats-the-difference-and-why-does-it-matter', kr: 'custodial-vs-non-custodial-crypto-card-ko' },
 ];
-const translationsOf = (lang, slug) => TRANSLATIONS.find((g) => g[lang] === slug) || null;
+/** Translation group of a post: the list above, or the WordPress "translations" field ("en:slug,kr:slug"). */
+const translationsOf = (lang, slug, field) => {
+  const listed = TRANSLATIONS.find((g) => g[lang] === slug);
+  if (listed) return listed;
+  const entries = (typeof field === 'string' ? field.split(',') : Object.entries(field || {}).map((e) => e.join(':')))
+    .map((x) => x.trim().split(':')).filter((x) => x.length === 2 && LANGS[x[0]] && x[0] !== lang && x[1]);
+  return entries.length ? { [lang]: slug, ...Object.fromEntries(entries) } : null;
+};
 
 // Main menu — identical to the landing page nav (sections of /{lang}/ + Blog)
 const MENU = {
@@ -780,10 +791,10 @@ async function sitemap() {
       const used = new Set();
       let n = 0;
       for (let page = 1; page <= 20; page++) {
-        const { data, pages } = await wp(`posts?categories=${cat}&per_page=100&page=${page}&_fields=slug,modified_gmt,categories`);
+        const { data, pages } = await wp(`posts?categories=${cat}&per_page=100&page=${page}&_fields=slug,modified_gmt,categories,meta`);
         data.forEach((p) => {
           n++;
-          const g = translationsOf(lang, p.slug);
+          const g = translationsOf(lang, p.slug, p.meta?.translations);
           urls.push({ loc: `${SITE}/${lang}/blog/${p.slug}`, lastmod: p.modified_gmt ? p.modified_gmt + 'Z' : null,
             alt: g ? [...Object.entries(g).map(([k, v]) => [LANGS[k].hl, `${SITE}/${k}/blog/${v}`]), ['x-default', `${SITE}/${g.en ? 'en' : lang}/blog/${g.en || p.slug}`]] : null });
           const tp = topicOf(p, tmap); if (tp) used.add(tp);
@@ -948,7 +959,7 @@ module.exports = async (req, res) => {
       }
       const p = shape(raw, lang, tmap);
       const canonical = `${SITE}/${lang}/blog/${p.slug}`;
-      const group = translationsOf(lang, p.slug);
+      const group = translationsOf(lang, p.slug, p.translations);
       const alternates = group
         ? [...Object.entries(group).map(([k, s]) => [k, `${SITE}/${k}/blog/${s}`]), ['x-default', `${SITE}/${group.en ? 'en' : lang}/blog/${group.en || p.slug}`]]
         : [[lang, canonical]];
