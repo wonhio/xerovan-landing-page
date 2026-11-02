@@ -163,7 +163,7 @@ FOOTER_LEGAL = """
 """
 
 FAQ = [
- ("Quais países são atendidos atualmente?", "A Xerovan está ampliando sua disponibilidade aos poucos. A criação de carteiras, a emissão de cartões e alguns serviços podem variar conforme o seu país de residência. Consulte nossa página de países atendidos para ver a disponibilidade mais recente."),
+ ("Quais países são atendidos atualmente?", "A Xerovan está ampliando sua disponibilidade aos poucos. A criação de carteiras, a emissão de cartões e alguns serviços podem variar conforme o seu país de residência."),
  ("Quais blockchains a Xerovan suporta?", "A Xerovan suporta várias das principais redes blockchain, incluindo Ethereum, Base, Arbitrum, Polygon, BNB Chain, Solana, TRON e Bitcoin. Outras redes serão adicionadas com o tempo."),
  ("Como recarrego meu cartão Visa?", "Basta transferir cripto compatíveis para sua carteira Xerovan e recarregar o cartão com poucos toques. Dependendo do ativo e da rede escolhidos, os fundos são convertidos e ficam disponíveis para uso no cartão."),
  ("Quais taxas a Xerovan cobra?", "Transferências, trocas e recargas de cartão podem ter taxas de rede ou de serviço, conforme a transação. Todas as taxas são exibidas com transparência antes da confirmação."),
