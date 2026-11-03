@@ -152,12 +152,12 @@ APP_STORE_URL = ""     # e.g. "https://apps.apple.com/app/xerovan/id0000000000"
 PLAY_STORE_URL = ""    # e.g. "https://play.google.com/store/apps/details?id=com.xerovan.app"
 
 APP_T = {
-    "en": ("Get the Xerovan app", "Download Xerovan on your phone.", "Coming soon", "Xerovan is launching soon on the App Store and Google Play. Join the waitlist to be notified first.", "Join the Waitlist", "Close"),
-    "kr": ("Xerovan 앱 받기", "휴대폰에서 Xerovan을 다운로드하세요.", "출시 예정", "Xerovan은 곧 App Store와 Google Play에 출시됩니다. 대기자 명단에 등록하고 가장 먼저 소식을 받아보세요.", "대기자 명단 등록", "닫기"),
-    "ja": ("Xerovanアプリを入手", "スマートフォンにXerovanをダウンロード。", "近日公開", "XerovanはまもなくApp StoreとGoogle Playで公開予定です。ウェイトリストに登録して、いち早くお知らせを受け取りましょう。", "ウェイトリストに登録", "閉じる"),
-    "es": ("Descarga la app de Xerovan", "Descarga Xerovan en tu móvil.", "Próximamente", "Xerovan llegará pronto a App Store y Google Play. Únete a la lista de espera para enterarte primero.", "Únete a la lista de espera", "Cerrar"),
-    "ar": ("احصل على تطبيق Xerovan", "حمّل Xerovan على هاتفك.", "قريبًا", "سيُطلق Xerovan قريبًا على App Store وGoogle Play. انضم إلى قائمة الانتظار لتكون أول من يعلم.", "انضم إلى قائمة الانتظار", "إغلاق"),
-    "pt": ("Baixe o app da Xerovan", "Baixe a Xerovan no seu celular.", "Em breve", "A Xerovan chega em breve à App Store e ao Google Play. Entre na lista de espera para saber primeiro.", "Entrar na lista de espera", "Fechar"),
+    "en": ("Get the Xerovan app", "Download Xerovan on your phone.", "Access by application", "Apply with your email and we'll send you the steps to get started.", "Apply Now", "Close"),
+    "kr": ("Xerovan 앱 받기", "휴대폰에서 Xerovan을 다운로드하세요.", "신청 후 이용", "이메일로 신청하시면 이용 방법을 안내해 드립니다.", "이용 신청", "닫기"),
+    "ja": ("Xerovanアプリを入手", "スマートフォンにXerovanをダウンロード。", "お申し込み後に利用", "メールでお申し込みいただくと、ご利用開始の手順をご案内します。", "Xerovanを申し込む", "閉じる"),
+    "es": ("Descarga la app de Xerovan", "Descarga Xerovan en tu móvil.", "Acceso con solicitud", "Solicita acceso con tu correo y te enviaremos los pasos para empezar.", "Solicitar acceso", "Cerrar"),
+    "ar": ("احصل على تطبيق Xerovan", "حمّل Xerovan على هاتفك.", "بعد تقديم الطلب", "قدّم طلبك عبر البريد الإلكتروني وسنرسل إليك خطوات البدء.", "قدّم طلبك", "إغلاق"),
+    "pt": ("Baixe o app da Xerovan", "Baixe a Xerovan no seu celular.", "Acesso por solicitação", "Solicite acesso com seu e-mail e enviaremos os passos para começar.", "Solicitar acesso", "Fechar"),
 }
 
 APP_CSS = """  .app-dl{position:fixed;inset:0;z-index:400;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(5,7,11,.72);backdrop-filter:blur(8px);}

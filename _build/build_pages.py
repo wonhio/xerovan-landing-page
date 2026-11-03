@@ -296,8 +296,8 @@ HERO_H1 = {
     "pt": "Carteira cripto e cartão Visa para pagamentos globais: carteiras, recompensas, viagens e gastos empresariais em um só app seguro.",
 }
 META_DESC = {
-    "en": "Spend crypto wherever Visa is accepted. Self-custodial wallet, crypto-funded Visa cards, rewards and travel booking in one app. Join the Xerovan waitlist.",
-    "kr": "Visa 가맹점 어디서나 크립토로 결제하세요. 셀프 커스터디 지갑, 크립토 충전 Visa 카드, 리워드, 여행 예약을 하나의 앱에서. Xerovan 대기자 명단에 등록하세요.",
+    "en": "Spend crypto wherever Visa is accepted. Self-custodial wallet, crypto-funded Visa cards, rewards and travel booking in one app. Apply for Xerovan today.",
+    "kr": "Visa 가맹점 어디서나 크립토로 결제하세요. 셀프 커스터디 지갑, 크립토 충전 Visa 카드, 리워드, 여행 예약을 하나의 앱에서. 지금 Xerovan 이용을 신청하세요.",
     "ja": "Visa加盟店で暗号資産を使って支払い。セルフカストディ型ウォレット、暗号資産でチャージするVisaカード、リワード、旅行予約をひとつのアプリで。",
     "es": "Gasta cripto donde se acepte Visa. Billetera de autocustodia, tarjetas Visa recargadas con cripto, recompensas y reservas de viaje en una app.",
     "ar": "أنفق عملاتك المشفرة أينما تُقبل Visa. محفظة ذاتية الحفظ وبطاقات Visa تُشحن بالعملات المشفرة ومكافآت وحجوزات سفر في تطبيق واحد.",
@@ -312,7 +312,7 @@ def hero_h1(lang):
     key, sep, rest = re.match(r'(.*?)( — |: )(.*)', HERO_H1[lang], re.S).groups()
     return f'<h1>{_html.escape(key, quote=False)}</h1>{_html.escape(sep + rest, quote=False)}'
 
-COMING_SOON = {"en": "Coming soon", "kr": "출시 예정", "ja": "近日公開", "es": "Próximamente", "ar": "قريبًا", "pt": "Em breve"}
+COMING_SOON = {"en": "Access by application", "kr": "신청 후 이용", "ja": "お申し込み後に利用", "es": "Acceso con solicitud", "ar": "بعد تقديم الطلب", "pt": "Acesso por solicitação"}
 CARD_ALT = {
     "en": "Xerovan Visa crypto cards with USDC and USDT",
     "kr": "USDC와 USDT를 사용하는 Xerovan Visa 크립토 카드",
@@ -419,8 +419,8 @@ R = [
  ('<a href="#summary">Summary</a>', '<a href="#summary">개요</a>'),
  ('<a href="#features">Features</a>', '<a href="#features">기능</a>'),
  ('<a href="#usecases">Use Cases</a>', '<a href="#usecases">활용 사례</a>'),
- ('<a href="#waitlist" class="btn-primary">Join the Waitlist</a>', '<a href="#waitlist" class="btn-primary">대기자 명단 등록</a>'),
- ('<button type="submit" class="btn-primary">Join the Waitlist</button>', '<button type="submit" class="btn-primary">대기자 명단 등록</button>'),
+ ('<a href="#waitlist" class="btn-primary">Apply Now</a>', '<a href="#waitlist" class="btn-primary">이용 신청</a>'),
+ ('<button type="submit" class="btn-primary">Apply Now</button>', '<button type="submit" class="btn-primary">이용 신청</button>'),
  ('Explore the app</button>', '앱 둘러보기</button>'),
  ('One Wallet. Endless Possibilities. Manage digital assets, pay globally, and unlock real-world utility.',
   '하나의 지갑, 무한한 가능성. 디지털 자산을 관리하고, 전 세계에서 결제하고, 실생활에서 활용하세요.'),
@@ -606,12 +606,12 @@ R = [
  ('Still have questions? Visit our <button type="button" class="legal-link-btn" style="display:inline" id="helpTrigger1">Help Center</button> or <button type="button" class="legal-link-btn" style="display:inline" id="helpTrigger2">Contact Support</button> for more information.',
   '더 궁금한 점이 있으신가요? <button type="button" class="legal-link-btn" style="display:inline" id="helpTrigger1">고객센터</button>를 방문하시거나 <button type="button" class="legal-link-btn" style="display:inline" id="helpTrigger2">문의하기</button>를 이용해 주세요.'),
  ('<h2>Your crypto, ready to move.</h2>', '<h2>이제, 당신의 암호화폐가 움직일 차례입니다.</h2>'),
- ('Join the waitlist and be first to know when Xerovan launches.', '대기자 명단에 등록하고 Xerovan 출시 소식을 가장 먼저 받아보세요.'),
+ ("Apply with your email and we'll send you the steps to get started.", '이메일로 신청하시면 이용 방법을 안내해 드립니다.'),
  ('placeholder="Enter your email" required aria-label="Email address"', 'placeholder="이메일 주소를 입력하세요" required aria-label="이메일 주소"'),
- ('No spam — launch updates only.', '스팸 없이 출시 소식만 보내드립니다.'),
+ ('No spam — service updates only.', '스팸 없이 서비스 소식만 보내드립니다.'),
  ('<strong>Thank you for your interest in Xerovan.</strong>', '<strong>Xerovan에 관심 가져주셔서 감사합니다.</strong>'),
- ("You've successfully joined our waitlist. We'll notify you as soon as Xerovan officially launches and becomes available.",
-  '대기자 명단 등록이 완료되었습니다. Xerovan이 정식 출시되면 가장 먼저 알려드리겠습니다.'),
+ ("Your application has been received. We'll email you the next steps, including availability in your country.",
+  '신청이 접수되었습니다. 거주 국가의 이용 가능 여부를 포함한 다음 단계를 이메일로 안내해 드립니다.'),
  # footer
  ('Manage. Earn. Spend. Travel.</strong><br>The all-in-one Web3 financial platform for modern users.',
   '관리. 수익. 결제. 여행.</strong><br>모두를 위한 올인원 Web3 금융 플랫폼.'),
@@ -665,7 +665,7 @@ kr = must_re(kr, r"const faqDataFallback = \[.*?\n  \];", '''const faqDataFallba
     { q: "기업도 Xerovan을 이용할 수 있나요?", a: "물론입니다. 직원 카드, 지출 관리, 승인 워크플로, 경비 관리, 거래 리포트 등 규모와 관계없이 모든 기업을 위한 비즈니스 기능을 제공합니다." },
     { q: "암호화폐 지갑 외에 어떤 서비스가 있나요?", a: "Xerovan은 단순한 지갑이 아닙니다. 암호화폐 관리 외에도 Visa 카드 결제, 자산 스왑, 크로스체인 전송, 여행 예약, eSIM 구매, 리워드 등 다양한 금융 서비스를 하나의 플랫폼에서 이용할 수 있습니다." },
     { q: "KYC 인증을 꼭 해야 하나요?", a: "지갑 생성, 카드 발급, 규제 대상 금융 상품 등 일부 서비스는 관련 법규에 따라 본인 인증이 필요합니다. 지원되는 경우 외부 지갑 연결은 KYC 없이 이용할 수 있습니다." },
-    { q: "Xerovan은 언제 정식 출시되나요?", a: "현재 정식 출시를 준비하고 있습니다. 대기자 명단에 등록하시면 제품 소식, 얼리 액세스 기회, 출시 안내를 받아보실 수 있습니다." }
+    { q: "Xerovan은 어떻게 시작하나요?", a: "이 페이지에서 이메일로 신청하세요. 거주 국가의 이용 가능 여부와 필요한 인증 등 다음 단계를 안내해 드립니다." }
   ];''')
 
 kr = must_re(kr, r"const legalDataFallback = \[.*?\n  \];", '''const legalDataFallback = [

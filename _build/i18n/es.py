@@ -5,7 +5,7 @@ T = [
  "Xerovan reúne tus wallets, pagos, recompensas, viajes y gastos de empresa en una sola plataforma segura.",
  "Gestiona cripto, paga en todo el mundo con una tarjeta Visa, gana recompensas y reserva viajes — todo en una plataforma segura.",
  "Xerovan es una plataforma tecnológica que reúne wallets cripto, pagos, recompensas, viajes y gastos de empresa en una sola app segura.",
- "Resumen", "Funciones", "Casos de uso", "Únete a la lista de espera", "Únete a la lista de espera", "Explorar la app",
+ "Resumen", "Funciones", "Casos de uso", "Solicitar acceso", "Solicitar acceso", "Explorar la app",
  # 10
  "Una wallet. Posibilidades infinitas. Gestiona activos digitales, paga en todo el mundo y dales utilidad real.",
  "Vista previa en vivo de la app Xerovan",
@@ -133,12 +133,12 @@ T = [
  "Preguntas frecuentes",
  '¿Tienes más preguntas? Visita nuestro <button type="button" class="legal-link-btn" style="display:inline" id="helpTrigger1">Centro de ayuda</button> o <button type="button" class="legal-link-btn" style="display:inline" id="helpTrigger2">contacta con soporte</button> para más información.',
  "Tus cripto, listas para moverse.",
- "Únete a la lista de espera y sé el primero en saber cuándo se lanza Xerovan.",
+  "Solicita acceso con tu correo y te enviaremos los pasos para empezar.",
  'placeholder="Introduce tu email" required aria-label="Dirección de email"',
- "Sin spam — solo novedades del lanzamiento.",
+  "Sin spam — solo novedades del servicio.",
  "Gracias por tu interés en Xerovan.",
  # 170
- "Te has unido correctamente a la lista de espera. Te avisaremos en cuanto Xerovan se lance oficialmente y esté disponible.",
+  "Hemos recibido tu solicitud. Te enviaremos por correo los siguientes pasos, incluida la disponibilidad en tu país.",
  "Gestiona. Gana. Gasta. Viaja.</strong><br>La plataforma financiera Web3 todo en uno para usuarios modernos.",
  "Empresa", "Sobre nosotros", "Empleo", "Partners",
  "Recursos", "Centro de ayuda", "Comisiones", "Legal",
@@ -174,7 +174,7 @@ FAQ = [
  ("¿Pueden las empresas usar Xerovan?", "Por supuesto. Xerovan ofrece funciones para empresas como tarjetas para empleados, controles de gasto, flujos de aprobación, gestión de gastos e informes de transacciones para compañías de todos los tamaños."),
  ("¿Qué servicios hay además de la wallet cripto?", "Xerovan es mucho más que una wallet. Además de gestionar cripto, puedes pagar con tarjeta Visa, intercambiar activos, transferir entre cadenas, reservar viajes, comprar eSIM, obtener recompensas y acceder a otros servicios financieros, todo en una sola plataforma."),
  ("¿Necesito completar la verificación KYC?", "Algunos servicios, como la creación de wallets, la emisión de tarjetas o productos financieros regulados, requieren verificación de identidad conforme a la normativa aplicable. En ciertos casos, la conexión de wallets externas puede estar disponible sin KYC."),
- ("¿Cuándo se lanzará oficialmente Xerovan?", "Estamos preparando el lanzamiento oficial. Únete a nuestra lista de espera para recibir novedades del producto, oportunidades de acceso anticipado y anuncios de lanzamiento."),
+  ("¿Cómo empiezo con Xerovan?", "Solicita acceso con tu correo en esta página. Te enviaremos los siguientes pasos, incluida la disponibilidad en tu país y la verificación necesaria."),
 ]
 
 USE_CASES = [
