@@ -206,14 +206,28 @@ const POST_SEO = {
 };
 // Same article in different languages. Language menu and hreflang are built from these groups.
 const TRANSLATIONS = [
-  { en: 'custodial-vs-non-custodial-crypto-cards-whats-the-difference-and-why-does-it-matter', kr: 'custodial-vs-non-custodial-crypto-card-ko' },
+  { en: 'custodial-vs-non-custodial-crypto-cards-whats-the-difference-and-why-does-it-matter', kr: 'custodial-vs-non-custodial-crypto-card-ko', es: 'custodial-vs-non-custodial-crypto-card-es', pt: 'custodial-vs-non-custodial-crypto-card-pt', ar: 'custodial-vs-non-custodial-crypto-card-ar' },
+  // Korean posts with Spanish, Portuguese and Arabic versions: [base slug, English slug, Japanese slug]
+  ...[
+    ['freelancer-spend-earnings-card', 'freelancer-spend-earnings-card', 'freelancer-spend-earnings-card-ja'],
+    ['freelancer-small-payment-batching', 'freelancer-small-payment-batching', 'freelancer-small-payment-batching-ja'],
+    ['freelancer-instant-payout', 'freelancer-instant-payouts-card', 'freelancer-instant-payout-ja'],
+    ['gateway-card-benefits', 'gateway-card-benefits', 'gateway-card-benefits-ja'],
+    ['gateway-user-account-onboarding', 'gateway-user-account-onboarding', 'gateway-user-account-onboarding-ja'],
+    ['merchant-crypto-settlement', 'merchant-crypto-settlement', 'merchant-crypto-settlement-ja'],
+    ['crypto-payment-gateway-card', 'crypto-payment-gateway-earnings-card', 'crypto-payment-gateway-card-ja'],
+    ['freelancer-payout-checklist', 'freelancer-payout-checklist', 'freelancer-payout-checklist-ja'],
+    ['meta-ads-payment-declined', 'meta-ads-payment-declined'],
+    ['international-subscription-card', 'international-subscription-card'],
+    ...['marketing-team-virtual-card-expense-control', 'google-ads-crypto-card-guide', 'crypto-card-cashback-net-benefit', 'business-travel-crypto-card', 'stablecoin-card-payment-flow', 'crypto-card-security-checklist', 'crypto-card-receipt-expense-guide', 'business-card-usd-local-currency', 'saas-virtual-card-subscription', 'freelancer-usd-payment-card', 'media-buyer-card-checklist', 'stablecoin-depegging-risks', 'usdt-tron-ethereum-polygon', '3d-secure-card-authentication', 'card-payment-declined-solutions', 'virtual-vs-physical-card', 'crypto-card-kyc-kyb-guide', 'crypto-card-refund-chargeback', 'usdt-vs-usdc-guide', 'crypto-card-foreign-fees', 'business-card-spending-controls', 'mpc-wallet-security', 'crypto-card-marketing-agencies', 'crypto-wallet-custody-guide'].map((b) => [b]),
+  ].map(([b, en, ja]) => ({ kr: `${b}-ko`, es: `${b}-es`, pt: `${b}-pt`, ar: `${b}-ar`, ...(en ? { en } : {}), ...(ja ? { ja } : {}) })),
 ];
 /** Translation group of a post: the list above, or the WordPress "translations" field ("en:slug,kr:slug"). */
 const translationsOf = (lang, slug, field) => {
   const listed = TRANSLATIONS.find((g) => g[lang] === slug);
-  if (listed) return listed;
   const entries = (typeof field === 'string' ? field.split(',') : Object.entries(field || {}).map((e) => e.join(':')))
     .map((x) => x.trim().split(':')).filter((x) => x.length === 2 && LANGS[x[0]] && x[0] !== lang && x[1]);
+  if (listed) return { ...Object.fromEntries(entries), ...listed };
   return entries.length ? { [lang]: slug, ...Object.fromEntries(entries) } : null;
 };
 
