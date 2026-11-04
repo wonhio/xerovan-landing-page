@@ -182,6 +182,9 @@ const isFounderAccount = (name) => !name || /^(admin|administrator|xerovan|jay|j
 
 // Search title / description per post, where the WordPress title or excerpt is too long for results. Keyed by "lang/slug".
 const POST_SEO = {
+  'en/freelancer-instant-payouts-card': {
+    title: 'Pay Freelancers Instantly, Even Small Amounts | Xerovan',
+    description: 'Pay freelancers per job regardless of amount, and let them spend what they receive by card. Here are the benefits for both sides.' },
   'en/custodial-vs-non-custodial-crypto-cards-whats-the-difference-and-why-does-it-matter': {
     title: 'Custodial vs Non-Custodial Crypto Cards Explained | Xerovan',
     description: 'What separates custodial and non-custodial crypto cards: who holds your keys, when funds leave your wallet, and how to compare fees and risks.' },
