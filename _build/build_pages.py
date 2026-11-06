@@ -82,7 +82,7 @@ MENU_BTN = '<button type="button" class="menu-btn" aria-label="{label}" aria-exp
 
 PAGE_TITLE = {
     "en": "Xerovan — Crypto Wallet & Visa Card for Global Payments",
-    "kr": "Xerovan — 크립토 지갑과 Visa 카드로 해외결제·여행까지",
+    "kr": "Xerovan 제로반 — 크립토 지갑과 Visa 카드로 해외결제·여행까지",
     "ja": "Xerovan — 暗号資産ウォレットとVisaカードで海外決済・旅行まで",
     "es": "Xerovan — Billetera cripto y tarjeta Visa para pagos globales",
     "ar": "Xerovan — محفظة عملات مشفرة وبطاقة Visa للمدفوعات العالمية",
@@ -91,7 +91,7 @@ PAGE_TITLE = {
 
 OG_TITLE = {
     "en": "Xerovan — Value in Motion",
-    "kr": "Xerovan — 지갑·결제·리워드·여행을 하나로",
+    "kr": "Xerovan 제로반 — 지갑·결제·리워드·여행을 하나로",
     "ja": "Xerovan — ウォレット・決済・リワード・旅行をひとつに",
     "es": "Xerovan — Wallets, pagos, recompensas y viajes en un solo lugar",
     "ar": "Xerovan — المحافظ والمدفوعات والمكافآت والسفر في مكان واحد",
@@ -297,7 +297,7 @@ HERO_H1 = {
 }
 META_DESC = {
     "en": "Spend crypto wherever Visa is accepted. Self-custodial wallet, crypto-funded Visa cards, rewards and travel booking in one app. Apply for Xerovan today.",
-    "kr": "Visa 가맹점 어디서나 크립토로 결제하세요. 셀프 커스터디 지갑, 크립토 충전 Visa 카드, 리워드, 여행 예약을 하나의 앱에서. 지금 Xerovan 이용을 신청하세요.",
+    "kr": "제로반(Xerovan)으로 Visa 가맹점 어디서나 크립토로 결제하세요. 셀프 커스터디 지갑, 크립토 충전 Visa 카드, 리워드, 여행 예약을 하나의 앱에서. 지금 제로반 이용을 신청하세요.",
     "ja": "Visa加盟店で暗号資産を使って支払い。セルフカストディ型ウォレット、暗号資産でチャージするVisaカード、リワード、旅行予約をひとつのアプリで。",
     "es": "Gasta cripto donde se acepte Visa. Billetera de autocustodia, tarjetas Visa recargadas con cripto, recompensas y reservas de viaje en una app.",
     "ar": "أنفق عملاتك المشفرة أينما تُقبل Visa. محفظة ذاتية الحفظ وبطاقات Visa تُشحن بالعملات المشفرة ومكافآت وحجوزات سفر في تطبيق واحد.",
@@ -354,7 +354,7 @@ def finalize(html, lang):
     html = re.sub(r'<img src="(/images/(?:feature|ecosystem)[^"]*)"', r'<img loading="lazy" decoding="async" src="\1"', html)
     html = html.replace('<img src="${uc.image}" alt="${uc.title}" style=', '<img src="${uc.image}" alt="${uc.title}" loading="lazy" decoding="async" style=')
     html = must_re(html, r"<title>[^<]*</title>", f"<title>{PAGE_TITLE[lang]}</title>")
-    website = {"@context": "https://schema.org", "@type": "WebSite", "name": "Xerovan", "alternateName": "XEROVAN",
+    website = {"@context": "https://schema.org", "@type": "WebSite", "name": "Xerovan", "alternateName": ["제로반", "XEROVAN"],
                "url": "https://www.xerovan.com/", "inLanguage": LANGS[lang][0]}
     html = must(html, '<link rel="preconnect" href="https://fonts.googleapis.com">',
                 '<script type="application/ld+json">' + _json.dumps(website, ensure_ascii=False) + '</script>\n<link rel="preconnect" href="https://fonts.googleapis.com">')

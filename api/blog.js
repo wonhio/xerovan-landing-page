@@ -33,7 +33,7 @@ const LANGS = {
 
 const T = {
   en: { blog: 'Blog', title: 'Xerovan Blog', intro: 'Product updates, guides, and insights on crypto payments, cards, and borderless finance.', read: 'Read article', back: 'All articles', newer: 'Newer', older: 'Older', empty: 'No articles yet. Check back soon.', notFound: 'Article not found', notFoundText: 'This article may have moved or is not available in this language.', down: 'The blog is temporarily unavailable', downText: 'Please try again in a few minutes.', home: 'Home', min: 'min read', page: 'Page' },
-  kr: { blog: '블로그', title: 'Xerovan 블로그', intro: '제품 소식, 이용 가이드, 크립토 결제·카드·국경 없는 금융에 대한 인사이트.', read: '글 읽기', back: '전체 글', newer: '최신 글', older: '이전 글', empty: '아직 게시된 글이 없습니다. 곧 찾아올게요.', notFound: '글을 찾을 수 없습니다', notFoundText: '글이 이동되었거나 이 언어로 제공되지 않습니다.', down: '블로그를 일시적으로 불러올 수 없습니다', downText: '잠시 후 다시 시도해 주세요.', home: '홈', min: '분 소요', page: '페이지' },
+  kr: { blog: '블로그', title: 'Xerovan 제로반 블로그', intro: '제품 소식, 이용 가이드, 크립토 결제·카드·국경 없는 금융에 대한 인사이트.', read: '글 읽기', back: '전체 글', newer: '최신 글', older: '이전 글', empty: '아직 게시된 글이 없습니다. 곧 찾아올게요.', notFound: '글을 찾을 수 없습니다', notFoundText: '글이 이동되었거나 이 언어로 제공되지 않습니다.', down: '블로그를 일시적으로 불러올 수 없습니다', downText: '잠시 후 다시 시도해 주세요.', home: '홈', min: '분 소요', page: '페이지' },
   ja: { blog: 'ブログ', title: 'Xerovan ブログ', intro: 'プロダクトの最新情報、ガイド、暗号資産決済・カード・国境のない金融に関するインサイト。', read: '記事を読む', back: 'すべての記事', newer: '新しい記事', older: '前の記事', empty: 'まだ記事はありません。近日公開予定です。', notFound: '記事が見つかりません', notFoundText: '記事が移動したか、この言語では公開されていません。', down: 'ブログを一時的に表示できません', downText: '数分後にもう一度お試しください。', home: 'ホーム', min: '分で読めます', page: 'ページ' },
   es: { blog: 'Blog', title: 'Blog de Xerovan', intro: 'Novedades del producto, guías y análisis sobre pagos cripto, tarjetas y finanzas sin fronteras.', read: 'Leer artículo', back: 'Todos los artículos', newer: 'Más recientes', older: 'Anteriores', empty: 'Aún no hay artículos. Vuelve pronto.', notFound: 'Artículo no encontrado', notFoundText: 'Es posible que el artículo se haya movido o no esté disponible en este idioma.', down: 'El blog no está disponible temporalmente', downText: 'Inténtalo de nuevo en unos minutos.', home: 'Inicio', min: 'min de lectura', page: 'Página' },
   ar: { blog: 'المدونة', title: 'مدونة Xerovan', intro: 'تحديثات المنتج والأدلة ورؤى حول مدفوعات العملات المشفرة والبطاقات والتمويل بلا حدود.', read: 'اقرأ المقال', back: 'جميع المقالات', newer: 'الأحدث', older: 'الأقدم', empty: 'لا توجد مقالات بعد. تابعنا قريبًا.', notFound: 'المقال غير موجود', notFoundText: 'ربما نُقل المقال أو أنه غير متاح بهذه اللغة.', down: 'المدونة غير متاحة مؤقتًا', downText: 'يُرجى المحاولة مرة أخرى بعد بضع دقائق.', home: 'الرئيسية', min: 'دقائق قراءة', page: 'صفحة' },
@@ -169,7 +169,7 @@ const ABOUT = {
 };
 const ABOUT_META = {
   en: ['About Xerovan — Crypto Payments Built in Dubai', 'Xerovan is building stablecoin payments, from a self-custodial wallet to a Visa card and travel and business spending. Meet the founder and the company.'],
-  kr: ['Xerovan 소개 — 두바이에서 만드는 크립토 결제', 'Xerovan은 셀프 커스터디 지갑부터 Visa 카드, 여행·비즈니스 결제까지 스테이블코인 결제를 만듭니다. 창업자와 회사 정보를 확인하세요.'],
+  kr: ['Xerovan 제로반 소개 — 두바이에서 만드는 크립토 결제', '제로반(Xerovan)은 셀프 커스터디 지갑부터 Visa 카드, 여행·비즈니스 결제까지 스테이블코인 결제를 만듭니다. 창업자와 회사 정보를 확인하세요.'],
   ja: ['Xerovanについて — ドバイ発の暗号資産決済', 'Xerovanは、セルフカストディ型ウォレットからVisaカード、旅行・ビジネスの支払いまで、ステーブルコイン決済を構築しています。創業者と会社情報をご覧ください。'],
   es: ['Sobre Xerovan — Pagos cripto creados en Dubái', 'Xerovan crea pagos con stablecoins: desde una wallet de autocustodia hasta una tarjeta Visa, viajes y gastos de empresa. Conoce al fundador y la empresa.'],
   ar: ['عن Xerovan — مدفوعات مشفرة من دبي', 'تبني Xerovan مدفوعات بالعملات المستقرة، من محفظة ذاتية الحفظ إلى بطاقة Visa ومدفوعات السفر والأعمال. تعرّف على المؤسس والشركة.'],
@@ -765,7 +765,7 @@ function solutionView(lang, slug) {
 
 const HUB = {
   en: ['Crypto Card Solutions | Xerovan', 'Crypto card solutions', 'See how Xerovan fits ad spend, international subscriptions, travel and everyday spending with crypto and a Visa card.'],
-  kr: ['크립토 카드 솔루션 | Xerovan', '크립토 카드 솔루션', '광고비, 해외 구독, 여행, 일상 결제까지 크립토와 Visa 카드로 Xerovan을 활용하는 방법을 확인하세요.'],
+  kr: ['크립토 카드 솔루션 | Xerovan 제로반', '크립토 카드 솔루션', '광고비, 해외 구독, 여행, 일상 결제까지 크립토와 Visa 카드로 Xerovan을 활용하는 방법을 확인하세요.'],
   ja: ['暗号資産カードのソリューション | Xerovan', '暗号資産カードのソリューション', '広告費、海外サブスク、旅行、日常の支払いに、暗号資産とVisaカードでXerovanを活用する方法をご覧ください。'],
   es: ['Soluciones de tarjeta cripto | Xerovan', 'Soluciones de tarjeta cripto', 'Descubre cómo usar Xerovan para publicidad, suscripciones internacionales, viajes y gastos diarios con cripto y una tarjeta Visa.'],
   ar: ['حلول بطاقات العملات المشفرة | Xerovan', 'حلول بطاقات العملات المشفرة', 'اكتشف كيف تناسب Xerovan الإنفاق الإعلاني والاشتراكات الدولية والسفر والمدفوعات اليومية بالعملات المشفرة وبطاقة Visa.'],
@@ -930,7 +930,7 @@ module.exports = async (req, res) => {
       body: aboutView(lang),
       jsonLd: [crumbs([['Xerovan', `${SITE}/${lang}/`], [A.eyebrow, `${SITE}/${lang}/about`]]), {
         '@context': 'https://schema.org', '@type': 'AboutPage', name: A.title, url: `${SITE}/${lang}/about`, inLanguage: LANGS[lang].hl,
-        mainEntity: { '@type': 'Organization', name: 'Xerovan', url: `${SITE}/`, logo: `${SITE}/images/logo-icon.png`, email: CONTACT_EMAIL,
+        mainEntity: { '@type': 'Organization', name: 'Xerovan', alternateName: ['제로반', 'XEROVAN'], url: `${SITE}/`, logo: `${SITE}/images/logo-icon.png`, email: CONTACT_EMAIL,
           address: { '@type': 'PostalAddress', addressLocality: 'Dubai', addressCountry: 'AE' }, founder: founderLD(lang),
           sameAs: ['https://x.com/XerovanC', 'https://www.instagram.com/xerovancard/', 'https://www.facebook.com/profile.php?id=61594055002981'] },
       }],
