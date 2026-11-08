@@ -1,0 +1,32 @@
+name: IndexNow ping (Naver, Bing)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for Vercel deploy
+        if: github.event_name == 'push'
+        run: sleep 120
+      - name: Submit sitemap URLs
+        env:
+          HOST: www.xerovan.com
+          KEY: af0ea61a83938d41149141f472e6e2bd
+        run: |
+          set -euo pipefail
+          curl -fsS "https://$HOST/$KEY.txt" | grep -q "$KEY"
+          urls=$( { curl -fsS "https://$HOST/sitemap.xml"; curl -fsS "https://$HOST/blog-sitemap.xml" || true; } \
+            | grep -o '<loc>[^<]*</loc>' | sed 's/<\/\?loc>//g' | sort -u | head -n 10000 )
+          echo "$urls" | wc -l
+          body=$(printf '%s\n' "$urls" | jq -R . | jq -s --arg h "$HOST" --arg k "$KEY" \
+            '{host:$h,key:$k,keyLocation:("https://"+$h+"/"+$k+".txt"),urlList:.}')
+          for ep in https://searchadvisor.naver.com/indexnow https://api.indexnow.org/indexnow; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' -X POST "$ep" \
+              -H 'Content-Type: application/json; charset=utf-8' -d "$body")
+            echo "$ep -> $code"
+            case "$code" in 200|202) ;; *) exit 1 ;; esac
+          done
