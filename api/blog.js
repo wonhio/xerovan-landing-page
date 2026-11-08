@@ -131,7 +131,7 @@ const ABOUT = {
     bio: 'Jay Yoon is an entrepreneur who has run cross-border businesses between Singapore, Dubai and Georgia. Paying and getting paid by customers and partners in different countries, he ran into slow transfers, repeated exchange costs and payment limits that change by country, and started Xerovan to solve them with stablecoins.',
     company: 'Company', hq: 'Headquarters', contact: 'Contact', cta: 'Apply now',
     short: 'Founder of Xerovan. Runs cross-border businesses between Singapore, Dubai and Georgia.', by: 'Written by' },
-  kr: { title: 'Xerovan 소개', eyebrow: '회사 소개', h1: '국경을 넘는 돈의 이동을, 국경 없이.',
+  kr: { title: 'Xerovan 소개', eyebrow: '회사 소개', h1: '국경을 넘어, 자유롭게 결제하다',
     p: ['해외로 돈을 보내거나 결제하는 일은 여전히 느리고 비쌉니다. 송금은 며칠씩 걸리고, 환전과 해외결제 수수료는 거래할 때마다 붙으며, 나라마다 쓸 수 있는 결제 수단도 다릅니다.',
         'Xerovan은 스테이블코인을 기반으로 이 과정을 다시 설계합니다. 디지털 자산을 보관하는 지갑부터 전 세계에서 쓰는 Visa 카드, 여행과 비즈니스 결제까지 하나의 앱에서 더 빠르고 투명하게 연결하는 것이 Xerovan의 목표입니다.'],
     founder: '창업자', role: 'Xerovan 창업자',
