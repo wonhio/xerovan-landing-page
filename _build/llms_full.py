@@ -39,6 +39,8 @@ out = [
     "partners, and availability varies by country.",
     "",
     "- Website: https://www.xerovan.com/ (English, Korean, Japanese, Spanish, Arabic, Portuguese)",
+    "- Card: US-issued Visa cards, virtual and physical, with Apple Pay and Google Pay. "
+    "Card and payment services are provided by licensed partners",
     "- Headquarters: Dubai, UAE. Operating entity: MARU EVENT TOURISM LLC. Founder: Jay Yoon",
     "- Contact: hello@xerovan.com",
     "- How to start: apply with your email on any language page",

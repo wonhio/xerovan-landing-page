@@ -49,6 +49,7 @@ const GROUPS = {
     ]],
     ['Card', [
       ['Network', 'Visa'],
+      ['Issuance', 'US-issued Visa cards; card and payment services are provided by licensed partners'],
       ['Card types', 'Virtual and physical'],
       ['Mobile wallets', 'Apple Pay and Google Pay'],
       ['Default funding', 'Real-Time Funding: each payment is drawn from the connected wallet at checkout'],
@@ -82,6 +83,7 @@ const GROUPS = {
     ]],
     ['카드', [
       ['네트워크', 'Visa'],
+      ['발행', '미국에서 발행되는 Visa 카드이며, 카드·결제 서비스는 라이선스를 보유한 파트너사가 제공합니다'],
       ['카드 종류', '가상카드, 실물카드'],
       ['모바일 결제', '애플페이, 구글페이'],
       ['기본 결제 방식', 'RTF(Real-Time Funding): 결제할 때마다 연결된 지갑에서 자금을 가져옴'],
@@ -115,6 +117,7 @@ const GROUPS = {
     ]],
     ['カード', [
       ['ネットワーク', 'Visa'],
+      ['発行', '米国で発行されるVisaカードで、カード・決済サービスはライセンスを持つパートナーが提供します'],
       ['カード種別', 'バーチャルカード、物理カード'],
       ['モバイル決済', 'Apple Pay、Google Pay'],
       ['標準の支払い方式', 'リアルタイム・ファンディング(RTF): 決済のたびに接続したウォレットから資金を充当'],
@@ -148,6 +151,7 @@ const GROUPS = {
     ]],
     ['Tarjeta', [
       ['Red', 'Visa'],
+      ['Emisión', 'Tarjetas Visa emitidas en Estados Unidos; los servicios de tarjeta y de pago los prestan socios con licencia'],
       ['Tipos de tarjeta', 'Virtual y física'],
       ['Pago móvil', 'Apple Pay y Google Pay'],
       ['Financiación por defecto', 'Real-Time Funding: cada pago se toma de la wallet conectada en el momento de la compra'],
@@ -181,6 +185,7 @@ const GROUPS = {
     ]],
     ['البطاقة', [
       ['الشبكة', 'Visa'],
+      ['الإصدار', 'بطاقات Visa تصدر في الولايات المتحدة، وخدمات البطاقات والمدفوعات يقدمها شركاء مرخّصون'],
       ['أنواع البطاقات', 'افتراضية وفعلية'],
       ['المحافظ على الهاتف', 'Apple Pay وGoogle Pay'],
       ['طريقة التمويل الافتراضية', 'التمويل الفوري (RTF): يُسحب كل دفعة من المحفظة المتصلة لحظة الشراء'],
@@ -214,6 +219,7 @@ const GROUPS = {
     ]],
     ['Cartão', [
       ['Rede', 'Visa'],
+      ['Emissão', 'Cartões Visa emitidos nos Estados Unidos; os serviços de cartão e de pagamento são prestados por parceiros licenciados'],
       ['Tipos de cartão', 'Virtual e físico'],
       ['Pagamento por celular', 'Apple Pay e Google Pay'],
       ['Financiamento padrão', 'Real-Time Funding: cada pagamento sai da carteira conectada na hora da compra'],

@@ -3,6 +3,7 @@
 > Xerovan (Korean: 제로반) is a crypto payments platform: a self-custodial multi-chain wallet connected to Visa cards that pay straight from the connected wallet with no top-up needed (Real-Time Funding; card top-up is optional), global crypto payouts, business spend management for agencies and media buyers, rewards, and travel booking. Xerovan is not a bank; card and payment services are provided by licensed partners, and availability varies by country.
 
 - Website: https://www.xerovan.com/ (English, Korean, Japanese, Spanish, Arabic, Portuguese)
+- Card: US-issued Visa cards, virtual and physical, with Apple Pay and Google Pay. Card and payment services are provided by licensed partners
 - Headquarters: Dubai, UAE. Operating entity: MARU EVENT TOURISM LLC. Founder: Jay Yoon
 - Contact: hello@xerovan.com
 - How to start: apply with your email on any language page
