@@ -176,6 +176,101 @@ FAQ:
 - Q: Do I need KYC?
   A: Card issuance and other regulated services require identity verification. External wallet connectivity may be available without KYC in supported scenarios.
 
+#### Custodial vs wallet-direct crypto cards
+
+Source: https://www.xerovan.com/en/solutions/custodial-vs-wallet-direct-crypto-card
+
+Most crypto cards work in one of two ways. A custodial card moves your crypto to the provider and asks you to top up a card balance before you spend. A wallet-direct card, like Xerovan, keeps your assets in your own wallet and funds each payment at checkout.
+
+Why the model matters: With a custodial card, the provider holds your funds, you have to keep a card balance topped up, and money parked on the card is exposed if the account is frozen. A wallet-direct card removes the pre-funding step and leaves the assets under your control until the moment you pay.
+
+Side-by-side comparison:
+
+|  | Custodial crypto card | Wallet-direct card (Xerovan) |
+|---|---|---|
+| Who holds your assets | The card provider | You, in a self-custodial wallet |
+| Before you spend | Send crypto to the provider and top up the card | Nothing: assets stay in your wallet |
+| At checkout | Paid from the card balance | Funded in real time from your wallet |
+| Unspent money | Sits on the card or provider account | Stays in your wallet |
+| Budget control | The amount you top up | Card limits, with optional top-up |
+| Where it works | Card network merchants | Visa merchants, Apple Pay and Google Pay |
+
+Wallet-direct with Xerovan:
+- Assets stay in your self-custodial, multi-chain wallet
+- Each card payment is funded in real time (RTF), so no top-up is needed
+- Top up a card only if you want a fixed budget
+- Visa acceptance, with Apple Pay and Google Pay
+- Connect external wallets such as MetaMask
+
+How it works:
+1. Create or connect your wallet
+2. Get your Xerovan Visa card
+3. Pay: the amount is pulled from your wallet at checkout
+
+FAQ:
+- Q: Is a wallet-direct card the same as a non-custodial card?
+  A: They overlap. Non-custodial means you control your assets. Wallet-direct describes how the card is funded: each payment is drawn from that wallet at checkout instead of from a pre-loaded card balance.
+- Q: Do I ever need to top up?
+  A: Not by default. Xerovan funds card payments from your connected wallet in real time. You can still top up a card if you prefer a set balance, for example for a trip or a team budget.
+- Q: Are there fees when paying from the wallet?
+  A: Converting or moving crypto can involve network or service fees depending on the asset and network. All fees are shown before you confirm.
+
+#### Crypto payouts for freelancers, spendable the same day
+
+Source: https://www.xerovan.com/en/solutions/crypto-payouts-for-freelancers
+
+Businesses pay freelancers per job in supported stablecoins, whatever the amount. Freelancers keep the payout in their own wallet and spend it anywhere Visa is accepted, with no exchange or bank transfer in between.
+
+Why getting paid across borders is slow: International bank transfers take days, small invoices lose a large share to fees, and freelancers paid in crypto usually have to send it to an exchange, sell it and withdraw before they can use it.
+
+What you can do:
+- Pay freelancers per job, whatever the amount
+- Pay in supported stablecoins and networks
+- Freelancers receive into a self-custodial wallet they control
+- Spend payouts by Visa card straight from the wallet, no top-up needed
+- Pay out to bank accounts where supported
+
+How it works:
+1. The business sends the payout for each job in supported crypto
+2. The freelancer receives it in their Xerovan wallet
+3. The freelancer pays by card straight from the wallet, anywhere Visa is accepted
+
+FAQ:
+- Q: Is there a minimum payout amount?
+  A: Xerovan is built for per-job payouts whatever the amount, so small jobs can be paid as soon as they are done. Network and service fees, where they apply, are shown before you confirm.
+- Q: Does the freelancer need to cash out before spending?
+  A: No. With Real-Time Funding, each card payment is funded straight from the freelancer's wallet at checkout, so there is no exchange, sale or bank withdrawal in between.
+- Q: Can freelancers receive to a bank account instead?
+  A: Yes, payouts to bank accounts are available where supported. Availability depends on the country; we confirm it when you apply.
+
+#### Spend your crypto gateway earnings right away
+
+Source: https://www.xerovan.com/en/solutions/spend-crypto-gateway-earnings
+
+If your customers pay you in crypto through a payment gateway, your revenue already arrives in digital assets. Xerovan lets you spend it straight away by Visa card on suppliers, ads, software and travel, without sending it to an exchange first.
+
+Crypto revenue is hard to use day to day: Gateway settlements land in crypto, but most business bills are paid by card or bank transfer. Turning revenue into spendable money usually means an exchange, a sale, a bank withdrawal and days of waiting, with fees at every step.
+
+What you can do:
+- Receive gateway settlements into your Xerovan account
+- Pay business expenses by Visa card straight from your wallet balance
+- Issue separate cards for ads, software and suppliers, with limits
+- Pay partners and freelancers in crypto from the same account
+- Track spending with receipts and reports
+
+How it works:
+1. Open a Xerovan account for your business
+2. Settle your gateway earnings to your Xerovan wallet
+3. Spend by card or pay partners straight from that balance
+
+FAQ:
+- Q: Which payment gateways work with Xerovan?
+  A: Xerovan accounts can receive crypto from gateways that settle in supported assets and networks. Tell us your gateway when you apply and we will confirm the setup.
+- Q: Do I have to convert revenue to cash first?
+  A: No. Card payments are funded in real time from your wallet balance, so you can spend gateway earnings without a separate conversion and bank withdrawal.
+- Q: Is this available for my company?
+  A: Business features and card issuance depend on your country and business verification. Apply with your email and we will confirm availability.
+
 ## 한국어
 
 Source: https://www.xerovan.com/kr/
@@ -343,3 +438,98 @@ Xerovan은 셀프 커스터디 멀티체인 지갑과 Visa 카드를 연결합�
   A: 기본적으로 카드 결제 때마다 연결된 지갑에서 실시간으로 자금이 충당되므로, 카드 잔액을 따로 충전할 필요가 없습니다. 자산과 네트워크에 따라 결제 시점에 자금이 전환되며, 가맹점에는 Visa 네트워크를 통해 대금이 지급됩니다. 정해진 잔액으로 쓰고 싶다면 카드를 충전해서 사용할 수도 있습니다.
 - Q: KYC가 필요한가요?
   A: 카드 발급 및 기타 규제 대상 서비스에는 본인 인증이 필요합니다. 외부 지갑 연결은 지원되는 경우 KYC 없이 이용할 수 있습니다.
+
+#### 수탁형 vs 지갑 직결형 크립토 카드
+
+Source: https://www.xerovan.com/kr/solutions/custodial-vs-wallet-direct-crypto-card
+
+크립토 카드는 크게 두 가지 방식으로 작동합니다. 수탁형 카드는 크립토를 서비스 제공자에게 옮기고 쓰기 전에 카드 잔액을 충전해야 합니다. 제로반 같은 지갑 직결형 카드는 자산을 내 지갑에 그대로 두고, 결제할 때마다 지갑에서 바로 자금을 가져옵니다.
+
+방식의 차이가 중요한 이유: 수탁형 카드는 제공자가 자금을 보관하고, 카드 잔액을 계속 충전해 두어야 하며, 계정이 동결되면 카드에 넣어 둔 돈도 묶일 수 있습니다. 지갑 직결형 카드는 미리 충전하는 단계를 없애고, 결제하는 순간까지 자산의 통제권을 사용자에게 남겨 둡니다.
+
+한눈에 비교:
+
+|  | 수탁형 크립토 카드 | 지갑 직결형 카드 (제로반) |
+|---|---|---|
+| 자산 보관 | 카드 제공자 | 사용자의 셀프 커스터디 지갑 |
+| 결제 전 준비 | 제공자에게 크립토 전송 후 카드 충전 | 없음, 자산은 지갑에 그대로 |
+| 결제 시점 | 카드 잔액에서 결제 | 지갑에서 실시간 충당 |
+| 쓰고 남은 돈 | 카드나 제공자 계정에 남음 | 내 지갑에 그대로 |
+| 예산 관리 | 충전한 금액 | 카드별 한도 설정, 충전은 선택 |
+| 사용처 | 카드 네트워크 가맹점 | Visa 가맹점, 애플페이·구글페이 |
+
+제로반의 지갑 직결형 결제:
+- 자산은 셀프 커스터디 멀티체인 지갑에 그대로 보관
+- 카드 결제마다 실시간 충당(RTF), 별도 충전 불필요
+- 예산을 정해 두고 싶을 때만 카드 충전
+- Visa 가맹점 결제, 애플페이·구글페이 지원
+- 메타마스크 등 외부 지갑 연결
+
+이용 방법:
+1. 지갑을 만들거나 연결합니다
+2. 제로반 Visa 카드를 발급받습니다
+3. 결제하면 금액이 지갑에서 바로 빠져나갑니다
+
+자주 묻는 질문:
+- Q: 지갑 직결형 카드와 비수탁형 카드는 같은 건가요?
+  A: 겹치는 부분이 많습니다. 비수탁형은 자산을 사용자가 직접 통제한다는 뜻이고, 지갑 직결형은 카드 결제 자금을 미리 충전한 잔액이 아니라 결제 시점에 그 지갑에서 가져온다는 결제 방식을 말합니다.
+- Q: 충전이 필요한 경우가 있나요?
+  A: 기본적으로는 필요 없습니다. 제로반은 연결된 지갑에서 실시간으로 카드 결제 자금을 충당합니다. 여행이나 팀 예산처럼 정해진 잔액으로 쓰고 싶다면 카드를 충전해서 쓸 수도 있습니다.
+- Q: 지갑에서 결제할 때 수수료가 있나요?
+  A: 자산과 네트워크에 따라 크립토 전환이나 전송에 네트워크 수수료나 서비스 수수료가 발생할 수 있습니다. 모든 수수료는 확인 전에 미리 표시됩니다.
+
+#### 받은 날 바로 쓰는 프리랜서 크립토 지급
+
+Source: https://www.xerovan.com/kr/solutions/crypto-payouts-for-freelancers
+
+기업은 금액과 관계없이 작업 건별로 지원되는 스테이블코인으로 프리랜서에게 지급합니다. 프리랜서는 받은 대금을 자신의 지갑에 그대로 두고, 거래소나 은행 송금을 거치지 않고 Visa 가맹점 어디서나 바로 쓸 수 있습니다.
+
+해외 대금 받기가 느린 이유: 해외 송금은 며칠씩 걸리고, 소액 대금은 수수료로 큰 비중이 빠져나갑니다. 크립토로 받은 프리랜서도 보통 거래소로 보내 팔고 출금해야 쓸 수 있습니다.
+
+할 수 있는 것:
+- 금액과 관계없이 작업 건별로 지급
+- 지원되는 스테이블코인과 네트워크로 지급
+- 프리랜서는 직접 통제하는 셀프 커스터디 지갑으로 수령
+- 받은 대금을 충전 없이 지갑에서 바로 Visa 카드로 결제
+- 지원 지역에서는 은행 계좌로도 지급
+
+이용 방법:
+1. 기업이 작업 건별 대금을 지원되는 크립토로 보냅니다
+2. 프리랜서가 제로반 지갑으로 받습니다
+3. 프리랜서가 Visa 가맹점 어디서나 지갑에서 바로 카드로 결제합니다
+
+자주 묻는 질문:
+- Q: 최소 지급 금액이 있나요?
+  A: 제로반은 금액과 관계없이 작업 건별 지급을 위해 만들어졌기 때문에, 작은 작업도 끝나는 대로 바로 지급할 수 있습니다. 네트워크 수수료나 서비스 수수료가 있다면 확인 전에 미리 표시됩니다.
+- Q: 프리랜서가 쓰려면 먼저 현금화해야 하나요?
+  A: 아닙니다. RTF(Real-Time Funding) 방식으로 카드 결제 때마다 프리랜서의 지갑에서 바로 자금이 충당되므로, 거래소 매도나 은행 출금을 거칠 필요가 없습니다.
+- Q: 은행 계좌로 받을 수도 있나요?
+  A: 네, 지원되는 지역에서는 은행 계좌로도 지급할 수 있습니다. 이용 가능 여부는 국가에 따라 다르며 신청 시 안내합니다.
+
+#### 크립토 게이트웨이 수익, 받는 즉시 쓰세요
+
+Source: https://www.xerovan.com/kr/solutions/spend-crypto-gateway-earnings
+
+고객이 결제 게이트웨이를 통해 크립토로 결제한다면, 매출은 이미 디지털 자산으로 들어와 있습니다. 제로반을 쓰면 거래소로 보내지 않고도 그 매출을 공급업체, 광고비, 소프트웨어, 출장비에 Visa 카드로 바로 쓸 수 있습니다.
+
+크립토 매출은 일상적으로 쓰기 어렵습니다: 게이트웨이 정산은 크립토로 들어오지만, 대부분의 사업 비용은 카드나 계좌이체로 나갑니다. 매출을 쓸 수 있는 돈으로 바꾸려면 보통 거래소, 매도, 은행 출금, 며칠의 대기를 거치고 단계마다 수수료가 붙습니다.
+
+할 수 있는 것:
+- 게이트웨이 정산금을 제로반 계정으로 수령
+- 사업 비용을 지갑 잔액에서 바로 Visa 카드로 결제
+- 광고·소프트웨어·공급업체별로 카드를 나누고 한도 설정
+- 같은 계정에서 파트너와 프리랜서에게 크립토로 지급
+- 영수증과 리포트로 지출 관리
+
+이용 방법:
+1. 사업자용 제로반 계정을 만듭니다
+2. 게이트웨이 수익을 제로반 지갑으로 정산받습니다
+3. 그 잔액에서 바로 카드로 결제하거나 파트너에게 지급합니다
+
+자주 묻는 질문:
+- Q: 어떤 결제 게이트웨이와 쓸 수 있나요?
+  A: 제로반 계정은 지원되는 자산과 네트워크로 정산하는 게이트웨이로부터 크립토를 받을 수 있습니다. 신청 시 사용 중인 게이트웨이를 알려주시면 연결 방법을 안내합니다.
+- Q: 매출을 먼저 현금으로 바꿔야 하나요?
+  A: 아닙니다. 카드 결제는 지갑 잔액에서 실시간으로 충당되므로, 별도의 전환이나 은행 출금 없이 게이트웨이 수익을 쓸 수 있습니다.
+- Q: 우리 회사도 이용할 수 있나요?
+  A: 비즈니스 기능과 카드 발급은 국가와 사업자 인증에 따라 다릅니다. 이메일로 신청하시면 이용 가능 여부를 안내합니다.

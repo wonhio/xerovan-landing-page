@@ -309,4 +309,10 @@ const P = {
   },
 };
 
+// Question-style pages kept in their own file; merged here so every caller sees one list.
+const EXTRA = require('./_solutions_extra.js');
+SLUGS.push(...EXTRA.SLUGS);
+Object.assign(P, EXTRA.P);
+Object.keys(UI).forEach((lang) => UI[lang].short.push(...EXTRA.SHORT[lang]));
+
 module.exports = { SLUGS, UI, P };

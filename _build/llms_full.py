@@ -57,9 +57,16 @@ for lang in LANGS:
         out += [f"**Q: {q}**", f"A: {a}", ""]
     out += [f"### {sol_h}", ""]
     for slug in sol["SLUGS"]:
-        title, desc, h1, lede, problem_h, problem, feats, steps, qa = sol["P"][slug][lang]
+        entry = sol["P"][slug][lang]
+        title, desc, h1, lede, problem_h, problem, feats, steps, qa = entry[:9]
+        table = entry[10] if len(entry) > 10 else None
         out += [f"#### {h1}", "", f"Source: {SITE}/{lang}/solutions/{slug}", "", lede, "",
-                f"{problem_h}: {problem}", "", f"{what_h}:"]
+                f"{problem_h}: {problem}", ""]
+        if table:
+            out += [f"{table['h2']}:", "", "| " + " | ".join(table["head"]) + " |", "|" + "---|" * len(table["head"])]
+            out += ["| " + " | ".join(r) + " |" for r in table["rows"]]
+            out.append("")
+        out += [f"{entry[9] if len(entry) > 9 and entry[9] else what_h}:"]
         out += [f"- {x}" for x in feats]
         out += ["", f"{how_h}:"]
         out += [f"{i}. {x}" for i, x in enumerate(steps, 1)]

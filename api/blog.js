@@ -557,6 +557,14 @@ function layout({ lang, title, description, canonical, alternates, ogImage, ogTy
     .sol-list{list-style:none;display:grid;gap:12px}
     .sol-list li{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;color:var(--silver-300);font-size:15.5px;line-height:1.6;padding-inline-start:44px;position:relative}
     .sol-list li::before{content:"";position:absolute;inset-inline-start:18px;top:23px;width:8px;height:8px;border-radius:50%;background:var(--ice)}
+    .sol-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+    .sol-table{width:100%;border-collapse:collapse;font-size:15px;min-width:560px}
+    .sol-table th,.sol-table td{padding:14px 16px;text-align:start;vertical-align:top;border-bottom:1px solid var(--line);line-height:1.55}
+    .sol-table thead th{background:var(--panel);color:var(--silver-100);font-weight:600}
+    .sol-table tbody th{color:var(--silver-100);font-weight:500;width:26%}
+    .sol-table td{color:var(--silver-300)}
+    .sol-table td:last-child{color:var(--silver-100)}
+    .sol-table tr:last-child th,.sol-table tr:last-child td{border-bottom:none}
     .sol-steps{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;counter-reset:s}
     @media(max-width:760px){.sol-steps{grid-template-columns:1fr}}
     .sol-steps li{counter-increment:s;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;color:var(--silver-300);font-size:15px;line-height:1.6}
@@ -741,8 +749,10 @@ function legalView(lang, doc, slug) {
 
 function solutionView(lang, slug) {
   const U = SOL.UI[lang], t = T[lang];
-  const [, , h1, lede, problemH, problem, features, steps, faq] = SOL.P[slug][lang];
+  // Optional extras: [9] a heading that replaces U.featuresH, [10] a comparison table { h2, head: [...], rows: [[...]] }
+  const [, , h1, lede, problemH, problem, features, steps, faq, featuresH, table] = SOL.P[slug][lang];
   const name = U.short[SOL.SLUGS.indexOf(slug)];
+  const tableHtml = table ? `<section><h2>${esc(table.h2)}</h2><div class="sol-table-wrap"><table class="sol-table"><thead><tr>${table.head.map((h) => `<th scope="col">${esc(h)}</th>`).join('')}</tr></thead><tbody>${table.rows.map((r) => `<tr>${r.map((c, i) => (i ? `<td>${esc(c)}</td>` : `<th scope="row">${esc(c)}</th>`)).join('')}</tr>`).join('')}</tbody></table></div></section>` : '';
   const more = SOL.SLUGS.filter((k) => k !== slug).map((k) => `<a class="chip" href="/${lang}/solutions/${k}">${esc(U.short[SOL.SLUGS.indexOf(k)])}</a>`).join('');
   return `
   <section class="blog-hero sol-hero"><div class="wrap">
@@ -754,7 +764,8 @@ function solutionView(lang, slug) {
   </div></section>
   <div class="wrap"><div class="sol">
     <section><h2>${esc(problemH)}</h2><p>${esc(problem)}</p></section>
-    <section><h2>${esc(U.featuresH)}</h2><ul class="sol-list">${features.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></section>
+    ${tableHtml}
+    <section><h2>${esc(featuresH || U.featuresH)}</h2><ul class="sol-list">${features.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></section>
     <section><h2>${esc(U.stepsH)}</h2><ol class="sol-steps">${steps.map((x) => `<li>${esc(x)}</li>`).join('')}</ol></section>
     <section class="sol-faq"><h2>${esc(U.faqH)}</h2>${faq.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</section>
     <div class="sol-cta"><h2>${esc(U.ctaH)}</h2><a class="btn primary" href="/${lang}/#waitlist">${esc(U.cta)}</a><p class="sol-note">${esc(U.note)}</p></div>

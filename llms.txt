@@ -22,6 +22,9 @@ The complete text of the main pages (features, FAQ and all solution pages, in En
 - [Card for international subscriptions](https://www.xerovan.com/en/solutions/card-for-international-subscriptions): a virtual Visa card for USD-billed AI, SaaS, cloud and streaming services
 - [Crypto travel card](https://www.xerovan.com/en/solutions/crypto-travel-card): spend abroad with Visa, Apple Pay and Google Pay, and book flights, hotels and eSIM
 - [Spend crypto with Visa](https://www.xerovan.com/en/solutions/spend-crypto-with-visa): self-custodial multi-chain wallet connected to a Visa card
+- [Custodial vs wallet-direct crypto cards](https://www.xerovan.com/en/solutions/custodial-vs-wallet-direct-crypto-card): side-by-side comparison of custodial (top-up) cards and cards that pay straight from a self-custodial wallet
+- [Crypto payouts for freelancers](https://www.xerovan.com/en/solutions/crypto-payouts-for-freelancers): per-job payouts in crypto, whatever the amount, spendable by card straight from the wallet
+- [Spend crypto payment gateway earnings](https://www.xerovan.com/en/solutions/spend-crypto-gateway-earnings): merchants spend gateway settlements by Visa card without an exchange or bank withdrawal
 - Each page is also available in Korean, Japanese, Spanish, Arabic and Portuguese (replace /en/ with /kr/, /ja/, /es/, /ar/ or /pt/)
 - [광고비 결제 가상카드 (한국어)](https://www.xerovan.com/kr/solutions/crypto-card-for-ads)
 - [해외 구독 결제 카드 (한국어)](https://www.xerovan.com/kr/solutions/card-for-international-subscriptions)
