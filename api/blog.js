@@ -18,6 +18,9 @@
  */
 
 const SOL = require('./_solutions.js');
+const FACTS = require('./_facts.js');
+// Official profiles, listed as Organization.sameAs so the same entity is recognised across sites.
+const SAME_AS = ['https://x.com/XerovanC', 'https://www.instagram.com/xerovancard/', 'https://www.facebook.com/profile.php?id=61594055002981', 'https://t.me/xerovan_card', 'https://discord.gg/fPPMaH3kDe', 'https://www.crunchbase.com/organization/xerovan'];
 const WP = (process.env.WP_ORIGIN || 'https://cms.xerovan.com').replace(/\/$/, '');
 const SITE = (process.env.SITE_URL || 'https://www.xerovan.com').replace(/\/$/, '');
 const PER_PAGE = 9;
@@ -585,6 +588,10 @@ function layout({ lang, title, description, canonical, alternates, ogImage, ogTy
     .sol-table th,.sol-table td{padding:14px 16px;text-align:start;vertical-align:top;border-bottom:1px solid var(--line);line-height:1.55}
     .sol-table thead th{background:var(--panel);color:var(--silver-100);font-weight:600}
     .sol-table tbody th{color:var(--silver-100);font-weight:500;width:26%}
+    .facts-table{min-width:0}
+    .facts-table tbody th{width:32%;white-space:nowrap}
+    .facts-table td{color:var(--silver-300)}
+    @media(max-width:620px){.facts-table tbody th{white-space:normal;width:38%}}
     .sol-table td{color:var(--silver-300)}
     .sol-table td:last-child{color:var(--silver-100)}
     .sol-table tr:last-child th,.sol-table tr:last-child td{border-bottom:none}
@@ -750,6 +757,34 @@ function aboutView(lang) {
   </div>`;
 }
 
+function factsView(lang) {
+  const U = FACTS.UI[lang], t = T[lang];
+  const groups = FACTS.GROUPS[lang].map(([heading, rows]) => `
+    <section><h2>${esc(heading)}</h2><div class="sol-table-wrap"><table class="sol-table facts-table"><tbody>
+      ${rows.map(([k, v]) => `<tr><th scope="row">${esc(k)}</th><td>${esc(v)}</td></tr>`).join('')}
+    </tbody></table></div></section>`).join('');
+  const links = [['Website', `${SITE}/${lang}/`], ['X', 'https://x.com/XerovanC'], ['Instagram', 'https://www.instagram.com/xerovancard/'],
+    ['Telegram', 'https://t.me/xerovan_card'], ['Discord', 'https://discord.gg/fPPMaH3kDe'], ['Crunchbase', 'https://www.crunchbase.com/organization/xerovan']];
+  return `
+  <section class="blog-hero sol-hero"><div class="wrap">
+    <div class="crumb" style="font-family:var(--f-mono);font-size:12px;color:var(--text-dim);margin-bottom:26px"><a href="/${lang}/">${esc(t.home)}</a> / ${esc(U.eyebrow)}</div>
+    <span class="eyebrow">${esc(U.eyebrow)}</span>
+    <h1 class="metal">${esc(U.h1)}</h1>
+    <p class="lede">${esc(U.lede)}</p>
+  </div></section>
+  <div class="wrap"><div class="sol">
+    ${groups}
+    <section><h2>${esc(U.stepsH)}</h2><ol class="sol-steps">${FACTS.STEPS[lang].map((s) => `<li>${esc(s)}</li>`).join('')}</ol></section>
+    <section><h2>${esc(U.linksH)}</h2><div class="sol-more">${links.map(([n, u]) => `<a class="chip" href="${esc(u)}"${u.startsWith(SITE) ? '' : ' rel="noopener"'}>${esc(n)}</a>`).join('')}</div></section>
+    <section><h2>${esc(U.relatedH)}</h2><div class="sol-more">
+      <a class="chip" href="/${lang}/solutions">${esc(SOL.UI[lang].eyebrow)}</a>
+      <a class="chip" href="/${lang}/about">${esc(ABOUT[lang].eyebrow)}</a>
+      <a class="chip" href="/${lang}/blog">${esc(t.blog)}</a>
+    </div></section>
+    <div style="height:60px"></div>
+  </div></div>`;
+}
+
 function legalView(lang, doc, slug) {
   const N = LEGAL_NAMES[lang], t = T[lang];
   const name = doc ? (lang === 'en' ? doc.title : N[slug]) : N[slug];
@@ -840,6 +875,7 @@ async function sitemap() {
   const counts = {};
   for (const lang of Object.keys(LANGS)) {
     urls.push({ loc: `${SITE}/${lang}/about`, alt: set((k) => `${SITE}/${k}/about`) });
+    urls.push({ loc: `${SITE}/${lang}/facts`, alt: set((k) => `${SITE}/${k}/facts`) });
     urls.push({ loc: `${SITE}/${lang}/solutions`, alt: set((k) => `${SITE}/${k}/solutions`) });
     SOL.SLUGS.forEach((s) => urls.push({ loc: `${SITE}/${lang}/solutions/${s}`, alt: set((k) => `${SITE}/${k}/solutions/${s}`) }));
     try {
@@ -968,7 +1004,29 @@ module.exports = async (req, res) => {
         '@context': 'https://schema.org', '@type': 'AboutPage', name: A.title, url: `${SITE}/${lang}/about`, inLanguage: LANGS[lang].hl,
         mainEntity: { '@type': 'Organization', '@id': `${SITE}/#organization`, name: 'Xerovan', alternateName: ['제로반', 'XEROVAN'], legalName: 'MARU EVENT TOURISM LLC', slogan: 'Value in Motion', url: `${SITE}/`, logo: `${SITE}/images/logo-icon.png`, email: CONTACT_EMAIL,
           address: { '@type': 'PostalAddress', addressLocality: 'Dubai', addressCountry: 'AE' }, founder: founderLD(lang),
-          sameAs: ['https://x.com/XerovanC', 'https://www.instagram.com/xerovancard/', 'https://www.facebook.com/profile.php?id=61594055002981', 'https://t.me/xerovan_card', 'https://discord.gg/fPPMaH3kDe', 'https://www.crunchbase.com/organization/xerovan'] },
+          sameAs: SAME_AS },
+      }],
+    }), 'text/html; charset=utf-8', 's-maxage=3600, stale-while-revalidate=86400');
+  }
+
+  if (q.facts) {
+    const U = FACTS.UI[lang], url = `${SITE}/${lang}/facts`;
+    const rows = FACTS.GROUPS[lang].flatMap(([, list]) => list);
+    return send(200, layout({
+      lang, title: FACTS.META[lang][0], description: FACTS.META[lang][1], canonical: url,
+      alternates: [...Object.keys(LANGS).map((k) => [k, `${SITE}/${k}/facts`]), ['x-default', `${SITE}/en/facts`]],
+      body: factsView(lang),
+      jsonLd: [crumbs([['Xerovan', `${SITE}/${lang}/`], [U.eyebrow, url]]), {
+        '@context': 'https://schema.org', '@type': 'AboutPage', name: U.h1, description: FACTS.META[lang][1], url, inLanguage: LANGS[lang].hl,
+        mainEntity: { '@type': 'Organization', '@id': `${SITE}/#organization`, name: 'Xerovan', alternateName: ['제로반', 'XEROVAN'], legalName: 'MARU EVENT TOURISM LLC', slogan: 'Value in Motion', url: `${SITE}/`, logo: `${SITE}/images/logo-icon.png`, email: CONTACT_EMAIL,
+          description: U.lede, address: { '@type': 'PostalAddress', addressLocality: 'Dubai', addressCountry: 'AE' }, founder: founderLD(lang),
+          sameAs: SAME_AS },
+        // Each row is a plain label/value pair, so an assistant can quote one fact without reading the page.
+        mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+        hasPart: rows.map(([k, v]) => ({ '@type': 'DefinedTerm', name: k, description: v })),
+      }, {
+        '@context': 'https://schema.org', '@type': 'HowTo', name: U.stepsH, inLanguage: LANGS[lang].hl,
+        step: FACTS.STEPS[lang].map((s, i) => ({ '@type': 'HowToStep', position: i + 1, text: s })),
       }],
     }), 'text/html; charset=utf-8', 's-maxage=3600, stale-while-revalidate=86400');
   }

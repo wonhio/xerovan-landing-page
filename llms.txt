@@ -33,6 +33,7 @@ The complete text of the main pages (features, FAQ and all solution pages, in En
 
 ## Company
 
+- [Xerovan facts](https://www.xerovan.com/en/facts): company, card, wallet and services as a short list of labelled facts (also /kr/, /ja/, /es/, /ar/, /pt/facts)
 - [About Xerovan](https://www.xerovan.com/en/about): mission, founder (Jay Yoon), headquarters (Dubai, UAE) and contact (hello@xerovan.com)
 
 ## Blog

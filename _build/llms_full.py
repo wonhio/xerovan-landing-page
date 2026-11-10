@@ -43,6 +43,7 @@ out = [
     "- Contact: hello@xerovan.com",
     "- How to start: apply with your email on any language page",
     "- Short index of pages: https://www.xerovan.com/llms.txt",
+    "- Facts page (labelled facts, one line each): https://www.xerovan.com/en/facts",
     "",
 ]
 
