@@ -945,7 +945,7 @@ module.exports = async (req, res) => {
         '@context': 'https://schema.org', '@type': 'AboutPage', name: A.title, url: `${SITE}/${lang}/about`, inLanguage: LANGS[lang].hl,
         mainEntity: { '@type': 'Organization', '@id': `${SITE}/#organization`, name: 'Xerovan', alternateName: ['제로반', 'XEROVAN'], legalName: 'MARU EVENT TOURISM LLC', slogan: 'Value in Motion', url: `${SITE}/`, logo: `${SITE}/images/logo-icon.png`, email: CONTACT_EMAIL,
           address: { '@type': 'PostalAddress', addressLocality: 'Dubai', addressCountry: 'AE' }, founder: founderLD(lang),
-          sameAs: ['https://x.com/XerovanC', 'https://www.instagram.com/xerovancard/', 'https://www.facebook.com/profile.php?id=61594055002981', 'https://t.me/xerovan_card', 'https://discord.gg/fPPMaH3kDe'] },
+          sameAs: ['https://x.com/XerovanC', 'https://www.instagram.com/xerovancard/', 'https://www.facebook.com/profile.php?id=61594055002981', 'https://t.me/xerovan_card', 'https://discord.gg/fPPMaH3kDe', 'https://www.crunchbase.com/organization/xerovan'] },
       }],
     }), 'text/html; charset=utf-8', 's-maxage=3600, stale-while-revalidate=86400');
   }

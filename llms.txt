@@ -57,4 +57,5 @@ The complete text of the main pages (features, FAQ and all solution pages, in En
 - [X (Twitter)](https://x.com/XerovanC)
 - [Instagram](https://www.instagram.com/xerovancard/)
 - [Telegram](https://t.me/xerovan_card)
+- [Crunchbase](https://www.crunchbase.com/organization/xerovan)
 - [Discord (developers: API docs, integration support)](https://discord.gg/fPPMaH3kDe)
