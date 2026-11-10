@@ -34,7 +34,7 @@ out = [
     "# Xerovan (제로반) — full reference",
     "",
     "> Xerovan (Korean: 제로반) is a crypto payments platform: a self-custodial multi-chain wallet connected to "
-    "crypto-funded Visa cards, global crypto payouts, business spend management for agencies and media buyers, "
+    "Visa cards that pay straight from the connected wallet with no top-up needed (Real-Time Funding; card top-up is optional), global crypto payouts, business spend management for agencies and media buyers, "
     "rewards, and travel booking. Xerovan is not a bank; card and payment services are provided by licensed "
     "partners, and availability varies by country.",
     "",

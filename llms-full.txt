@@ -1,6 +1,6 @@
 # Xerovan (제로반) — full reference
 
-> Xerovan (Korean: 제로반) is a crypto payments platform: a self-custodial multi-chain wallet connected to crypto-funded Visa cards, global crypto payouts, business spend management for agencies and media buyers, rewards, and travel booking. Xerovan is not a bank; card and payment services are provided by licensed partners, and availability varies by country.
+> Xerovan (Korean: 제로반) is a crypto payments platform: a self-custodial multi-chain wallet connected to Visa cards that pay straight from the connected wallet with no top-up needed (Real-Time Funding; card top-up is optional), global crypto payouts, business spend management for agencies and media buyers, rewards, and travel booking. Xerovan is not a bank; card and payment services are provided by licensed partners, and availability varies by country.
 
 - Website: https://www.xerovan.com/ (English, Korean, Japanese, Spanish, Arabic, Portuguese)
 - Headquarters: Dubai, UAE. Operating entity: MARU EVENT TOURISM LLC. Founder: Jay Yoon
@@ -32,11 +32,11 @@ A: Xerovan is gradually expanding its availability. Wallet creation, card issuan
 **Q: Which blockchains does Xerovan support?**
 A: Xerovan supports multiple leading blockchain networks, including Ethereum, Base, Arbitrum, Polygon, BNB Chain, Solana, TRON, and Bitcoin. Additional networks will be added over time.
 
-**Q: How do I fund my Visa card?**
-A: Simply transfer supported crypto assets into your Xerovan wallet and top up your card in just a few taps. Depending on the selected asset and network, funds are converted and made available for card spending.
+**Q: Do I need to top up my card first?**
+A: No. There is no card balance to top up in advance. When you pay by card, the funds are taken in real time from the spendable balance in your connected wallet. This is called Real-Time Funding (RTF). If you prefer a set balance, you can also top up a card.
 
 **Q: What fees does Xerovan charge?**
-A: Wallet transfers, swaps, and card funding may incur network fees or service fees depending on the transaction. All applicable fees are displayed transparently before you confirm.
+A: Wallet transfers, swaps, and card payments may incur network fees or service fees depending on the transaction. All applicable fees are displayed transparently before you confirm.
 
 **Q: Is Xerovan a custodial or non-custodial wallet?**
 A: Xerovan is designed as a non-custodial wallet, allowing you to maintain control of your digital assets while accessing integrated financial services.
@@ -64,11 +64,11 @@ A: Apply with your email on this page. We'll send you the next steps, including 
 
 ### Solutions
 
-#### Virtual cards for ad spend, funded with crypto
+#### Virtual cards for ad spend, paid straight from your wallet
 
 Source: https://www.xerovan.com/en/solutions/crypto-card-for-ads
 
-Media buyers and agencies juggle many ad accounts, budgets and approvals. Xerovan lets you give every client, campaign and platform its own card — and fund it from your crypto balance.
+Media buyers and agencies juggle many ad accounts, budgets and approvals. Xerovan gives every client, campaign and platform its own card. There is no card balance to top up: with Real-Time Funding (RTF), each payment is funded from your connected wallet the moment it happens. Prefer a fixed balance? You can top up a card too.
 
 Why ad payments get messy: One shared card across many ad accounts makes it hard to see which client spent what, and a single declined or frozen card can pause every campaign at once. Paying from crypto usually means cashing out first.
 
@@ -81,12 +81,12 @@ What you can do:
 
 How it works:
 1. Apply and verify your business
-2. Top up your Xerovan balance with supported crypto
+2. Keep a spendable balance in your connected wallet
 3. Create a card per client or platform and set its limit
 
 FAQ:
 - Q: Can I pay for Meta (Facebook) and Google Ads with crypto?
-  A: Ad platforms charge a card, not a wallet. With Xerovan you top up a Visa card from supported crypto assets and add that card to your ad account as a regular payment method. Each ad platform makes its own acceptance decisions.
+  A: Add your Xerovan card to the ad account as a regular payment method. When the platform charges the card, the payment is funded in real time from your connected wallet, so there is no card balance to top up. Each ad platform makes its own acceptance decisions.
 - Q: How many cards can I create?
   A: You can issue separate virtual cards for each client, campaign or platform. Exact limits depend on your plan and country and are confirmed when you apply.
 - Q: Is Xerovan available now?
@@ -109,7 +109,7 @@ What you can do:
 
 How it works:
 1. Apply with your email
-2. Top up with supported crypto
+2. Connect your wallet — no top-up needed
 3. Create a subscription card and add it to each service
 
 FAQ:
@@ -118,26 +118,26 @@ FAQ:
 - Q: How do I stop an unwanted renewal?
   A: Freeze the card in the app. Charges to a frozen card are declined, and you can unfreeze it at any time.
 - Q: What fees will I pay?
-  A: Card funding may incur network or service fees depending on the transaction. All applicable fees are shown before you confirm.
+  A: Payments and any crypto conversion may incur network or service fees depending on the transaction. All applicable fees are shown before you confirm.
 
 #### The crypto travel card for spending abroad
 
 Source: https://www.xerovan.com/en/solutions/crypto-travel-card
 
-Carry your money, your card and your trip in one app. Top up a Visa card from your crypto, pay wherever Visa is accepted and book travel along the way.
+Carry your money, your card and your trip in one app. Your Visa card pays straight from your connected wallet, so there is nothing to top up before you go. Pay wherever Visa is accepted and book travel along the way.
 
 Travel money shouldn’t be stressful: Exchanging cash, carrying several cards and worrying about a lost wallet all add friction to a trip. For crypto holders, turning assets into something you can spend abroad is one more step.
 
 What you can do:
 - Spend wherever Visa cards are accepted
 - Use virtual and physical cards, and add them to Apple Pay or Google Pay
-- Top up a card with supported digital assets
+- Pay straight from your wallet with no top-up, or top up a card if you prefer a set travel budget
 - Freeze a lost or stolen card immediately, and unfreeze it from the app
 - Book flights, hotels, tours, activities and eSIM in the same app
 
 How it works:
 1. Apply with your email
-2. Top up your card with supported crypto
+2. Connect your wallet — no top-up needed
 3. Pay abroad and manage everything from the app
 
 FAQ:
@@ -160,19 +160,19 @@ What you can do:
 - Import and manage compatible wallets in one place, or connect MetaMask and other external wallets
 - Hold assets on Ethereum, Base, Arbitrum, Polygon, BNB Chain, Solana, TRON and Bitcoin
 - Swap and bridge assets between supported chains
-- Top up your Xerovan balance or card and spend through the Visa network
+- Pay through the Visa network straight from your wallet, with optional card top-ups
 - Access cashback, staking and referral rewards where available
 
 How it works:
 1. Apply with your email
 2. Create or connect your wallet
-3. Top up your card and start spending
+3. Start spending — payments come straight from your wallet
 
 FAQ:
 - Q: Is Xerovan custodial or non-custodial?
   A: Xerovan is designed as a non-custodial wallet, so you keep control of your digital assets while using integrated financial services.
 - Q: How does a crypto card work?
-  A: You top up the card from supported crypto. Depending on the asset and network, funds are converted and made available for card spending, and merchants are paid through the Visa network.
+  A: By default, each card payment is funded in real time from your connected wallet, so there is no card balance to top up. Depending on the asset and network, funds are converted at the moment of payment and merchants are paid through the Visa network. You can also top up a card if you prefer a set balance.
 - Q: Do I need KYC?
   A: Card issuance and other regulated services require identity verification. External wallet connectivity may be available without KYC in supported scenarios.
 
@@ -277,7 +277,7 @@ Source: https://www.xerovan.com/kr/solutions/card-for-international-subscription
 
 이용 방법:
 1. 이메일로 이용을 신청합니다
-2. 지원되는 크립토로 충전합니다
+2. 지갑을 연결합니다 (별도 충전 불필요)
 3. 구독용 카드를 만들어 각 서비스에 등록합니다
 
 자주 묻는 질문:
@@ -286,26 +286,26 @@ Source: https://www.xerovan.com/kr/solutions/card-for-international-subscription
 - Q: 원치 않는 자동 갱신은 어떻게 막나요?
   A: 앱에서 카드를 정지하면 됩니다. 정지된 카드로 들어오는 결제는 거절되며, 언제든 다시 해제할 수 있습니다.
 - Q: 수수료는 얼마인가요?
-  A: 카드 충전 시 거래에 따라 네트워크 수수료나 서비스 수수료가 발생할 수 있습니다. 모든 수수료는 확인 전에 미리 표시됩니다.
+  A: 결제와 크립토 전환 시 거래에 따라 네트워크 수수료나 서비스 수수료가 발생할 수 있습니다. 모든 수수료는 확인 전에 미리 표시됩니다.
 
 #### 해외 결제를 위한 크립토 여행 카드
 
 Source: https://www.xerovan.com/kr/solutions/crypto-travel-card
 
-돈, 카드, 여행을 하나의 앱에 담으세요. 크립토로 Visa 카드를 충전하고, Visa 가맹점 어디서나 결제하고, 여행 예약까지 한 번에 할 수 있습니다.
+돈, 카드, 여행을 하나의 앱에 담으세요. Visa 카드가 연결된 지갑에서 바로 결제되니 출발 전에 충전할 필요가 없습니다. Visa 가맹점 어디서나 결제하고, 여행 예약까지 한 번에 할 수 있습니다.
 
 여행 경비 관리, 더 간단해야 합니다: 환전, 여러 장의 카드, 지갑 분실 걱정은 모두 여행을 번거롭게 만듭니다. 크립토 보유자라면 자산을 해외에서 쓸 수 있는 형태로 바꾸는 단계가 하나 더 필요합니다.
 
 할 수 있는 것:
 - Visa 가맹점 어디서나 결제
 - 실물·가상카드 사용, 애플페이·구글페이 등록
-- 지원되는 디지털 자산으로 카드 충전
+- 충전 없이 지갑에서 바로 결제, 여행 예산을 정해 두고 싶다면 카드 충전도 가능
 - 분실·도난 카드 즉시 정지, 앱에서 바로 해제
 - 항공, 호텔, 투어·액티비티, eSIM을 같은 앱에서 예약
 
 이용 방법:
 1. 이메일로 이용을 신청합니다
-2. 지원되는 크립토로 카드를 충전합니다
+2. 지갑을 연결합니다 (별도 충전 불필요)
 3. 해외에서 결제하고 모든 것을 앱에서 관리합니다
 
 자주 묻는 질문:
@@ -328,18 +328,18 @@ Xerovan은 셀프 커스터디 멀티체인 지갑과 Visa 카드를 연결합�
 - 호환 지갑을 한곳에서 가져와 관리하거나 메타마스크 등 외부 지갑 연결
 - 이더리움, Base, Arbitrum, Polygon, BNB Chain, 솔라나, 트론, 비트코인 자산 보관
 - 지원 체인 간 자산 스왑 및 브릿지
-- Xerovan 잔액이나 카드를 충전해 Visa 네트워크로 결제
+- 충전 없이 지갑에서 바로 Visa 네트워크로 결제 (원하면 카드 충전도 가능)
 - 지역에 따라 캐시백, 스테이킹, 추천 리워드 이용
 
 이용 방법:
 1. 이메일로 이용을 신청합니다
 2. 지갑을 만들거나 연결합니다
-3. 카드를 충전하고 결제를 시작합니다
+3. 결제를 시작합니다. 대금은 지갑에서 바로 빠져나갑니다
 
 자주 묻는 질문:
 - Q: Xerovan은 수탁형인가요, 비수탁형인가요?
   A: Xerovan은 비수탁형 지갑으로 설계되어, 통합 금융 서비스를 이용하면서도 디지털 자산의 통제권을 직접 유지할 수 있습니다.
 - Q: 크립토 카드는 어떻게 작동하나요?
-  A: 지원되는 크립토로 카드를 충전합니다. 자산과 네트워크에 따라 자금이 전환되어 카드 결제에 사용할 수 있게 되며, 가맹점에는 Visa 네트워크를 통해 대금이 지급됩니다.
+  A: 기본적으로 카드 결제 때마다 연결된 지갑에서 실시간으로 자금이 충당되므로, 카드 잔액을 따로 충전할 필요가 없습니다. 자산과 네트워크에 따라 결제 시점에 자금이 전환되며, 가맹점에는 Visa 네트워크를 통해 대금이 지급됩니다. 정해진 잔액으로 쓰고 싶다면 카드를 충전해서 사용할 수도 있습니다.
 - Q: KYC가 필요한가요?
   A: 카드 발급 및 기타 규제 대상 서비스에는 본인 인증이 필요합니다. 외부 지갑 연결은 지원되는 경우 KYC 없이 이용할 수 있습니다.

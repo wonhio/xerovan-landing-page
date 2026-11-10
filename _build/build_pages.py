@@ -296,12 +296,12 @@ HERO_H1 = {
     "pt": "Carteira cripto e cartão Visa para pagamentos globais: carteiras, recompensas, viagens e gastos empresariais em um só app seguro.",
 }
 META_DESC = {
-    "en": "Spend crypto wherever Visa is accepted. Self-custodial wallet, crypto-funded Visa cards, rewards and travel booking in one app. Apply for Xerovan today.",
+    "en": "Spend crypto wherever Visa is accepted. Self-custodial wallet, Visa cards that pay straight from your wallet, rewards and travel booking in one app. Apply for Xerovan today.",
     "kr": "제로반(Xerovan)으로 Visa 가맹점 어디서나 크립토로 결제하세요. 셀프 커스터디 지갑, 크립토 충전 Visa 카드, 리워드, 여행 예약을 하나의 앱에서. 지금 제로반 이용을 신청하세요.",
-    "ja": "Visa加盟店で暗号資産を使って支払い。セルフカストディ型ウォレット、暗号資産でチャージするVisaカード、リワード、旅行予約をひとつのアプリで。",
-    "es": "Gasta cripto donde se acepte Visa. Billetera de autocustodia, tarjetas Visa recargadas con cripto, recompensas y reservas de viaje en una app.",
-    "ar": "أنفق عملاتك المشفرة أينما تُقبل Visa. محفظة ذاتية الحفظ وبطاقات Visa تُشحن بالعملات المشفرة ومكافآت وحجوزات سفر في تطبيق واحد.",
-    "pt": "Gaste cripto onde a Visa é aceita. Carteira de autocustódia, cartões Visa recarregados com cripto, recompensas e reservas de viagem em um só app.",
+    "ja": "Visa加盟店で暗号資産を使って支払い。セルフカストディ型ウォレット、ウォレットから直接支払えるVisaカード、リワード、旅行予約をひとつのアプリで。",
+    "es": "Gasta cripto donde se acepte Visa. Billetera de autocustodia, tarjetas Visa que pagan directo desde tu wallet, recompensas y reservas de viaje en una app.",
+    "ar": "أنفق عملاتك المشفرة أينما تُقبل Visa. محفظة ذاتية الحفظ وبطاقات Visa تدفع مباشرة من محفظتك ومكافآت وحجوزات سفر في تطبيق واحد.",
+    "pt": "Gaste cripto onde a Visa é aceita. Carteira de autocustódia, cartões Visa que pagam direto da sua carteira, recompensas e reservas de viagem em um só app.",
 }
 import subprocess as _sp, json as _json2
 _SOL = _json2.loads(_sp.run(["node", "-e", "const s=require(process.argv[1]);console.log(JSON.stringify({slugs:s.SLUGS,ui:Object.fromEntries(Object.entries(s.UI).map(([k,v])=>[k,{h:v.eyebrow,short:v.short}]))}))",

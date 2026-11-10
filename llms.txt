@@ -1,6 +1,6 @@
 # Xerovan (제로반)
 
-> Xerovan (Korean name: 제로반) is a technology platform that brings crypto wallets, payments, rewards, travel and business spending together in one secure app: a self-custodial MPC multi-wallet, crypto swaps and cross-chain bridging, virtual and physical Visa cards funded with crypto, staking and cashback rewards, a travel marketplace (flights, hotels, tours, eSIM) and business cards with expense controls. Xerovan is not a bank; card and payment services are provided by licensed partners, and availability varies by country.
+> Xerovan (Korean name: 제로반) is a technology platform that brings crypto wallets, payments, rewards, travel and business spending together in one secure app: a self-custodial MPC multi-wallet, crypto swaps and cross-chain bridging, virtual and physical Visa cards that pay straight from the connected wallet with no top-up needed (Real-Time Funding; card top-up is optional), staking and cashback rewards, a travel marketplace (flights, hotels, tours, eSIM) and business cards with expense controls. Xerovan is not a bank; card and payment services are provided by licensed partners, and availability varies by country.
 
 The site is available in English, Korean, Japanese, Spanish, Arabic and Portuguese. People can apply with their email on any language page.
 
@@ -18,7 +18,7 @@ The complete text of the main pages (features, FAQ and all solution pages, in En
 ## Solutions
 
 - [All solutions](https://www.xerovan.com/en/solutions): overview of Xerovan's crypto card use cases
-- [Virtual cards for ad spend](https://www.xerovan.com/en/solutions/crypto-card-for-ads): dedicated cards per client, campaign and ad platform, funded with crypto
+- [Virtual cards for ad spend](https://www.xerovan.com/en/solutions/crypto-card-for-ads): dedicated cards per client, campaign and ad platform, paid straight from the connected wallet
 - [Card for international subscriptions](https://www.xerovan.com/en/solutions/card-for-international-subscriptions): a virtual Visa card for USD-billed AI, SaaS, cloud and streaming services
 - [Crypto travel card](https://www.xerovan.com/en/solutions/crypto-travel-card): spend abroad with Visa, Apple Pay and Google Pay, and book flights, hotels and eSIM
 - [Spend crypto with Visa](https://www.xerovan.com/en/solutions/spend-crypto-with-visa): self-custodial multi-chain wallet connected to a Visa card
@@ -53,3 +53,5 @@ The complete text of the main pages (features, FAQ and all solution pages, in En
 - [Blog sitemap](https://www.xerovan.com/blog-sitemap.xml)
 - [X (Twitter)](https://x.com/XerovanC)
 - [Instagram](https://www.instagram.com/xerovancard/)
+- [Telegram](https://t.me/xerovan_card)
+- [Discord (developers: API docs, integration support)](https://discord.gg/fPPMaH3kDe)
