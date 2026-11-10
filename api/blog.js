@@ -254,6 +254,28 @@ const decode = (s) => String(s ?? '')
 const stripTags = (h) => decode(String(h ?? '').replace(/<[^>]*>/g, ' ')).replace(/\s+/g, ' ').trim();
 const clip = (s, n) => (s.length > n ? s.slice(0, n - 1).trimEnd() + '…' : s);
 
+// Posts end with an FAQ section: an <h2> whose text is "FAQ" in that language, then one <h3> per question
+// followed by the answer. Pulling those out lets the page carry FAQPage structured data, so assistants and
+// search engines can quote the answer the post already gives.
+const FAQ_HEADING = /^(FAQ|FAQs|Frequently asked questions|자주 묻는 질문|よくある質問|Preguntas frecuentes|Perguntas frequentes|الأسئلة الشائعة)$/i;
+function faqPairs(html) {
+  const parts = String(html ?? '').split(/<h2\b[^>]*>/i).slice(1);
+  const section = parts.find((p) => FAQ_HEADING.test(stripTags(p.split(/<\/h2>/i)[0])));
+  if (!section) return [];
+  const body = section.split(/<\/h2>/i).slice(1).join('</h2>');
+  return body.split(/<h3\b[^>]*>/i).slice(1)
+    .map((block) => {
+      const [head, ...rest] = block.split(/<\/h3>/i);
+      const name = stripTags(head);
+      // The answer runs until the next heading of any level.
+      const text = stripTags(rest.join('</h3>').split(/<h[1-6]\b/i)[0]);
+      return { name, text };
+    })
+    .filter((x) => x.name.length > 4 && x.text.length > 20)
+    .slice(0, 10)
+    .map((x) => ({ '@type': 'Question', name: clip(x.name, 300), acceptedAnswer: { '@type': 'Answer', text: clip(x.text, 1200) } }));
+}
+
 /** Serve WordPress media through xerovan.com/blog-media/… and point internal links at the public blog. */
 function publicize(html, lang) {
   const wpHost = WP.replace(/^https?:\/\//, '');
@@ -1015,8 +1037,11 @@ module.exports = async (req, res) => {
           datePublished: p.date, dateModified: p.modified, inLanguage: LANGS[lang].hl,
           mainEntityOfPage: canonical, image: p.image ? `${SITE}${p.image}` : `${SITE}/images/og-preview.jpg`,
           author: founderLD(lang),
-          publisher: { '@type': 'Organization', name: 'Xerovan', logo: { '@type': 'ImageObject', url: `${SITE}/images/logo-icon.png` } },
-        }],
+          publisher: { '@type': 'Organization', '@id': `${SITE}/#organization`, name: 'Xerovan', logo: { '@type': 'ImageObject', url: `${SITE}/images/logo-icon.png` } },
+          ...(p.topic ? { articleSection: TOPIC_LABEL[lang][p.topic] } : {}),
+        },
+        ...((faq) => (faq.length ? [{ '@context': 'https://schema.org', '@type': 'FAQPage', inLanguage: LANGS[lang].hl, mainEntity: faq }] : []))(faqPairs(p.content)),
+        ],
       }));
     }
 
