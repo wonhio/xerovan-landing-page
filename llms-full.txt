@@ -1,0 +1,345 @@
+# Xerovan (제로반) — full reference
+
+> Xerovan (Korean: 제로반) is a crypto payments platform: a self-custodial multi-chain wallet connected to crypto-funded Visa cards, global crypto payouts, business spend management for agencies and media buyers, rewards, and travel booking. Xerovan is not a bank; card and payment services are provided by licensed partners, and availability varies by country.
+
+- Website: https://www.xerovan.com/ (English, Korean, Japanese, Spanish, Arabic, Portuguese)
+- Headquarters: Dubai, UAE. Operating entity: MARU EVENT TOURISM LLC. Founder: Jay Yoon
+- Contact: hello@xerovan.com
+- How to start: apply with your email on any language page
+- Short index of pages: https://www.xerovan.com/llms.txt
+
+## English
+
+Source: https://www.xerovan.com/en/
+
+Xerovan is an all-in-one crypto finance platform connecting payments, global payouts, business spending, asset management, and rewards.
+
+### Core features
+
+- **Direct Wallet Payments**: Pay with the assets in your own non-custodial wallet. No top-ups needed.
+- **Business Spend Management — Media Buyer Suite**: Issue cards for each client and account, and manage receipts, approvals and spending limits in one place. Built to help marketing agencies and businesses run their spending efficiently and transparently.
+- **Global Payouts**: Businesses and individuals can pay out crypto quickly and easily to the bank accounts of partners, customers and team members around the world, with a payout setup that scales across borders.
+- **Unified Asset Management**: Manage your free non-custodial wallet and external wallets in one place, and put idle assets to work with staking and other earning products.
+- **Smart Routing**: When you send, receive or convert crypto, Xerovan automatically finds the best route for efficient transactions and competitive fees.
+- **Secure Card Sharing**: Safely share card access with family or other Xerovan users, and adjust spending limits and permissions at any time. The card owner always keeps final control.
+- **Travel & Rewards Ecosystem**: Book travel and eSIM services on the Xerovan token-based marketplace, and enjoy cashback, bonuses, partner programs and dApp services in one ecosystem.
+
+### Frequently asked questions
+
+**Q: Which countries are currently supported?**
+A: Xerovan is gradually expanding its availability. Wallet creation, card issuance, and certain services may vary depending on your country of residence.
+
+**Q: Which blockchains does Xerovan support?**
+A: Xerovan supports multiple leading blockchain networks, including Ethereum, Base, Arbitrum, Polygon, BNB Chain, Solana, TRON, and Bitcoin. Additional networks will be added over time.
+
+**Q: How do I fund my Visa card?**
+A: Simply transfer supported crypto assets into your Xerovan wallet and top up your card in just a few taps. Depending on the selected asset and network, funds are converted and made available for card spending.
+
+**Q: What fees does Xerovan charge?**
+A: Wallet transfers, swaps, and card funding may incur network fees or service fees depending on the transaction. All applicable fees are displayed transparently before you confirm.
+
+**Q: Is Xerovan a custodial or non-custodial wallet?**
+A: Xerovan is designed as a non-custodial wallet, allowing you to maintain control of your digital assets while accessing integrated financial services.
+
+**Q: Can I connect my existing wallet?**
+A: Yes. You can connect supported external wallets such as MetaMask and other compatible wallets to manage your assets seamlessly within Xerovan.
+
+**Q: How secure is Xerovan?**
+A: Security is one of our highest priorities. Xerovan utilizes advanced wallet security technologies, encrypted communications, biometric authentication, and industry-standard protection mechanisms to safeguard your assets and account.
+
+**Q: Can I earn rewards with my crypto?**
+A: Yes. Eligible assets can participate in staking, yield products, cashback programs, and referral rewards, depending on availability in your region.
+
+**Q: Can businesses use Xerovan?**
+A: Absolutely. Xerovan offers business features including employee cards, spending controls, approval workflows, expense management, and transaction reporting for companies of all sizes.
+
+**Q: What services are available besides the crypto wallet?**
+A: Xerovan is more than a wallet. In addition to crypto management, you can access Visa card payments, asset swaps, cross-chain transfers, travel bookings, eSIM purchases, rewards, and other financial services — all within one platform.
+
+**Q: Do I need to complete KYC verification?**
+A: Some services, such as wallet creation, card issuance, or regulated financial products, require identity verification in accordance with applicable regulations. External wallet connectivity may be available without KYC in supported scenarios.
+
+**Q: How do I get started with Xerovan?**
+A: Apply with your email on this page. We'll send you the next steps, including availability in your country and any verification needed.
+
+### Solutions
+
+#### Virtual cards for ad spend, funded with crypto
+
+Source: https://www.xerovan.com/en/solutions/crypto-card-for-ads
+
+Media buyers and agencies juggle many ad accounts, budgets and approvals. Xerovan lets you give every client, campaign and platform its own card — and fund it from your crypto balance.
+
+Why ad payments get messy: One shared card across many ad accounts makes it hard to see which client spent what, and a single declined or frozen card can pause every campaign at once. Paying from crypto usually means cashing out first.
+
+What you can do:
+- Issue separate virtual cards for each client or campaign
+- Assign dedicated cards to Google Ads, Meta Ads, TikTok Ads and other platforms
+- Set spending limits by client, employee or campaign
+- Freeze or unfreeze a card instantly
+- Collect receipts and generate expense reports by client, team or project
+
+How it works:
+1. Apply and verify your business
+2. Top up your Xerovan balance with supported crypto
+3. Create a card per client or platform and set its limit
+
+FAQ:
+- Q: Can I pay for Meta (Facebook) and Google Ads with crypto?
+  A: Ad platforms charge a card, not a wallet. With Xerovan you top up a Visa card from supported crypto assets and add that card to your ad account as a regular payment method. Each ad platform makes its own acceptance decisions.
+- Q: How many cards can I create?
+  A: You can issue separate virtual cards for each client, campaign or platform. Exact limits depend on your plan and country and are confirmed when you apply.
+- Q: Is Xerovan available now?
+  A: Yes. Apply with your email to get started. Availability of cards and business features varies by country.
+
+#### A dedicated virtual card for your international subscriptions
+
+Source: https://www.xerovan.com/en/solutions/card-for-international-subscriptions
+
+Many people struggle to pay for software, AI tools and streaming billed in USD. Xerovan gives your subscriptions their own virtual Visa card that you control from one app.
+
+The problem with paying subscriptions abroad: Local cards are often declined by overseas merchants or add foreign-transaction costs, and recurring charges are easy to lose track of. When a service keeps billing after you stop using it, cancelling can take days.
+
+What you can do:
+- Create a dedicated virtual card just for subscriptions
+- Pay supported international and USD-billed services
+- Keep business and personal subscriptions on separate cards
+- Set spending limits per card and monitor recurring charges in real time
+- Freeze a card the moment you no longer need a service
+
+How it works:
+1. Apply with your email
+2. Top up with supported crypto
+3. Create a subscription card and add it to each service
+
+FAQ:
+- Q: Can I use it for ChatGPT, Netflix or AWS?
+  A: Xerovan cards run on the Visa network, so they are designed to work with merchants that accept Visa, including many international AI, SaaS, cloud and streaming services. Each merchant makes its own acceptance decisions.
+- Q: How do I stop an unwanted renewal?
+  A: Freeze the card in the app. Charges to a frozen card are declined, and you can unfreeze it at any time.
+- Q: What fees will I pay?
+  A: Card funding may incur network or service fees depending on the transaction. All applicable fees are shown before you confirm.
+
+#### The crypto travel card for spending abroad
+
+Source: https://www.xerovan.com/en/solutions/crypto-travel-card
+
+Carry your money, your card and your trip in one app. Top up a Visa card from your crypto, pay wherever Visa is accepted and book travel along the way.
+
+Travel money shouldn’t be stressful: Exchanging cash, carrying several cards and worrying about a lost wallet all add friction to a trip. For crypto holders, turning assets into something you can spend abroad is one more step.
+
+What you can do:
+- Spend wherever Visa cards are accepted
+- Use virtual and physical cards, and add them to Apple Pay or Google Pay
+- Top up a card with supported digital assets
+- Freeze a lost or stolen card immediately, and unfreeze it from the app
+- Book flights, hotels, tours, activities and eSIM in the same app
+
+How it works:
+1. Apply with your email
+2. Top up your card with supported crypto
+3. Pay abroad and manage everything from the app
+
+FAQ:
+- Q: Where can I use the card?
+  A: The card works wherever Visa is accepted. Card issuance depends on your country of residence; we confirm availability when you apply.
+- Q: What happens if I lose my card?
+  A: Freeze it instantly in the app so no new charges go through, then unfreeze it if you find it.
+- Q: Can I book travel with crypto?
+  A: Xerovan includes a travel marketplace for flights, hotels, tours and eSIM, and supports using crypto for eligible travel products and services.
+
+#### Spend your crypto anywhere Visa is accepted
+
+Source: https://www.xerovan.com/en/solutions/spend-crypto-with-visa
+
+Xerovan connects a self-custodial multi-chain wallet with a Visa card, so the assets you hold can pay for real things — without moving them through several apps.
+
+Holding crypto is easy. Using it isn’t.: Assets sit across many wallets and networks, and spending them usually means sending to an exchange, selling and withdrawing to a bank. Every step adds time and fees.
+
+What you can do:
+- Import and manage compatible wallets in one place, or connect MetaMask and other external wallets
+- Hold assets on Ethereum, Base, Arbitrum, Polygon, BNB Chain, Solana, TRON and Bitcoin
+- Swap and bridge assets between supported chains
+- Top up your Xerovan balance or card and spend through the Visa network
+- Access cashback, staking and referral rewards where available
+
+How it works:
+1. Apply with your email
+2. Create or connect your wallet
+3. Top up your card and start spending
+
+FAQ:
+- Q: Is Xerovan custodial or non-custodial?
+  A: Xerovan is designed as a non-custodial wallet, so you keep control of your digital assets while using integrated financial services.
+- Q: How does a crypto card work?
+  A: You top up the card from supported crypto. Depending on the asset and network, funds are converted and made available for card spending, and merchants are paid through the Visa network.
+- Q: Do I need KYC?
+  A: Card issuance and other regulated services require identity verification. External wallet connectivity may be available without KYC in supported scenarios.
+
+## 한국어
+
+Source: https://www.xerovan.com/kr/
+
+Xerovan은 결제, 글로벌 지급, 기업 지출, 자산 관리와 리워드를 하나로 연결하는 올인원 크립토 금융 플랫폼입니다.
+
+### 핵심 기능
+
+- **지갑에서 바로 결제**: 별도의 충전 없이, 사용자가 직접 관리하는 비수탁 지갑의 자산으로 결제할 수 있습니다.
+- **기업 지출 관리 — Media Buyer Suite**: 고객과 계정별로 카드를 발급하고 영수증, 승인 절차, 지출 한도를 통합 관리합니다. 마케팅 에이전시와 기업이 지출을 효율적이고 투명하게 운영할 수 있도록 지원합니다.
+- **글로벌 Payout**: 기업과 개인이 전 세계의 파트너, 고객 및 구성원의 은행 통장으로 크립토 자산을 빠르고 간편하게 지급할 수 있습니다. 국경을 넘어 확장 가능한 지급 환경을 제공합니다.
+- **통합 자산 관리**: 무료 비수탁 지갑과 외부 지갑을 한곳에서 관리하고, 사용하지 않는 자산을 스테이킹 등 다양한 자산 운용 상품과 연결할 수 있습니다.
+- **스마트 라우팅**: 크립토 송금, 수신 및 변환 시 최적의 경로를 자동으로 탐색하여 효율적인 거래와 경쟁력 있는 수수료를 제공합니다.
+- **안전한 카드 공유**: 가족이나 다른 Xerovan 사용자에게 카드 사용 권한을 안전하게 공유하고, 사용 한도와 권한을 언제든지 관리할 수 있습니다. 카드에 대한 최종 관리 권한은 카드 소유자에게 유지됩니다.
+- **여행 및 리워드 생태계**: Xerovan 토큰 기반 마켓플레이스를 통해 여행 예약과 eSIM 서비스를 이용하고, 캐시백, 보너스, 제휴 프로그램 및 dApp 서비스를 하나의 생태계에서 경험할 수 있습니다.
+
+### 자주 묻는 질문
+
+**Q: 현재 어떤 국가에서 이용할 수 있나요?**
+A: Xerovan은 이용 가능 지역을 단계적으로 확대하고 있습니다. 지갑 생성, 카드 발급 및 일부 서비스는 거주 국가에 따라 달라질 수 있습니다.
+
+**Q: Xerovan은 어떤 블록체인을 지원하나요?**
+A: Xerovan은 Ethereum, Base, Arbitrum, Polygon, BNB Chain, Solana, TRON, Bitcoin 등 주요 블록체인 네트워크를 지원하며, 지원 네트워크는 계속 추가될 예정입니다.
+
+**Q: 카드에 미리 충전해야 하나요?**
+A: 카드 잔액을 미리 충전할 필요가 없습니다. 연결된 지갑에 결제 가능한 잔액이 있으면, 카드 결제 시 해당 지갑에서 결제 자금을 실시간으로 가져옵니다. 이 방식을 RTF(Real-Time Funding)라고 합니다.
+
+**Q: Xerovan의 수수료는 어떻게 되나요?**
+A: 지갑 전송, 스왑, 카드 결제 시 거래 유형에 따라 네트워크 수수료나 서비스 수수료가 발생할 수 있습니다. 모든 수수료는 거래 확정 전에 투명하게 표시됩니다.
+
+**Q: Xerovan은 수탁형인가요, 비수탁형인가요?**
+A: Xerovan은 비수탁형 지갑으로 설계되어, 디지털 자산에 대한 통제권을 직접 유지하면서 통합 금융 서비스를 이용할 수 있습니다.
+
+**Q: 기존 지갑을 연결할 수 있나요?**
+A: 네. MetaMask 등 지원되는 외부 지갑을 연결해 Xerovan 안에서 자산을 편리하게 관리할 수 있습니다.
+
+**Q: Xerovan은 얼마나 안전한가요?**
+A: 보안은 Xerovan의 최우선 과제입니다. 고급 지갑 보안 기술, 암호화 통신, 생체 인증, 업계 표준 보호 체계를 통해 자산과 계정을 보호합니다.
+
+**Q: 암호화폐로 리워드를 받을 수 있나요?**
+A: 네. 지역별 제공 여부에 따라 대상 자산으로 스테이킹, 이자 상품, 캐시백 프로그램, 추천 리워드에 참여할 수 있습니다.
+
+**Q: 기업도 Xerovan을 이용할 수 있나요?**
+A: 물론입니다. 직원 카드, 지출 관리, 승인 워크플로, 경비 관리, 거래 리포트 등 규모와 관계없이 모든 기업을 위한 비즈니스 기능을 제공합니다.
+
+**Q: 암호화폐 지갑 외에 어떤 서비스가 있나요?**
+A: Xerovan은 단순한 지갑이 아닙니다. 암호화폐 관리 외에도 Visa 카드 결제, 자산 스왑, 크로스체인 전송, 여행 예약, eSIM 구매, 리워드 등 다양한 금융 서비스를 하나의 플랫폼에서 이용할 수 있습니다.
+
+**Q: KYC 인증을 꼭 해야 하나요?**
+A: 지갑 생성, 카드 발급, 규제 대상 금융 상품 등 일부 서비스는 관련 법규에 따라 본인 인증이 필요합니다. 지원되는 경우 외부 지갑 연결은 KYC 없이 이용할 수 있습니다.
+
+**Q: Xerovan은 어떻게 시작하나요?**
+A: 이 페이지에서 이메일로 신청하세요. 거주 국가의 이용 가능 여부와 필요한 인증 등 다음 단계를 안내해 드립니다.
+
+### 솔루션
+
+#### 연결된 지갑에서 바로 결제하는 광고비 가상카드
+
+Source: https://www.xerovan.com/kr/solutions/crypto-card-for-ads
+
+미디어 바이어와 에이전시는 여러 광고 계정, 예산, 승인 절차를 동시에 관리합니다. 제로반에서는 고객사·캠페인·플랫폼마다 카드를 따로 관리할 수 있습니다. 별도의 카드 잔액 충전 없이, 결제 시 연결된 지갑에서 자금을 실시간으로 가져오는 RTF(Real-Time Funding) 방식입니다.
+
+광고비 결제가 복잡해지는 이유: 카드 한 장으로 여러 광고 계정을 결제하면 어떤 클라이언트가 얼마를 썼는지 구분하기 어렵고, 카드 하나가 거절되거나 정지되면 모든 캠페인이 함께 멈춥니다. 크립토로 결제하려면 보통 먼저 현금화해야 합니다.
+
+할 수 있는 것:
+- 클라이언트·캠페인별로 별도의 가상카드 발급
+- 구글 애즈, 메타 광고, 틱톡 광고 등 플랫폼별 전용 카드 지정
+- 클라이언트·직원·캠페인별 사용 한도 설정
+- 카드 즉시 정지 및 해제
+- 영수증 수집 및 클라이언트·팀·프로젝트별 비용 리포트 생성
+
+이용 방법:
+1. 이용을 신청하고 사업자 인증을 진행합니다
+2. 연결된 지갑에 결제 가능한 잔액을 준비합니다
+3. 클라이언트나 플랫폼마다 카드를 만들고 한도를 설정합니다
+
+자주 묻는 질문:
+- Q: 크립토로 메타(페이스북)·구글 광고비를 결제할 수 있나요?
+  A: 광고 계정에는 제로반 카드를 결제수단으로 등록합니다. 카드 결제 시 자금은 연결된 지갑에서 실시간으로 충당됩니다. 광고 플랫폼의 카드 등록 및 결제 승인 여부는 계정과 결제 조건에 따라 달라질 수 있습니다.
+- Q: 카드는 몇 장까지 만들 수 있나요?
+  A: 클라이언트·캠페인·플랫폼마다 별도의 가상카드를 발급할 수 있습니다. 정확한 한도는 요금제와 국가에 따라 다르며 신청 시 안내됩니다.
+- Q: 지금 바로 이용할 수 있나요?
+  A: 네. 이메일로 신청하면 시작할 수 있습니다. 카드와 비즈니스 기능의 이용 가능 여부는 국가별로 다릅니다.
+
+#### 해외 구독 결제 전용 가상카드
+
+Source: https://www.xerovan.com/kr/solutions/card-for-international-subscriptions
+
+달러로 청구되는 소프트웨어, AI 툴, 스트리밍 구독을 결제하기 어려운 분이 많습니다. Xerovan은 구독 결제만을 위한 Visa 가상카드를 하나의 앱에서 관리할 수 있게 해 줍니다.
+
+해외 구독 결제, 무엇이 불편한가요: 국내 카드는 해외 가맹점에서 거절되거나 해외 결제 비용이 추가되는 경우가 많고, 정기결제는 놓치기 쉽습니다. 더 이상 쓰지 않는 서비스가 계속 결제되면 해지하는 데 며칠씩 걸리기도 합니다.
+
+할 수 있는 것:
+- 구독 결제 전용 가상카드 생성
+- 지원되는 해외·달러 결제 서비스 이용
+- 업무용과 개인용 구독을 카드별로 분리
+- 카드별 사용 한도 설정 및 정기결제 실시간 확인
+- 필요 없어진 구독은 카드를 바로 정지
+
+이용 방법:
+1. 이메일로 이용을 신청합니다
+2. 지원되는 크립토로 충전합니다
+3. 구독용 카드를 만들어 각 서비스에 등록합니다
+
+자주 묻는 질문:
+- Q: ChatGPT, 넷플릭스, AWS 결제에 쓸 수 있나요?
+  A: Xerovan 카드는 Visa 네트워크로 결제되기 때문에, 해외 AI·SaaS·클라우드·스트리밍 서비스를 포함해 Visa를 받는 가맹점에서 사용할 수 있도록 설계되었습니다. 결제 승인 여부는 각 가맹점이 결정합니다.
+- Q: 원치 않는 자동 갱신은 어떻게 막나요?
+  A: 앱에서 카드를 정지하면 됩니다. 정지된 카드로 들어오는 결제는 거절되며, 언제든 다시 해제할 수 있습니다.
+- Q: 수수료는 얼마인가요?
+  A: 카드 충전 시 거래에 따라 네트워크 수수료나 서비스 수수료가 발생할 수 있습니다. 모든 수수료는 확인 전에 미리 표시됩니다.
+
+#### 해외 결제를 위한 크립토 여행 카드
+
+Source: https://www.xerovan.com/kr/solutions/crypto-travel-card
+
+돈, 카드, 여행을 하나의 앱에 담으세요. 크립토로 Visa 카드를 충전하고, Visa 가맹점 어디서나 결제하고, 여행 예약까지 한 번에 할 수 있습니다.
+
+여행 경비 관리, 더 간단해야 합니다: 환전, 여러 장의 카드, 지갑 분실 걱정은 모두 여행을 번거롭게 만듭니다. 크립토 보유자라면 자산을 해외에서 쓸 수 있는 형태로 바꾸는 단계가 하나 더 필요합니다.
+
+할 수 있는 것:
+- Visa 가맹점 어디서나 결제
+- 실물·가상카드 사용, 애플페이·구글페이 등록
+- 지원되는 디지털 자산으로 카드 충전
+- 분실·도난 카드 즉시 정지, 앱에서 바로 해제
+- 항공, 호텔, 투어·액티비티, eSIM을 같은 앱에서 예약
+
+이용 방법:
+1. 이메일로 이용을 신청합니다
+2. 지원되는 크립토로 카드를 충전합니다
+3. 해외에서 결제하고 모든 것을 앱에서 관리합니다
+
+자주 묻는 질문:
+- Q: 어디에서 카드를 쓸 수 있나요?
+  A: Visa를 받는 곳이라면 어디서나 사용할 수 있습니다. 카드 발급 여부는 거주 국가에 따라 다르며, 이용 가능 여부는 신청 시 안내합니다.
+- Q: 카드를 잃어버리면 어떻게 하나요?
+  A: 앱에서 즉시 카드를 정지하면 새로운 결제가 승인되지 않습니다. 카드를 다시 찾으면 정지를 해제하면 됩니다.
+- Q: 크립토로 여행 예약도 할 수 있나요?
+  A: Xerovan에는 항공, 호텔, 투어, eSIM을 예약할 수 있는 여행 마켓플레이스가 있으며, 대상 여행 상품과 서비스에는 크립토를 사용할 수 있습니다.
+
+#### Visa 가맹점 어디서나 크립토로 결제하세요
+
+Source: https://www.xerovan.com/kr/solutions/spend-crypto-with-visa
+
+Xerovan은 셀프 커스터디 멀티체인 지갑과 Visa 카드를 연결합니다. 여러 앱을 거치지 않고도 보유한 자산으로 실제 결제를 할 수 있습니다.
+
+크립토는 보유하기는 쉬워도 쓰기는 어렵습니다: 자산은 여러 지갑과 네트워크에 흩어져 있고, 쓰려면 보통 거래소로 보내 팔고 은행으로 출금해야 합니다. 단계마다 시간과 수수료가 더해집니다.
+
+할 수 있는 것:
+- 호환 지갑을 한곳에서 가져와 관리하거나 메타마스크 등 외부 지갑 연결
+- 이더리움, Base, Arbitrum, Polygon, BNB Chain, 솔라나, 트론, 비트코인 자산 보관
+- 지원 체인 간 자산 스왑 및 브릿지
+- Xerovan 잔액이나 카드를 충전해 Visa 네트워크로 결제
+- 지역에 따라 캐시백, 스테이킹, 추천 리워드 이용
+
+이용 방법:
+1. 이메일로 이용을 신청합니다
+2. 지갑을 만들거나 연결합니다
+3. 카드를 충전하고 결제를 시작합니다
+
+자주 묻는 질문:
+- Q: Xerovan은 수탁형인가요, 비수탁형인가요?
+  A: Xerovan은 비수탁형 지갑으로 설계되어, 통합 금융 서비스를 이용하면서도 디지털 자산의 통제권을 직접 유지할 수 있습니다.
+- Q: 크립토 카드는 어떻게 작동하나요?
+  A: 지원되는 크립토로 카드를 충전합니다. 자산과 네트워크에 따라 자금이 전환되어 카드 결제에 사용할 수 있게 되며, 가맹점에는 Visa 네트워크를 통해 대금이 지급됩니다.
+- Q: KYC가 필요한가요?
+  A: 카드 발급 및 기타 규제 대상 서비스에는 본인 인증이 필요합니다. 외부 지갑 연결은 지원되는 경우 KYC 없이 이용할 수 있습니다.

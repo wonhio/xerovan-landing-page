@@ -4,6 +4,8 @@
 
 The site is available in English, Korean, Japanese, Spanish, Arabic and Portuguese. People can apply with their email on any language page.
 
+The complete text of the main pages (features, FAQ and all solution pages, in English and Korean) is in one file: [llms-full.txt](https://www.xerovan.com/llms-full.txt).
+
 ## Main pages
 
 - [Xerovan (English)](https://www.xerovan.com/en/): product overview, features, use cases and FAQ
@@ -21,6 +23,10 @@ The site is available in English, Korean, Japanese, Spanish, Arabic and Portugue
 - [Crypto travel card](https://www.xerovan.com/en/solutions/crypto-travel-card): spend abroad with Visa, Apple Pay and Google Pay, and book flights, hotels and eSIM
 - [Spend crypto with Visa](https://www.xerovan.com/en/solutions/spend-crypto-with-visa): self-custodial multi-chain wallet connected to a Visa card
 - Each page is also available in Korean, Japanese, Spanish, Arabic and Portuguese (replace /en/ with /kr/, /ja/, /es/, /ar/ or /pt/)
+- [광고비 결제 가상카드 (한국어)](https://www.xerovan.com/kr/solutions/crypto-card-for-ads)
+- [해외 구독 결제 카드 (한국어)](https://www.xerovan.com/kr/solutions/card-for-international-subscriptions)
+- [크립토 여행 카드 (한국어)](https://www.xerovan.com/kr/solutions/crypto-travel-card)
+- [크립토 Visa 결제 (한국어)](https://www.xerovan.com/kr/solutions/spend-crypto-with-visa)
 
 ## Company
 
@@ -42,6 +48,7 @@ The site is available in English, Korean, Japanese, Spanish, Arabic and Portugue
 
 ## Optional
 
+- [Full text for AI assistants](https://www.xerovan.com/llms-full.txt)
 - [Sitemap](https://www.xerovan.com/sitemap.xml)
 - [Blog sitemap](https://www.xerovan.com/blog-sitemap.xml)
 - [X (Twitter)](https://x.com/XerovanC)

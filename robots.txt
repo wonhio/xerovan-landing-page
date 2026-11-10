@@ -2,5 +2,25 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
+# AI search and assistant crawlers: explicitly welcome.
+# (A named group replaces the * group for that bot, so /api/ is repeated here.)
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: Bingbot
+User-agent: meta-externalagent
+User-agent: MistralAI-User
+User-agent: DuckAssistBot
+User-agent: Yeti
+Allow: /
+Disallow: /api/
+
 Sitemap: https://www.xerovan.com/sitemap.xml
 Sitemap: https://www.xerovan.com/blog-sitemap.xml
