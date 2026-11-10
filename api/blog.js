@@ -274,7 +274,9 @@ function faqPairs(html) {
       const text = stripTags(rest.join('</h3>').split(/<h[1-6]\b/i)[0]);
       return { name, text };
     })
-    .filter((x) => x.name.length > 4 && x.text.length > 20)
+    // Only real questions: the FAQ section can also end with a "Related reading" heading and a list of links.
+    // Every language the site publishes in marks a question with "?", "？" or the Arabic "؟".
+    .filter((x) => x.name.length > 4 && x.text.length > 20 && /[?？؟]\s*$/.test(x.name))
     .slice(0, 10)
     .map((x) => ({ '@type': 'Question', name: clip(x.name, 300), acceptedAnswer: { '@type': 'Answer', text: clip(x.text, 1200) } }));
 }
