@@ -207,6 +207,7 @@ const POST_SEO = {
 // Same article in different languages. Language menu and hreflang are built from these groups.
 const TRANSLATIONS = [
   { en: 'custodial-vs-non-custodial-crypto-cards-whats-the-difference-and-why-does-it-matter', kr: 'custodial-vs-non-custodial-crypto-card-ko', es: 'custodial-vs-non-custodial-crypto-card-es', pt: 'custodial-vs-non-custodial-crypto-card-pt', ar: 'custodial-vs-non-custodial-crypto-card-ar' },
+  { en: 'crypto-card-without-top-up', kr: 'crypto-card-without-top-up-ko', ja: 'crypto-card-without-top-up-ja', es: 'crypto-card-without-top-up-es', pt: 'crypto-card-without-top-up-pt', ar: 'crypto-card-without-top-up-ar' },
   // Korean posts with Spanish, Portuguese and Arabic versions: [base slug, English slug, Japanese slug]
   ...[
     ['freelancer-spend-earnings-card', 'freelancer-spend-earnings-card', 'freelancer-spend-earnings-card-ja'],
