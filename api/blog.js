@@ -917,6 +917,8 @@ module.exports = async (req, res) => {
       jsonLd: [crumbs([['Xerovan', `${SITE}/${lang}/`], [U.eyebrow, `${SITE}/${lang}/solutions`], [U.short[SOL.SLUGS.indexOf(sslug)], url]]),
         { '@context': 'https://schema.org', '@type': 'WebPage', name: h1, description, url, inLanguage: LANGS[lang].hl,
           isPartOf: { '@type': 'WebSite', name: 'Xerovan', url: `${SITE}/` } },
+        { '@context': 'https://schema.org', '@type': 'Service', name: h1, serviceType: U.short[SOL.SLUGS.indexOf(sslug)], description, url, inLanguage: LANGS[lang].hl,
+          provider: { '@type': 'Organization', '@id': `${SITE}/#organization`, name: 'Xerovan', url: `${SITE}/` } },
         { '@context': 'https://schema.org', '@type': 'FAQPage', inLanguage: LANGS[lang].hl,
           mainEntity: faq.map(([q2, a]) => ({ '@type': 'Question', name: q2, acceptedAnswer: { '@type': 'Answer', text: a } })) }],
     }), 'text/html; charset=utf-8', 's-maxage=3600, stale-while-revalidate=86400');
