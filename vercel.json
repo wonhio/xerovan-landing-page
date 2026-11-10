@@ -218,6 +218,15 @@
       ]
     },
     {
+      "source": "/images/producthunt/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
       "source": "/blog-media/(.*)",
       "headers": [
         {
