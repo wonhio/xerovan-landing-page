@@ -777,6 +777,7 @@ function factsView(lang) {
   <div class="wrap"><div class="sol">
     ${groups}
     <section><h2>${esc(U.stepsH)}</h2><ol class="sol-steps">${FACTS.STEPS[lang].map((s) => `<li>${esc(s)}</li>`).join('')}</ol></section>
+    <section class="sol-faq"><h2>${esc(U.faqH)}</h2>${FACTS.FAQ[lang].map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</section>
     <section><h2>${esc(U.linksH)}</h2><div class="sol-more">${links.map(([n, u]) => `<a class="chip" href="${esc(u)}"${u.startsWith(SITE) ? '' : ' rel="noopener"'}>${esc(n)}</a>`).join('')}</div></section>
     <section><h2>${esc(U.relatedH)}</h2><div class="sol-more">
       <a class="chip" href="/${lang}/solutions">${esc(SOL.UI[lang].eyebrow)}</a>
@@ -1029,6 +1030,9 @@ module.exports = async (req, res) => {
       }, {
         '@context': 'https://schema.org', '@type': 'HowTo', name: U.stepsH, inLanguage: LANGS[lang].hl,
         step: FACTS.STEPS[lang].map((s, i) => ({ '@type': 'HowToStep', position: i + 1, text: s })),
+      }, {
+        '@context': 'https://schema.org', '@type': 'FAQPage', inLanguage: LANGS[lang].hl,
+        mainEntity: FACTS.FAQ[lang].map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
       }],
     }), 'text/html; charset=utf-8', 's-maxage=3600, stale-while-revalidate=86400');
   }

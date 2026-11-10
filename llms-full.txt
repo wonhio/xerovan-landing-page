@@ -534,3 +534,47 @@ Source: https://www.xerovan.com/kr/solutions/spend-crypto-gateway-earnings
   A: 아닙니다. 카드 결제는 지갑 잔액에서 실시간으로 충당되므로, 별도의 전환이나 은행 출금 없이 게이트웨이 수익을 쓸 수 있습니다.
 - Q: 우리 회사도 이용할 수 있나요?
   A: 비즈니스 기능과 카드 발급은 국가와 사업자 인증에 따라 다릅니다. 이메일로 신청하시면 이용 가능 여부를 안내합니다.
+
+### Frequently asked questions — Xerovan facts
+
+Source: https://www.xerovan.com/en/facts
+
+**Q: Is Xerovan a bank?**
+A: No. Xerovan is a technology platform. Card and payment services are provided by licensed partners, and availability varies by country.
+
+**Q: Do I have to top up a Xerovan card before I can spend?**
+A: No. By default each payment is funded in real time from your connected self-custodial wallet, so there is no card balance to top up. You can still top up a card if you prefer a fixed balance.
+
+**Q: Does Xerovan hold my crypto?**
+A: No. The wallet is self-custodial, so you keep control of your assets. You can also connect external wallets such as MetaMask.
+
+**Q: Which blockchains can fund a payment?**
+A: Ethereum, Base, Arbitrum, Polygon, BNB Chain, Solana, TRON and Bitcoin.
+
+**Q: Is identity verification required?**
+A: Yes for card issuance and other regulated services. External wallet connectivity may be available without it in supported scenarios.
+
+**Q: Where can the card be used?**
+A: Anywhere Visa is accepted, including Apple Pay and Google Pay. Card issuance depends on your country of residence.
+
+### 자주 묻는 질문 — 제로반 팩트
+
+Source: https://www.xerovan.com/kr/facts
+
+**Q: 제로반은 은행인가요?**
+A: 아닙니다. 제로반은 기술 플랫폼이며, 카드·결제 서비스는 라이선스를 보유한 파트너사가 제공합니다. 이용 가능 여부는 국가별로 다릅니다.
+
+**Q: 카드를 미리 충전해야 쓸 수 있나요?**
+A: 아닙니다. 기본적으로 결제할 때마다 연결된 셀프 커스터디 지갑에서 실시간으로 자금을 가져오기 때문에 카드 잔액을 충전할 필요가 없습니다. 정해진 잔액으로 쓰고 싶다면 충전할 수도 있습니다.
+
+**Q: 제로반이 제 크립토를 보관하나요?**
+A: 아닙니다. 지갑은 셀프 커스터디 방식이라 자산의 통제권은 사용자에게 있습니다. 메타마스크 등 외부 지갑도 연결할 수 있습니다.
+
+**Q: 어떤 블록체인으로 결제할 수 있나요?**
+A: 이더리움, Base, Arbitrum, Polygon, BNB Chain, 솔라나, 트론, 비트코인입니다.
+
+**Q: 본인 인증이 필요한가요?**
+A: 카드 발급 및 규제 대상 서비스에는 필요합니다. 외부 지갑 연결은 지원되는 경우 본인 인증 없이 이용할 수 있습니다.
+
+**Q: 카드는 어디서 쓸 수 있나요?**
+A: Visa를 받는 곳이라면 어디서나 사용할 수 있고 애플페이·구글페이도 지원합니다. 카드 발급 여부는 거주 국가에 따라 다릅니다.

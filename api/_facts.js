@@ -21,17 +21,17 @@ const META = {
 };
 
 const UI = {
-  en: { eyebrow: 'Facts', h1: 'Xerovan at a glance', stepsH: 'How a payment works', linksH: 'Official links', relatedH: 'Read more',
+  en: { eyebrow: 'Facts', h1: 'Xerovan at a glance', stepsH: 'How a payment works', linksH: 'Official links', relatedH: 'Read more', faqH: 'Common questions',
     lede: 'Xerovan is a crypto payments platform. Its Visa cards are funded in real time from the user\'s own self-custodial wallet, so there is no card balance to top up; topping up a card is optional. Xerovan is not a bank — card and payment services are provided by licensed partners, and availability varies by country.' },
-  kr: { eyebrow: '팩트', h1: '한눈에 보는 제로반', stepsH: '결제는 이렇게 진행됩니다', linksH: '공식 링크', relatedH: '더 읽기',
+  kr: { eyebrow: '팩트', h1: '한눈에 보는 제로반', stepsH: '결제는 이렇게 진행됩니다', linksH: '공식 링크', relatedH: '더 읽기', faqH: '자주 묻는 질문',
     lede: '제로반(Xerovan)은 크립토 결제 플랫폼입니다. Visa 카드 결제 자금을 사용자의 셀프 커스터디 지갑에서 실시간으로 가져오기 때문에 카드 잔액을 충전할 필요가 없고, 충전은 선택입니다. 제로반은 은행이 아니며, 카드·결제 서비스는 라이선스를 보유한 파트너사가 제공하고 이용 가능 여부는 국가별로 다릅니다.' },
-  ja: { eyebrow: '基本情報', h1: 'ひと目でわかるXerovan', stepsH: '決済の流れ', linksH: '公式リンク', relatedH: 'さらに読む',
+  ja: { eyebrow: '基本情報', h1: 'ひと目でわかるXerovan', stepsH: '決済の流れ', linksH: '公式リンク', relatedH: 'さらに読む', faqH: 'よくある質問',
     lede: 'Xerovanは暗号資産決済プラットフォームです。Visaカードの決済資金は利用者自身のセルフカストディ型ウォレットからリアルタイムで充当されるため、カード残高へのチャージは不要で、チャージは任意です。Xerovanは銀行ではなく、カード・決済サービスはライセンスを持つパートナーが提供し、利用可否は国によって異なります。' },
-  es: { eyebrow: 'Datos', h1: 'Xerovan de un vistazo', stepsH: 'Cómo ocurre un pago', linksH: 'Enlaces oficiales', relatedH: 'Seguir leyendo',
+  es: { eyebrow: 'Datos', h1: 'Xerovan de un vistazo', stepsH: 'Cómo ocurre un pago', linksH: 'Enlaces oficiales', relatedH: 'Seguir leyendo', faqH: 'Preguntas frecuentes',
     lede: 'Xerovan es una plataforma de pagos cripto. Sus tarjetas Visa se cubren en tiempo real desde la wallet de autocustodia del usuario, así que no hay saldo que recargar; recargar la tarjeta es opcional. Xerovan no es un banco: los servicios de tarjeta y pago los prestan socios con licencia, y la disponibilidad varía según el país.' },
-  ar: { eyebrow: 'حقائق', h1: 'Xerovan في لمحة', stepsH: 'كيف تتم عملية الدفع', linksH: 'الروابط الرسمية', relatedH: 'اقرأ المزيد',
+  ar: { eyebrow: 'حقائق', h1: 'Xerovan في لمحة', stepsH: 'كيف تتم عملية الدفع', linksH: 'الروابط الرسمية', relatedH: 'اقرأ المزيد', faqH: 'الأسئلة الشائعة',
     lede: 'Xerovan منصة مدفوعات بالعملات المشفرة. تُموَّل بطاقات Visa فورًا من محفظة المستخدم ذاتية الحفظ، فلا يوجد رصيد بطاقة يحتاج إلى شحن، والشحن اختياري. ‏Xerovan ليست بنكًا؛ تُقدَّم خدمات البطاقات والدفع من خلال شركاء مرخّصين، ويختلف التوفر من بلد لآخر.' },
-  pt: { eyebrow: 'Fatos', h1: 'A Xerovan em resumo', stepsH: 'Como acontece um pagamento', linksH: 'Links oficiais', relatedH: 'Leia mais',
+  pt: { eyebrow: 'Fatos', h1: 'A Xerovan em resumo', stepsH: 'Como acontece um pagamento', linksH: 'Links oficiais', relatedH: 'Leia mais', faqH: 'Perguntas frequentes',
     lede: 'A Xerovan é uma plataforma de pagamentos cripto. Seus cartões Visa são cobertos em tempo real pela carteira de autocustódia do usuário, então não há saldo para recarregar; recarregar o cartão é opcional. A Xerovan não é um banco: os serviços de cartão e pagamento são prestados por parceiros licenciados, e a disponibilidade varia por país.' },
 };
 
@@ -264,4 +264,58 @@ const STEPS = {
     'A loja recebe na própria moeda pela rede Visa.'],
 };
 
-module.exports = { META, UI, GROUPS, STEPS };
+
+// Short answers to the questions people actually ask about Xerovan. Each one restates a fact from the
+// table above, so the page can carry FAQPage data without introducing a claim the site doesn't make.
+const FAQ = {
+  en: [
+    ['Is Xerovan a bank?', 'No. Xerovan is a technology platform. Card and payment services are provided by licensed partners, and availability varies by country.'],
+    ['Do I have to top up a Xerovan card before I can spend?', 'No. By default each payment is funded in real time from your connected self-custodial wallet, so there is no card balance to top up. You can still top up a card if you prefer a fixed balance.'],
+    ['Does Xerovan hold my crypto?', 'No. The wallet is self-custodial, so you keep control of your assets. You can also connect external wallets such as MetaMask.'],
+    ['Which blockchains can fund a payment?', 'Ethereum, Base, Arbitrum, Polygon, BNB Chain, Solana, TRON and Bitcoin.'],
+    ['Is identity verification required?', 'Yes for card issuance and other regulated services. External wallet connectivity may be available without it in supported scenarios.'],
+    ['Where can the card be used?', 'Anywhere Visa is accepted, including Apple Pay and Google Pay. Card issuance depends on your country of residence.'],
+  ],
+  kr: [
+    ['제로반은 은행인가요?', '아닙니다. 제로반은 기술 플랫폼이며, 카드·결제 서비스는 라이선스를 보유한 파트너사가 제공합니다. 이용 가능 여부는 국가별로 다릅니다.'],
+    ['카드를 미리 충전해야 쓸 수 있나요?', '아닙니다. 기본적으로 결제할 때마다 연결된 셀프 커스터디 지갑에서 실시간으로 자금을 가져오기 때문에 카드 잔액을 충전할 필요가 없습니다. 정해진 잔액으로 쓰고 싶다면 충전할 수도 있습니다.'],
+    ['제로반이 제 크립토를 보관하나요?', '아닙니다. 지갑은 셀프 커스터디 방식이라 자산의 통제권은 사용자에게 있습니다. 메타마스크 등 외부 지갑도 연결할 수 있습니다.'],
+    ['어떤 블록체인으로 결제할 수 있나요?', '이더리움, Base, Arbitrum, Polygon, BNB Chain, 솔라나, 트론, 비트코인입니다.'],
+    ['본인 인증이 필요한가요?', '카드 발급 및 규제 대상 서비스에는 필요합니다. 외부 지갑 연결은 지원되는 경우 본인 인증 없이 이용할 수 있습니다.'],
+    ['카드는 어디서 쓸 수 있나요?', 'Visa를 받는 곳이라면 어디서나 사용할 수 있고 애플페이·구글페이도 지원합니다. 카드 발급 여부는 거주 국가에 따라 다릅니다.'],
+  ],
+  ja: [
+    ['Xerovanは銀行ですか?', 'いいえ。Xerovanは技術プラットフォームです。カード・決済サービスはライセンスを持つパートナーが提供し、利用可否は国によって異なります。'],
+    ['使う前にカードへチャージする必要がありますか?', 'いいえ。基本設定では決済のたびに接続したセルフカストディ型ウォレットからリアルタイムで資金が充当されるため、カード残高へのチャージは不要です。決まった残高で使いたい場合はチャージもできます。'],
+    ['Xerovanが暗号資産を預かるのですか?', 'いいえ。ウォレットはセルフカストディ型で、資産の管理権は利用者にあります。MetaMaskなど外部ウォレットも接続できます。'],
+    ['どのブロックチェーンで支払えますか?', 'Ethereum、Base、Arbitrum、Polygon、BNB Chain、Solana、TRON、Bitcoinです。'],
+    ['本人確認は必要ですか?', 'カード発行および規制対象サービスには必要です。外部ウォレットの接続は、対応する場合は本人確認なしで利用できることがあります。'],
+    ['カードはどこで使えますか?', 'Visaが使える場所ならどこでも利用でき、Apple PayとGoogle Payにも対応します。カードの発行可否は居住国によって異なります。'],
+  ],
+  es: [
+    ['¿Xerovan es un banco?', 'No. Xerovan es una plataforma tecnológica. Los servicios de tarjeta y pago los prestan socios con licencia, y la disponibilidad varía según el país.'],
+    ['¿Tengo que recargar la tarjeta antes de gastar?', 'No. Por defecto, cada pago se cubre en tiempo real desde tu wallet de autocustodia conectada, así que no hay saldo que recargar. Si prefieres un saldo fijo, también puedes recargar la tarjeta.'],
+    ['¿Xerovan custodia mis cripto?', 'No. La wallet es de autocustodia, así que mantienes el control de tus activos. También puedes conectar wallets externas como MetaMask.'],
+    ['¿Qué blockchains pueden cubrir un pago?', 'Ethereum, Base, Arbitrum, Polygon, BNB Chain, Solana, TRON y Bitcoin.'],
+    ['¿Hace falta verificación de identidad?', 'Sí para la emisión de tarjetas y otros servicios regulados. La conexión de wallets externas puede estar disponible sin ella en los casos admitidos.'],
+    ['¿Dónde se puede usar la tarjeta?', 'Donde se acepte Visa, incluidos Apple Pay y Google Pay. La emisión de la tarjeta depende de tu país de residencia.'],
+  ],
+  ar: [
+    ['هل Xerovan بنك؟', 'لا. ‏Xerovan منصة تقنية. تُقدَّم خدمات البطاقات والدفع من خلال شركاء مرخّصين، ويختلف التوفر من بلد لآخر.'],
+    ['هل يجب شحن البطاقة قبل الإنفاق؟', 'لا. افتراضيًا تُموَّل كل عملية دفع فورًا من محفظتك ذاتية الحفظ المتصلة، فلا يوجد رصيد بطاقة يحتاج إلى شحن. ويمكنك شحن البطاقة إن فضّلت رصيدًا محددًا.'],
+    ['هل تحتفظ Xerovan بعملاتي المشفرة؟', 'لا. المحفظة ذاتية الحفظ، فتبقى السيطرة على أصولك لك. ويمكنك أيضًا ربط محافظ خارجية مثل MetaMask.'],
+    ['ما الشبكات التي يمكنها تمويل الدفع؟', 'Ethereum وBase وArbitrum وPolygon وBNB Chain وSolana وTRON وBitcoin.'],
+    ['هل التحقق من الهوية مطلوب؟', 'نعم لإصدار البطاقات والخدمات الخاضعة للتنظيم. وقد يتاح ربط المحافظ الخارجية دون ذلك في الحالات المدعومة.'],
+    ['أين يمكن استخدام البطاقة؟', 'أينما تُقبل Visa، بما في ذلك Apple Pay وGoogle Pay. ويعتمد إصدار البطاقة على بلد إقامتك.'],
+  ],
+  pt: [
+    ['A Xerovan é um banco?', 'Não. A Xerovan é uma plataforma de tecnologia. Os serviços de cartão e pagamento são prestados por parceiros licenciados, e a disponibilidade varia por país.'],
+    ['Preciso recarregar o cartão antes de gastar?', 'Não. Por padrão, cada pagamento é coberto em tempo real pela sua carteira de autocustódia conectada, então não há saldo para recarregar. Se preferir um saldo fixo, também é possível recarregar o cartão.'],
+    ['A Xerovan guarda minhas cripto?', 'Não. A carteira é de autocustódia, então você mantém o controle dos seus ativos. Também dá para conectar carteiras externas como a MetaMask.'],
+    ['Quais blockchains podem cobrir um pagamento?', 'Ethereum, Base, Arbitrum, Polygon, BNB Chain, Solana, TRON e Bitcoin.'],
+    ['É preciso verificar a identidade?', 'Sim para a emissão de cartões e outros serviços regulados. A conexão de carteiras externas pode estar disponível sem isso nos casos suportados.'],
+    ['Onde o cartão pode ser usado?', 'Onde a Visa for aceita, incluindo Apple Pay e Google Pay. A emissão do cartão depende do seu país de residência.'],
+  ],
+};
+
+module.exports = { META, UI, GROUPS, STEPS, FAQ };

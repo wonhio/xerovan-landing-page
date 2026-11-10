@@ -76,6 +76,14 @@ for lang in LANGS:
             out += [f"- Q: {q}", f"  A: {a}"]
         out.append("")
 
+facts = json.loads(subprocess.check_output(
+    ["node", "-e", "const f=require('./api/_facts.js');process.stdout.write(JSON.stringify(f.FAQ))"], cwd=ROOT))
+for lang in LANGS:  # facts FAQ, same answers as /{lang}/facts
+    out += [f"### {HEAD[lang][2]} — {('Xerovan facts' if lang == 'en' else '제로반 팩트')}", "",
+            f"Source: {SITE}/{lang}/facts", ""]
+    for q, a in facts[lang]:
+        out += [f"**Q: {q}**", f"A: {a}", ""]
+
 text = "\n".join(out).rstrip() + "\n"
 (ROOT / "llms-full.txt").write_text(text, encoding="utf-8")
 print(f"llms-full.txt: {len(text):,} chars")
