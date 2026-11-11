@@ -21,6 +21,23 @@ const SOL = require('./_solutions.js');
 const FACTS = require('./_facts.js');
 // Official profiles, listed as Organization.sameAs so the same entity is recognised across sites.
 const SAME_AS = ['https://x.com/XerovanC', 'https://www.instagram.com/xerovancard/', 'https://www.facebook.com/profile.php?id=61594055002981', 'https://t.me/xerovan_card', 'https://discord.gg/fPPMaH3kDe', 'https://www.crunchbase.com/organization/xerovan'];
+// Wikidata items for the concepts these pages document, so an assistant can resolve
+// "stablecoin" or "Visa" to a known entity instead of guessing. Each Q-id was looked up
+// and confirmed against wikidata.org — do not add one without checking it.
+// Note: "self-custody" has no Wikidata item, so it stays a plain string in knowsAbout.
+const WIKIDATA = [
+  ['stablecoin', 'Q55582088'],
+  ['cryptocurrency wallet', 'Q40186999'],
+  ['cryptocurrency', 'Q13479982'],
+  ['payment card', 'Q1436963'],
+  ['debit card', 'Q13499'],
+  ['digital wallet', 'Q1147226'],
+  ['blockchain', 'Q20514253'],
+  ['Visa Inc.', 'Q328840'],
+];
+const aboutEntities = () => WIKIDATA.map(([name, q]) => ({ '@type': 'Thing', name, sameAs: `https://www.wikidata.org/wiki/${q}` }));
+const DUBAI = { '@type': 'Place', name: 'Dubai', sameAs: 'https://www.wikidata.org/wiki/Q612' };
+
 const WP = (process.env.WP_ORIGIN || 'https://cms.xerovan.com').replace(/\/$/, '');
 const SITE = (process.env.SITE_URL || 'https://www.xerovan.com').replace(/\/$/, '');
 const PER_PAGE = 9;
@@ -1006,7 +1023,7 @@ module.exports = async (req, res) => {
       jsonLd: [crumbs([['Xerovan', `${SITE}/${lang}/`], [A.eyebrow, `${SITE}/${lang}/about`]]), {
         '@context': 'https://schema.org', '@type': 'AboutPage', name: A.title, url: `${SITE}/${lang}/about`, inLanguage: LANGS[lang].hl,
         mainEntity: { '@type': 'Organization', '@id': `${SITE}/#organization`, name: 'Xerovan', alternateName: ['제로반', 'XEROVAN'], legalName: 'MARU EVENT TOURISM LLC', slogan: 'Value in Motion', url: `${SITE}/`, logo: `${SITE}/images/logo-icon.png`, email: CONTACT_EMAIL,
-          address: { '@type': 'PostalAddress', addressLocality: 'Dubai', addressCountry: 'AE' }, founder: founderLD(lang),
+          address: { '@type': 'PostalAddress', addressLocality: 'Dubai', addressCountry: 'AE' }, location: DUBAI, founder: founderLD(lang),
           sameAs: SAME_AS },
       }],
     }), 'text/html; charset=utf-8', 's-maxage=3600, stale-while-revalidate=86400');
@@ -1022,9 +1039,10 @@ module.exports = async (req, res) => {
       jsonLd: [crumbs([['Xerovan', `${SITE}/${lang}/`], [U.eyebrow, url]]), {
         '@context': 'https://schema.org', '@type': 'AboutPage', name: U.h1, description: FACTS.META[lang][1], url, inLanguage: LANGS[lang].hl,
         mainEntity: { '@type': 'Organization', '@id': `${SITE}/#organization`, name: 'Xerovan', alternateName: ['제로반', 'XEROVAN'], legalName: 'MARU EVENT TOURISM LLC', slogan: 'Value in Motion', url: `${SITE}/`, logo: `${SITE}/images/logo-icon.png`, email: CONTACT_EMAIL,
-          description: U.lede, address: { '@type': 'PostalAddress', addressLocality: 'Dubai', addressCountry: 'AE' }, founder: founderLD(lang),
+          description: U.lede, address: { '@type': 'PostalAddress', addressLocality: 'Dubai', addressCountry: 'AE' }, location: DUBAI, founder: founderLD(lang),
           sameAs: SAME_AS },
         // Each row is a plain label/value pair, so an assistant can quote one fact without reading the page.
+        about: aboutEntities(),
         mainEntityOfPage: { '@type': 'WebPage', '@id': url },
         hasPart: rows.map(([k, v]) => ({ '@type': 'DefinedTerm', name: k, description: v })),
       }, {
