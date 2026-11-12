@@ -99,6 +99,36 @@
       "permanent": true
     },
     {
+      "source": "/es/blog/tarjetas-cripto-agencias-marketing-es",
+      "destination": "/es/blog/crypto-card-marketing-agencies-es",
+      "permanent": true
+    },
+    {
+      "source": "/es/blog/autocustodia-custodia-tarjeta-cripto-empresa-es",
+      "destination": "/es/blog/custodial-vs-non-custodial-crypto-card-es",
+      "permanent": true
+    },
+    {
+      "source": "/ar/blog/virtual-cards-marketing-agencies-ar",
+      "destination": "/ar/blog/crypto-card-marketing-agencies-ar",
+      "permanent": true
+    },
+    {
+      "source": "/pt/blog/cartoes-virtuais-midias-pagas-pt",
+      "destination": "/pt/blog/crypto-card-marketing-agencies-pt",
+      "permanent": true
+    },
+    {
+      "source": "/en/blog/self-custody-vs-prepaid-crypto-business-en",
+      "destination": "/en/blog/custodial-vs-non-custodial-crypto-cards-whats-the-difference-and-why-does-it-matter",
+      "permanent": true
+    },
+    {
+      "source": "/en/blog/virtual-cards-for-meta-ads",
+      "destination": "/en/blog/virtual-cards-meta-ads-guide-en",
+      "permanent": true
+    },
+    {
       "source": "/ko/:path*",
       "destination": "/kr/:path*",
       "permanent": true

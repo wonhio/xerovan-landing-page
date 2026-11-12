@@ -41,10 +41,10 @@ const HUBS = {
 // Exact slugs that do not follow the "{base}-{lang}" pattern.
 const EXTRA = {
   en: {
-    'crypto-card-for-ads': ['virtual-cards-meta-ads-guide-en', 'virtual-cards-for-meta-ads', 'meta-ads-payment-declined', 'crypto-card-for-google-ads', 'crypto-cards-for-media-buyers'],
+    'crypto-card-for-ads': ['virtual-cards-meta-ads-guide-en', 'meta-ads-payment-declined', 'crypto-card-for-google-ads', 'crypto-cards-for-media-buyers'],
     'card-for-international-subscriptions': ['international-subscription-card', 'usd-cards-vs-local-currency-cards'],
     'spend-crypto-with-visa': ['crypto-card-without-top-up'],
-    'custodial-vs-wallet-direct-crypto-card': ['custodial-vs-non-custodial-crypto-cards-whats-the-difference-and-why-does-it-matter', 'self-custodial-crypto-cards-guide', 'self-custody-vs-prepaid-crypto-business-en'],
+    'custodial-vs-wallet-direct-crypto-card': ['custodial-vs-non-custodial-crypto-cards-whats-the-difference-and-why-does-it-matter', 'self-custodial-crypto-cards-guide'],
     'crypto-payouts-for-freelancers': ['freelancer-instant-payouts-card', 'freelancer-payout-checklist', 'freelancer-small-payment-batching', 'freelancer-spend-earnings-card'],
     'spend-crypto-gateway-earnings': ['crypto-payment-gateway-earnings-card', 'gateway-card-benefits', 'gateway-user-account-onboarding', 'merchant-crypto-settlement'],
   },
@@ -53,16 +53,12 @@ const EXTRA = {
     'crypto-payouts-for-freelancers': ['freelancer-instant-payout-ja'],
   },
   es: {
-    'crypto-card-for-ads': ['tarjetas-cripto-agencias-marketing-es'],
-    'custodial-vs-wallet-direct-crypto-card': ['autocustodia-custodia-tarjeta-cripto-empresa-es'],
     'crypto-payouts-for-freelancers': ['freelancer-instant-payout-es'],
   },
   ar: {
-    'crypto-card-for-ads': ['virtual-cards-marketing-agencies-ar'],
     'crypto-payouts-for-freelancers': ['freelancer-instant-payout-ar'],
   },
   pt: {
-    'crypto-card-for-ads': ['cartoes-virtuais-midias-pagas-pt'],
     'crypto-payouts-for-freelancers': ['freelancer-instant-payout-pt'],
   },
   kr: {},
