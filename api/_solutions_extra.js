@@ -1,7 +1,7 @@
 /**
  * Extra solution pages (question-style, for search and AI answers), merged into _solutions.js.
  * Same shape as _solutions.js P entries, plus optional [9] features heading and [10] comparison table.
- * Claims mirror the main site: wallet-direct payments (Real-Time Funding) by default, card top-up optional,
+ * Claims mirror the main site: wallet-direct payments (Real-Time Funding), no card top-up,
  * Xerovan is not a bank, availability varies by country, fees shown before confirming.
  */
 

@@ -1,6 +1,6 @@
 # Xerovan (제로반)
 
-> Xerovan (Korean name: 제로반) is a technology platform that brings crypto wallets, payments, rewards, travel and business spending together in one secure app: a self-custodial MPC multi-wallet, crypto swaps and cross-chain bridging, virtual and physical Visa cards that pay straight from the connected wallet with no top-up needed (Real-Time Funding; card top-up is optional), staking and cashback rewards, a travel marketplace (flights, hotels, tours, eSIM) and business cards with expense controls. Xerovan is not a bank; card and payment services are provided by licensed partners, and availability varies by country.
+> Xerovan (Korean name: 제로반) is a technology platform that brings crypto wallets, payments, rewards, travel and business spending together in one secure app: a self-custodial MPC multi-wallet, crypto swaps and cross-chain bridging, virtual and physical Visa cards that pay straight from the connected wallet with no top-up needed (Real-Time Funding), staking and cashback rewards, a travel marketplace (flights, hotels, tours, eSIM) and business cards with expense controls. Xerovan is not a bank; card and payment services are provided by licensed partners, and availability varies by country.
 
 The site is available in English, Korean, Japanese, Spanish, Arabic and Portuguese. People can apply with their email on any language page.
 
