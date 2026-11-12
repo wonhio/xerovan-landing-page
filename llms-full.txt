@@ -50,7 +50,7 @@ A: The following business models may be approved after enhanced review, which ca
 A: Xerovan supports multiple leading blockchain networks, including Ethereum, Base, Arbitrum, Polygon, BNB Chain, Solana, TRON, and Bitcoin. Additional networks will be added over time.
 
 **Q: Do I need to top up my card first?**
-A: No. There is no card balance to top up in advance. When you pay by card, the funds are taken in real time from the spendable balance in your connected wallet. This is called Real-Time Funding (RTF). If you prefer a set balance, you can also top up a card.
+A: No. There is no card balance to top up in advance. When you pay by card, the funds are taken in real time from the spendable balance in your connected wallet. This is called Real-Time Funding (RTF).
 
 **Q: What fees does Xerovan charge?**
 A: Wallet transfers, swaps, and card payments may incur network fees or service fees depending on the transaction. All applicable fees are displayed transparently before you confirm.
@@ -85,7 +85,7 @@ A: Apply with your email on this page. We'll send you the next steps, including 
 
 Source: https://www.xerovan.com/en/solutions/crypto-card-for-ads
 
-Media buyers and agencies juggle many ad accounts, budgets and approvals. Xerovan gives every client, campaign and platform its own card. There is no card balance to top up: with Real-Time Funding (RTF), each payment is funded from your connected wallet the moment it happens. Prefer a fixed balance? You can top up a card too.
+Media buyers and agencies juggle many ad accounts, budgets and approvals. Xerovan gives every client, campaign and platform its own card. There is no card balance to top up: with Real-Time Funding (RTF), each payment is funded from your connected wallet the moment it happens.
 
 Why ad payments get messy: One shared card across many ad accounts makes it hard to see which client spent what, and a single declined or frozen card can pause every campaign at once. Paying from crypto usually means cashing out first.
 
@@ -148,7 +148,7 @@ Travel money shouldn’t be stressful: Exchanging cash, carrying several cards a
 What you can do:
 - Spend wherever Visa cards are accepted
 - Use virtual and physical cards, and add them to Apple Pay or Google Pay
-- Pay straight from your wallet with no top-up, or top up a card if you prefer a set travel budget
+- Pay straight from your wallet with no top-up
 - Freeze a lost or stolen card immediately, and unfreeze it from the app
 - Book flights, hotels, tours, activities and eSIM in the same app
 
@@ -177,7 +177,7 @@ What you can do:
 - Import and manage compatible wallets in one place, or connect MetaMask and other external wallets
 - Hold assets on Ethereum, Base, Arbitrum, Polygon, BNB Chain, Solana, TRON and Bitcoin
 - Swap and bridge assets between supported chains
-- Pay through the Visa network straight from your wallet, with optional card top-ups
+- Pay through the Visa network straight from your wallet, with no top-up
 - Access cashback, staking and referral rewards where available
 
 How it works:
@@ -189,7 +189,7 @@ FAQ:
 - Q: Is Xerovan custodial or non-custodial?
   A: Xerovan is designed as a non-custodial wallet, so you keep control of your digital assets while using integrated financial services.
 - Q: How does a crypto card work?
-  A: By default, each card payment is funded in real time from your connected wallet, so there is no card balance to top up. Depending on the asset and network, funds are converted at the moment of payment and merchants are paid through the Visa network. You can also top up a card if you prefer a set balance.
+  A: Each card payment is funded in real time from your connected wallet, so there is no card balance to top up. Depending on the asset and network, funds are converted at the moment of payment and merchants are paid through the Visa network.
 - Q: Do I need KYC?
   A: Card issuance and other regulated services require identity verification. External wallet connectivity may be available without KYC in supported scenarios.
 
@@ -209,13 +209,12 @@ Side-by-side comparison:
 | Before you spend | Send crypto to the provider and top up the card | Nothing: assets stay in your wallet |
 | At checkout | Paid from the card balance | Funded in real time from your wallet |
 | Unspent money | Sits on the card or provider account | Stays in your wallet |
-| Budget control | The amount you top up | Card limits, with optional top-up |
+| Budget control | The amount you top up | Limits per card |
 | Where it works | Card network merchants | Visa merchants, Apple Pay and Google Pay |
 
 Wallet-direct with Xerovan:
 - Assets stay in your self-custodial, multi-chain wallet
 - Each card payment is funded in real time (RTF), so no top-up is needed
-- Top up a card only if you want a fixed budget
 - Visa acceptance, with Apple Pay and Google Pay
 - Connect external wallets such as MetaMask
 
@@ -228,7 +227,7 @@ FAQ:
 - Q: Is a wallet-direct card the same as a non-custodial card?
   A: They overlap. Non-custodial means you control your assets. Wallet-direct describes how the card is funded: each payment is drawn from that wallet at checkout instead of from a pre-loaded card balance.
 - Q: Do I ever need to top up?
-  A: Not by default. Xerovan funds card payments from your connected wallet in real time. You can still top up a card if you prefer a set balance, for example for a trip or a team budget.
+  A: No. Xerovan funds card payments from your connected wallet in real time, so there is no card balance to top up.
 - Q: Are there fees when paying from the wallet?
   A: Converting or moving crypto can involve network or service fees depending on the asset and network. All fees are shown before you confirm.
 
@@ -328,7 +327,7 @@ A: 네. 다음 업종은 인허가 증빙, 규제 준수, 탄탄한 내부 통�
 A: Xerovan은 Ethereum, Base, Arbitrum, Polygon, BNB Chain, Solana, TRON, Bitcoin 등 주요 블록체인 네트워크를 지원하며, 지원 네트워크는 계속 추가될 예정입니다.
 
 **Q: 카드에 미리 충전해야 하나요?**
-A: 카드 잔액을 미리 충전할 필요가 없습니다. 연결된 지갑에 결제 가능한 잔액이 있으면, 카드 결제 시 해당 지갑에서 결제 자금을 실시간으로 가져옵니다. 이 방식을 RTF(Real-Time Funding)라고 합니다. 정해진 잔액으로 쓰고 싶다면 카드에 충전할 수도 있습니다.
+A: 카드 잔액을 미리 충전할 필요가 없습니다. 연결된 지갑에 결제 가능한 잔액이 있으면, 카드 결제 시 해당 지갑에서 결제 자금을 실시간으로 가져옵니다. 이 방식을 RTF(Real-Time Funding)라고 합니다.
 
 **Q: Xerovan의 수수료는 어떻게 되나요?**
 A: 지갑 전송, 스왑, 카드 결제 시 거래 유형에 따라 네트워크 수수료나 서비스 수수료가 발생할 수 있습니다. 모든 수수료는 거래 확정 전에 투명하게 표시됩니다.
@@ -426,7 +425,7 @@ Source: https://www.xerovan.com/kr/solutions/crypto-travel-card
 할 수 있는 것:
 - Visa 가맹점 어디서나 결제
 - 실물·가상카드 사용, 애플페이·구글페이 등록
-- 충전 없이 지갑에서 바로 결제, 여행 예산을 정해 두고 싶다면 카드 충전도 가능
+- 충전 없이 지갑에서 바로 결제
 - 분실·도난 카드 즉시 정지, 앱에서 바로 해제
 - 항공, 호텔, 투어·액티비티, eSIM을 같은 앱에서 예약
 
@@ -455,7 +454,7 @@ Xerovan은 셀프 커스터디 멀티체인 지갑과 Visa 카드를 연결합�
 - 호환 지갑을 한곳에서 가져와 관리하거나 메타마스크 등 외부 지갑 연결
 - 이더리움, Base, Arbitrum, Polygon, BNB Chain, 솔라나, 트론, 비트코인 자산 보관
 - 지원 체인 간 자산 스왑 및 브릿지
-- 충전 없이 지갑에서 바로 Visa 네트워크로 결제 (원하면 카드 충전도 가능)
+- 충전 없이 지갑에서 바로 Visa 네트워크로 결제
 - 지역에 따라 캐시백, 스테이킹, 추천 리워드 이용
 
 이용 방법:
@@ -467,7 +466,7 @@ Xerovan은 셀프 커스터디 멀티체인 지갑과 Visa 카드를 연결합�
 - Q: Xerovan은 수탁형인가요, 비수탁형인가요?
   A: Xerovan은 비수탁형 지갑으로 설계되어, 통합 금융 서비스를 이용하면서도 디지털 자산의 통제권을 직접 유지할 수 있습니다.
 - Q: 크립토 카드는 어떻게 작동하나요?
-  A: 기본적으로 카드 결제 때마다 연결된 지갑에서 실시간으로 자금이 충당되므로, 카드 잔액을 따로 충전할 필요가 없습니다. 자산과 네트워크에 따라 결제 시점에 자금이 전환되며, 가맹점에는 Visa 네트워크를 통해 대금이 지급됩니다. 정해진 잔액으로 쓰고 싶다면 카드를 충전해서 사용할 수도 있습니다.
+  A: 카드 결제 때마다 연결된 지갑에서 실시간으로 자금이 충당되므로, 카드 잔액을 따로 충전할 필요가 없습니다. 자산과 네트워크에 따라 결제 시점에 자금이 전환되며, 가맹점에는 Visa 네트워크를 통해 대금이 지급됩니다.
 - Q: KYC가 필요한가요?
   A: 카드 발급 및 기타 규제 대상 서비스에는 본인 인증이 필요합니다. 외부 지갑 연결은 지원되는 경우 KYC 없이 이용할 수 있습니다.
 
@@ -487,13 +486,12 @@ Source: https://www.xerovan.com/kr/solutions/custodial-vs-wallet-direct-crypto-c
 | 결제 전 준비 | 제공자에게 크립토 전송 후 카드 충전 | 없음, 자산은 지갑에 그대로 |
 | 결제 시점 | 카드 잔액에서 결제 | 지갑에서 실시간 충당 |
 | 쓰고 남은 돈 | 카드나 제공자 계정에 남음 | 내 지갑에 그대로 |
-| 예산 관리 | 충전한 금액 | 카드별 한도 설정, 충전은 선택 |
+| 예산 관리 | 충전한 금액 | 카드별 한도 설정 |
 | 사용처 | 카드 네트워크 가맹점 | Visa 가맹점, 애플페이·구글페이 |
 
 제로반의 지갑 직결형 결제:
 - 자산은 셀프 커스터디 멀티체인 지갑에 그대로 보관
 - 카드 결제마다 실시간 충당(RTF), 별도 충전 불필요
-- 예산을 정해 두고 싶을 때만 카드 충전
 - Visa 가맹점 결제, 애플페이·구글페이 지원
 - 메타마스크 등 외부 지갑 연결
 
@@ -506,7 +504,7 @@ Source: https://www.xerovan.com/kr/solutions/custodial-vs-wallet-direct-crypto-c
 - Q: 지갑 직결형 카드와 비수탁형 카드는 같은 건가요?
   A: 겹치는 부분이 많습니다. 비수탁형은 자산을 사용자가 직접 통제한다는 뜻이고, 지갑 직결형은 카드 결제 자금을 미리 충전한 잔액이 아니라 결제 시점에 그 지갑에서 가져온다는 결제 방식을 말합니다.
 - Q: 충전이 필요한 경우가 있나요?
-  A: 기본적으로는 필요 없습니다. 제로반은 연결된 지갑에서 실시간으로 카드 결제 자금을 충당합니다. 여행이나 팀 예산처럼 정해진 잔액으로 쓰고 싶다면 카드를 충전해서 쓸 수도 있습니다.
+  A: 아니요. 제로반은 연결된 지갑에서 실시간으로 카드 결제 자금을 충당하므로 충전할 카드 잔액이 없습니다.
 - Q: 지갑에서 결제할 때 수수료가 있나요?
   A: 자산과 네트워크에 따라 크립토 전환이나 전송에 네트워크 수수료나 서비스 수수료가 발생할 수 있습니다. 모든 수수료는 확인 전에 미리 표시됩니다.
 
@@ -574,7 +572,7 @@ Source: https://www.xerovan.com/en/facts
 A: No. Xerovan is a technology platform. Card and payment services are provided by licensed partners, and availability varies by country.
 
 **Q: Do I have to top up a Xerovan card before I can spend?**
-A: No. By default each payment is funded in real time from your connected self-custodial wallet, so there is no card balance to top up. You can still top up a card if you prefer a fixed balance.
+A: No. Each payment is funded in real time from your connected self-custodial wallet, so there is no card balance to top up.
 
 **Q: Does Xerovan hold my crypto?**
 A: No. The wallet is self-custodial, so you keep control of your assets. You can also connect external wallets such as MetaMask.
@@ -596,7 +594,7 @@ Source: https://www.xerovan.com/kr/facts
 A: 아닙니다. 제로반은 기술 플랫폼이며, 카드·결제 서비스는 라이선스를 보유한 파트너사가 제공합니다. 이용 가능 여부는 국가별로 다릅니다.
 
 **Q: 카드를 미리 충전해야 쓸 수 있나요?**
-A: 아닙니다. 기본적으로 결제할 때마다 연결된 셀프 커스터디 지갑에서 실시간으로 자금을 가져오기 때문에 카드 잔액을 충전할 필요가 없습니다. 정해진 잔액으로 쓰고 싶다면 충전할 수도 있습니다.
+A: 아닙니다. 결제할 때마다 연결된 셀프 커스터디 지갑에서 실시간으로 자금을 가져오기 때문에 카드 잔액을 충전할 필요가 없습니다.
 
 **Q: 제로반이 제 크립토를 보관하나요?**
 A: 아닙니다. 지갑은 셀프 커스터디 방식이라 자산의 통제권은 사용자에게 있습니다. 메타마스크 등 외부 지갑도 연결할 수 있습니다.
