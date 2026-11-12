@@ -39,12 +39,54 @@ The complete text of the main pages (features, FAQ and all solution pages, in En
 ## Blog
 
 - [Blog (English)](https://www.xerovan.com/en/blog): news, app manual, and guides on crypto and everyday payments
-- [Xerovan News](https://www.xerovan.com/en/blog/category/news): launch updates, features and partnerships
-- [Manual](https://www.xerovan.com/en/blog/category/manual): how to use the Xerovan app
 - [Crypto & Payments Guide](https://www.xerovan.com/en/blog/category/guide): crypto and blockchain basics, international payments, subscriptions, travel and business spending
 - [블로그 (한국어)](https://www.xerovan.com/kr/blog): Korean blog
-- [수탁형 vs 비수탁형 크립토 카드](https://www.xerovan.com/kr/blog/custodial-vs-non-custodial-crypto-card-ko): Korean guide comparing custodial and non-custodial crypto cards
-- [마케팅 에이전시를 위한 크립토 카드](https://www.xerovan.com/kr/blog/crypto-card-marketing-agencies-ko): Korean guide to crypto cards for marketing agencies
+
+## 한국어 가이드 (Korean guides)
+
+### 지갑 직결형 카드와 수탁 방식
+- [충전 없이 쓰는 크립토 카드가 있나요? 지갑 직결형 결제의 작동 방식](https://www.xerovan.com/kr/blog/crypto-card-without-top-up-ko): RTF로 결제 시점에 셀프 커스터디 지갑에서 자금을 가져오는 방식
+- [수탁형 vs 비수탁형 크립토 카드 차이점 비교](https://www.xerovan.com/kr/blog/custodial-vs-non-custodial-crypto-card-ko): 개인 키 보관 주체, 자금 이동 시점, 수수료와 위험 비교
+- [크립토 지갑의 이해: 수탁형과 비수탁형 지갑의 차이](https://www.xerovan.com/kr/blog/crypto-wallet-custody-guide-ko): 복구 방법, 보안 책임, 지갑 선택 기준
+- [MPC 지갑이란? 셀프 커스터디와 보안](https://www.xerovan.com/kr/blog/mpc-wallet-security-ko): MPC 서명 방식과 업무용 월렛 선택 기준
+- [스테이블코인 월렛에서 카드 결제까지의 과정](https://www.xerovan.com/kr/blog/stablecoin-card-payment-flow-ko): 지갑 자산이 카드 승인과 정산으로 이어지는 단계
+
+### 광고비 결제 (에이전시·미디어 바이어)
+- [마케팅 에이전시를 위한 크립토 카드 가이드](https://www.xerovan.com/kr/blog/crypto-card-marketing-agencies-ko): 구글·메타·틱톡 광고비 결제와 가상카드 관리
+- [구글 광고비 결제용 크립토 카드 가이드](https://www.xerovan.com/kr/blog/google-ads-crypto-card-guide-ko): 청구 통화, 총비용 계산, 승인 점검 항목
+- [메타 광고비 결제 거절 원인 7가지와 해결법](https://www.xerovan.com/kr/blog/meta-ads-payment-declined-ko)
+- [미디어 바이어 광고비 결제 카드 선택법](https://www.xerovan.com/kr/blog/media-buyer-card-checklist-ko)
+- [마케팅팀 법인 가상카드 관리: 직원별 지출 한도와 고객사 정산](https://www.xerovan.com/kr/blog/marketing-team-virtual-card-expense-control-ko)
+
+### 해외 구독·해외 결제
+- [해외 구독 결제 카드 거절 원인과 해결법](https://www.xerovan.com/kr/blog/international-subscription-card-ko): ChatGPT, 클라우드, SaaS 등 달러 청구 구독
+- [글로벌 SaaS 구독비와 가상카드 관리](https://www.xerovan.com/kr/blog/saas-virtual-card-subscription-ko)
+- [크립토 카드 해외결제 수수료 계산법](https://www.xerovan.com/kr/blog/crypto-card-foreign-fees-ko)
+- [법인카드 USD 결제와 현지 통화 결제 비교](https://www.xerovan.com/kr/blog/business-card-usd-local-currency-ko): DCC 비교
+- [해외 출장 크립토 카드 사용과 호텔 보증금](https://www.xerovan.com/kr/blog/business-travel-crypto-card-ko)
+- [카드 결제가 거절되는 이유 8가지](https://www.xerovan.com/kr/blog/card-payment-declined-solutions-ko)
+
+### 기업 지출 관리
+- [기업 크립토 카드 지출 통제와 승인 권한](https://www.xerovan.com/kr/blog/business-card-spending-controls-ko)
+- [크립토 카드 영수증과 지출 내역 관리](https://www.xerovan.com/kr/blog/crypto-card-receipt-expense-guide-ko)
+- [크립토 카드 KYC KYB 준비 서류 안내](https://www.xerovan.com/kr/blog/crypto-card-kyc-kyb-guide-ko)
+
+### 프리랜서 지급·게이트웨이 정산
+- [프리랜서 대금, 소액도 바로 지급하고 카드로 바로 쓰는 방법](https://www.xerovan.com/kr/blog/freelancer-instant-payout-ko)
+- [프리랜서 대금 지급 전 체크리스트 5가지](https://www.xerovan.com/kr/blog/freelancer-payout-checklist-ko)
+- [글로벌 프리랜서 USD 결제와 크립토 카드](https://www.xerovan.com/kr/blog/freelancer-usd-payment-card-ko)
+- [크립토 결제 게이트웨이 수익을 카드로 바로 쓰는 방법](https://www.xerovan.com/kr/blog/crypto-payment-gateway-card-ko)
+- [크립토 결제 머천트의 정산 방식 비교: 현금화와 카드 사용](https://www.xerovan.com/kr/blog/merchant-crypto-settlement-ko)
+
+### 스테이블코인·보안 기초
+- [USDT와 USDC 차이와 결제 활용 가이드](https://www.xerovan.com/kr/blog/usdt-vs-usdc-guide-ko)
+- [USDT 전송 네트워크 TRON Ethereum Polygon 비교](https://www.xerovan.com/kr/blog/usdt-tron-ethereum-polygon-ko)
+- [스테이블코인 디페깅과 기업 자금 위험 관리](https://www.xerovan.com/kr/blog/stablecoin-depegging-risks-ko)
+- [크립토 카드 보안과 무단 결제 예방법](https://www.xerovan.com/kr/blog/crypto-card-security-checklist-ko)
+- [3D Secure 인증과 온라인 카드 보안](https://www.xerovan.com/kr/blog/3d-secure-card-authentication-ko)
+- [크립토 카드 환불과 차지백 처리 가이드](https://www.xerovan.com/kr/blog/crypto-card-refund-chargeback-ko)
+- [크립토 카드 캐시백 계산과 실제 순혜택](https://www.xerovan.com/kr/blog/crypto-card-cashback-net-benefit-ko)
+- [가상카드와 실물카드 비교 가이드](https://www.xerovan.com/kr/blog/virtual-vs-physical-card-ko)
 
 ## Legal
 

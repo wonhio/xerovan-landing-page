@@ -30,6 +30,7 @@ LANGS = {
     "pt": ("pt", "pt_BR", "Português", "PT"),
 }
 BLOG_LABEL = {"en": "Blog", "kr": "블로그", "ja": "ブログ", "es": "Blog", "ar": "المدونة", "pt": "Blog"}
+SOLUTIONS_LABEL = {"en": "Solutions", "kr": "솔루션", "ja": "ソリューション", "es": "Soluciones", "ar": "الحلول", "pt": "Soluções"}
 
 VERCEL_ANALYTICS = '''  <!-- Vercel Web Analytics -->
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
@@ -173,6 +174,7 @@ def common(html, lang, legal_names=None):
         for k, v in LANGS.items())
     html = must(html, '<a href="#faq">FAQ</a>\n    </div>\n  </nav>',
         '<a href="#faq">FAQ</a>\n'
+        f'      <a href="/{lang}/solutions">{SOLUTIONS_LABEL[lang]}</a>\n'
         f'      <a href="/{lang}/blog">{BLOG_LABEL[lang]}</a>\n'
         '    </div>\n'
         '    <details class="lang-menu">\n'
