@@ -94,6 +94,11 @@
       "permanent": true
     },
     {
+      "source": "/ko/",
+      "destination": "/kr/",
+      "permanent": true
+    },
+    {
       "source": "/ko/:path*",
       "destination": "/kr/:path*",
       "permanent": true

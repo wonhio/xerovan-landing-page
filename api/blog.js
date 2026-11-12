@@ -19,6 +19,7 @@
 
 const SOL = require('./_solutions.js');
 const FACTS = require('./_facts.js');
+const REL = require('./_related.js');
 // Official profiles, listed as Organization.sameAs so the same entity is recognised across sites.
 const SAME_AS = ['https://x.com/XerovanC', 'https://www.instagram.com/xerovancard/', 'https://www.facebook.com/profile.php?id=61594055002981', 'https://t.me/xerovan_card', 'https://discord.gg/fPPMaH3kDe', 'https://www.crunchbase.com/organization/xerovan'];
 // Wikidata items for the concepts these pages document, so an assistant can resolve
@@ -424,7 +425,9 @@ function layout({ lang, title, description, canonical, alternates, ogImage, ogTy
   const fontParam = lang === 'kr' ? '&family=Noto+Sans+KR:wght@400;500;700' : lang === 'ja' ? '&family=Noto+Sans+JP:wght@400;500;700' : lang === 'ar' ? '&family=Noto+Sans+Arabic:wght@400;500;700' : '';
 
   const menuLinks = MENU_ANCHORS.map((a, i) => `<a href="/${lang}/#${a}">${esc(MENU[lang][i])}</a>`).join('')
+    + `<a href="/${lang}/solutions"${/\/solutions(\/|$)/.test(canonical) ? ' aria-current="page"' : ''}>${esc(SOL.UI[lang].eyebrow)}</a>`
     + `<a href="/${lang}/blog"${/\/blog(\/|$)/.test(canonical) ? ' aria-current="page"' : ''}>${esc(MENU[lang][4])}</a>`;
+  const N = LEGAL_NAMES[lang];
   return `<!DOCTYPE html>
 <html lang="${L.hl}"${L.rtl ? ' dir="rtl"' : ''}>
 <head>
@@ -625,6 +628,15 @@ function layout({ lang, title, description, canonical, alternates, ogImage, ogTy
     .sol-cta h2{margin-bottom:20px}
     .sol-note{margin-top:22px;font-size:13px !important;color:var(--text-dim) !important;line-height:1.6 !important}
     .sol-more{display:flex;gap:10px;flex-wrap:wrap}
+    .post-rel{max-width:720px;margin:0 auto;padding:0 0 30px}
+    .post-rel h2{font-size:15px;font-weight:600;color:var(--silver-300);margin:0 0 12px}
+    .rel-hub{display:flex;flex-direction:column;gap:6px;padding:18px 20px;border:1px solid rgba(143,227,238,.35);border-radius:14px}
+    .rel-hub strong{color:var(--ice);font-size:15px}
+    .rel-hub span{color:var(--text-dim);font-size:14px;line-height:1.6}
+    .rel-hub:hover{border-color:var(--ice)}
+    .rel-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+    .rel-list a{display:block;padding:12px 16px;border:1px solid var(--line);border-radius:12px;color:var(--silver-100);font-size:14.5px;line-height:1.5}
+    .rel-list a:hover{border-color:var(--silver-500)}
     footer{padding:44px 0;border-top:1px solid var(--line);background:var(--panel-3);font-family:var(--f-mono);font-size:11px;color:var(--text-dim)}
     footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     footer a:hover{color:var(--silver-100)}
@@ -658,7 +670,8 @@ ${body}
   <div class="wrap">
     <span>© ${new Date().getFullYear()} Xerovan. All rights reserved.</span>
     <span>${SOL.SLUGS.map((k, i) => `<a href="/${lang}/solutions/${k}">${esc(SOL.UI[lang].short[i])}</a>`).join(' · ')}</span>
-    <span><a href="/${lang}/">xerovan.com</a> · <a href="/${lang}/about">${esc(ABOUT[lang].eyebrow)}</a> · <a href="/${lang}/blog/feed.xml">RSS</a></span>
+    <span><a href="/${lang}/">xerovan.com</a> · <a href="/${lang}/about">${esc(ABOUT[lang].eyebrow)}</a> · <a href="/${lang}/facts">${esc(FACTS.UI[lang].eyebrow)}</a> · <a href="/${lang}/blog">${esc(t.blog)}</a> · <a href="/${lang}/blog/category/guide">${esc(TOPIC_LABEL[lang].guide)}</a> · <a href="/${lang}/blog/feed.xml">RSS</a></span>
+    <span>${Object.keys(LEGAL_DOCS).map((k) => `<a href="/${lang}/legal/${k}">${esc(N[k])}</a>`).join(' · ')}</span>
   </div>
 </footer>
 <script>
@@ -687,7 +700,7 @@ const crumbs = (items) => ({
 });
 
 // ---------------------------------------------------------------- views
-function listView(lang, posts, page, pages, topic) {
+function listView(lang, posts, page, pages, topic, present = TOPICS) {
   const t = T[lang], TL = TOPIC_LABEL[lang], rtl = LANGS[lang].rtl;
   const base = topic ? `/${lang}/blog/category/${topic}` : `/${lang}/blog`;
   const card = (p, featured) => `
@@ -702,7 +715,7 @@ function listView(lang, posts, page, pages, topic) {
     </a>`;
   const tabs = `<div class="tabs" role="navigation" aria-label="${esc(t.blog)}">
       <a class="tab" href="/${lang}/blog"${!topic ? ' aria-current="page"' : ''}>${esc(TL.all)}</a>
-      ${TOPICS.map((k) => `<a class="tab" href="/${lang}/blog/category/${k}"${topic === k ? ' aria-current="page"' : ''}>${esc(TL[k])}</a>`).join('')}
+      ${TOPICS.filter((k) => k === topic || present.includes(k)).map((k) => `<a class="tab" href="/${lang}/blog/category/${k}"${topic === k ? ' aria-current="page"' : ''}>${esc(TL[k])}</a>`).join('')}
     </div>`;
   const cards = posts.length
     ? `<div class="grid">${posts.map((p, i) => card(p, page === 1 && i === 0 && posts.length > 2)).join('')}</div>`
@@ -722,8 +735,38 @@ function listView(lang, posts, page, pages, topic) {
   </div>`;
 }
 
-function postView(lang, p) {
-  const t = T[lang];
+/** Blog posts of one hub in this language, as { slug, title }, from the already-fetched language posts. */
+function hubPosts(lang, hub, raws) {
+  const bySlug = new Map(raws.map((r) => [r.slug, r]));
+  return REL.hubSlugs(lang, hub).filter((s) => bySlug.has(s)).map((s) => ({ slug: s, title: stripTags(bySlug.get(s).title?.rendered) }));
+}
+
+/** Hub + up to three sibling posts for a post page; falls back to the newest posts of the same topic. */
+function relatedFor(lang, p, raws, tmap) {
+  const hub = REL.hubOf(lang, p.slug);
+  let siblings = hub ? hubPosts(lang, hub, raws).filter((x) => x.slug !== p.slug) : [];
+  if (siblings.length < 3) {
+    const seen = new Set([p.slug, ...siblings.map((x) => x.slug)]);
+    const sameTopic = raws.filter((r) => !seen.has(r.slug) && (!p.topic || topicOf(r, tmap) === p.topic))
+      .map((r) => ({ slug: r.slug, title: stripTags(r.title?.rendered) }));
+    siblings = [...siblings, ...sameTopic];
+  }
+  return { hub, posts: siblings.slice(0, 3) };
+}
+
+function postView(lang, p, rel = { hub: null, posts: [] }) {
+  const t = T[lang], RL = REL.LABELS[lang];
+  const hubIdx = rel.hub ? SOL.SLUGS.indexOf(rel.hub) : -1;
+  const hubBlock = hubIdx >= 0 ? `
+      <section class="post-rel">
+        <h2>${esc(RL.hub)}</h2>
+        <a class="rel-hub" href="/${lang}/solutions/${rel.hub}"><strong>${esc(SOL.UI[lang].short[hubIdx])}</strong><span>${esc(SOL.P[rel.hub][lang][3])}</span></a>
+      </section>` : '';
+  const moreBlock = rel.posts.length ? `
+      <section class="post-rel">
+        <h2>${esc(RL.more)}</h2>
+        <ul class="rel-list">${rel.posts.map((x) => `<li><a href="/${lang}/blog/${esc(x.slug)}">${esc(x.title)}</a></li>`).join('')}</ul>
+      </section>` : '';
   return `
   <article>
     <div class="wrap">
@@ -735,9 +778,7 @@ function postView(lang, p) {
       </header>
       ${p.image ? `<figure class="cover"><img src="${esc(p.image)}" alt="${esc(p.imageAlt)}"></figure>` : ''}
       <div class="prose">${p.content}</div>
-      <nav class="post-foot" style="border-top:none;padding:0 0 26px;justify-content:flex-start" aria-label="${esc(SOL.UI[lang].eyebrow)}">
-        ${SOL.SLUGS.map((k, i) => `<a class="chip" href="/${lang}/solutions/${k}">${esc(SOL.UI[lang].short[i])}</a>`).join('')}
-      </nav>
+      ${hubBlock}${moreBlock}
 
       <div class="post-foot">
         <a class="btn" href="/${lang}/blog">${LANGS[lang].rtl ? '→' : '←'} ${esc(t.back)}</a>
@@ -825,8 +866,11 @@ function legalView(lang, doc, slug) {
   </article>`;
 }
 
-function solutionView(lang, slug) {
+function solutionView(lang, slug, guides = []) {
   const U = SOL.UI[lang], t = T[lang];
+  const guidesHtml = guides.length
+    ? `<section><h2>${esc(REL.LABELS[lang].guides)}</h2><ul class="rel-list">${guides.map((x) => `<li><a href="/${lang}/blog/${esc(x.slug)}">${esc(x.title)}</a></li>`).join('')}</ul></section>`
+    : '';
   // Optional extras: [9] a heading that replaces U.featuresH, [10] a comparison table { h2, head: [...], rows: [[...]] }
   const [, , h1, lede, problemH, problem, features, steps, faq, featuresH, table] = SOL.P[slug][lang];
   const name = U.short[SOL.SLUGS.indexOf(slug)];
@@ -847,6 +891,7 @@ function solutionView(lang, slug) {
     <section><h2>${esc(U.stepsH)}</h2><ol class="sol-steps">${steps.map((x) => `<li>${esc(x)}</li>`).join('')}</ol></section>
     <section class="sol-faq"><h2>${esc(U.faqH)}</h2>${faq.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</section>
     <div class="sol-cta"><h2>${esc(U.ctaH)}</h2><a class="btn primary" href="/${lang}/#waitlist">${esc(U.cta)}</a><p class="sol-note">${esc(U.note)}</p></div>
+    ${guidesHtml}
     <section><h2>${esc(U.moreH)}</h2><div class="sol-more">${more}<a class="chip" href="/${lang}/blog/category/guide">${esc(TOPIC_LABEL[lang].guide)}</a></div></section>
     <div style="height:60px"></div>
   </div></div>`;
@@ -1000,10 +1045,16 @@ module.exports = async (req, res) => {
     const title = rawTitle.replace(/ \| Xerovan$/, ''); // same pattern on every solution page; these titles are keyword-led and long already
     const url = `${SITE}/${lang}/solutions/${sslug}`;
     const U = SOL.UI[lang];
+    // Related guides come from WordPress; the page still renders (without them) if the CMS is unreachable.
+    let guides = [];
+    try {
+      const cat = await categoryId(lang);
+      if (cat) guides = hubPosts(lang, sslug, await langPosts(lang, cat));
+    } catch (e) { console.error('[solution guides]', e.message); }
     return send(200, layout({
       lang, title, description, canonical: url,
       alternates: [...Object.keys(LANGS).map((k) => [k, `${SITE}/${k}/solutions/${sslug}`]), ['x-default', `${SITE}/en/solutions/${sslug}`]],
-      body: solutionView(lang, sslug),
+      body: solutionView(lang, sslug, guides),
       jsonLd: [crumbs([['Xerovan', `${SITE}/${lang}/`], [U.eyebrow, `${SITE}/${lang}/solutions`], [U.short[SOL.SLUGS.indexOf(sslug)], url]]),
         { '@context': 'https://schema.org', '@type': 'WebPage', name: h1, description, url, inLanguage: LANGS[lang].hl,
           isPartOf: { '@type': 'WebSite', name: 'Xerovan', url: `${SITE}/` } },
@@ -1100,6 +1151,8 @@ module.exports = async (req, res) => {
         return send(404, layout({ lang, title: `${t.notFound} | Xerovan`, description: t.notFoundText, canonical: `${SITE}/${lang}/blog`, body: messageView(lang, t.notFound, t.notFoundText) }));
       }
       const p = shape(raw, lang, tmap);
+      let rel = { hub: REL.hubOf(lang, p.slug), posts: [] };
+      try { rel = relatedFor(lang, p, await langPosts(lang, cat), tmap); } catch (e) { console.error('[related]', e.message); }
       const canonical = `${SITE}/${lang}/blog/${p.slug}`;
       const group = translationsOf(lang, p.slug, p.translations);
       const alternates = group
@@ -1109,7 +1162,7 @@ module.exports = async (req, res) => {
       return send(200, layout({
         lang, title: seo.title || `${p.title} | Xerovan`, description: seo.description || p.excerpt, canonical, alternates,
         ogImage: p.image ? `${SITE}${p.image}` : null, ogType: 'article',
-        body: postView(lang, p),
+        body: postView(lang, p, rel),
         jsonLd: [crumbs([
           ['Xerovan', `${SITE}/${lang}/`], [t.blog, `${SITE}/${lang}/blog`],
           ...(p.topic ? [[TOPIC_LABEL[lang][p.topic], `${SITE}/${lang}/blog/category/${p.topic}`]] : []),
@@ -1133,6 +1186,8 @@ module.exports = async (req, res) => {
     }
     const tmap = cat ? await topicIds().catch(() => ({})) : {};
     let all = cat ? await langPosts(lang, cat) : [];
+    // Topic tabs only for topics that have posts in this language (an empty tab leads to a noindex page).
+    const present = TOPICS.filter((k) => tmap[k] && all.some((p) => (p.categories || []).includes(tmap[k])));
     if (topic) all = tmap[topic] ? all.filter((p) => (p.categories || []).includes(tmap[topic])) : [];
     const pages = Math.ceil(all.length / PER_PAGE);
     const data = all.slice((page - 1) * PER_PAGE, page * PER_PAGE);
@@ -1150,7 +1205,7 @@ module.exports = async (req, res) => {
       noindex: !all.length,
       hreflang: all.length > 0,
       alternates: filled.map((k) => [k, `${SITE}/${k}${basePath}`]),
-      body: listView(lang, data.map((p) => shape(p, lang, tmap)), page, pages, topic),
+      body: listView(lang, data.map((p) => shape(p, lang, tmap)), page, pages, topic, present),
       jsonLd: [crumbs([
         ['Xerovan', `${SITE}/${lang}/`], [t.blog, `${SITE}/${lang}/blog`],
         ...(topic ? [[TOPIC_LABEL[lang][topic], `${SITE}/${lang}${basePath}`]] : []),
