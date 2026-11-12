@@ -179,8 +179,35 @@ async function setup() {
   return out;
 }
 
+// Daily channel post, run by the Vercel cron in vercel.json (GET /api/telegram?cron=1).
+// Vercel sends "Authorization: Bearer $CRON_SECRET". Posts every _tg_schedule.js entry dated today (UTC).
+// Manual check without posting: add &dry=1 (and optionally &date=YYYY-MM-DD) with the same header;
+// it also reports whether the bot is an admin of the channel that can post.
+const CHANNEL_ID = '@xerovan';
+async function cron(params) {
+  const date = (params.get('dry') && params.get('date')) || new Date().toISOString().slice(0, 10);
+  const posts = require('./_tg_schedule.js').filter((p) => p.date === date);
+  if (params.get('dry')) {
+    const me = await call('getMe');
+    const m = me.ok ? await call('getChatMember', { chat_id: CHANNEL_ID, user_id: me.result.id }) : me;
+    return { date, posts: posts.map((p) => p.id), bot_status: m.ok ? m.result.status : m.description,
+      can_post: !!(m.ok && (m.result.status === 'creator' || m.result.can_post_messages)) };
+  }
+  const sent = [];
+  for (const p of posts) {
+    const r = await call('sendMessage', { chat_id: CHANNEL_ID, text: p.text, parse_mode: 'HTML' });
+    sent.push({ id: p.id, ok: r.ok, error: r.ok ? undefined : r.description });
+    if (!r.ok) console.error('channel post failed', p.id, r.description);
+  }
+  return { date, sent };
+}
+
 module.exports = async (req, res) => {
   if (!process.env.TELEGRAM_BOT_TOKEN || !process.env.TELEGRAM_WEBHOOK_SECRET) return res.status(503).end('bot not configured');
+  if (req.method === 'GET' && /[?&]cron=1/.test(req.url || '')) {
+    if (!process.env.CRON_SECRET || req.headers.authorization !== `Bearer ${process.env.CRON_SECRET}`) return res.status(401).end();
+    try { return res.status(200).json(await cron(new URL(req.url, SITE).searchParams)); } catch (e) { return res.status(500).json({ error: e.message }); }
+  }
   if (req.method === 'GET' && /[?&]setup=1/.test(req.url || '')) {
     if (req.headers['x-setup-key'] !== process.env.TELEGRAM_WEBHOOK_SECRET) return res.status(401).end();
     try { return res.status(200).json(await setup()); } catch (e) { return res.status(500).json({ error: e.message }); }
