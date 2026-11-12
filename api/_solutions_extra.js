@@ -149,7 +149,7 @@ const P = {
   "crypto-payouts-for-freelancers": {
     en: [
       "Crypto Payouts for Freelancers — Get Paid, Spend by Card | Xerovan",
-      "Pay freelancers per job in crypto, whatever the amount. Freelancers spend what they receive straight from their wallet with a Visa card, without cashing out first.",
+      "Pay freelancers per job in crypto, whatever the amount. They spend what they receive straight from their wallet with a Visa card, without cashing out.",
       "Crypto payouts for freelancers, spendable the same day",
       "Businesses pay freelancers per job in supported stablecoins, whatever the amount. Freelancers keep the payout in their own wallet and spend it anywhere Visa is accepted, with no exchange or bank transfer in between.",
       "Why getting paid across borders is slow",
@@ -230,7 +230,7 @@ const P = {
   "spend-crypto-gateway-earnings": {
     en: [
       "Spend Crypto Payment Gateway Earnings by Card | Xerovan",
-      "Merchants paid through a crypto payment gateway can spend their earnings right away with a Visa card that pays straight from their wallet. No exchange, no withdrawal wait.",
+      "Spend crypto payment gateway earnings right away with a Visa card that pays straight from your wallet. No exchange and no withdrawal wait.",
       "Spend your crypto gateway earnings right away",
       "If your customers pay you in crypto through a payment gateway, your revenue already arrives in digital assets. Xerovan lets you spend it straight away by Visa card on suppliers, ads, software and travel, without sending it to an exchange first.",
       "Crypto revenue is hard to use day to day",

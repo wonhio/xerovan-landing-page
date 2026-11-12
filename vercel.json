@@ -134,6 +134,11 @@
       "permanent": true
     },
     {
+      "source": "/:lang(en|kr|ja|es|ar|pt)/:path+/",
+      "destination": "/:lang/:path+",
+      "permanent": true
+    },
+    {
       "source": "/blog",
       "destination": "/en/blog",
       "permanent": true

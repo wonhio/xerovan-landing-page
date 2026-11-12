@@ -221,8 +221,12 @@ const POST_SEO = {
   'en/meta-ads-payment-declined': { title: 'Meta Ads Payment Declined? 7 Causes and Fixes | Xerovan' },
   'kr/meta-ads-payment-declined-ko': { title: '메타 광고비 결제 거절 원인 7가지와 해결법 | Xerovan' },
   'en/international-subscription-card': { title: 'Subscription Card Declined? How to Fix It | Xerovan' },
+  'en/crypto-card-security-checklist': { title: 'Crypto Card Security: Stop Unauthorized Payments | Xerovan' },
+  'en/marketing-team-virtual-card-expense-control': { title: 'Marketing Team Virtual Cards: Limits and Billing | Xerovan' },
   'kr/international-subscription-card-ko': { title: '해외 구독 결제 카드 거절 원인과 해결법 | Xerovan' },
 };
+// Base slugs below that have no English post yet. Every other base slug is also the English slug.
+const NO_EN = new Set(['google-ads-crypto-card-guide', 'crypto-card-marketing-agencies']);
 // Same article in different languages. Language menu and hreflang are built from these groups.
 const TRANSLATIONS = [
   { en: 'custodial-vs-non-custodial-crypto-cards-whats-the-difference-and-why-does-it-matter', kr: 'custodial-vs-non-custodial-crypto-card-ko', es: 'custodial-vs-non-custodial-crypto-card-es', pt: 'custodial-vs-non-custodial-crypto-card-pt', ar: 'custodial-vs-non-custodial-crypto-card-ar' },
@@ -239,7 +243,7 @@ const TRANSLATIONS = [
     ['freelancer-payout-checklist', 'freelancer-payout-checklist', 'freelancer-payout-checklist-ja'],
     ['meta-ads-payment-declined', 'meta-ads-payment-declined'],
     ['international-subscription-card', 'international-subscription-card'],
-    ...['marketing-team-virtual-card-expense-control', 'google-ads-crypto-card-guide', 'crypto-card-cashback-net-benefit', 'business-travel-crypto-card', 'stablecoin-card-payment-flow', 'crypto-card-security-checklist', 'crypto-card-receipt-expense-guide', 'business-card-usd-local-currency', 'saas-virtual-card-subscription', 'freelancer-usd-payment-card', 'media-buyer-card-checklist', 'stablecoin-depegging-risks', 'usdt-tron-ethereum-polygon', '3d-secure-card-authentication', 'card-payment-declined-solutions', 'virtual-vs-physical-card', 'crypto-card-kyc-kyb-guide', 'crypto-card-refund-chargeback', 'usdt-vs-usdc-guide', 'crypto-card-foreign-fees', 'business-card-spending-controls', 'mpc-wallet-security', 'crypto-card-marketing-agencies', 'crypto-wallet-custody-guide'].map((b) => [b]),
+    ...['marketing-team-virtual-card-expense-control', 'google-ads-crypto-card-guide', 'crypto-card-cashback-net-benefit', 'business-travel-crypto-card', 'stablecoin-card-payment-flow', 'crypto-card-security-checklist', 'crypto-card-receipt-expense-guide', 'business-card-usd-local-currency', 'saas-virtual-card-subscription', 'freelancer-usd-payment-card', 'media-buyer-card-checklist', 'stablecoin-depegging-risks', 'usdt-tron-ethereum-polygon', '3d-secure-card-authentication', 'card-payment-declined-solutions', 'virtual-vs-physical-card', 'crypto-card-kyc-kyb-guide', 'crypto-card-refund-chargeback', 'usdt-vs-usdc-guide', 'crypto-card-foreign-fees', 'business-card-spending-controls', 'mpc-wallet-security', 'crypto-card-marketing-agencies', 'crypto-wallet-custody-guide'].map((b) => (NO_EN.has(b) ? [b] : [b, b])),
   ].map(([b, en, ja]) => ({ kr: `${b}-ko`, es: `${b}-es`, pt: `${b}-pt`, ar: `${b}-ar`, ...(en ? { en } : {}), ...(ja ? { ja } : {}) })),
 ];
 /** Translation group of a post: the list above, or the WordPress "translations" field ("en:slug,kr:slug"). */
@@ -1220,7 +1224,7 @@ module.exports = async (req, res) => {
       description: topic ? TOPIC_INTRO[lang][topic] : t.intro, canonical,
       noindex: !all.length,
       hreflang: all.length > 0,
-      alternates: filled.map((k) => [k, `${SITE}/${k}${basePath}`]),
+      alternates: [...filled.map((k) => [k, `${SITE}/${k}${basePath}`]), ...(filled.includes('en') ? [['x-default', `${SITE}/en${basePath}`]] : [])],
       body: listView(lang, data.map((p) => shape(p, lang, tmap)), page, pages, topic, present),
       jsonLd: [crumbs([
         ['Xerovan', `${SITE}/${lang}/`], [t.blog, `${SITE}/${lang}/blog`],

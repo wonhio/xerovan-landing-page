@@ -42,6 +42,65 @@ The complete text of the main pages (features, FAQ and all solution pages, in En
 - [Crypto & Payments Guide](https://www.xerovan.com/en/blog/category/guide): crypto and blockchain basics, international payments, subscriptions, travel and business spending
 - [블로그 (한국어)](https://www.xerovan.com/kr/blog): Korean blog
 
+## English guides
+
+### Wallet-direct cards and custody
+
+- [Is There a Crypto Card Without Top-Up? How Wallet-Direct Payments Work](https://www.xerovan.com/en/blog/crypto-card-without-top-up)
+- [Self-Custodial Crypto Cards: A Complete Guide](https://www.xerovan.com/en/blog/self-custodial-crypto-cards-guide)
+- [Custodial vs Non-Custodial Crypto Cards](https://www.xerovan.com/en/blog/custodial-vs-non-custodial-crypto-cards-whats-the-difference-and-why-does-it-matter)
+- [Custodial vs Non-Custodial Crypto Wallets Explained](https://www.xerovan.com/en/blog/crypto-wallet-custody-guide)
+- [What Is an MPC Wallet? Self-Custody and Security](https://www.xerovan.com/en/blog/mpc-wallet-security)
+- [From Stablecoin Wallet to Card Payment, Step by Step](https://www.xerovan.com/en/blog/stablecoin-card-payment-flow)
+
+### Ad spend and agencies
+
+- [Crypto Cards for Media Buyers: The Complete Guide](https://www.xerovan.com/en/blog/crypto-cards-for-media-buyers)
+- [How Media Buyers Should Choose a Card for Ad Spend](https://www.xerovan.com/en/blog/media-buyer-card-checklist)
+- [How to Pay for Google Ads with a Crypto Card](https://www.xerovan.com/en/blog/crypto-card-for-google-ads)
+- [Virtual Cards for Meta Ads: A Practical Guide for Agencies](https://www.xerovan.com/en/blog/virtual-cards-meta-ads-guide-en)
+- [Meta Ads Payment Declined? 7 Common Causes and Fixes](https://www.xerovan.com/en/blog/meta-ads-payment-declined)
+- [Virtual Cards for Marketing Teams: Limits and Client Billing](https://www.xerovan.com/en/blog/marketing-team-virtual-card-expense-control)
+
+### Subscriptions, cross-border costs and declines
+
+- [How to Pay for ChatGPT, Cloud and SaaS Subscriptions Without Card Declines](https://www.xerovan.com/en/blog/international-subscription-card)
+- [Managing Global SaaS Subscriptions with Virtual Cards](https://www.xerovan.com/en/blog/saas-virtual-card-subscription)
+- [How to Calculate Crypto Card Foreign Transaction Fees](https://www.xerovan.com/en/blog/crypto-card-foreign-fees)
+- [USD Cards vs Local Currency Cards: FX Fees Explained](https://www.xerovan.com/en/blog/usd-cards-vs-local-currency-cards)
+- [Business Cards: Paying in USD vs Local Currency](https://www.xerovan.com/en/blog/business-card-usd-local-currency)
+- [8 Reasons Card Payments Get Declined](https://www.xerovan.com/en/blog/card-payment-declined-solutions)
+- [Using a Crypto Card on Business Trips: Hotel Deposits](https://www.xerovan.com/en/blog/business-travel-crypto-card)
+- [Virtual vs Physical Cards: Which to Use When](https://www.xerovan.com/en/blog/virtual-vs-physical-card)
+- [Crypto Card Cashback: Calculating the Real Net Benefit](https://www.xerovan.com/en/blog/crypto-card-cashback-net-benefit)
+
+### Business spending controls
+
+- [Business Crypto Card Spending Controls and Approvals](https://www.xerovan.com/en/blog/business-card-spending-controls)
+- [Managing Crypto Card Receipts and Expenses](https://www.xerovan.com/en/blog/crypto-card-receipt-expense-guide)
+- [Crypto Card KYC and KYB: Documents to Prepare](https://www.xerovan.com/en/blog/crypto-card-kyc-kyb-guide)
+
+### Freelancers and merchants
+
+- [Pay Freelancers Instantly, Even Small Amounts](https://www.xerovan.com/en/blog/freelancer-instant-payouts-card)
+- [5-Point Checklist Before You Pay a Freelancer](https://www.xerovan.com/en/blog/freelancer-payout-checklist)
+- [Small Freelancer Payments: Batch Them or Pay Right Away?](https://www.xerovan.com/en/blog/freelancer-small-payment-batching)
+- [Why Freelancers Benefit from Spending Earnings by Card](https://www.xerovan.com/en/blog/freelancer-spend-earnings-card)
+- [USD Payments for Global Freelancers and Crypto Cards](https://www.xerovan.com/en/blog/freelancer-usd-payment-card)
+- [How to Spend Crypto Payment Gateway Earnings with a Card](https://www.xerovan.com/en/blog/crypto-payment-gateway-earnings-card)
+- [3 Things That Change When a Crypto Gateway Adds a Card](https://www.xerovan.com/en/blog/gateway-card-benefits)
+- [How to Offer Xerovan Accounts to Payment Gateway Users](https://www.xerovan.com/en/blog/gateway-user-account-onboarding)
+- [Crypto Merchant Settlement: Cashing Out vs Spending by Card](https://www.xerovan.com/en/blog/merchant-crypto-settlement)
+
+### Stablecoins and security
+
+- [USDT vs USDC: Differences and Using Them for Payments](https://www.xerovan.com/en/blog/usdt-vs-usdc-guide)
+- [USDT Networks Compared: TRON, Ethereum and Polygon](https://www.xerovan.com/en/blog/usdt-tron-ethereum-polygon)
+- [Stablecoin Depegging and Managing Company Treasury Risk](https://www.xerovan.com/en/blog/stablecoin-depegging-risks)
+- [Crypto Card Security and Preventing Unauthorized Payments](https://www.xerovan.com/en/blog/crypto-card-security-checklist)
+- [3D Secure Authentication and Online Card Security](https://www.xerovan.com/en/blog/3d-secure-card-authentication)
+- [Crypto Card Refunds and Chargebacks Explained](https://www.xerovan.com/en/blog/crypto-card-refund-chargeback)
+
 ## 한국어 가이드 (Korean guides)
 
 ### 지갑 직결형 카드와 수탁 방식

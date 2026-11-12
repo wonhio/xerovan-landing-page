@@ -34,7 +34,7 @@ const UI = {
 const P = {
   'crypto-card-for-ads': {
     en: ['Virtual Cards for Ad Spend — Pay Meta & Google Ads with Crypto',
-      'Issue a dedicated virtual card for every client, campaign and ad platform. Pay straight from your connected crypto wallet with no top-ups, set limits and track ad spend in one dashboard.',
+      'A virtual card for every client, campaign and ad platform. Pay straight from your crypto wallet with no top-ups, set limits and track ad spend in one place.',
       'Virtual cards for ad spend, paid straight from your wallet',
       'Media buyers and agencies juggle many ad accounts, budgets and approvals. Xerovan gives every client, campaign and platform its own card. There is no card balance to top up: with Real-Time Funding (RTF), each payment is funded from your connected wallet the moment it happens.',
       'Why ad payments get messy',
@@ -103,7 +103,7 @@ const P = {
 
   'card-for-international-subscriptions': {
     en: ['Virtual Card for USD Subscriptions — ChatGPT, SaaS & Cloud',
-      'Pay for AI tools, cloud, SaaS and streaming subscriptions billed in USD with a dedicated virtual Visa card. Set limits, track recurring charges and freeze anytime.',
+      'Pay USD-billed AI, cloud, SaaS and streaming subscriptions with a dedicated virtual Visa card. Set limits, track recurring charges and freeze anytime.',
       'A dedicated virtual card for your international subscriptions',
       'Many people struggle to pay for software, AI tools and streaming billed in USD. Xerovan gives your subscriptions their own virtual Visa card that you control from one app.',
       'The problem with paying subscriptions abroad',
@@ -172,7 +172,7 @@ const P = {
 
   'crypto-travel-card': {
     en: ['Crypto Travel Card — Spend Abroad with Visa | Xerovan',
-      'Travel with a Visa card that pays straight from your crypto wallet, no top-up needed: pay abroad, use Apple Pay and Google Pay, freeze a lost card instantly, and book flights, hotels and eSIM in one app.',
+      'A Visa card that pays straight from your crypto wallet, no top-up needed. Pay abroad with Apple Pay or Google Pay and book flights, hotels and eSIM in one app.',
       'The crypto travel card for spending abroad',
       'Carry your money, your card and your trip in one app. Your Visa card pays straight from your connected wallet, so there is nothing to top up before you go. Pay wherever Visa is accepted and book travel along the way.',
       'Travel money shouldn’t be stressful',
@@ -241,7 +241,7 @@ const P = {
 
   'spend-crypto-with-visa': {
     en: ['Spend Crypto with a Visa Card — Crypto Card | Xerovan',
-      'Turn your crypto into everyday spending. Manage multi-chain assets in a self-custodial wallet, swap and bridge, and pay worldwide with a Visa card that spends straight from your wallet — no top-up needed.',
+      'Spend crypto worldwide with a Visa card that pays straight from your self-custodial, multi-chain wallet. Swap and bridge in the app, no top-up needed.',
       'Spend your crypto anywhere Visa is accepted',
       'Xerovan connects a self-custodial multi-chain wallet with a Visa card, so the assets you hold can pay for real things — without moving them through several apps.',
       'Holding crypto is easy. Using it isn’t.',
