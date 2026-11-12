@@ -148,7 +148,7 @@ const P = {
 
   "crypto-payouts-for-freelancers": {
     en: [
-      "Crypto Payouts for Freelancers — Get Paid in Crypto, Spend by Card | Xerovan",
+      "Crypto Payouts for Freelancers — Get Paid, Spend by Card | Xerovan",
       "Pay freelancers per job in crypto, whatever the amount. Freelancers spend what they receive straight from their wallet with a Visa card, without cashing out first.",
       "Crypto payouts for freelancers, spendable the same day",
       "Businesses pay freelancers per job in supported stablecoins, whatever the amount. Freelancers keep the payout in their own wallet and spend it anywhere Visa is accepted, with no exchange or bank transfer in between.",
