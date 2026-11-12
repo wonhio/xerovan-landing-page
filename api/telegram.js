@@ -135,8 +135,56 @@ async function handle(u) {
   return tg('sendMessage', { chat_id: chat, text: `${t.hi}\n\n${t.safety}`, reply_markup: menu(lang) });
 }
 
+// One-time setup run on the server, so the token never leaves Vercel:
+//   curl -H "x-setup-key: $TELEGRAM_WEBHOOK_SECRET" "https://www.xerovan.com/api/telegram?setup=1"
+// Registers the webhook (with the secret) and the bot's commands and descriptions. Safe to rerun.
+async function call(method, body) {
+  const r = await fetch(`${API}${process.env.TELEGRAM_BOT_TOKEN}/${method}`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body || {}),
+    signal: AbortSignal.timeout(8000),
+  });
+  const j = await r.json().catch(() => ({}));
+  return { ok: !!j.ok, description: j.description, result: j.result };
+}
+
+async function setup() {
+  const out = {};
+  const me = await call('getMe');
+  out.bot = me.ok ? `@${me.result.username}` : me.description;
+  out.setWebhook = await call('setWebhook', {
+    url: `${SITE}/api/telegram`, secret_token: process.env.TELEGRAM_WEBHOOK_SECRET,
+    allowed_updates: ['message', 'callback_query'], drop_pending_updates: true,
+  }).then((r) => r.ok || r.description);
+  const cmds = { en: ['Apply for early access', 'Official accounts and safety'], ko: ['이용 신청', '공식 계정과 보안 안내'],
+    ja: ['先行利用を申し込む', '公式アカウントと安全のご案内'], es: ['Solicitar acceso anticipado', 'Cuentas oficiales y seguridad'],
+    pt: ['Solicitar acesso antecipado', 'Contas oficiais e segurança'], ar: ['التقديم على الوصول المبكر', 'الحسابات الرسمية والأمان'] };
+  const desc = { en: 'Apply for Xerovan early access. Xerovan is a Visa card that pays straight from your own crypto wallet, with no top-up. We never ask for a seed phrase or password.',
+    ko: '제로반 이용 신청 봇입니다. 제로반은 충전 없이 내 크립토 지갑에서 바로 결제되는 Visa 카드입니다. 시드 문구나 비밀번호는 절대 묻지 않습니다.' };
+  const short = { en: 'Xerovan early access · Official channel @xerovan', ko: '제로반 이용 신청 · 공식 채널 @xerovan' };
+  out.commands = [];
+  for (const [lc, [a, s]] of Object.entries(cmds)) {
+    const body = { commands: [{ command: 'apply', description: a }, { command: 'safety', description: s }] };
+    if (lc !== 'en') body.language_code = lc;
+    out.commands.push(`${lc}:${(await call('setMyCommands', body)).ok}`);
+  }
+  out.description = [];
+  for (const lc of Object.keys(desc)) {
+    const extra = lc === 'en' ? {} : { language_code: lc };
+    const d = await call('setMyDescription', { description: desc[lc], ...extra });
+    const s = await call('setMyShortDescription', { short_description: short[lc], ...extra });
+    out.description.push(`${lc}:${d.ok && s.ok}`);
+  }
+  const info = await call('getWebhookInfo');
+  out.webhook = info.ok ? { url: info.result.url, pending: info.result.pending_update_count, last_error: info.result.last_error_message || null } : info.description;
+  return out;
+}
+
 module.exports = async (req, res) => {
   if (!process.env.TELEGRAM_BOT_TOKEN || !process.env.TELEGRAM_WEBHOOK_SECRET) return res.status(503).end('bot not configured');
+  if (req.method === 'GET' && /[?&]setup=1/.test(req.url || '')) {
+    if (req.headers['x-setup-key'] !== process.env.TELEGRAM_WEBHOOK_SECRET) return res.status(401).end();
+    try { return res.status(200).json(await setup()); } catch (e) { return res.status(500).json({ error: e.message }); }
+  }
   if (req.method !== 'POST') return res.status(405).end();
   if (req.headers['x-telegram-bot-api-secret-token'] !== process.env.TELEGRAM_WEBHOOK_SECRET) return res.status(401).end();
   try {
