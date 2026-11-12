@@ -214,6 +214,10 @@ const POST_SEO = {
     description: '수탁형과 비수탁형 크립토 카드의 차이를 비교합니다. 개인 키를 누가 보관하는지, 자금이 언제 지갑을 떠나는지, 수수료와 위험은 어떻게 다른지 정리했습니다.' },
   'kr/crypto-card-marketing-agencies-ko': { title: '마케팅 에이전시를 위한 크립토 카드 가이드 | Xerovan' },
   'en/virtual-cards-meta-ads-guide-en': { title: 'Virtual Cards for Meta Ads: Agency Guide | Xerovan' },
+  'en/crypto-card-without-top-up': { title: 'Crypto Card Without Top-Up: How Wallet-Direct Works | Xerovan' },
+  'en/crypto-payment-gateway-earnings-card': { title: 'Spend Crypto Payment Gateway Earnings by Card | Xerovan' },
+  'en/freelancer-small-payment-batching': { title: 'Small Freelancer Payments: Batch or Pay Now? | Xerovan' },
+  'en/merchant-crypto-settlement': { title: 'Crypto Merchant Settlement: Cash Out or Spend? | Xerovan' },
   'en/meta-ads-payment-declined': { title: 'Meta Ads Payment Declined? 7 Causes and Fixes | Xerovan' },
   'kr/meta-ads-payment-declined-ko': { title: '메타 광고비 결제 거절 원인 7가지와 해결법 | Xerovan' },
   'en/international-subscription-card': { title: 'Subscription Card Declined? How to Fix It | Xerovan' },
@@ -302,11 +306,26 @@ function publicize(html, lang) {
     .replace(new RegExp(`https?://${wpHost.replace(/\./g, '\\.')}/(?:(?:${Object.keys(LANGS).join('|')})/)?([a-z0-9%-]+)/?(?=["'#?])`, 'gi'), `/${lang}/blog/$1`);
 }
 
+// WordPress sometimes answers 5xx when several pages are rendered at once (e.g. a crawler
+// fetching many uncached posts in parallel). Retry server errors, timeouts and network errors
+// with a short backoff before giving up; 4xx answers are final.
+const WP_TRIES = 3;
+const WP_TIMEOUT_MS = 8000;
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 async function wp(path) {
-  const r = await fetch(`${WP}/wp-json/wp/v2/${path}`, { headers: { Accept: 'application/json' } });
-  if (r.status === 400 && /page=/.test(path)) return { data: [], total: 0, pages: 0 }; // page out of range
-  if (!r.ok) throw new Error(`WP ${r.status} on ${path}`);
-  return { data: await r.json(), total: +r.headers.get('x-wp-total') || 0, pages: +r.headers.get('x-wp-totalpages') || 0 };
+  let last;
+  for (let i = 0; i < WP_TRIES; i++) {
+    if (i) await sleep(250 * 3 ** (i - 1) + Math.random() * 200); // ~250 ms, then ~750 ms
+    let r;
+    try {
+      r = await fetch(`${WP}/wp-json/wp/v2/${path}`, { headers: { Accept: 'application/json' }, signal: AbortSignal.timeout(WP_TIMEOUT_MS) });
+    } catch (e) { last = new Error(`WP fetch failed on ${path}: ${e.message}`); continue; }
+    if (r.status === 400 && /page=/.test(path)) return { data: [], total: 0, pages: 0 }; // page out of range
+    if (r.status >= 500) { last = new Error(`WP ${r.status} on ${path}`); continue; }
+    if (!r.ok) throw new Error(`WP ${r.status} on ${path}`);
+    return { data: await r.json(), total: +r.headers.get('x-wp-total') || 0, pages: +r.headers.get('x-wp-totalpages') || 0 };
+  }
+  throw last;
 }
 
 const catCache = new Map();
@@ -448,7 +467,8 @@ function layout({ lang, title, description, canonical, alternates, ogImage, ogTy
   ${jsonLd ? `<script type="application/ld+json">${JSON.stringify(jsonLd).replace(/</g, '\\u003c')}</script>` : ''}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500${fontParam}&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500${fontParam}&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500${fontParam}&display=swap" rel="stylesheet"></noscript>
   <style>
     :root{--void:#0a0b0d;--panel:#131417;--panel-2:#1b1d21;--panel-3:#0f1012;--line:#232529;--line-soft:#1a1c20;--silver-100:#f6f7f9;--silver-300:#d4d7dc;--silver-500:#9ba0a8;--silver-700:#5c6068;--ice:#8fe3ee;--text-dim:#83878f;--radius:16px;
       --f-display:'Unbounded',${font}sans-serif; --f-body:'Inter',${font}sans-serif; --f-mono:'JetBrains Mono',${font}monospace;}
@@ -1001,7 +1021,9 @@ module.exports = async (req, res) => {
   const send = (status, body, type = 'text/html; charset=utf-8', cache = 's-maxage=300, stale-while-revalidate=86400') => {
     res.statusCode = status;
     res.setHeader('Content-Type', type);
-    res.setHeader('Cache-Control', status === 200 ? cache : 'public, max-age=0, s-maxage=60');
+    // 200: cache at the CDN, and keep serving the cached page if a refresh fails.
+    // 5xx: never cache, so a passing WordPress error is not repeated to every visitor for a minute.
+    res.setHeader('Cache-Control', status === 200 ? `${cache}, stale-if-error=86400` : status >= 500 ? 'no-store' : 'public, max-age=0, s-maxage=60');
     res.setHeader('X-Content-Type-Options', 'nosniff');
     res.end(body);
   };
