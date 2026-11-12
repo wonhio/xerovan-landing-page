@@ -31,6 +31,21 @@ Xerovan is an all-in-one crypto finance platform connecting payments, global pay
 **Q: Which countries are currently supported?**
 A: Xerovan is gradually expanding its availability. Wallet creation, card issuance, and certain services may vary depending on your country of residence.
 
+**Q: Which countries are not eligible for a card?**
+A: Cards can't be issued to individuals or businesses residing or registered in Belarus, China (mainland), Cuba, India, Iran, Iraq, Israel, Myanmar, Nepal, Nicaragua, North Korea, Russia, Syria, Turkey, Ukraine, Venezuela, or Vietnam. Applicants from countries on international watchlists, such as the FATF grey list, are reviewed case by case and need separate compliance approval. This list follows our card program partner's compliance policy and may change.
+
+**Q: In which countries can't I use the card?**
+A: Card payments are not supported in Cuba, Iran, North Korea, Russia, Syria, Ukraine, or Venezuela. This applies to both personal and business cards.
+
+**Q: What can't I pay for with the card?**
+A: The card can't be used for: buying or trading digital currencies; drug-related purchases, including marijuana, cannabis, CBD, and black-market goods; dark web marketplaces or hacking and cybercrime services; online pharmacies that are unlicensed or operate outside regulated jurisdictions; firearms, ammunition, or explosives (business cards); hazardous materials and chemicals without proper regulatory clearance; escort services or similar platforms; unlicensed or illegal auction sites; unregulated lending or payday loans; data brokerage services, especially involving unauthorized personal data; and endangered species or wildlife products.
+
+**Q: Which businesses can't get a business card?**
+A: Cards are never issued to businesses involved in illegal or highly regulated activities, including: distributing illegal substances or controlled drugs without proper licensing; human trafficking, prostitution, or escort services; selling counterfeit or unauthorized goods; pyramid schemes, Ponzi schemes, or other deceptive practices; and producing or distributing illegal digital content, such as child exploitation material. Political campaign fundraising and donation platforms are also not eligible.
+
+**Q: Which business types need additional review?**
+A: The following business models may be approved after enhanced review, which can include proof of licensing, regulatory compliance, and strong internal controls: money service businesses (MSBs) and remittance services; cryptocurrency platforms and exchanges; charities and NGOs; precious metals dealers; online content or creator platforms, such as subscription streaming or tipping; and regulated gambling or fantasy sports operators.
+
 **Q: Which blockchains does Xerovan support?**
 A: Xerovan supports multiple leading blockchain networks, including Ethereum, Base, Arbitrum, Polygon, BNB Chain, Solana, TRON, and Bitcoin. Additional networks will be added over time.
 
@@ -293,6 +308,21 @@ Xerovan은 결제, 글로벌 지급, 기업 지출, 자산 관리와 리워드�
 
 **Q: 현재 어떤 국가에서 이용할 수 있나요?**
 A: Xerovan은 이용 가능 지역을 단계적으로 확대하고 있습니다. 지갑 생성, 카드 발급 및 일부 서비스는 거주 국가에 따라 달라질 수 있습니다.
+
+**Q: 카드를 발급받을 수 없는 국가가 있나요?**
+A: 벨라루스, 중국(본토), 쿠바, 인도, 이란, 이라크, 이스라엘, 미얀마, 네팔, 니카라과, 북한, 러시아, 시리아, 튀르키예, 우크라이나, 베네수엘라, 베트남에 거주하거나 등록된 개인·법인에는 카드를 발급할 수 없습니다. FATF 회색 목록 등 국제 감시 목록에 오른 국가의 신청자는 개별 심사를 거치며 별도의 컴플라이언스 승인이 필요합니다. 이 목록은 카드 프로그램 파트너의 컴플라이언스 정책을 따르며 변경될 수 있습니다.
+
+**Q: 카드를 사용할 수 없는 국가는 어디인가요?**
+A: 쿠바, 이란, 북한, 러시아, 시리아, 우크라이나, 베네수엘라에서는 카드로 결제할 수 없습니다. 개인 카드와 법인 카드 모두 해당합니다.
+
+**Q: 카드로 결제할 수 없는 항목은 무엇인가요?**
+A: 다음 항목에는 카드를 사용할 수 없습니다: 디지털 화폐 구매·거래, 마리화나·대마·CBD·암시장 물품 등 마약 관련 구매, 다크웹 마켓이나 해킹·사이버범죄 서비스, 무허가이거나 규제 관할 밖에서 운영되는 온라인 약국, 총기·탄약·폭발물(법인 카드), 규제 승인 없는 유해 물질·화학물질, 에스코트 서비스 및 유사 플랫폼, 무허가·불법 경매 사이트, 규제받지 않는 대출·페이데이론, 데이터 브로커 서비스(특히 무단 수집한 개인정보 관련), 멸종위기종·야생동물 제품 거래.
+
+**Q: 법인 카드를 발급받을 수 없는 업종은 무엇인가요?**
+A: 불법이거나 고도로 규제되는 활동에 관여하는 기업에는 어떤 경우에도 카드를 발급하지 않습니다. 예를 들어 적법한 허가 없는 불법 약물·규제 약물 유통, 인신매매·성매매·에스코트 서비스, 위조품·무허가 상품 판매, 피라미드·폰지 사기 등 기만적 영업, 아동 착취물 등 불법 디지털 콘텐츠의 제작·유통이 해당합니다. 정치 캠페인 모금·기부 플랫폼도 발급 대상이 아닙니다.
+
+**Q: 추가 심사가 필요한 업종이 있나요?**
+A: 네. 다음 업종은 인허가 증빙, 규제 준수, 탄탄한 내부 통제 등 강화된 심사를 거쳐 승인되면 카드를 발급받을 수 있습니다: 자금서비스업(MSB)·해외송금 서비스, 암호화폐 플랫폼·거래소, 자선단체·NGO, 귀금속 거래업, 구독형 스트리밍·후원 등 온라인 콘텐츠·크리에이터 플랫폼, 인가받은 도박·판타지 스포츠 사업자.
 
 **Q: Xerovan은 어떤 블록체인을 지원하나요?**
 A: Xerovan은 Ethereum, Base, Arbitrum, Polygon, BNB Chain, Solana, TRON, Bitcoin 등 주요 블록체인 네트워크를 지원하며, 지원 네트워크는 계속 추가될 예정입니다.
