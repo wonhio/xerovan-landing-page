@@ -21,7 +21,7 @@ const SOL = require('./_solutions.js');
 const FACTS = require('./_facts.js');
 const REL = require('./_related.js');
 // Official profiles, listed as Organization.sameAs so the same entity is recognised across sites.
-const SAME_AS = ['https://x.com/XerovanC', 'https://www.instagram.com/xerovancard/', 'https://www.facebook.com/profile.php?id=61594055002981', 'https://t.me/xerovan_card', 'https://discord.gg/fPPMaH3kDe', 'https://www.crunchbase.com/organization/xerovan'];
+const SAME_AS = ['https://x.com/XerovanC', 'https://www.instagram.com/xerovancard/', 'https://www.facebook.com/profile.php?id=61594055002981', 'https://t.me/xerovan', 'https://discord.gg/fPPMaH3kDe', 'https://www.crunchbase.com/organization/xerovan'];
 // Wikidata items for the concepts these pages document, so an assistant can resolve
 // "stablecoin" or "Visa" to a known entity instead of guessing. Each Q-id was looked up
 // and confirmed against wikidata.org — do not add one without checking it.
@@ -838,7 +838,7 @@ function factsView(lang) {
       ${rows.map(([k, v]) => `<tr><th scope="row">${esc(k)}</th><td>${esc(v)}</td></tr>`).join('')}
     </tbody></table></div></section>`).join('');
   const links = [['Website', `${SITE}/${lang}/`], ['X', 'https://x.com/XerovanC'], ['Instagram', 'https://www.instagram.com/xerovancard/'],
-    ['Telegram', 'https://t.me/xerovan_card'], ['Discord', 'https://discord.gg/fPPMaH3kDe'], ['Crunchbase', 'https://www.crunchbase.com/organization/xerovan']];
+    ['Telegram', 'https://t.me/xerovan'], ['Telegram support', 'https://t.me/xerovan_card'], ['Discord', 'https://discord.gg/fPPMaH3kDe'], ['Crunchbase', 'https://www.crunchbase.com/organization/xerovan']];
   return `
   <section class="blog-hero sol-hero"><div class="wrap">
     <div class="crumb" style="font-family:var(--f-mono);font-size:12px;color:var(--text-dim);margin-bottom:26px"><a href="/${lang}/">${esc(t.home)}</a> / ${esc(U.eyebrow)}</div>

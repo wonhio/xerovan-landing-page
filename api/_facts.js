@@ -281,6 +281,7 @@ const FAQ = {
     ['Which blockchains can fund a payment?', 'Ethereum, Base, Arbitrum, Polygon, BNB Chain, Solana, TRON and Bitcoin.'],
     ['Is identity verification required?', 'Yes for card issuance and other regulated services. External wallet connectivity may be available without it in supported scenarios.'],
     ['Where can the card be used?', 'Anywhere Visa is accepted, including Apple Pay and Google Pay. Card issuance depends on your country of residence.'],
+    ['How do I know a Xerovan account on Telegram is real?', 'Official accounts are the channel @xerovan and the support account @xerovan_card, both listed on this page. Xerovan staff never message you first and never ask for your seed phrase, private key or password.'],
   ],
   kr: [
     ['제로반은 은행인가요?', '아닙니다. 제로반은 기술 플랫폼이며, 카드·결제 서비스는 라이선스를 보유한 파트너사가 제공합니다. 이용 가능 여부는 국가별로 다릅니다.'],
@@ -289,6 +290,7 @@ const FAQ = {
     ['어떤 블록체인으로 결제할 수 있나요?', '이더리움, Base, Arbitrum, Polygon, BNB Chain, 솔라나, 트론, 비트코인입니다.'],
     ['본인 인증이 필요한가요?', '카드 발급 및 규제 대상 서비스에는 필요합니다. 외부 지갑 연결은 지원되는 경우 본인 인증 없이 이용할 수 있습니다.'],
     ['카드는 어디서 쓸 수 있나요?', 'Visa를 받는 곳이라면 어디서나 사용할 수 있고 애플페이·구글페이도 지원합니다. 카드 발급 여부는 거주 국가에 따라 다릅니다.'],
+    ['텔레그램의 제로반 계정이 진짜인지 어떻게 알 수 있나요?', '공식 계정은 채널 @xerovan과 고객지원 계정 @xerovan_card이며, 이 페이지에 모두 안내되어 있습니다. 제로반 직원은 먼저 메시지를 보내지 않으며, 시드 문구·개인 키·비밀번호를 절대 묻지 않습니다.'],
   ],
   ja: [
     ['Xerovanは銀行ですか?', 'いいえ。Xerovanは技術プラットフォームです。カード・決済サービスはライセンスを持つパートナーが提供し、利用可否は国によって異なります。'],
@@ -297,6 +299,7 @@ const FAQ = {
     ['どのブロックチェーンで支払えますか?', 'Ethereum、Base、Arbitrum、Polygon、BNB Chain、Solana、TRON、Bitcoinです。'],
     ['本人確認は必要ですか?', 'カード発行および規制対象サービスには必要です。外部ウォレットの接続は、対応する場合は本人確認なしで利用できることがあります。'],
     ['カードはどこで使えますか?', 'Visaが使える場所ならどこでも利用でき、Apple PayとGoogle Payにも対応します。カードの発行可否は居住国によって異なります。'],
+    ['TelegramのXerovanアカウントが本物か確認するには?', '公式アカウントはチャンネル @xerovan とサポートアカウント @xerovan_card で、どちらもこのページに掲載しています。Xerovanのスタッフから先にメッセージを送ることはなく、シードフレーズ・秘密鍵・パスワードを尋ねることもありません。'],
   ],
   es: [
     ['¿Xerovan es un banco?', 'No. Xerovan es una plataforma tecnológica. Los servicios de tarjeta y pago los prestan socios con licencia, y la disponibilidad varía según el país.'],
@@ -305,6 +308,7 @@ const FAQ = {
     ['¿Qué blockchains pueden cubrir un pago?', 'Ethereum, Base, Arbitrum, Polygon, BNB Chain, Solana, TRON y Bitcoin.'],
     ['¿Hace falta verificación de identidad?', 'Sí para la emisión de tarjetas y otros servicios regulados. La conexión de wallets externas puede estar disponible sin ella en los casos admitidos.'],
     ['¿Dónde se puede usar la tarjeta?', 'Donde se acepte Visa, incluidos Apple Pay y Google Pay. La emisión de la tarjeta depende de tu país de residencia.'],
+    ['¿Cómo sé si una cuenta de Xerovan en Telegram es real?', 'Las cuentas oficiales son el canal @xerovan y la cuenta de soporte @xerovan_card, ambas indicadas en esta página. El equipo de Xerovan nunca te escribe primero ni te pide tu frase semilla, clave privada o contraseña.'],
   ],
   ar: [
     ['هل Xerovan بنك؟', 'لا. ‏Xerovan منصة تقنية. تُقدَّم خدمات البطاقات والدفع من خلال شركاء مرخّصين، ويختلف التوفر من بلد لآخر.'],
@@ -313,6 +317,7 @@ const FAQ = {
     ['ما الشبكات التي يمكنها تمويل الدفع؟', 'Ethereum وBase وArbitrum وPolygon وBNB Chain وSolana وTRON وBitcoin.'],
     ['هل التحقق من الهوية مطلوب؟', 'نعم لإصدار البطاقات والخدمات الخاضعة للتنظيم. وقد يتاح ربط المحافظ الخارجية دون ذلك في الحالات المدعومة.'],
     ['أين يمكن استخدام البطاقة؟', 'أينما تُقبل Visa، بما في ذلك Apple Pay وGoogle Pay. ويعتمد إصدار البطاقة على بلد إقامتك.'],
+    ['كيف أعرف أن حساب Xerovan على Telegram حقيقي؟', 'الحسابات الرسمية هي القناة \u200e@xerovan وحساب الدعم \u200e@xerovan_card، وكلاهما مذكور في هذه الصفحة. لا يراسلك فريق Xerovan أولًا أبدًا، ولا يطلب عبارة الاسترداد أو المفتاح الخاص أو كلمة المرور.'],
   ],
   pt: [
     ['A Xerovan é um banco?', 'Não. A Xerovan é uma plataforma de tecnologia. Os serviços de cartão e pagamento são prestados por parceiros licenciados, e a disponibilidade varia por país.'],
@@ -321,6 +326,7 @@ const FAQ = {
     ['Quais blockchains podem cobrir um pagamento?', 'Ethereum, Base, Arbitrum, Polygon, BNB Chain, Solana, TRON e Bitcoin.'],
     ['É preciso verificar a identidade?', 'Sim para a emissão de cartões e outros serviços regulados. A conexão de carteiras externas pode estar disponível sem isso nos casos suportados.'],
     ['Onde o cartão pode ser usado?', 'Onde a Visa for aceita, incluindo Apple Pay e Google Pay. A emissão do cartão depende do seu país de residência.'],
+    ['Como sei se uma conta da Xerovan no Telegram é verdadeira?', 'As contas oficiais são o canal @xerovan e a conta de suporte @xerovan_card, ambas listadas nesta página. A equipe da Xerovan nunca envia mensagem primeiro e nunca pede sua frase-semente, chave privada ou senha.'],
   ],
 };
 

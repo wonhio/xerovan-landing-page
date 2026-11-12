@@ -99,6 +99,7 @@ The complete text of the main pages (features, FAQ and all solution pages, in En
 - [Blog sitemap](https://www.xerovan.com/blog-sitemap.xml)
 - [X (Twitter)](https://x.com/XerovanC)
 - [Instagram](https://www.instagram.com/xerovancard/)
-- [Telegram](https://t.me/xerovan_card)
+- [Telegram channel](https://t.me/xerovan): official announcements
+- [Telegram support](https://t.me/xerovan_card): one-to-one support. Xerovan staff never message first and never ask for a seed phrase or password
 - [Crunchbase](https://www.crunchbase.com/organization/xerovan)
 - [Discord (developers: API docs, integration support)](https://discord.gg/fPPMaH3kDe)
