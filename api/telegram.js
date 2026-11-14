@@ -184,6 +184,25 @@ async function setup() {
 // Manual check without posting: add &dry=1 (and optionally &date=YYYY-MM-DD) with the same header;
 // it also reports whether the bot is an admin of the channel that can post.
 const CHANNEL_ID = '@xerovan';
+
+// Mirror each channel post to the Xerovan Discord channel via webhook (env DISCORD_WEBHOOK_URL). Skipped when unset.
+const toDiscord = (h) => h
+  .replace(/<b>([\s\S]*?)<\/b>/g, '**$1**')
+  .replace(/<i>([\s\S]*?)<\/i>/g, '*$1*')
+  .replace(/<a href="([^"]+)">([\s\S]*?)<\/a>/g, (m, u, t) => `[${t}](${u})`)
+  .replace(/<[^>]+>/g, '')
+  .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&amp;/g, '&')
+  .replace(/utm_source=telegram/g, 'utm_source=discord');
+async function discord(text) {
+  const url = process.env.DISCORD_WEBHOOK_URL;
+  if (!url) return { ok: false, skipped: true };
+  const r = await fetch(`${url}?wait=true`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ content: toDiscord(text).slice(0, 2000), allowed_mentions: { parse: [] } }),
+  });
+  return { ok: r.ok, error: r.ok ? undefined : `HTTP ${r.status}` };
+}
 async function cron(params) {
   const date = (params.get('dry') && params.get('date')) || new Date().toISOString().slice(0, 10);
   const posts = require('./_tg_schedule.js').filter((p) => p.date === date);
@@ -191,13 +210,16 @@ async function cron(params) {
     const me = await call('getMe');
     const m = me.ok ? await call('getChatMember', { chat_id: CHANNEL_ID, user_id: me.result.id }) : me;
     return { date, posts: posts.map((p) => p.id), bot_status: m.ok ? m.result.status : m.description,
-      can_post: !!(m.ok && (m.result.status === 'creator' || m.result.can_post_messages)) };
+      can_post: !!(m.ok && (m.result.status === 'creator' || m.result.can_post_messages)),
+      discord: process.env.DISCORD_WEBHOOK_URL ? (await fetch(process.env.DISCORD_WEBHOOK_URL)).ok : 'not configured' };
   }
   const sent = [];
   for (const p of posts) {
     const r = await call('sendMessage', { chat_id: CHANNEL_ID, text: p.text, parse_mode: 'HTML' });
-    sent.push({ id: p.id, ok: r.ok, error: r.ok ? undefined : r.description });
+    const d = await discord(p.text).catch((e) => ({ ok: false, error: e.message }));
+    sent.push({ id: p.id, ok: r.ok, error: r.ok ? undefined : r.description, discord: d.skipped ? 'skipped' : d.ok || d.error });
     if (!r.ok) console.error('channel post failed', p.id, r.description);
+    if (!d.ok && !d.skipped) console.error('discord post failed', p.id, d.error);
   }
   return { date, sent };
 }
@@ -221,4 +243,4 @@ module.exports = async (req, res) => {
   res.status(200).end('ok'); // always 200 so Telegram doesn't retry a bad update forever
 };
 
-module.exports._test = { handle, langOf, cleanRef, looksLikeSeed, T };
+module.exports._test = { handle, langOf, cleanRef, looksLikeSeed, T, toDiscord };
