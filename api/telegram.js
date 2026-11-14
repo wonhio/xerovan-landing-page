@@ -193,6 +193,30 @@ const toDiscord = (h) => h
   .replace(/<[^>]+>/g, '')
   .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&amp;/g, '&')
   .replace(/utm_source=telegram/g, 'utm_source=discord');
+// Post to X (@XerovanC) with OAuth 1.0a user context (env X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_TOKEN_SECRET).
+const xEnc = (v) => encodeURIComponent(v).replace(/[!'()*]/g, (c) => `%${c.charCodeAt(0).toString(16).toUpperCase()}`);
+const xReady = () => ['X_API_KEY', 'X_API_SECRET', 'X_ACCESS_TOKEN', 'X_ACCESS_TOKEN_SECRET'].every((k) => process.env[k]);
+async function xRequest(method, url, body) {
+  const e = process.env;
+  const o = { oauth_consumer_key: e.X_API_KEY, oauth_nonce: require('crypto').randomBytes(16).toString('hex'), oauth_signature_method: 'HMAC-SHA1',
+    oauth_timestamp: String(Math.floor(Date.now() / 1000)), oauth_token: e.X_ACCESS_TOKEN, oauth_version: '1.0' };
+  const u = new URL(url);
+  const params = { ...Object.fromEntries(u.searchParams), ...o };
+  const base = [method, xEnc(`${u.origin}${u.pathname}`), xEnc(Object.keys(params).sort().map((k) => `${xEnc(k)}=${xEnc(params[k])}`).join('&'))].join('&');
+  o.oauth_signature = require('crypto').createHmac('sha1', `${xEnc(e.X_API_SECRET)}&${xEnc(e.X_ACCESS_TOKEN_SECRET)}`).update(base).digest('base64');
+  const headers = { authorization: `OAuth ${Object.keys(o).sort().map((k) => `${xEnc(k)}="${xEnc(o[k])}"`).join(', ')}` };
+  if (body) headers['content-type'] = 'application/json';
+  const r = await fetch(url, { method, headers, body: body ? JSON.stringify(body) : undefined });
+  const j = await r.json().catch(() => ({}));
+  return { ok: r.ok, status: r.status, data: j.data, error: r.ok ? undefined : `HTTP ${r.status} ${j.detail || j.title || ''}`.trim() };
+}
+async function xPost(text) {
+  if (!text) return { skipped: true };
+  if (!xReady()) return { skipped: true };
+  const r = await xRequest('POST', 'https://api.x.com/2/tweets', { text });
+  return { ok: r.ok, id: r.data && r.data.id, error: r.error };
+}
+
 async function discord(text) {
   const url = process.env.DISCORD_WEBHOOK_URL;
   if (!url) return { ok: false, skipped: true };
@@ -211,15 +235,18 @@ async function cron(params) {
     const m = me.ok ? await call('getChatMember', { chat_id: CHANNEL_ID, user_id: me.result.id }) : me;
     return { date, posts: posts.map((p) => p.id), bot_status: m.ok ? m.result.status : m.description,
       can_post: !!(m.ok && (m.result.status === 'creator' || m.result.can_post_messages)),
-      discord: process.env.DISCORD_WEBHOOK_URL ? (await fetch(process.env.DISCORD_WEBHOOK_URL)).ok : 'not configured' };
+      discord: process.env.DISCORD_WEBHOOK_URL ? (await fetch(process.env.DISCORD_WEBHOOK_URL)).ok : 'not configured',
+      x: xReady() ? 'configured' : 'not configured', x_posts: posts.filter((p) => p.x).map((p) => p.id) };
   }
   const sent = [];
   for (const p of posts) {
     const r = await call('sendMessage', { chat_id: CHANNEL_ID, text: p.text, parse_mode: 'HTML' });
     const d = await discord(p.text).catch((e) => ({ ok: false, error: e.message }));
-    sent.push({ id: p.id, ok: r.ok, error: r.ok ? undefined : r.description, discord: d.skipped ? 'skipped' : d.ok || d.error });
+    const x = await xPost(p.x).catch((e) => ({ ok: false, error: e.message }));
+    sent.push({ id: p.id, ok: r.ok, error: r.ok ? undefined : r.description, discord: d.skipped ? 'skipped' : d.ok || d.error, x: x.skipped ? 'skipped' : x.ok ? x.id : x.error });
     if (!r.ok) console.error('channel post failed', p.id, r.description);
     if (!d.ok && !d.skipped) console.error('discord post failed', p.id, d.error);
+    if (!x.ok && !x.skipped) console.error('x post failed', p.id, x.error);
   }
   return { date, sent };
 }
@@ -243,4 +270,4 @@ module.exports = async (req, res) => {
   res.status(200).end('ok'); // always 200 so Telegram doesn't retry a bad update forever
 };
 
-module.exports._test = { handle, langOf, cleanRef, looksLikeSeed, T, toDiscord };
+module.exports._test = { handle, langOf, cleanRef, looksLikeSeed, T, toDiscord, xRequest };
