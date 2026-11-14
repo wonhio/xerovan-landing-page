@@ -217,6 +217,27 @@ async function xPost(text) {
   return { ok: r.ok, id: r.data && r.data.id, error: r.error };
 }
 
+const toThreads = (text) => text.replace(/utm_source=x&utm_medium=social/g, 'utm_source=threads&utm_medium=social');
+function threadsReady() { return !!(process.env.THREADS_ACCESS_TOKEN && process.env.THREADS_USER_ID); }
+async function threadsCall(path, params) {
+  const body = new URLSearchParams({ ...params, access_token: process.env.THREADS_ACCESS_TOKEN });
+  const r = await fetch(`https://graph.threads.net/v1.0/${process.env.THREADS_USER_ID}/${path}`, { method: 'POST', body });
+  const j = await r.json().catch(() => ({}));
+  return { ok: r.ok && !!j.id, id: j.id, error: r.ok ? undefined : `HTTP ${r.status} ${(j.error && j.error.message) || ''}`.trim() };
+}
+async function threadsPost(text) {
+  if (!text || !threadsReady()) return { skipped: true };
+  const c = await threadsCall('threads', { media_type: 'TEXT', text: toThreads(text).slice(0, 500) });
+  if (!c.ok) return c;
+  let r;
+  for (let i = 0; i < 4; i++) {
+    await new Promise((ok) => setTimeout(ok, 2000));
+    r = await threadsCall('threads_publish', { creation_id: c.id });
+    if (r.ok) break;
+  }
+  return r;
+}
+
 async function discord(text) {
   const url = process.env.DISCORD_WEBHOOK_URL;
   if (!url) return { ok: false, skipped: true };
@@ -236,17 +257,19 @@ async function cron(params) {
     return { date, posts: posts.map((p) => p.id), bot_status: m.ok ? m.result.status : m.description,
       can_post: !!(m.ok && (m.result.status === 'creator' || m.result.can_post_messages)),
       discord: process.env.DISCORD_WEBHOOK_URL ? (await fetch(process.env.DISCORD_WEBHOOK_URL)).ok : 'not configured',
-      x: xReady() ? 'configured' : 'not configured', x_posts: posts.filter((p) => p.x).map((p) => p.id) };
+      x: xReady() ? 'configured' : 'not configured', threads: threadsReady() ? 'configured' : 'not configured', x_posts: posts.filter((p) => p.x).map((p) => p.id) };
   }
   const sent = [];
   for (const p of posts) {
     const r = await call('sendMessage', { chat_id: CHANNEL_ID, text: p.text, parse_mode: 'HTML' });
     const d = await discord(p.text).catch((e) => ({ ok: false, error: e.message }));
     const x = await xPost(p.x).catch((e) => ({ ok: false, error: e.message }));
-    sent.push({ id: p.id, ok: r.ok, error: r.ok ? undefined : r.description, discord: d.skipped ? 'skipped' : d.ok || d.error, x: x.skipped ? 'skipped' : x.ok ? x.id : x.error });
+    const t = await threadsPost(p.x).catch((e) => ({ ok: false, error: e.message }));
+    sent.push({ id: p.id, ok: r.ok, error: r.ok ? undefined : r.description, discord: d.skipped ? 'skipped' : d.ok || d.error, x: x.skipped ? 'skipped' : x.ok ? x.id : x.error, threads: t.skipped ? 'skipped' : t.ok ? t.id : t.error });
     if (!r.ok) console.error('channel post failed', p.id, r.description);
     if (!d.ok && !d.skipped) console.error('discord post failed', p.id, d.error);
     if (!x.ok && !x.skipped) console.error('x post failed', p.id, x.error);
+    if (!t.ok && !t.skipped) console.error('threads post failed', p.id, t.error);
   }
   return { date, sent };
 }
@@ -270,4 +293,4 @@ module.exports = async (req, res) => {
   res.status(200).end('ok'); // always 200 so Telegram doesn't retry a bad update forever
 };
 
-module.exports._test = { handle, langOf, cleanRef, looksLikeSeed, T, toDiscord, xRequest };
+module.exports._test = { handle, langOf, cleanRef, looksLikeSeed, T, toDiscord, xRequest, toThreads };
