@@ -84,3 +84,74 @@ ${U('/en/blog/stablecoin-card-payment-flow', 'g_flow')}` },
 
   { date: '2026-12-28', id: 'w7_safety', text: SAFETY },
 ];
+
+// X (@XerovanC) versions: X allows 280 characters (each link counts as 23), so each post gets its own short text.
+// X rejects identical posts, so the three safety reminders differ. No @handles: on X they would tag unrelated accounts.
+const XU = (path, c) => U(path, c).replace('utm_source=telegram&utm_medium=channel', 'utm_source=x&utm_medium=social');
+const XWL = (c) => wl(c).replace('utm_source=telegram&utm_medium=channel', 'utm_source=x&utm_medium=social');
+const X = {
+  w1_how: `Most crypto cards make you top up a balance first.
+
+Xerovan doesn't. Your assets stay in your own wallet, and each payment is funded from it at the moment you pay.
+
+How it works in 4 steps: ${XU('/en/blog/crypto-card-without-top-up', 'w1_how')}`,
+  w1_ads: `Running ads for several clients?
+
+Give each client, campaign or ad platform its own Xerovan card, with limits and receipt approvals. No more one card mixing every budget.
+
+${XU('/en/solutions/crypto-card-for-ads', 'w1_ads')}`,
+  w2_compare: `Custodial vs wallet-direct crypto cards:
+
+Custodial: your crypto sits in the provider's account until you spend it.
+Wallet-direct: funds stay in your wallet. Only each payment leaves, at checkout.
+
+${XU('/en/solutions/custodial-vs-wallet-direct-crypto-card', 'w2_compare')}`,
+  w2_chains: `Networks that can fund a Xerovan card payment:
+
+Ethereum, Base, Arbitrum, Polygon, BNB Chain, Solana, TRON, Bitcoin
+
+Yes, including USDT on TRON. You can also connect an external wallet like MetaMask.
+
+${XU('/en/facts', 'w2_chains')}`,
+  w3_safety: `Scam alert 🔐
+
+Xerovan will never DM you first, and we never ask for your seed phrase, private key or password.
+
+Our official accounts are listed here: ${XU('/en/facts', 'w3_safety')}`,
+  w3_subs: `Paying for cloud, AI tools or SaaS in USD?
+
+Give each subscription its own virtual card, set a limit, and freeze it when you cancel. No more surprise renewals.
+
+Join early access: ${XWL('w3_subs')}`,
+  g_mediabuyer: `Choosing a card for ad spend?
+
+Fees matter less than whether payments keep going through. 5 things to check, and how to test a card before you move budget:
+${XU('/en/blog/media-buyer-card-checklist', 'g_mediabuyer')}`,
+  g_usdt_networks: `Sending USDT?
+
+TRON, Ethereum and Polygon are different networks. Send on one the recipient doesn't support and the funds can be hard to recover.
+
+What to check first: ${XU('/en/blog/usdt-tron-ethereum-polygon', 'g_usdt_networks')}`,
+  w5_safety: `Reminder 🔐 If someone claiming to be Xerovan messages you first, it isn't us.
+
+Never share your seed phrase, private key or password with anyone.
+
+Official accounts: ${XU('/en/facts', 'w5_safety')}`,
+  g_declined: `Card payment declined?
+
+Before you switch cards, narrow down the cause. The 8 usual reasons, and the order to check them in:
+${XU('/en/blog/card-payment-declined-solutions', 'g_declined')}`,
+  g_kyc: `Applying for a crypto card?
+
+Identity checks come first. The documents to have ready, for individuals and for companies:
+${XU('/en/blog/crypto-card-kyc-kyb-guide', 'g_kyc')}`,
+  g_flow: `When you pay with a crypto card, does the shop receive your stablecoins?
+
+Usually not. What happens between your wallet and the merchant, step by step:
+${XU('/en/blog/stablecoin-card-payment-flow', 'g_flow')}`,
+  w7_safety: `Got a message from "Xerovan support"? 🔐
+
+We never DM first and never ask for a seed phrase, private key or password. Check who is real before you reply:
+${XU('/en/facts', 'w7_safety')}`,
+};
+module.exports.forEach((p) => { p.x = X[p.id]; });
