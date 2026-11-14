@@ -238,6 +238,26 @@ async function threadsPost(text) {
   return r;
 }
 
+function igReady() { return !!(process.env.IG_ACCESS_TOKEN && process.env.IG_USER_ID); }
+async function igCall(path, params) {
+  const body = new URLSearchParams({ ...params, access_token: process.env.IG_ACCESS_TOKEN });
+  const r = await fetch(`https://graph.facebook.com/v24.0/${process.env.IG_USER_ID}/${path}`, { method: 'POST', body });
+  const j = await r.json().catch(() => ({}));
+  return { ok: r.ok && !!j.id, id: j.id, error: r.ok ? undefined : `HTTP ${r.status} ${(j.error && j.error.message) || ''}`.trim() };
+}
+async function igPost(ig) {
+  if (!ig || !igReady()) return { skipped: true };
+  const c = await igCall('media', { image_url: ig.image, caption: ig.caption.slice(0, 2200) });
+  if (!c.ok) return c;
+  let r;
+  for (let i = 0; i < 5; i++) {
+    await new Promise((ok) => setTimeout(ok, 3000));
+    r = await igCall('media_publish', { creation_id: c.id });
+    if (r.ok) break;
+  }
+  return r;
+}
+
 async function discord(text) {
   const url = process.env.DISCORD_WEBHOOK_URL;
   if (!url) return { ok: false, skipped: true };
@@ -257,7 +277,7 @@ async function cron(params) {
     return { date, posts: posts.map((p) => p.id), bot_status: m.ok ? m.result.status : m.description,
       can_post: !!(m.ok && (m.result.status === 'creator' || m.result.can_post_messages)),
       discord: process.env.DISCORD_WEBHOOK_URL ? (await fetch(process.env.DISCORD_WEBHOOK_URL)).ok : 'not configured',
-      x: xReady() ? 'configured' : 'not configured', threads: threadsReady() ? 'configured' : 'not configured', x_posts: posts.filter((p) => p.x).map((p) => p.id) };
+      x: xReady() ? 'configured' : 'not configured', threads: threadsReady() ? 'configured' : 'not configured', instagram: igReady() ? 'configured' : 'not configured', x_posts: posts.filter((p) => p.x).map((p) => p.id) };
   }
   const sent = [];
   for (const p of posts) {
@@ -265,11 +285,13 @@ async function cron(params) {
     const d = await discord(p.text).catch((e) => ({ ok: false, error: e.message }));
     const x = await xPost(p.x).catch((e) => ({ ok: false, error: e.message }));
     const t = await threadsPost(p.x).catch((e) => ({ ok: false, error: e.message }));
-    sent.push({ id: p.id, ok: r.ok, error: r.ok ? undefined : r.description, discord: d.skipped ? 'skipped' : d.ok || d.error, x: x.skipped ? 'skipped' : x.ok ? x.id : x.error, threads: t.skipped ? 'skipped' : t.ok ? t.id : t.error });
+    const g = await igPost(p.ig).catch((e) => ({ ok: false, error: e.message }));
+    sent.push({ id: p.id, ok: r.ok, error: r.ok ? undefined : r.description, discord: d.skipped ? 'skipped' : d.ok || d.error, x: x.skipped ? 'skipped' : x.ok ? x.id : x.error, threads: t.skipped ? 'skipped' : t.ok ? t.id : t.error, instagram: g.skipped ? 'skipped' : g.ok ? g.id : g.error });
     if (!r.ok) console.error('channel post failed', p.id, r.description);
     if (!d.ok && !d.skipped) console.error('discord post failed', p.id, d.error);
     if (!x.ok && !x.skipped) console.error('x post failed', p.id, x.error);
     if (!t.ok && !t.skipped) console.error('threads post failed', p.id, t.error);
+    if (!g.ok && !g.skipped) console.error('instagram post failed', p.id, g.error);
   }
   return { date, sent };
 }

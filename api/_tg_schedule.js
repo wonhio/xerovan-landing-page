@@ -154,4 +154,24 @@ ${XU('/en/blog/stablecoin-card-payment-flow', 'g_flow')}`,
 We never DM first and never ask for a seed phrase, private key or password. Check who is real before you reply:
 ${XU('/en/facts', 'w7_safety')}`,
 };
-module.exports.forEach((p) => { p.x = X[p.id]; });
+// Instagram card copy (taken from the X text above; no new claims).
+const IG = {
+  w1_how: { tag: 'How it works', title: 'No top-up. Pay straight from your wallet.', sub: 'Your assets stay in your own wallet. Each payment is funded at the moment you pay.' },
+  w1_ads: { tag: 'For media buyers', title: 'One card per client, campaign or platform.', sub: 'Limits and receipt approvals on each card. No more one card mixing every budget.' },
+  w2_compare: { tag: 'Explained', title: 'Custodial vs wallet-direct crypto cards', sub: 'Custodial: your crypto sits with the provider. Wallet-direct: only each payment leaves, at checkout.' },
+  w2_chains: { tag: 'Supported networks', title: 'Ethereum, Base, Arbitrum, Polygon, BNB Chain, Solana, TRON, Bitcoin', sub: 'Including USDT on TRON. Connect an external wallet like MetaMask.' },
+  w3_safety: { tag: 'Scam alert', title: 'Xerovan will never DM you first.', sub: 'We never ask for your seed phrase, private key or password.' },
+  w3_subs: { tag: 'Subscriptions', title: 'A virtual card for every subscription.', sub: 'Set a limit. Freeze it when you cancel. No more surprise renewals.' },
+  g_mediabuyer: { tag: 'Guide', title: 'Choosing a card for ad spend?', sub: '5 things to check, and how to test a card before you move budget.' },
+  g_usdt_networks: { tag: 'Guide', title: 'Sending USDT? Check the network first.', sub: 'TRON, Ethereum and Polygon are different networks. The wrong one can make funds hard to recover.' },
+  w5_safety: { tag: 'Reminder', title: 'If “Xerovan” messages you first, it isn’t us.', sub: 'Never share your seed phrase, private key or password with anyone.' },
+  g_declined: { tag: 'Guide', title: 'Card payment declined?', sub: 'The 8 usual reasons, and the order to check them in.' },
+  g_kyc: { tag: 'Guide', title: 'Applying for a crypto card?', sub: 'The documents to have ready, for individuals and for companies.' },
+  g_flow: { tag: 'Explained', title: 'Does the shop receive your stablecoins?', sub: 'Usually not. What happens between your wallet and the merchant.' },
+  w7_safety: { tag: 'Safety', title: 'Got a message from “Xerovan support”?', sub: 'We never DM first and never ask for a seed phrase, private key or password.' },
+};
+const igCaption = (x) => `${x.replace(/utm_source=x&utm_medium=social/g, 'utm_source=instagram&utm_medium=social')}\n\nLink in bio.`;
+module.exports.forEach((p) => {
+  p.x = X[p.id];
+  if (IG[p.id]) p.ig = { card: IG[p.id], caption: igCaption(p.x), image: `https://www.xerovan.com/images/social/ig/${p.id}.jpg` };
+});
