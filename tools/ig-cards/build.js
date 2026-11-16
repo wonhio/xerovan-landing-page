@@ -22,7 +22,7 @@ body:before{content:'';position:absolute;inset:0;background-image:linear-gradien
 .top img{height:120px}
 .pill{display:flex;align-items:center;gap:14px;font-size:26px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#7fe0d4;border:1px solid #2f5c57;background:#0f1f1d;padding:14px 26px;border-radius:999px}
 .pill i{width:12px;height:12px;border-radius:50%;background:#7fe0d4;box-shadow:0 0 18px #7fe0d4}
-.stat{margin-top:120px;font-size:${big}px;line-height:.95;font-weight:800;letter-spacing:-.045em;background:linear-gradient(100deg,#ffffff 0%,#bff3ec 45%,#58d1c2 100%);-webkit-background-clip:text;color:transparent;position:relative}
+.stat{display:inline-block;align-self:flex-start;margin-top:120px;font-size:${big}px;line-height:.95;font-weight:800;letter-spacing:-.045em;background:linear-gradient(100deg,#ffffff 0%,#bff3ec 45%,#58d1c2 100%);-webkit-background-clip:text;color:transparent;position:relative}
 .label{margin-top:34px;font-size:54px;line-height:1.18;font-weight:600;letter-spacing:-.015em;max-width:880px;position:relative}
 ul{list-style:none;margin-top:64px;padding-top:44px;border-top:1px solid #262a31;position:relative}
 li{display:flex;gap:24px;align-items:flex-start;font-size:36px;line-height:1.35;color:#c3c6cd;margin-bottom:26px}
