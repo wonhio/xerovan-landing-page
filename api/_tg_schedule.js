@@ -21,6 +21,30 @@ Xerovan doesn't. Your assets stay in your own wallet, and each payment is funded
 How it works in 4 steps 👇
 ${U('/en/blog/crypto-card-without-top-up', 'w1_how')}` },
 
+  { date: '2026-11-17', id: 'news_visa_programs', text: `<b>📰 Industry news</b>
+
+Visa now has more than 225 stablecoin-linked card programs live worldwide. Its stablecoin settlement is running above $25B a year, about 10x a year earlier (Visa's Oct 27 earnings call).
+
+Stablecoin cards are becoming everyday payments infrastructure.
+
+Our take: the card should pay from your own wallet, not from a balance you top up first. How Xerovan does it 👇
+${U('/en/blog/crypto-card-without-top-up', 'news_visa_programs')}
+
+<i>Sources: The Block (Nov 10), crypto.news (Nov 12)</i>` },
+
+  { date: '2026-11-18', id: 'news_card_volume', text: `<b>📊 By the numbers</b>
+
+Stablecoin card volume tracked by Paymentscan reached about $1.37B in October 2026, across roughly 12.9M transactions.
+
+Worth knowing: the figure mixes on-chain data with some issuer-reported data, and a card top-up isn't the same as a purchase.
+
+The direction is still clear. People want to spend stablecoins like money.
+
+With Xerovan you do that straight from your own wallet. What happens at checkout 👇
+${U('/en/blog/stablecoin-card-payment-flow', 'news_card_volume')}
+
+<i>Source: crypto.news (Nov 3)</i>` },
+
   { date: '2026-11-19', id: 'w1_ads', text: `Running ads for several clients?
 
 One card for every client mixes budgets. Top-up cards add a deposit step, and often a top-up fee, before every campaign.
@@ -28,6 +52,18 @@ One card for every client mixes budgets. Top-up cards add a deposit step, and of
 With Xerovan you can give each client, campaign or ad platform its own card, with limits and receipt approvals.
 
 👉 ${U('/en/solutions/crypto-card-for-ads', 'w1_ads')}` },
+
+  { date: '2026-11-20', id: 'news_usdpt', text: `<b>📰 Industry news</b>
+
+Visa has added Western Union's USDPT stablecoin as a settlement asset on VisaNet, in partnership with Anchorage Digital, which issues it. Eligible partners can use it to settle VisaNet obligations.
+
+One more global payments brand moving money on stablecoin rails.
+
+For you the question is simpler: can you spend your USDT/USDC directly? With Xerovan, each card payment is funded from your own wallet at checkout.
+
+Join early access 👉 ${wl('news_usdpt')}
+
+<i>Source: crypto.news (Nov 12)</i>` },
 
   { date: '2026-11-23', id: 'w2_compare', text: `Custodial vs wallet-direct crypto cards: what's the difference?
 
@@ -90,6 +126,21 @@ ${U('/en/blog/stablecoin-card-payment-flow', 'g_flow')}` },
 const XU = (path, c) => U(path, c).replace('utm_source=telegram&utm_medium=channel', 'utm_source=x&utm_medium=social');
 const XWL = (c) => wl(c).replace('utm_source=telegram&utm_medium=channel', 'utm_source=x&utm_medium=social');
 const X = {
+  news_visa_programs: `Visa now has 225+ stablecoin-linked card programs live, and stablecoin settlement running above $25B a year.
+
+Our take: a stablecoin card should pay from your own wallet, not from a balance you top up first.
+
+${XU('/en/blog/crypto-card-without-top-up', 'news_visa_programs')}`,
+  news_card_volume: `Stablecoin card volume tracked by Paymentscan hit ~$1.37B in October, across ~12.9M transactions (incl. some issuer-reported data).
+
+People want to spend stablecoins like money. Xerovan pays straight from your own wallet.
+
+${XU('/en/blog/stablecoin-card-payment-flow', 'news_card_volume')}`,
+  news_usdpt: `Visa added Western Union's USDPT stablecoin as a settlement asset on VisaNet, with issuer Anchorage Digital.
+
+Big payment brands keep moving to stablecoin rails. With Xerovan, your USDT/USDC pays by card straight from your own wallet.
+
+${XWL('news_usdpt')}`,
   w1_how: `Most crypto cards make you top up a balance first.
 
 Xerovan doesn't. Your assets stay in your own wallet, and each payment is funded from it at the moment you pay.
@@ -156,6 +207,9 @@ ${XU('/en/facts', 'w7_safety')}`,
 };
 // Instagram card copy (taken from the X text above; no new claims).
 const IG = {
+  news_visa_programs: { news: true, tag: 'Industry news', stat: '225+', statLabel: 'stablecoin-linked card programs are live on Visa worldwide', points: ['Stablecoin settlement running above $25B a year', 'About 10x the level of a year earlier'], source: 'Visa, via The Block and crypto.news · Nov 2026' },
+  news_card_volume: { news: true, tag: 'By the numbers', stat: '$1.37B', statLabel: 'stablecoin card volume tracked in October 2026', points: ['About 12.9M card transactions', 'Includes some issuer-reported data'], source: 'Paymentscan, via crypto.news · Nov 3, 2026' },
+  news_usdpt: { news: true, tag: 'Industry news', stat: 'USDPT', statLabel: 'Western Union’s stablecoin is now a settlement asset on VisaNet', points: ['Issued by Anchorage Digital', 'Eligible partners can settle VisaNet obligations with it'], source: 'crypto.news · Nov 12, 2026' },
   w1_how: { tag: 'How it works', title: 'No top-up. Pay straight from your wallet.', sub: 'Your assets stay in your own wallet. Each payment is funded at the moment you pay.' },
   w1_ads: { tag: 'For media buyers', title: 'One card per client, campaign or platform.', sub: 'Limits and receipt approvals on each card. No more one card mixing every budget.' },
   w2_compare: { tag: 'Explained', title: 'Custodial vs wallet-direct crypto cards', sub: 'Custodial: your crypto sits with the provider. Wallet-direct: only each payment leaves, at checkout.' },
@@ -174,4 +228,6 @@ const igCaption = (x) => `${x.replace(/utm_source=x&utm_medium=social/g, 'utm_so
 module.exports.forEach((p) => {
   p.x = X[p.id];
   if (IG[p.id]) p.ig = { card: IG[p.id], caption: igCaption(p.x), image: `https://www.xerovan.com/images/social/ig/${p.id}.jpg` };
+  // News cards also go out as images on Telegram, Discord and Threads.
+  if (IG[p.id] && IG[p.id].news) p.photo = p.ig.image;
 });
