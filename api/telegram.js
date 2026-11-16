@@ -225,9 +225,11 @@ async function threadsCall(path, params) {
   const j = await r.json().catch(() => ({}));
   return { ok: r.ok && !!j.id, id: j.id, error: r.ok ? undefined : `HTTP ${r.status} ${(j.error && j.error.message) || ''}`.trim() };
 }
-async function threadsPost(text) {
+async function threadsPost(text, photo) {
   if (!text || !threadsReady()) return { skipped: true };
-  const c = await threadsCall('threads', { media_type: 'TEXT', text: toThreads(text).slice(0, 500) });
+  const c = await threadsCall('threads', photo
+    ? { media_type: 'IMAGE', image_url: photo, text: toThreads(text).slice(0, 500) }
+    : { media_type: 'TEXT', text: toThreads(text).slice(0, 500) });
   if (!c.ok) return c;
   let r;
   for (let i = 0; i < 4; i++) {
@@ -258,13 +260,13 @@ async function igPost(ig) {
   return r;
 }
 
-async function discord(text) {
+async function discord(text, photo) {
   const url = process.env.DISCORD_WEBHOOK_URL;
   if (!url) return { ok: false, skipped: true };
   const r = await fetch(`${url}?wait=true`, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ content: toDiscord(text).slice(0, 2000), allowed_mentions: { parse: [] } }),
+    body: JSON.stringify({ content: toDiscord(text).slice(0, 2000), allowed_mentions: { parse: [] }, ...(photo ? { embeds: [{ image: { url: photo } }] } : {}) }),
   });
   return { ok: r.ok, error: r.ok ? undefined : `HTTP ${r.status}` };
 }
@@ -281,10 +283,13 @@ async function cron(params) {
   }
   const sent = [];
   for (const p of posts) {
-    const r = await call('sendMessage', { chat_id: CHANNEL_ID, text: p.text, parse_mode: 'HTML' });
-    const d = await discord(p.text).catch((e) => ({ ok: false, error: e.message }));
+    // Posts with a photo (news cards) go out as an image with the text as caption (Telegram caption limit: 1024).
+    const r = p.photo
+      ? await call('sendPhoto', { chat_id: CHANNEL_ID, photo: p.photo, caption: p.text, parse_mode: 'HTML' })
+      : await call('sendMessage', { chat_id: CHANNEL_ID, text: p.text, parse_mode: 'HTML' });
+    const d = await discord(p.text, p.photo).catch((e) => ({ ok: false, error: e.message }));
     const x = await xPost(p.x).catch((e) => ({ ok: false, error: e.message }));
-    const t = await threadsPost(p.x).catch((e) => ({ ok: false, error: e.message }));
+    const t = await threadsPost(p.x, p.photo).catch((e) => ({ ok: false, error: e.message }));
     const g = await igPost(p.ig).catch((e) => ({ ok: false, error: e.message }));
     sent.push({ id: p.id, ok: r.ok, error: r.ok ? undefined : r.description, discord: d.skipped ? 'skipped' : d.ok || d.error, x: x.skipped ? 'skipped' : x.ok ? x.id : x.error, threads: t.skipped ? 'skipped' : t.ok ? t.id : t.error, instagram: g.skipped ? 'skipped' : g.ok ? g.id : g.error });
     if (!r.ok) console.error('channel post failed', p.id, r.description);
