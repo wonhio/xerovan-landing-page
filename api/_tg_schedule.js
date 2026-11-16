@@ -65,6 +65,29 @@ Join early access 👉 ${wl('news_usdpt')}
 
 <i>Source: crypto.news (Nov 12)</i>` },
 
+  { date: '2026-11-21', id: 'news_supply', text: `<b>📊 By the numbers</b>
+
+Total stablecoin supply stood at about $284.9B on Nov 16 (DeFiLlama). USDT was about $175.3B and USDC about $69.3B, together roughly 86% of the market.
+
+Supply dipped $4.15B in the week to Nov 15, but the picture is the same: for most people, "stablecoin" means USDT or USDC.
+
+Xerovan cards pay with both, straight from your own wallet 👇
+${U('/en/facts', 'news_supply')}
+
+<i>Sources: DeFiLlama, Lookonchain, via TronWeekly (Nov 16)</i>` },
+
+  { date: '2026-11-22', id: 'news_hk_bill', text: `<b>📰 Asia regulation</b>
+
+Hong Kong will introduce a bill before the end of 2026 to license four more digital-asset activities: dealing, advising, asset management and custody, Financial Secretary Paul Chan said on Nov 16.
+
+On stablecoins, the bar is high: only 2 of 36 applicants received an issuer license in the first round.
+
+Rules for stablecoins are taking shape across Asia. We'll keep tracking what changes for people who hold and spend them.
+
+Get Xerovan updates 👉 ${wl('news_hk_bill')}
+
+<i>Source: crypto.news (Nov 16)</i>` },
+
   { date: '2026-11-23', id: 'w2_compare', text: `Custodial vs wallet-direct crypto cards: what's the difference?
 
 <b>Custodial:</b> you move crypto to the provider. The balance sits in their account until you spend it.
@@ -72,6 +95,28 @@ Join early access 👉 ${wl('news_usdpt')}
 
 Side-by-side comparison 👇
 ${U('/en/solutions/custodial-vs-wallet-direct-crypto-card', 'w2_compare')}` },
+
+  { date: '2026-11-24', id: 'news_tron_usdt', text: `<b>📊 By the numbers</b>
+
+Stablecoins on TRON reached about $94.2B on Nov 9. USDT makes up about $92.2B of that, nearly 98%.
+
+TRON is where much of the world's USDT lives, especially for everyday transfers.
+
+Xerovan supports USDT on TRON, so you can pay by card straight from that balance in your own wallet 👇
+${U('/en/blog/usdt-tron-ethereum-polygon', 'news_tron_usdt')}
+
+<i>Source: Crypto Briefing (Nov 9)</i>` },
+
+  { date: '2026-11-25', id: 'news_bvnk_payouts', text: `<b>📰 Industry news</b>
+
+BVNK launched bank payouts funded from stablecoin balances, delivered through Mastercard Move. It covers 11 currencies at launch, including KRW, PHP, BRL and MXN, with more than 40 planned for 2027.
+
+The gap between stablecoins and everyday money keeps shrinking.
+
+Xerovan closes it at the checkout: your card payment is funded from the USDT/USDC in your own wallet, the moment you pay 👇
+${U('/en/blog/stablecoin-card-payment-flow', 'news_bvnk_payouts')}
+
+<i>Sources: BVNK announcement (Nov 11), via The Paypers and UPay</i>` },
 
   { date: '2026-11-26', id: 'w2_chains', text: `Which networks can fund a Xerovan card payment?
 
@@ -126,6 +171,27 @@ ${U('/en/blog/stablecoin-card-payment-flow', 'g_flow')}` },
 const XU = (path, c) => U(path, c).replace('utm_source=telegram&utm_medium=channel', 'utm_source=x&utm_medium=social');
 const XWL = (c) => wl(c).replace('utm_source=telegram&utm_medium=channel', 'utm_source=x&utm_medium=social');
 const X = {
+  news_supply: `Stablecoin supply: ~$284.9B (DeFiLlama, Nov 16).
+USDT ~$175.3B + USDC ~$69.3B = about 86% of the market.
+
+For most people, "stablecoin" means USDT or USDC. Xerovan cards pay with both, straight from your own wallet.
+
+${XU('/en/facts', 'news_supply')}`,
+  news_hk_bill: `Hong Kong will introduce a bill before end-2026 to license digital-asset dealing, advising, asset management and custody (Paul Chan, Nov 16).
+
+Stablecoin issuers face a high bar: 2 of 36 applicants licensed in round one.
+
+${XWL('news_hk_bill')}`,
+  news_tron_usdt: `Stablecoins on TRON: ~$94.2B (Nov 9). USDT is ~$92.2B of it, nearly 98%.
+
+Xerovan supports USDT on TRON, so you can pay by card straight from that balance in your own wallet.
+
+${XU('/en/blog/usdt-tron-ethereum-polygon', 'news_tron_usdt')}`,
+  news_bvnk_payouts: `BVNK launched stablecoin-funded bank payouts via Mastercard Move: 11 currencies at launch incl. KRW, PHP, BRL, MXN. 40+ planned for 2027.
+
+Xerovan does it at checkout: your card pays from the USDT/USDC in your own wallet.
+
+${XU('/en/blog/stablecoin-card-payment-flow', 'news_bvnk_payouts')}`,
   news_visa_programs: `Visa now has 225+ stablecoin-linked card programs live, and stablecoin settlement running above $25B a year.
 
 Our take: a stablecoin card should pay from your own wallet, not from a balance you top up first.
@@ -207,6 +273,10 @@ ${XU('/en/facts', 'w7_safety')}`,
 };
 // Instagram card copy (taken from the X text above; no new claims).
 const IG = {
+  news_supply: { news: true, tag: 'By the numbers', stat: '86%', statLabel: 'of all stablecoins are USDT or USDC', points: ['Total supply about $284.9B (Nov 16)', 'USDT ~$175.3B · USDC ~$69.3B'], source: 'DeFiLlama, Lookonchain, via TronWeekly · Nov 16, 2026' },
+  news_hk_bill: { news: true, tag: 'Asia regulation', stat: '2 of 36', statLabel: 'applicants won a Hong Kong stablecoin issuer license in round one', points: ['New bill due before the end of 2026', 'Licensing for dealing, advising, asset management and custody'], source: 'crypto.news · Nov 16, 2026' },
+  news_tron_usdt: { news: true, tag: 'By the numbers', stat: '$94.2B', statLabel: 'in stablecoins on TRON', points: ['USDT is about $92.2B of it, nearly 98%', 'Xerovan supports USDT on TRON'], source: 'Crypto Briefing · Nov 9, 2026' },
+  news_bvnk_payouts: { news: true, tag: 'Industry news', stat: '11', statLabel: 'currencies for stablecoin-funded bank payouts via Mastercard Move', points: ['Includes KRW, PHP, BRL and MXN', 'More than 40 currencies planned for 2027'], source: 'BVNK, via The Paypers and UPay · Nov 2026' },
   news_visa_programs: { news: true, tag: 'Industry news', stat: '225+', statLabel: 'stablecoin-linked card programs are live on Visa worldwide', points: ['Stablecoin settlement running above $25B a year', 'About 10x the level of a year earlier'], source: 'Visa, via The Block and crypto.news · Nov 2026' },
   news_card_volume: { news: true, tag: 'By the numbers', stat: '$1.37B', statLabel: 'stablecoin card volume tracked in October 2026', points: ['About 12.9M card transactions', 'Includes some issuer-reported data'], source: 'Paymentscan, via crypto.news · Nov 3, 2026' },
   news_usdpt: { news: true, tag: 'Industry news', stat: 'USDPT', statLabel: 'Western Union’s stablecoin is now a settlement asset on VisaNet', points: ['Issued by Anchorage Digital', 'Eligible partners can settle VisaNet obligations with it'], source: 'crypto.news · Nov 12, 2026' },
