@@ -28,6 +28,9 @@ Xerovan is an all-in-one crypto finance platform connecting payments, global pay
 
 ### Frequently asked questions
 
+**Q: What is Xerovan?**
+A: Xerovan is a digital finance platform that helps you manage crypto assets, make transfers, use payment cards, and access selected financial and travel-related services from one place.
+
 **Q: Which countries are currently supported?**
 A: Personal and business cards are available to residents of Antigua and Barbuda, Argentina, Australia, the Bahamas, Barbados, Bangladesh, Belize, Bolivia, Brazil, the Cayman Islands, Colombia, Costa Rica, Côte d’Ivoire, the Dominican Republic, Dominica, Ecuador, Egypt, El Salvador, Ghana, Grenada, Guatemala, Guyana, Honduras, Japan, Kenya, Malaysia, Mexico, Morocco, New Zealand, Pakistan, Panama, Paraguay, Peru, the Philippines, Saint Kitts and Nevis, Saint Lucia, Saint Vincent and the Grenadines, Senegal, Singapore, South Africa, Suriname, Thailand, Trinidad and Tobago, the Turks and Caicos Islands, the United Arab Emirates, Uganda, Uruguay, and Zambia, and in supported US states. Applicants from Nigeria go through enhanced review and need approval. Wallet creation and some services may still vary by country. This list follows our card program partner's compliance policy and may change.
 
@@ -50,10 +53,25 @@ A: Cards are never issued to businesses involved in illegal or highly regulated 
 A: The following business models may be approved after enhanced review, which can include proof of licensing, regulatory compliance, and strong internal controls: money service businesses (MSBs) and remittance services; cryptocurrency platforms and exchanges; charities and NGOs; precious metals dealers; online content or creator platforms, such as subscription streaming or tipping; and regulated gambling or fantasy sports operators.
 
 **Q: Which blockchains does Xerovan support?**
-A: Xerovan supports multiple leading blockchain networks, including Ethereum, Base, Arbitrum, Polygon, BNB Chain, Solana, TRON, and Bitcoin. Additional networks will be added over time.
+A: Xerovan supports multiple leading blockchain networks, including Ethereum, Base, Arbitrum, Polygon, BNB Chain, Solana, TRON, and Bitcoin. Additional networks will be added over time. Supported networks may vary by feature and are shown in the app.
+
+**Q: Can I send and receive crypto with Xerovan?**
+A: Yes. You can send and receive supported digital assets with your Xerovan wallet. Before a transfer, always check that the selected asset and blockchain network match the recipient's wallet address.
+
+**Q: Can I swap crypto inside Xerovan?**
+A: Yes. You can swap supported digital assets directly in Xerovan. Available assets, networks, exchange rates, and fees may vary with market and liquidity conditions.
+
+**Q: What happens if I send crypto to the wrong address or network?**
+A: Blockchain transactions are generally irreversible once confirmed. If funds are sent to an incorrect address or an unsupported network, recovery may not be possible. Always check the wallet address, asset, and network before you confirm.
 
 **Q: Do I need to top up my card first?**
 A: Simply transfer supported crypto assets into your Xerovan wallet and top up your card in just a few taps. Depending on the selected asset and network, funds are converted and made available for card spending.
+
+**Q: Does Xerovan offer a payment card?**
+A: Yes, for eligible users. Card availability, supported countries, spending limits, fees, and verification requirements may vary by issuing partner and by your location.
+
+**Q: Can I use the Xerovan Card with Apple Pay or Google Pay?**
+A: Where the card issuer and local regulations support it, eligible Xerovan cards can be added to Apple Pay or Google Pay. Availability may vary by country, device, and card program.
 
 **Q: What fees does Xerovan charge?**
 A: Wallet transfers, swaps, and card payments may incur network fees or service fees depending on the transaction. All applicable fees are displayed transparently before you confirm.
@@ -65,7 +83,7 @@ A: Xerovan is designed as a non-custodial wallet, allowing you to maintain contr
 A: Yes. You can connect supported external wallets such as MetaMask and other compatible wallets to manage your assets seamlessly within Xerovan.
 
 **Q: How secure is Xerovan?**
-A: Security is one of our highest priorities. Xerovan utilizes advanced wallet security technologies, encrypted communications, biometric authentication, and industry-standard protection mechanisms to safeguard your assets and account.
+A: Security is one of our highest priorities. Xerovan utilizes advanced wallet security technologies, encrypted communications, biometric authentication, and industry-standard protection mechanisms to safeguard your assets and account. Please also protect your device, login credentials, recovery methods, and wallet access information, and never share sensitive security information with anyone.
 
 **Q: Can I earn rewards with my crypto?**
 A: Yes. Eligible assets can participate in staking, yield products, cashback programs, and referral rewards, depending on availability in your region.
@@ -308,6 +326,9 @@ Xerovan은 결제, 글로벌 지급, 기업 지출, 자산 관리와 리워드�
 
 ### 자주 묻는 질문
 
+**Q: Xerovan은 무엇인가요?**
+A: Xerovan은 암호화폐 자산 관리, 송금, 결제 카드, 일부 금융·여행 관련 서비스를 한곳에서 이용할 수 있는 디지털 금융 플랫폼입니다.
+
 **Q: 현재 어떤 국가에서 이용할 수 있나요?**
 A: 개인 카드와 법인 카드 모두 앤티가 바부다, 아르헨티나, 호주, 바하마, 바베이도스, 방글라데시, 벨리즈, 볼리비아, 브라질, 케이맨 제도, 콜롬비아, 코스타리카, 코트디부아르, 도미니카 공화국, 도미니카 연방, 에콰도르, 이집트, 엘살바도르, 가나, 그레나다, 과테말라, 가이아나, 온두라스, 일본, 케냐, 말레이시아, 멕시코, 모로코, 뉴질랜드, 파키스탄, 파나마, 파라과이, 페루, 필리핀, 세인트키츠 네비스, 세인트루시아, 세인트빈센트 그레나딘, 세네갈, 싱가포르, 남아프리카공화국, 수리남, 태국, 트리니다드 토바고, 터크스 케이커스 제도, 아랍에미리트, 우간다, 우루과이, 잠비아 거주자와 미국 지원 주 거주자가 이용할 수 있습니다. 나이지리아 신청자는 강화 심사와 승인을 거쳐야 합니다. 지갑 생성 등 일부 서비스는 국가에 따라 다를 수 있습니다. 이 목록은 카드 프로그램 파트너의 컴플라이언스 정책을 따르며 변경될 수 있습니다.
 
@@ -330,10 +351,25 @@ A: 불법이거나 고도로 규제되는 활동에 관여하는 기업에는 �
 A: 네. 다음 업종은 인허가 증빙, 규제 준수, 탄탄한 내부 통제 등 강화된 심사를 거쳐 승인되면 카드를 발급받을 수 있습니다: 자금서비스업(MSB)·해외송금 서비스, 암호화폐 플랫폼·거래소, 자선단체·NGO, 귀금속 거래업, 구독형 스트리밍·후원 등 온라인 콘텐츠·크리에이터 플랫폼, 인가받은 도박·판타지 스포츠 사업자.
 
 **Q: Xerovan은 어떤 블록체인을 지원하나요?**
-A: Xerovan은 Ethereum, Base, Arbitrum, Polygon, BNB Chain, Solana, TRON, Bitcoin 등 주요 블록체인 네트워크를 지원하며, 지원 네트워크는 계속 추가될 예정입니다.
+A: Xerovan은 Ethereum, Base, Arbitrum, Polygon, BNB Chain, Solana, TRON, Bitcoin 등 주요 블록체인 네트워크를 지원하며, 지원 네트워크는 계속 추가될 예정입니다. 지원 네트워크는 기능에 따라 다를 수 있으며 앱에서 확인할 수 있습니다.
+
+**Q: Xerovan으로 암호화폐를 보내고 받을 수 있나요?**
+A: 네. Xerovan 지갑으로 지원되는 디지털 자산을 보내고 받을 수 있습니다. 송금 전에는 선택한 자산과 블록체인 네트워크가 받는 사람의 지갑 주소와 맞는지 꼭 확인하세요.
+
+**Q: Xerovan 안에서 암호화폐를 스왑할 수 있나요?**
+A: 네. 지원되는 디지털 자산을 Xerovan 안에서 바로 스왑할 수 있습니다. 이용 가능한 자산, 네트워크, 환율, 수수료는 시장과 유동성 상황에 따라 달라질 수 있습니다.
+
+**Q: 잘못된 주소나 네트워크로 암호화폐를 보내면 어떻게 되나요?**
+A: 블록체인 거래는 확정되면 대부분 되돌릴 수 없습니다. 잘못된 주소나 지원하지 않는 네트워크로 보낸 자금은 복구하지 못할 수 있습니다. 확인 전에 지갑 주소, 자산, 네트워크를 꼭 확인하세요.
 
 **Q: Visa 카드는 어떻게 충전하나요?**
 A: 지원되는 암호화폐를 Xerovan 지갑으로 전송한 뒤 몇 번의 탭으로 카드를 충전하면 됩니다. 선택한 자산과 네트워크에 따라 자금이 변환되어 카드 결제에 사용할 수 있게 됩니다.
+
+**Q: Xerovan은 결제 카드를 제공하나요?**
+A: 네, 자격을 갖춘 이용자에게 제공합니다. 카드 이용 가능 여부, 지원 국가, 사용 한도, 수수료, 인증 요건은 발급 파트너와 거주 지역에 따라 다를 수 있습니다.
+
+**Q: Xerovan 카드를 Apple Pay나 Google Pay에 등록할 수 있나요?**
+A: 카드 발급사와 현지 규정이 지원하는 곳에서는 자격을 갖춘 Xerovan 카드를 Apple Pay나 Google Pay에 추가할 수 있습니다. 이용 가능 여부는 국가, 기기, 카드 프로그램에 따라 다를 수 있습니다.
 
 **Q: Xerovan의 수수료는 어떻게 되나요?**
 A: 지갑 전송, 스왑, 카드 충전 시 거래 유형에 따라 네트워크 수수료나 서비스 수수료가 발생할 수 있습니다. 모든 수수료는 거래 확정 전에 투명하게 표시됩니다.
@@ -345,7 +381,7 @@ A: Xerovan은 비수탁형 지갑으로 설계되어, 디지털 자산에 대한
 A: 네. MetaMask 등 지원되는 외부 지갑을 연결해 Xerovan 안에서 자산을 편리하게 관리할 수 있습니다.
 
 **Q: Xerovan은 얼마나 안전한가요?**
-A: 보안은 Xerovan의 최우선 과제입니다. 고급 지갑 보안 기술, 암호화 통신, 생체 인증, 업계 표준 보호 체계를 통해 자산과 계정을 보호합니다.
+A: 보안은 Xerovan의 최우선 과제입니다. 고급 지갑 보안 기술, 암호화 통신, 생체 인증, 업계 표준 보호 체계를 통해 자산과 계정을 보호합니다. 이용자도 기기, 로그인 정보, 복구 수단, 지갑 접근 정보를 안전하게 지키고, 민감한 보안 정보는 누구와도 공유하지 마세요.
 
 **Q: 암호화폐로 리워드를 받을 수 있나요?**
 A: 네. 지역별 제공 여부에 따라 대상 자산으로 스테이킹, 이자 상품, 캐시백 프로그램, 추천 리워드에 참여할 수 있습니다.
