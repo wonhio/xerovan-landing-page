@@ -29,10 +29,13 @@ Xerovan is an all-in-one crypto finance platform connecting payments, global pay
 ### Frequently asked questions
 
 **Q: Which countries are currently supported?**
-A: Xerovan is gradually expanding its availability. Wallet creation, card issuance, and certain services may vary depending on your country of residence.
+A: Personal and business cards are available to residents of Antigua and Barbuda, Argentina, Australia, the Bahamas, Barbados, Bangladesh, Belize, Bolivia, Brazil, the Cayman Islands, Colombia, Costa Rica, Côte d’Ivoire, the Dominican Republic, Dominica, Ecuador, Egypt, El Salvador, Ghana, Grenada, Guatemala, Guyana, Honduras, Japan, Kenya, Malaysia, Mexico, Morocco, New Zealand, Pakistan, Panama, Paraguay, Peru, the Philippines, Saint Kitts and Nevis, Saint Lucia, Saint Vincent and the Grenadines, Senegal, Singapore, South Africa, Suriname, Thailand, Trinidad and Tobago, the Turks and Caicos Islands, the United Arab Emirates, Uganda, Uruguay, and Zambia, and in supported US states. Applicants from Nigeria go through enhanced review and need approval. Wallet creation and some services may still vary by country. This list follows our card program partner's compliance policy and may change.
+
+**Q: Which US states are supported?**
+A: Personal cards are available in Alabama, Alaska, Arkansas, California, Colorado, Connecticut, Florida, Hawaii, Illinois, Indiana, Iowa, Kansas, Kentucky, Maine, Massachusetts, Michigan, Minnesota, Montana, Nebraska, New Hampshire, New Jersey, New York, North Carolina, Oklahoma, Pennsylvania, South Carolina, Texas, Utah, Virginia, West Virginia, and Wyoming. Business cards are available in the same states plus Arizona, Delaware, Georgia, Louisiana, Maryland, Ohio, Oregon, Rhode Island, Washington, and Wisconsin.
 
 **Q: Which countries are not eligible for a card?**
-A: Cards can't be issued to individuals or businesses residing or registered in Belarus, China (mainland), Cuba, India, Iran, Iraq, Israel, Myanmar, Nepal, Nicaragua, North Korea, Russia, Syria, Turkey, Ukraine, Venezuela, or Vietnam. Applicants from countries on international watchlists, such as the FATF grey list, are reviewed case by case and need separate compliance approval. This list follows our card program partner's compliance policy and may change.
+A: Personal cards can't be issued to individuals residing in Belarus, China (mainland), Cuba, Hong Kong, India, Iran, Iraq, Israel, Myanmar, Nepal, Nicaragua, North Korea, Russia, Syria, Turkey, Ukraine, Venezuela, or Vietnam. Business cards can't be issued to businesses registered in Algeria, Angola, Belarus, Bulgaria, Burkina Faso, Cameroon, China (mainland), Croatia, Cuba, the Democratic Republic of the Congo, Haiti, Hong Kong, India, Iran, Iraq, Israel, Lebanon, Mali, Monaco, Mozambique, Myanmar, Namibia, Nepal, Nicaragua, North Korea, Russia, South Sudan, Syria, Tanzania, Turkey, Ukraine, Venezuela, Vietnam, or Yemen. Applicants from countries on international watchlists, such as the FATF grey list, are reviewed case by case and need separate compliance approval. This list follows our card program partner's compliance policy and may change.
 
 **Q: In which countries can't I use the card?**
 A: Card payments are not supported in Cuba, Iran, North Korea, Russia, Syria, Ukraine, or Venezuela. This applies to both personal and business cards.
@@ -50,7 +53,7 @@ A: The following business models may be approved after enhanced review, which ca
 A: Xerovan supports multiple leading blockchain networks, including Ethereum, Base, Arbitrum, Polygon, BNB Chain, Solana, TRON, and Bitcoin. Additional networks will be added over time.
 
 **Q: Do I need to top up my card first?**
-A: No. There is no card balance to top up in advance. When you pay by card, the funds are taken in real time from the spendable balance in your connected wallet. This is called Real-Time Funding (RTF).
+A: Simply transfer supported crypto assets into your Xerovan wallet and top up your card in just a few taps. Depending on the selected asset and network, funds are converted and made available for card spending.
 
 **Q: What fees does Xerovan charge?**
 A: Wallet transfers, swaps, and card payments may incur network fees or service fees depending on the transaction. All applicable fees are displayed transparently before you confirm.
@@ -306,10 +309,13 @@ Xerovan은 결제, 글로벌 지급, 기업 지출, 자산 관리와 리워드�
 ### 자주 묻는 질문
 
 **Q: 현재 어떤 국가에서 이용할 수 있나요?**
-A: Xerovan은 이용 가능 지역을 단계적으로 확대하고 있습니다. 지갑 생성, 카드 발급 및 일부 서비스는 거주 국가에 따라 달라질 수 있습니다.
+A: 개인 카드와 법인 카드 모두 앤티가 바부다, 아르헨티나, 호주, 바하마, 바베이도스, 방글라데시, 벨리즈, 볼리비아, 브라질, 케이맨 제도, 콜롬비아, 코스타리카, 코트디부아르, 도미니카 공화국, 도미니카 연방, 에콰도르, 이집트, 엘살바도르, 가나, 그레나다, 과테말라, 가이아나, 온두라스, 일본, 케냐, 말레이시아, 멕시코, 모로코, 뉴질랜드, 파키스탄, 파나마, 파라과이, 페루, 필리핀, 세인트키츠 네비스, 세인트루시아, 세인트빈센트 그레나딘, 세네갈, 싱가포르, 남아프리카공화국, 수리남, 태국, 트리니다드 토바고, 터크스 케이커스 제도, 아랍에미리트, 우간다, 우루과이, 잠비아 거주자와 미국 지원 주 거주자가 이용할 수 있습니다. 나이지리아 신청자는 강화 심사와 승인을 거쳐야 합니다. 지갑 생성 등 일부 서비스는 국가에 따라 다를 수 있습니다. 이 목록은 카드 프로그램 파트너의 컴플라이언스 정책을 따르며 변경될 수 있습니다.
+
+**Q: 미국은 어느 주에서 이용할 수 있나요?**
+A: 개인 카드는 앨라배마, 알래스카, 아칸소, 캘리포니아, 콜로라도, 코네티컷, 플로리다, 하와이, 일리노이, 인디애나, 아이오와, 캔자스, 켄터키, 메인, 매사추세츠, 미시간, 미네소타, 몬태나, 네브래스카, 뉴햄프셔, 뉴저지, 뉴욕, 노스캐롤라이나, 오클라호마, 펜실베이니아, 사우스캐롤라이나, 텍사스, 유타, 버지니아, 웨스트버지니아, 와이오밍에서 이용할 수 있습니다. 법인 카드는 이 주들에 더해 애리조나, 델라웨어, 조지아, 루이지애나, 메릴랜드, 오하이오, 오리건, 로드아일랜드, 워싱턴, 위스콘신에서도 이용할 수 있습니다.
 
 **Q: 카드를 발급받을 수 없는 국가가 있나요?**
-A: 벨라루스, 중국(본토), 쿠바, 인도, 이란, 이라크, 이스라엘, 미얀마, 네팔, 니카라과, 북한, 러시아, 시리아, 튀르키예, 우크라이나, 베네수엘라, 베트남에 거주하거나 등록된 개인·법인에는 카드를 발급할 수 없습니다. FATF 회색 목록 등 국제 감시 목록에 오른 국가의 신청자는 개별 심사를 거치며 별도의 컴플라이언스 승인이 필요합니다. 이 목록은 카드 프로그램 파트너의 컴플라이언스 정책을 따르며 변경될 수 있습니다.
+A: 개인 카드는 벨라루스, 중국(본토), 쿠바, 홍콩, 인도, 이란, 이라크, 이스라엘, 미얀마, 네팔, 니카라과, 북한, 러시아, 시리아, 튀르키예, 우크라이나, 베네수엘라, 베트남 거주자에게 발급할 수 없습니다. 법인 카드는 알제리, 앙골라, 벨라루스, 불가리아, 부르키나파소, 카메룬, 중국(본토), 크로아티아, 쿠바, 콩고민주공화국, 아이티, 홍콩, 인도, 이란, 이라크, 이스라엘, 레바논, 말리, 모나코, 모잠비크, 미얀마, 나미비아, 네팔, 니카라과, 북한, 러시아, 남수단, 시리아, 탄자니아, 튀르키예, 우크라이나, 베네수엘라, 베트남, 예멘에 등록된 법인에 발급할 수 없습니다. FATF 회색 목록 등 국제 감시 목록에 오른 국가의 신청자는 개별 심사를 거치며 별도의 컴플라이언스 승인이 필요합니다. 이 목록은 카드 프로그램 파트너의 컴플라이언스 정책을 따르며 변경될 수 있습니다.
 
 **Q: 카드를 사용할 수 없는 국가는 어디인가요?**
 A: 쿠바, 이란, 북한, 러시아, 시리아, 우크라이나, 베네수엘라에서는 카드로 결제할 수 없습니다. 개인 카드와 법인 카드 모두 해당합니다.
@@ -326,11 +332,11 @@ A: 네. 다음 업종은 인허가 증빙, 규제 준수, 탄탄한 내부 통�
 **Q: Xerovan은 어떤 블록체인을 지원하나요?**
 A: Xerovan은 Ethereum, Base, Arbitrum, Polygon, BNB Chain, Solana, TRON, Bitcoin 등 주요 블록체인 네트워크를 지원하며, 지원 네트워크는 계속 추가될 예정입니다.
 
-**Q: 카드에 미리 충전해야 하나요?**
-A: 카드 잔액을 미리 충전할 필요가 없습니다. 연결된 지갑에 결제 가능한 잔액이 있으면, 카드 결제 시 해당 지갑에서 결제 자금을 실시간으로 가져옵니다. 이 방식을 RTF(Real-Time Funding)라고 합니다.
+**Q: Visa 카드는 어떻게 충전하나요?**
+A: 지원되는 암호화폐를 Xerovan 지갑으로 전송한 뒤 몇 번의 탭으로 카드를 충전하면 됩니다. 선택한 자산과 네트워크에 따라 자금이 변환되어 카드 결제에 사용할 수 있게 됩니다.
 
 **Q: Xerovan의 수수료는 어떻게 되나요?**
-A: 지갑 전송, 스왑, 카드 결제 시 거래 유형에 따라 네트워크 수수료나 서비스 수수료가 발생할 수 있습니다. 모든 수수료는 거래 확정 전에 투명하게 표시됩니다.
+A: 지갑 전송, 스왑, 카드 충전 시 거래 유형에 따라 네트워크 수수료나 서비스 수수료가 발생할 수 있습니다. 모든 수수료는 거래 확정 전에 투명하게 표시됩니다.
 
 **Q: Xerovan은 수탁형인가요, 비수탁형인가요?**
 A: Xerovan은 비수탁형 지갑으로 설계되어, 디지털 자산에 대한 통제권을 직접 유지하면서 통합 금융 서비스를 이용할 수 있습니다.
