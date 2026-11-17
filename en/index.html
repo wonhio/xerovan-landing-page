@@ -604,15 +604,13 @@
 
 <script>
   /* ============================================================
-     FAQ CONTENT — now loaded live from your Google Sheet (published
-     as CSV). Edit the sheet (Question / Answer columns) and the site
-     picks it up automatically — no redeploy needed.
-     FAQ_SHEET_URL below is that published CSV link.
-     faqDataFallback is only used if the sheet can't be reached
-     (e.g. offline, or the publish link changes) — keep it up to date
-     occasionally, but the sheet is the source of truth.
+     FAQ CONTENT — faqDataFallback below is the source of truth for
+     every language (same as kr/ja/es/ar/pt). Edit it and rebuild
+     with python3 _build/build_pages.py.
+     To load a Google Sheet instead, paste its published CSV link
+     into FAQ_SHEET_URL.
   ============================================================ */
-  const FAQ_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTmXKE-ZqjHlT6Vw8NnS4qKxX8zC77y3tGWVk1HZeFyupirEUfRb8nGTsI3-_d1pcLrWHuxMm8UiHUO/pub?gid=0&single=true&output=csv';
+  const FAQ_SHEET_URL = '';
 
   const faqDataFallback = [
     { q: "Which countries are currently supported?", a: "Personal and business cards are available to residents of Antigua and Barbuda, Argentina, Australia, the Bahamas, Barbados, Bangladesh, Belize, Bolivia, Brazil, the Cayman Islands, Colombia, Costa Rica, Côte d’Ivoire, the Dominican Republic, Dominica, Ecuador, Egypt, El Salvador, Ghana, Grenada, Guatemala, Guyana, Honduras, Japan, Kenya, Malaysia, Mexico, Morocco, New Zealand, Pakistan, Panama, Paraguay, Peru, the Philippines, Saint Kitts and Nevis, Saint Lucia, Saint Vincent and the Grenadines, Senegal, Singapore, South Africa, Suriname, Thailand, Trinidad and Tobago, the Turks and Caicos Islands, the United Arab Emirates, Uganda, Uruguay, and Zambia, and in supported US states. Applicants from Nigeria go through enhanced review and need approval. Wallet creation and some services may still vary by country. This list follows our card program partner's compliance policy and may change." },

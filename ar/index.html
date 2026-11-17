@@ -611,13 +611,11 @@
 
 <script>
   /* ============================================================
-     FAQ CONTENT — now loaded live from your Google Sheet (published
-     as CSV). Edit the sheet (Question / Answer columns) and the site
-     picks it up automatically — no redeploy needed.
-     FAQ_SHEET_URL below is that published CSV link.
-     faqDataFallback is only used if the sheet can't be reached
-     (e.g. offline, or the publish link changes) — keep it up to date
-     occasionally, but the sheet is the source of truth.
+     FAQ CONTENT — faqDataFallback below is the source of truth for
+     every language (same as kr/ja/es/ar/pt). Edit it and rebuild
+     with python3 _build/build_pages.py.
+     To load a Google Sheet instead, paste its published CSV link
+     into FAQ_SHEET_URL.
   ============================================================ */
   // Leave empty to use faqDataFallback below, or paste the CSV link of a sheet tab in this language.
   const FAQ_SHEET_URL = '';
