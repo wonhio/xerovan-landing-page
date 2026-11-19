@@ -4,7 +4,8 @@
 // Off until these env vars are set in Vercel:
 //   TG_WAITLIST_BOT_TOKEN       token of @Xerovan_ai from @BotFather
 //   TG_WAITLIST_WEBHOOK_SECRET  any random string; Telegram sends it back on every update
-//   KV_REST_API_URL, KV_REST_API_TOKEN   Upstash Redis (Vercel Marketplace → Upstash for Redis, connect to this project)
+//   UPSTASH_REDIS_REST_URL, UPSTASH_REDIS_REST_TOKEN   Upstash Redis (free plan at upstash.com, REST API tab)
+//   (KV_REST_API_URL / KV_REST_API_TOKEN from the Vercel Marketplace integration also work)
 // Optional: CRON_SECRET (already used by the channel cron) protects the admin export and broadcast.
 //
 // One-time setup, run on the server so the token never leaves Vercel (safe to rerun):
@@ -19,6 +20,9 @@
 //   POST ?admin=broadcast  (Bearer CRON_SECRET)    {text, limit, dry} message the top of the line, once each
 
 const crypto = require('crypto');
+
+const KV_URL = () => process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
+const KV_TOKEN = () => process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
 
 const SITE = 'https://www.xerovan.com';
 const APP_URL = `${SITE}/tg/`;
@@ -91,8 +95,8 @@ function verifyInitData(initData, token, maxAgeSec = 86400) {
 
 // ---------- storage (Upstash Redis REST) ----------
 async function kv(...cmd) {
-  const r = await fetch(process.env.KV_REST_API_URL, {
-    method: 'POST', headers: { authorization: `Bearer ${process.env.KV_REST_API_TOKEN}`, 'content-type': 'application/json' },
+  const r = await fetch(KV_URL(), {
+    method: 'POST', headers: { authorization: `Bearer ${KV_TOKEN()}`, 'content-type': 'application/json' },
     body: JSON.stringify(cmd), signal: AbortSignal.timeout(8000),
   });
   const j = await r.json().catch(() => ({}));
@@ -293,7 +297,7 @@ const readBody = (req) => (typeof req.body === 'string' ? JSON.parse(req.body ||
 
 module.exports = async (req, res) => {
   const e = process.env;
-  if (!e.TG_WAITLIST_BOT_TOKEN || !e.TG_WAITLIST_WEBHOOK_SECRET || !e.KV_REST_API_URL || !e.KV_REST_API_TOKEN) return bad(res, 503, 'not configured');
+  if (!e.TG_WAITLIST_BOT_TOKEN || !e.TG_WAITLIST_WEBHOOK_SECRET || !KV_URL() || !KV_TOKEN()) return bad(res, 503, 'not configured');
   const q = new URL(req.url, SITE).searchParams;
   res.setHeader('cache-control', 'no-store');
   try {
