@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>XEROVAN Waitlist</title>
+<link rel="icon" href="/images/favicon.png">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+  :root{--void:#0a0b0d;--panel:#131417;--panel-2:#1b1d21;--line:#2a2c31;--silver:#eef1f3;--dim:#83878f;--ice:#8fe3ee;--err:#ff8a8a;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--void);color:var(--silver);font:15px/1.5 -apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Roboto,sans-serif;}
+  body{min-height:100vh;padding:20px 16px calc(32px + env(safe-area-inset-bottom));}
+  main{max-width:460px;margin:0 auto}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.12em;font-size:14px;margin-bottom:28px}
+  .logo img{width:28px;height:28px;border-radius:8px}
+  h1{font-size:22px;line-height:1.25;margin-bottom:8px;font-weight:700}
+  p.sub{color:var(--dim);margin-bottom:22px}
+  label{display:block;font-size:13px;color:var(--dim);margin:14px 0 6px}
+  select,input[type=email]{width:100%;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:var(--panel-2);color:var(--silver);font-size:16px;appearance:none}
+  select:focus,input:focus{outline:none;border-color:var(--ice)}
+  .check{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:14px;color:var(--silver)}
+  .check input{margin-top:3px;width:18px;height:18px;accent-color:var(--ice);flex:none}
+  .check a{color:var(--ice)}
+  .btn{display:block;width:100%;margin-top:22px;padding:15px;border:0;border-radius:100px;background:linear-gradient(180deg,#fff,#cfd5da);color:#0a0b0d;font-weight:700;font-size:15px;cursor:pointer}
+  .btn.ghost{background:var(--panel-2);color:var(--silver);border:1px solid var(--line)}
+  .btn:disabled{opacity:.5}
+  .err{color:var(--err);font-size:14px;margin-top:12px;min-height:1px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px;margin-bottom:14px}
+  .big{font-size:48px;font-weight:800;letter-spacing:-.02em;color:var(--ice);line-height:1}
+  .muted{color:var(--dim);font-size:14px}
+  .row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .link{font-family:ui-monospace,Menlo,monospace;font-size:13px;word-break:break-all;background:var(--panel-2);padding:12px;border-radius:12px;margin:12px 0 0}
+  .task{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
+  .task:first-of-type{border-top:0}
+  .task b{display:block;font-size:15px}
+  .pill{font-size:12px;padding:4px 10px;border-radius:100px;background:var(--panel-2);color:var(--ice);white-space:nowrap}
+  .small-btn{padding:9px 14px;border-radius:100px;border:1px solid var(--line);background:var(--panel-2);color:var(--silver);font-size:13px;cursor:pointer;white-space:nowrap}
+  details{border-top:1px solid var(--line);padding:12px 0}
+  details:first-of-type{border-top:0}
+  summary{cursor:pointer;font-weight:600}
+  details p{color:var(--dim);font-size:14px;margin-top:8px}
+  a{color:var(--ice)}
+  .hidden{display:none!important}
+  .center{text-align:center}
+</style>
+</head>
+<body>
+<main>
+  <div class="logo"><img src="/images/logo-icon.png" alt="">XEROVAN</div>
+
+  <section id="loading" class="center muted">Loading…</section>
+
+  <section id="outside" class="hidden">
+    <h1>Open this in Telegram</h1>
+    <p class="sub">This page works inside the XEROVAN bot.</p>
+    <a class="btn" id="openBot" href="https://t.me/Xerovan_ai" style="text-align:center;text-decoration:none">Open @Xerovan_ai</a>
+  </section>
+
+  <!-- Step 1: country -->
+  <section id="s-country" class="hidden">
+    <h1>Is XEROVAN available where you live?</h1>
+    <p class="sub">A Visa card that pays straight from your own crypto wallet, with no top-up. Check your country to join the beta waitlist.</p>
+    <label for="country">Country of residence</label>
+    <select id="country"><option value="">Choose your country</option></select>
+    <div id="stateWrap" class="hidden">
+      <label for="state">State</label>
+      <select id="state"><option value="">Choose your state</option></select>
+    </div>
+    <div class="err" id="e-country"></div>
+    <button class="btn" id="b-country">Continue</button>
+  </section>
+
+  <!-- Step 2: email -->
+  <section id="s-email" class="hidden">
+    <h1 id="emailTitle">Where should we send your beta invite?</h1>
+    <p class="sub" id="emailSub">We'll use this email for your invite and account setup.</p>
+    <label for="email">Email</label>
+    <input id="email" type="email" inputmode="email" autocomplete="email" placeholder="name@example.com" required>
+    <label class="check"><input type="checkbox" id="privacy"> <span>I agree to the <a href="/en/legal/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</span></label>
+    <label class="check"><input type="checkbox" id="updates"> <span>Send me product updates by email.</span></label>
+    <div class="err" id="e-email"></div>
+    <button class="btn" id="b-email">Join the waitlist</button>
+    <button class="btn ghost" id="b-back">Back</button>
+  </section>
+
+  <!-- Not available -->
+  <section id="s-no" class="hidden">
+    <h1 id="noTitle">XEROVAN isn't available in your country yet</h1>
+    <p class="sub">You're on our notify list. We'll message you in Telegram if that changes. Card availability follows our card program partner's compliance policy.</p>
+    <a class="btn" href="https://t.me/xerovan" style="text-align:center;text-decoration:none">Follow @xerovan</a>
+    <button class="btn ghost" id="b-change2">Change country</button>
+  </section>
+
+  <!-- Status -->
+  <section id="s-status" class="hidden">
+    <div class="card center">
+      <div class="muted">Your place in line</div>
+      <div class="big" id="pos">#—</div>
+      <div class="muted" id="total"></div>
+      <div class="muted" id="reviewNote" style="margin-top:8px"></div>
+    </div>
+
+    <div class="card">
+      <div class="row"><b>Your invite link</b><span class="pill">+5 places per friend</span></div>
+      <div class="link" id="link"></div>
+      <div class="row" style="margin-top:12px">
+        <button class="small-btn" id="b-copy">Copy</button>
+        <button class="small-btn" id="b-share" style="flex:1">Share with friends</button>
+      </div>
+      <p class="muted" style="margin-top:12px"><span id="refs">0</span> friends joined with your link. A friend counts once they join the waitlist with their email.</p>
+    </div>
+
+    <div class="card">
+      <b>Move up the line</b>
+      <div class="task">
+        <div><b>Join @xerovan</b><span class="muted">News and beta dates. +3 places</span></div>
+        <div id="chanState"><button class="small-btn" id="b-chan">Join</button></div>
+      </div>
+      <div class="task">
+        <div><b>Invite friends</b><span class="muted">+5 places each</span></div>
+        <button class="small-btn" id="b-share2">Invite</button>
+      </div>
+      <div class="err" id="e-chan"></div>
+    </div>
+
+    <div class="card">
+      <b>FAQ</b>
+      <details><summary>What is XEROVAN?</summary><p>A Visa card that pays straight from your own crypto wallet. Your assets stay in your wallet, and each payment is funded at the moment you pay. No top-up.</p></details>
+      <details><summary>When can I use it?</summary><p>We invite people from the top of the waitlist first. We'll message you here and email you when your invite is ready.</p></details>
+      <details><summary>How much does it cost?</summary><p>Pricing will be announced before launch. Any fee is shown before you confirm.</p></details>
+      <details><summary>Which countries are supported?</summary><p>See the full list in our <a href="/en/#faq" target="_blank" rel="noopener">FAQ</a>. It follows our card program partner's compliance policy and may change.</p></details>
+      <details><summary>Is this the official bot?</summary><p>Yes. Official accounts: channel @xerovan, support @xerovan_card, and @Xerovan_ai. We never message you first and never ask for a seed phrase, private key or password.</p></details>
+    </div>
+    <p class="muted center" style="margin-top:6px"><span id="me"></span> · <a href="#" id="b-edit">Edit details</a> · <a href="https://t.me/xerovan_card">Support</a></p>
+  </section>
+</main>
+
+<script>
+(() => {
+  const tg = window.Telegram && Telegram.WebApp;
+  const $ = (id) => document.getElementById(id);
+  const show = (id) => { document.querySelectorAll('main > section').forEach((s) => s.classList.add('hidden')); $(id).classList.remove('hidden'); window.scrollTo(0, 0); };
+  const US = 'United States', OTHER = 'Other';
+  let data = null, form = {};
+
+  if (!tg || !tg.initData) { show('outside'); return; }
+  tg.ready(); tg.expand();
+  try { tg.setHeaderColor('#0a0b0d'); tg.setBackgroundColor('#0a0b0d'); } catch (e) {}
+
+  const api = async (action, method = 'GET', body) => {
+    const r = await fetch(`/api/tg-app?action=${action}`, { method, headers: { 'content-type': 'application/json', 'x-tg-init-data': tg.initData }, body: body ? JSON.stringify(body) : undefined });
+    const j = await r.json().catch(() => ({ ok: false, error: 'Network error. Please try again.' }));
+    if (!j.ok) throw new Error(j.error || 'Something went wrong.');
+    return j;
+  };
+  const haptic = (t) => { try { tg.HapticFeedback.notificationOccurred(t); } catch (e) {} };
+
+  function fillCountries(list, states) {
+    const c = $('country');
+    list.forEach((n) => c.add(new Option(n, n)));
+    c.add(new Option('My country is not listed', OTHER));
+    states.forEach((n) => $('state').add(new Option(n, n)));
+  }
+  $('country').onchange = () => $('stateWrap').classList.toggle('hidden', $('country').value !== US);
+
+  $('b-country').onclick = () => {
+    const country = $('country').value, state = $('state').value;
+    $('e-country').textContent = '';
+    if (!country) return ($('e-country').textContent = 'Please choose your country.');
+    if (country === US && !state) return ($('e-country').textContent = 'Please choose your state.');
+    form = { country, state };
+    const notListed = country === OTHER;
+    $('emailTitle').textContent = notListed ? 'Get notified when XEROVAN comes to your country' : 'Where should we send your beta invite?';
+    $('emailSub').textContent = notListed ? "XEROVAN isn't available in your country yet. Leave your email and we'll let you know." : "We'll use this email for your invite and account setup.";
+    $('b-email').textContent = notListed ? 'Notify me' : 'Join the waitlist';
+    show('s-email'); $('email').focus();
+  };
+  $('b-back').onclick = () => show('s-country');
+
+  $('b-email').onclick = async () => {
+    const email = $('email').value.trim();
+    $('e-email').textContent = '';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return ($('e-email').textContent = 'Please enter a valid email address.');
+    if (!$('privacy').checked) return ($('e-email').textContent = 'Please accept the Privacy Policy to continue.');
+    $('b-email').disabled = true;
+    try {
+      data = await api('signup', 'POST', { ...form, email, privacy: true, updates: $('updates').checked });
+      haptic('success'); render();
+    } catch (e) { haptic('error'); $('e-email').textContent = e.message; }
+    $('b-email').disabled = false;
+  };
+
+  function share() {
+    const url = `https://t.me/share/url?url=${encodeURIComponent(data.link)}&text=${encodeURIComponent(data.shareText)}`;
+    tg.openTelegramLink(url);
+  }
+  $('b-share').onclick = share; $('b-share2').onclick = share;
+  $('b-copy').onclick = async () => {
+    try { await navigator.clipboard.writeText(data.link); $('b-copy').textContent = 'Copied'; }
+    catch (e) { $('b-copy').textContent = 'Hold to copy'; }
+    setTimeout(() => ($('b-copy').textContent = 'Copy'), 1800);
+  };
+
+  let chanStep = 0;
+  $('b-chan').onclick = async () => {
+    $('e-chan').textContent = '';
+    if (chanStep === 0) { tg.openTelegramLink('https://t.me/xerovan'); chanStep = 1; $('b-chan').textContent = 'Check'; return; }
+    $('b-chan').disabled = true;
+    try {
+      data = await api('channel', 'POST', {});
+      if (!data.channelChecked) $('e-chan').textContent = "We couldn't see you in @xerovan yet. Join the channel, then tap Check.";
+      else haptic('success');
+      render();
+    } catch (e) { $('e-chan').textContent = e.message; }
+    $('b-chan').disabled = false;
+  };
+
+  const edit = () => {
+    $('country').value = data.country || ''; $('state').value = data.state || '';
+    $('stateWrap').classList.toggle('hidden', data.country !== US);
+    $('email').value = data.email || ''; show('s-country');
+  };
+  $('b-edit').onclick = (e) => { e.preventDefault(); edit(); };
+  $('b-change2').onclick = edit;
+
+  function render() {
+    if (data.eligible === 'no') { $('noTitle').textContent = `XEROVAN isn't available in ${data.country === OTHER ? 'your country' : data.country} yet`; return show('s-no'); }
+    $('pos').textContent = data.position ? `#${data.position.toLocaleString('en-US')}` : '#—';
+    $('total').textContent = data.total ? `of ${data.total.toLocaleString('en-US')} on the waitlist` : '';
+    $('reviewNote').textContent = data.eligible === 'review' ? 'Applicants from your country go through enhanced review before approval.' : '';
+    $('link').textContent = data.link;
+    $('refs').textContent = data.referrals;
+    $('me').textContent = data.email;
+    if (data.channel) $('chanState').innerHTML = '<span class="pill">Joined ✓</span>';
+    show('s-status');
+  }
+
+  api('me').then((j) => {
+    fillCountries(j.countries, j.states);
+    if (j.joined) { data = j; render(); return; }
+    show('s-country');
+  }).catch((e) => { $('loading').textContent = e.message; });
+})();
+</script>
+</body>
+</html>
