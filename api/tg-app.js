@@ -425,6 +425,18 @@ async function report(send) {
   return r;
 }
 
+// X (@XerovanC) profile: read, or update bio/url (v1.1 account/update_profile, params signed in the query).
+async function xProfile(b) {
+  const { xRequest } = require('./telegram.js')._test;
+  const me = await xRequest('GET', 'https://api.x.com/2/users/me?user.fields=description,url,entities');
+  if (!b || (!b.description && !b.url)) return { ok: me.ok, current: me.data, error: me.error };
+  const q = new URLSearchParams();
+  if (b.description) q.set('description', String(b.description).slice(0, 160));
+  if (b.url) q.set('url', String(b.url));
+  const r = await xRequest('POST', `https://api.x.com/1.1/account/update_profile.json?${q.toString().replace(/\+/g, '%20')}`);
+  return { ok: r.ok, before: me.data, error: r.error };
+}
+
 async function setup() {
   const out = {};
   const me = await tg('getMe');
@@ -460,6 +472,7 @@ module.exports = async (req, res) => {
       if (q.get('admin') === 'export') { res.setHeader('content-type', 'text/csv; charset=utf-8'); return res.status(200).send(await exportCsv()); }
       if (q.get('admin') === 'broadcast' && req.method === 'POST') return res.status(200).json(await broadcast(readBody(req)));
       if (q.get('admin') === 'report') return res.status(200).json(await report(q.get('send') === '1'));
+      if (q.get('admin') === 'x-profile') return res.status(200).json(await xProfile(req.method === 'POST' ? readBody(req) : null));
       if (q.get('admin') === 'announce' && req.method === 'POST') return res.status(200).json(await announce(readBody(req)));
       if (q.get('admin') === 'delete' && req.method === 'POST') return res.status(200).json(await removeUser(String(readBody(req).id || '')));
       return bad(res, 400, 'unknown admin action');
