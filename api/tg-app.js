@@ -20,6 +20,7 @@
 //   GET  ?admin=export     (Bearer CRON_SECRET)    CSV of everyone
 //   POST ?admin=broadcast  (Bearer CRON_SECRET)    {text, limit, dry} message the top of the line, once each
 //   POST ?admin=delete     (Bearer CRON_SECRET)    {id} remove one signup (tests, deletion requests)
+//   POST ?admin=channel    (Bearer CRON_SECRET)    {text, button?, start?, pin?, dry?} post to @xerovan with a join button
 
 const crypto = require('crypto');
 
@@ -358,6 +359,21 @@ async function removeUser(id) {
   return { ok: true, removed: id };
 }
 
+// Post to the official channel as this bot, with a button that opens the bot (and so the mini app) with a tracked start param.
+async function channelPost(b) {
+  const text = String(b.text || '').trim();
+  if (!text || text.length > 4000) return { ok: false, error: 'text required, max 4000 characters' };
+  const start = /^[a-z0-9_-]{1,40}$/i.test(b.start || '') ? b.start : 'channel';
+  const msg = { chat_id: CHANNEL, text, parse_mode: 'HTML', disable_web_page_preview: true,
+    reply_markup: { inline_keyboard: [[{ text: String(b.button || 'Join the waitlist').slice(0, 40), url: `https://t.me/${botUser()}?start=${start}` }]] } };
+  if (b.dry) return { ok: true, dry: true, msg };
+  const r = await tg('sendMessage', msg);
+  if (!r.ok) return { ok: false, error: r.description };
+  const out = { ok: true, message_id: r.result.message_id };
+  if (b.pin) out.pinned = (await tg('pinChatMessage', { chat_id: CHANNEL, message_id: r.result.message_id, disable_notification: true })).ok;
+  return out;
+}
+
 async function setup() {
   const out = {};
   const me = await tg('getMe');
@@ -392,6 +408,7 @@ module.exports = async (req, res) => {
       if (!keys.some((k) => req.headers.authorization === `Bearer ${k}`)) return bad(res, 401, 'unauthorized');
       if (q.get('admin') === 'export') { res.setHeader('content-type', 'text/csv; charset=utf-8'); return res.status(200).send(await exportCsv()); }
       if (q.get('admin') === 'broadcast' && req.method === 'POST') return res.status(200).json(await broadcast(readBody(req)));
+      if (q.get('admin') === 'channel' && req.method === 'POST') return res.status(200).json(await channelPost(readBody(req)));
       if (q.get('admin') === 'delete' && req.method === 'POST') return res.status(200).json(await removeUser(String(readBody(req).id || '')));
       return bad(res, 400, 'unknown admin action');
     }
