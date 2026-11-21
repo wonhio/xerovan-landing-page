@@ -350,6 +350,14 @@ TG_CTA = {
     "ar": "تفضّل تيليجرام؟ انضم إلى قائمة الانتظار عبر ‎@Xerovan_ai وتابع ترتيبك (بالإنجليزية)",
 }
 
+TG_CHANNEL_CTA = {
+    "en": "Beta dates are announced first in our Telegram channel @xerovan",
+    "ja": "ベータ版の日程はTelegramチャンネル @xerovan で最初にお知らせします（英語）",
+    "es": "Las fechas de la beta se anuncian primero en nuestro canal de Telegram @xerovan (en inglés)",
+    "pt": "As datas do beta são anunciadas primeiro no nosso canal do Telegram @xerovan (em inglês)",
+    "ar": "تُعلن مواعيد النسخة التجريبية أولًا في قناتنا على تيليجرام \u200e@xerovan (بالإنجليزية)",
+}
+
 def telegram_cta(html, lang):
     text = TG_CTA.get(lang)
     if not text:
@@ -358,7 +366,10 @@ def telegram_cta(html, lang):
     link = (f'\n    <a class="tg-cta" href="https://t.me/Xerovan_ai?start=site_{lang}" target="_blank" rel="noopener" '
             f'style="display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-size:13px;line-height:1.5;color:var(--ice);text-decoration:none;">'
             f'<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" style="flex:none"><path fill="currentColor" d="M21.9 4.3 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.3-8.4c.4-.4-.1-.6-.6-.2L6.1 13.5l-4.9-1.5c-1.1-.3-1.1-1.1.2-1.6L20.6 3c.9-.3 1.7.2 1.3 1.3z"/></svg>'
-            f'<span>{text} {arrow}</span></a>')
+            f'<span>{text} {arrow}</span></a>'
+            f'\n    <div><a class="tg-channel" href="https://t.me/xerovan" target="_blank" rel="noopener" '
+            f'style="display:inline-block;margin-top:8px;font-size:13px;line-height:1.5;color:var(--text-dim);text-decoration:underline;text-underline-offset:3px;">'
+            f'{TG_CHANNEL_CTA[lang]} {arrow}</a></div>')
     out, n = re.subn(r'(<section class="cta-band" id="waitlist">.*?<div class="form-success" id="footerSuccess">.*?</div>)',
                      lambda m: m.group(1) + link, html, count=1, flags=re.S)
     assert n == 1, "waitlist section not found"

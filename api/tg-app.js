@@ -292,8 +292,9 @@ async function signup(tgUser, b) {
   if (!u.welcomed) {
     u.welcomed = true; await putUser(u);
     await tg('sendMessage', { chat_id: u.id, text: eligible === 'no'
-      ? `Thanks. XEROVAN isn't available in ${country} yet. We'll message you here if that changes.`
-      : `You're on the list ✅\n\n${await statusText(u)}\n\nEvery friend who joins with your link moves you up ${PTS_REFERRAL} places. We'll message you here when your beta invite is ready.` });
+      ? `Thanks. XEROVAN isn't available in ${country} yet. We'll message you here if that changes. News: @xerovan`
+      : `You're on the list ✅\n\n${await statusText(u)}\n\nEvery friend who joins with your link moves you up ${PTS_REFERRAL} places. We'll message you here when your beta invite is ready.\n\n📣 Beta dates are announced first in our channel @xerovan. Join it, then tap "Check" in the app for +${PTS_CHANNEL} places.`,
+      reply_markup: { inline_keyboard: [[{ text: 'Join @xerovan', url: CHANNEL_URL }], [appButton('Open XEROVAN')]] } });
   }
   return [200, await view(u)];
 }

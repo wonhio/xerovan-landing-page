@@ -590,6 +590,7 @@ function layout({ lang, title, description, canonical, alternates, ogImage, ogTy
     .post-head .meta{margin-top:22px}
     .cover{max-width:1000px;margin:0 auto 10px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line)}
     .cover img{width:100%;height:auto}
+    .post-channel{max-width:720px;margin:8px auto 0;padding:18px 22px;border:1px solid var(--line);border-radius:14px;background:var(--panel);display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--silver-100);font-size:15px}
     .prose{max-width:720px;margin:0 auto;padding:44px 0 40px;color:var(--silver-300);font-size:17px;line-height:1.85}
     .prose > * + *{margin-top:1.2em}
     .prose h2,.prose h3,.prose h4{font-family:var(--f-display);color:var(--silver-100);line-height:1.3;margin-top:2.1em}
@@ -796,7 +797,7 @@ function postView(lang, p, rel = { hub: null, posts: [] }) {
       </header>
       ${p.image ? `<figure class="cover"><img src="${esc(p.image)}" alt="${esc(p.imageAlt)}"></figure>` : ''}
       <div class="prose">${p.content}</div>
-      ${hubBlock}${moreBlock}
+      ${hubBlock}${moreBlock}${channelBox(lang)}
 
       <div class="post-foot">
         <a class="btn" href="/${lang}/blog">${LANGS[lang].rtl ? '→' : '←'} ${esc(t.back)}</a>
@@ -804,6 +805,21 @@ function postView(lang, p, rel = { hub: null, posts: [] }) {
       </div>
     </div>
   </article>`;
+}
+
+// Telegram channel follow box at the end of each post. Not on /kr/: Korean marketing waits for the legal review.
+const CHANNEL_CTA = {
+  en: ['News and beta dates, first on Telegram', 'Follow @xerovan'],
+  ja: ['ニュースとベータ版の日程はTelegramで最初にお知らせします（英語）', '@xerovan をフォロー'],
+  es: ['Noticias y fechas de la beta, primero en Telegram (en inglés)', 'Seguir @xerovan'],
+  pt: ['Novidades e datas do beta, primeiro no Telegram (em inglês)', 'Seguir @xerovan'],
+  ar: ['الأخبار ومواعيد النسخة التجريبية تُعلن أولًا على تيليجرام (بالإنجليزية)', 'تابع \u200e@xerovan'],
+};
+function channelBox(lang) {
+  const c = CHANNEL_CTA[lang];
+  if (!c) return '';
+  return `
+      <aside class="post-channel"><span>${esc(c[0])}</span><a class="btn" href="https://t.me/xerovan" target="_blank" rel="noopener">${esc(c[1])}</a></aside>`;
 }
 
 function aboutView(lang) {
