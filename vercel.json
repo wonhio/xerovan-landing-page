@@ -4,6 +4,10 @@
     {
       "path": "/api/telegram?cron=1",
       "schedule": "0 13 * * *"
+    },
+    {
+      "path": "/api/tg-app?admin=report&send=1",
+      "schedule": "0 4 * * 1"
     }
   ],
   "redirects": [

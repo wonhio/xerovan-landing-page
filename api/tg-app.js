@@ -19,6 +19,7 @@
 //   POST ?action=channel   (X-Tg-Init-Data)        check that I joined @xerovan, +3 places
 //   GET  ?admin=export     (Bearer CRON_SECRET)    CSV of everyone
 //   POST ?admin=broadcast  (Bearer CRON_SECRET)    {text, limit, dry} message the top of the line, once each
+//   GET  ?admin=report[&send=1] (admin secret / Vercel cron) weekly numbers; send=1 DMs TG_WAITLIST_REPORT_CHAT
 //   POST ?admin=announce   (Bearer admin secret)     {x?, discord?, dry?} post an announcement to X and Discord
 //   POST ?admin=delete     (Bearer CRON_SECRET)    {id} remove one signup (tests, deletion requests)
 
@@ -382,6 +383,47 @@ async function announce(b) {
   return { ok: true, ...out };
 }
 
+// Weekly numbers (Vercel cron, Monday 04:00 UTC). Sent as a bot DM to TG_WAITLIST_REPORT_CHAT when send=1.
+function weeklyReport(users, now = Math.floor(Date.now() / 1000)) {
+  const week = 7 * 86400;
+  const inRange = (u, from, to) => u.created >= from && u.created < to;
+  const thisWeek = users.filter((u) => inRange(u, now - week, now));
+  const lastWeek = users.filter((u) => inRange(u, now - 2 * week, now - week));
+  const count = (list, key) => Object.entries(list.reduce((m, u) => { const k = key(u) || 'unknown'; m[k] = (m[k] || 0) + 1; return m; }, {}))
+    .sort((a, b) => b[1] - a[1]);
+  const lines = (pairs, max = 8) => pairs.slice(0, max).map(([k, n]) => `  ${k}: ${n}`).join('\n') || '  -';
+  const queue = users.filter((u) => u.eligible !== 'no');
+  const from = new Date((now - week) * 1000).toISOString().slice(0, 10), to = new Date(now * 1000).toISOString().slice(0, 10);
+  const text = [
+    `XEROVAN waitlist — weekly report (${from} → ${to}, UTC)`,
+    '',
+    `New signups: ${thisWeek.length} (previous week ${lastWeek.length})`,
+    `Total: ${users.length} · in line ${queue.length} · not available yet ${users.length - queue.length}`,
+    `Joined via a friend's link this week: ${thisWeek.filter((u) => u.referredBy).length}`,
+    `Channel joins (all time): ${users.filter((u) => u.channel).length}`,
+    '',
+    'This week by source:', lines(count(thisWeek, (u) => u.source)),
+    '',
+    'This week by country:', lines(count(thisWeek, (u) => (u.state ? `${u.country} / ${u.state}` : u.country))),
+    '',
+    'Top inviters (all time, by friends joined):',
+    lines(users.filter((u) => u.referrals > 0).sort((a, b) => b.referrals - a.referrals).slice(0, 5)
+      .map((u) => [u.username ? `@${u.username}` : `id ${u.id}`, u.referrals]), 5),
+  ].join('\n');
+  return { text, newSignups: thisWeek.length, previousWeek: lastWeek.length, total: users.length };
+}
+
+async function report(send) {
+  const r = weeklyReport(await allUsers());
+  const chat = process.env.TG_WAITLIST_REPORT_CHAT;
+  if (send) {
+    if (!chat) return { ...r, sent: 'TG_WAITLIST_REPORT_CHAT not set' };
+    const t = await tg('sendMessage', { chat_id: chat, text: r.text, link_preview_options: { is_disabled: true } });
+    return { ...r, sent: !!t.ok };
+  }
+  return r;
+}
+
 async function setup() {
   const out = {};
   const me = await tg('getMe');
@@ -416,6 +458,7 @@ module.exports = async (req, res) => {
       if (!keys.some((k) => req.headers.authorization === `Bearer ${k}`)) return bad(res, 401, 'unauthorized');
       if (q.get('admin') === 'export') { res.setHeader('content-type', 'text/csv; charset=utf-8'); return res.status(200).send(await exportCsv()); }
       if (q.get('admin') === 'broadcast' && req.method === 'POST') return res.status(200).json(await broadcast(readBody(req)));
+      if (q.get('admin') === 'report') return res.status(200).json(await report(q.get('send') === '1'));
       if (q.get('admin') === 'announce' && req.method === 'POST') return res.status(200).json(await announce(readBody(req)));
       if (q.get('admin') === 'delete' && req.method === 'POST') return res.status(200).json(await removeUser(String(readBody(req).id || '')));
       return bad(res, 400, 'unknown admin action');
@@ -448,4 +491,4 @@ module.exports = async (req, res) => {
   }
 };
 
-module.exports._test = { verifyInitData, eligibility, points, sortKey, handleUpdate, signup, checkChannel, broadcast, exportCsv, COUNTRIES, US_STATES };
+module.exports._test = { weeklyReport, verifyInitData, eligibility, points, sortKey, handleUpdate, signup, checkChannel, broadcast, exportCsv, COUNTRIES, US_STATES };
