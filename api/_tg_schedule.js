@@ -3,13 +3,15 @@
 // Text is Telegram HTML (<b>, <i>, <a>). Source drafts: ~/.agents/xerovan.com/telegram/posts.md
 // Posts 7–8 of that plan (building in public, beta dates) are left out until their facts are confirmed.
 const U = (path, c) => `https://www.xerovan.com${path}${path.includes('?') ? '&' : '?'}utm_source=telegram&utm_medium=channel&utm_campaign=${c}`;
-const wl = (c) => `https://www.xerovan.com/en/?utm_source=telegram&utm_medium=channel&utm_campaign=${c}#waitlist`;
+// Telegram readers join inside Telegram: the @Xerovan_ai mini app records `ch_<post id>` as the signup source.
+const wl = (c) => `https://t.me/Xerovan_ai?start=ch_${c}`;
+const siteWl = (c) => `https://www.xerovan.com/en/?utm_source=telegram&utm_medium=channel&utm_campaign=${c}#waitlist`;
 
 const SAFETY = `🔐 A reminder, because scams in crypto Telegram are common:
 
 • Xerovan admins never DM you first
 • We never ask for a seed phrase, private key or password
-• Official accounts: @xerovan and @xerovan_card only. Check the list at xerovan.com/en/facts
+• Official accounts: @xerovan, @xerovan_card and the waitlist bot @Xerovan_ai only. Check the list at xerovan.com/en/facts
 
 If someone claiming to be Xerovan messages you, report and block them.`;
 
@@ -169,7 +171,7 @@ ${U('/en/blog/stablecoin-card-payment-flow', 'g_flow')}` },
 // X (@XerovanC) versions: X allows 280 characters (each link counts as 23), so each post gets its own short text.
 // X rejects identical posts, so the three safety reminders differ. No @handles: on X they would tag unrelated accounts.
 const XU = (path, c) => U(path, c).replace('utm_source=telegram&utm_medium=channel', 'utm_source=x&utm_medium=social');
-const XWL = (c) => wl(c).replace('utm_source=telegram&utm_medium=channel', 'utm_source=x&utm_medium=social');
+const XWL = (c) => siteWl(c).replace('utm_source=telegram&utm_medium=channel', 'utm_source=x&utm_medium=social');
 const X = {
   news_supply: `Stablecoin supply: ~$284.9B (DeFiLlama, Nov 16).
 USDT ~$175.3B + USDC ~$69.3B = about 86% of the market.
