@@ -4,8 +4,9 @@
 // Off until these env vars are set in Vercel:
 //   TG_WAITLIST_BOT_TOKEN       token of @Xerovan_ai from @BotFather
 //   TG_WAITLIST_WEBHOOK_SECRET  any random string; Telegram sends it back on every update
-//   UPSTASH_REDIS_REST_URL, UPSTASH_REDIS_REST_TOKEN   Upstash Redis (free plan at upstash.com, REST API tab)
-//   (KV_REST_API_URL / KV_REST_API_TOKEN from the Vercel Marketplace integration also work)
+//   Storage, one of:
+//     POSTGRES_URL                 Postgres, e.g. the Supabase store connected to this project (tables in schema "xerovan")
+//     UPSTASH_REDIS_REST_URL, UPSTASH_REDIS_REST_TOKEN   (or KV_REST_API_URL / KV_REST_API_TOKEN) Upstash Redis
 // Optional: CRON_SECRET (already used by the channel cron) protects the admin export and broadcast.
 //
 // One-time setup, run on the server so the token never leaves Vercel (safe to rerun):
@@ -93,8 +94,75 @@ function verifyInitData(initData, token, maxAgeSec = 86400) {
   try { return JSON.parse(p.get('user') || 'null'); } catch { return null; }
 }
 
-// ---------- storage (Upstash Redis REST) ----------
+// ---------- storage ----------
+// Postgres (Supabase, env POSTGRES_URL) or Upstash Redis REST. Both answer the same small set of Redis-style
+// commands, so the waitlist logic below doesn't care which one is connected.
+const PG_URL = () => process.env.POSTGRES_URL;
+let pgPool = null, pgReady = null;
+function pg() {
+  if (!pgPool) {
+    const { Pool } = require('pg');
+    const u = new URL(PG_URL());
+    u.searchParams.delete('sslmode'); u.searchParams.delete('supa');
+    pgPool = new Pool({ connectionString: u.toString(), ssl: { rejectUnauthorized: false }, max: 1, idleTimeoutMillis: 5000 });
+  }
+  if (!pgReady) {
+    pgReady = pgPool.query(`
+      CREATE SCHEMA IF NOT EXISTS xerovan;
+      CREATE TABLE IF NOT EXISTS xerovan.tg_kv (k text PRIMARY KEY, v text NOT NULL, expires timestamptz);
+      CREATE TABLE IF NOT EXISTS xerovan.tg_zset (name text NOT NULL, member text NOT NULL, score double precision NOT NULL, PRIMARY KEY (name, member));
+      CREATE INDEX IF NOT EXISTS tg_zset_order ON xerovan.tg_zset (name, score, member);
+      DO $$ BEGIN
+        IF EXISTS (SELECT 1 FROM pg_roles WHERE rolname = 'anon') THEN
+          REVOKE ALL ON SCHEMA xerovan FROM anon, authenticated;
+          REVOKE ALL ON ALL TABLES IN SCHEMA xerovan FROM anon, authenticated;
+        END IF;
+      END $$;
+    `).catch((e) => { pgReady = null; throw e; });
+  }
+  return pgReady.then(() => pgPool);
+}
+const LIVE = '(expires IS NULL OR expires > now())';
+async function pgCmd(cmd, ...a) {
+  const db = await pg();
+  const q = async (text, params) => (await db.query(text, params)).rows;
+  switch (cmd) {
+    case 'PING': await q('SELECT 1'); return 'PONG';
+    case 'GET': { const r = await q(`SELECT v FROM xerovan.tg_kv WHERE k = $1 AND ${LIVE}`, [a[0]]); return r[0] ? r[0].v : null; }
+    case 'SET': {
+      const [k, v, ...opts] = a;
+      const ex = opts.indexOf('EX') >= 0 ? Number(opts[opts.indexOf('EX') + 1]) : null;
+      const expires = ex ? new Date(Date.now() + ex * 1000) : null;
+      if (opts.includes('NX')) {
+        const r = await q(`INSERT INTO xerovan.tg_kv AS t (k, v, expires) VALUES ($1, $2, $3)
+          ON CONFLICT (k) DO UPDATE SET v = EXCLUDED.v, expires = EXCLUDED.expires WHERE t.expires IS NOT NULL AND t.expires <= now()
+          RETURNING k`, [k, v, expires]);
+        return r.length ? 'OK' : null;
+      }
+      await q(`INSERT INTO xerovan.tg_kv (k, v, expires) VALUES ($1, $2, $3) ON CONFLICT (k) DO UPDATE SET v = EXCLUDED.v, expires = EXCLUDED.expires`, [k, v, expires]);
+      return 'OK';
+    }
+    case 'DEL': return (await db.query('DELETE FROM xerovan.tg_kv WHERE k = $1', [a[0]])).rowCount;
+    case 'SCAN': { // SCAN cursor MATCH pattern COUNT n -> everything in one page
+      const pattern = a[a.indexOf('MATCH') + 1].replace(/[%_\\]/g, (c) => `\\${c}`).replace(/\*/g, '%');
+      const r = await q(`SELECT k FROM xerovan.tg_kv WHERE k LIKE $1 AND ${LIVE} ORDER BY k`, [pattern]);
+      return ['0', r.map((x) => x.k)];
+    }
+    case 'ZADD': await q(`INSERT INTO xerovan.tg_zset (name, score, member) VALUES ($1, $2, $3)
+      ON CONFLICT (name, member) DO UPDATE SET score = EXCLUDED.score`, [a[0], Number(a[1]), String(a[2])]); return 1;
+    case 'ZREM': return (await db.query('DELETE FROM xerovan.tg_zset WHERE name = $1 AND member = $2', [a[0], String(a[1])])).rowCount;
+    case 'ZCARD': return Number((await q('SELECT count(*) AS n FROM xerovan.tg_zset WHERE name = $1', [a[0]]))[0].n);
+    case 'ZRANK': {
+      const r = await q(`SELECT (SELECT count(*) FROM xerovan.tg_zset o WHERE o.name = z.name AND (o.score < z.score OR (o.score = z.score AND o.member < z.member))) AS rank
+        FROM xerovan.tg_zset z WHERE z.name = $1 AND z.member = $2`, [a[0], String(a[1])]);
+      return r[0] ? Number(r[0].rank) : null;
+    }
+    case 'ZRANGE': return (await q('SELECT member FROM xerovan.tg_zset WHERE name = $1 ORDER BY score, member', [a[0]])).map((x) => x.member);
+    default: throw new Error(`pg: unsupported ${cmd}`);
+  }
+}
 async function kv(...cmd) {
+  if (PG_URL()) return pgCmd(...cmd);
   const r = await fetch(KV_URL(), {
     method: 'POST', headers: { authorization: `Bearer ${KV_TOKEN()}`, 'content-type': 'application/json' },
     body: JSON.stringify(cmd), signal: AbortSignal.timeout(8000),
@@ -103,6 +171,7 @@ async function kv(...cmd) {
   if (j.error) throw new Error(`kv ${cmd[0]}: ${j.error}`);
   return j.result;
 }
+const storeReady = () => !!(PG_URL() || (KV_URL() && KV_TOKEN()));
 const getUser = async (id) => { const v = await kv('GET', `u:${id}`); return v ? JSON.parse(v) : null; };
 const putUser = (u) => kv('SET', `u:${u.id}`, JSON.stringify(u));
 const points = (u) => PTS_REFERRAL * Math.min(u.referrals || 0, MAX_REFERRALS) + (u.channel ? PTS_CHANNEL : 0);
@@ -297,7 +366,7 @@ const readBody = (req) => (typeof req.body === 'string' ? JSON.parse(req.body ||
 
 module.exports = async (req, res) => {
   const e = process.env;
-  if (!e.TG_WAITLIST_BOT_TOKEN || !e.TG_WAITLIST_WEBHOOK_SECRET || !KV_URL() || !KV_TOKEN()) return bad(res, 503, 'not configured');
+  if (!e.TG_WAITLIST_BOT_TOKEN || !e.TG_WAITLIST_WEBHOOK_SECRET || !storeReady()) return bad(res, 503, 'not configured');
   const q = new URL(req.url, SITE).searchParams;
   res.setHeader('cache-control', 'no-store');
   try {
