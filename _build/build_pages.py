@@ -358,6 +358,26 @@ TG_CHANNEL_CTA = {
     "ar": "تُعلن مواعيد النسخة التجريبية أولًا في قناتنا على تيليجرام \u200e@xerovan (بالإنجليزية)",
 }
 
+# Floating support chat button: opens the support menu in @Xerovan_ai (api/_support.js). Not on /kr/ yet
+# (Korean marketing waits for the legal review). Same markup as chatButton() in api/blog.js.
+CHAT_LABEL = {"en": "Chat with us", "ja": "チャットで問い合わせ", "es": "Chatea con nosotros", "pt": "Fale com a gente", "ar": "تحدّث معنا"}
+CHAT_ICON = ('<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none"><path fill="currentColor" '
+             'd="M21.9 4.3 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.3-8.4c.4-.4-.1-.6-.6-.2L6.1 13.5l-4.9-1.5c-1.1-.3-1.1-1.1.2-1.6L20.6 3c.9-.3 1.7.2 1.3 1.3z"/></svg>')
+CHAT_CSS = ('.xv-chat{position:fixed;bottom:20px;right:20px;z-index:150;display:inline-flex;align-items:center;gap:8px;padding:12px 18px;'
+            'border-radius:999px;background:#8fe3ee;color:#0a0b0d;font:600 14px/1 Inter,system-ui,sans-serif;text-decoration:none;'
+            'box-shadow:0 6px 24px rgba(0,0,0,.4)}.xv-chat:hover{filter:brightness(1.07)}.xv-chat-rtl{right:auto;left:20px}'
+            '@media (max-width:560px){.xv-chat{padding:14px;bottom:16px;right:16px}.xv-chat-rtl{right:auto;left:16px}.xv-chat span{display:none}}'
+            '@media print{.xv-chat{display:none}}')
+
+def chat_button(html, lang, page="home"):
+    label = CHAT_LABEL.get(lang)
+    if not label:
+        return html
+    rtl = " xv-chat-rtl" if lang == "ar" else ""
+    btn = (f'<style>{CHAT_CSS}</style>\n<a class="xv-chat{rtl}" href="https://t.me/Xerovan_ai?start=help_{lang}_{page}" '
+           f'target="_blank" rel="noopener" aria-label="{label} (Telegram)">{CHAT_ICON}<span>{label}</span></a>\n')
+    return must(html, "</body>", btn + "</body>", 1)
+
 def telegram_cta(html, lang):
     text = TG_CTA.get(lang)
     if not text:
@@ -858,13 +878,13 @@ def build_generic(code):
     h = must_re(h, r"const useCaseData = \[.*?\n  \];", "const useCaseData = " + js(ucs) + ";")
     h = must_re(h, r"const summaryTable = \[.*?\n  \];", "const summaryTable = " + js(L.SUMMARY) + ";")
     (ROOT / code).mkdir(exist_ok=True)
-    (ROOT / code / "index.html").write_text(telegram_cta(finalize(h, code), code), encoding="utf-8")
+    (ROOT / code / "index.html").write_text(chat_button(telegram_cta(finalize(h, code), code), code), encoding="utf-8")
     print(code, "ok", len(h))
 
 for code in ("ja", "es", "ar", "pt"):
     if (ROOT / "_build" / "i18n" / f"{code}.py").exists():
         build_generic(code)
 
-(ROOT / "en" / "index.html").write_text(telegram_cta(en, "en"), encoding="utf-8")
+(ROOT / "en" / "index.html").write_text(chat_button(telegram_cta(en, "en"), "en"), encoding="utf-8")
 (ROOT / "kr" / "index.html").write_text(finalize(kr, "kr"), encoding="utf-8")
 print("ok", len(en), len(kr))
