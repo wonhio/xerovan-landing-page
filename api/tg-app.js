@@ -7,7 +7,7 @@
 //   Storage, one of:
 //     POSTGRES_URL                 Postgres, e.g. the Supabase store connected to this project (tables in schema "xerovan")
 //     UPSTASH_REDIS_REST_URL, UPSTASH_REDIS_REST_TOKEN   (or KV_REST_API_URL / KV_REST_API_TOKEN) Upstash Redis
-// Optional: CRON_SECRET (already used by the channel cron) protects the admin export and broadcast.
+// Optional: TG_WAITLIST_ADMIN_SECRET (or CRON_SECRET, already used by the channel cron) protects the admin routes.
 //
 // One-time setup, run on the server so the token never leaves Vercel (safe to rerun):
 //   curl -H "x-setup-key: $TG_WAITLIST_WEBHOOK_SECRET" "https://www.xerovan.com/api/tg-app?setup=1"
@@ -19,6 +19,7 @@
 //   POST ?action=channel   (X-Tg-Init-Data)        check that I joined @xerovan, +3 places
 //   GET  ?admin=export     (Bearer CRON_SECRET)    CSV of everyone
 //   POST ?admin=broadcast  (Bearer CRON_SECRET)    {text, limit, dry} message the top of the line, once each
+//   POST ?admin=delete     (Bearer CRON_SECRET)    {id} remove one signup (tests, deletion requests)
 
 const crypto = require('crypto');
 
@@ -345,6 +346,18 @@ async function broadcast(b) {
   return { ok: true, sent, failed };
 }
 
+async function removeUser(id) {
+  const u = await getUser(id);
+  if (!u) return { ok: false, error: 'not found' };
+  if (u.referredBy) {
+    const r = await getUser(u.referredBy);
+    if (r && r.referrals > 0) { r.referrals -= 1; await putUser(r); await requeue(r); }
+  }
+  await kv('ZREM', 'queue', String(id));
+  for (const k of [`u:${id}`, `email:${u.email}`, `ref:${u.code}`, `pending:${id}`, `src:${id}`]) await kv('DEL', k);
+  return { ok: true, removed: id };
+}
+
 async function setup() {
   const out = {};
   const me = await tg('getMe');
@@ -375,9 +388,11 @@ module.exports = async (req, res) => {
       return res.status(200).json(await setup());
     }
     if (q.get('admin')) {
-      if (!e.CRON_SECRET || req.headers.authorization !== `Bearer ${e.CRON_SECRET}`) return bad(res, 401, 'unauthorized');
+      const keys = [e.TG_WAITLIST_ADMIN_SECRET, e.CRON_SECRET].filter(Boolean);
+      if (!keys.some((k) => req.headers.authorization === `Bearer ${k}`)) return bad(res, 401, 'unauthorized');
       if (q.get('admin') === 'export') { res.setHeader('content-type', 'text/csv; charset=utf-8'); return res.status(200).send(await exportCsv()); }
       if (q.get('admin') === 'broadcast' && req.method === 'POST') return res.status(200).json(await broadcast(readBody(req)));
+      if (q.get('admin') === 'delete' && req.method === 'POST') return res.status(200).json(await removeUser(String(readBody(req).id || '')));
       return bad(res, 400, 'unknown admin action');
     }
     const action = q.get('action');
