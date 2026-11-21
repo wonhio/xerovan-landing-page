@@ -341,6 +341,29 @@ def seo_home(html, lang):
     html = must(html, '<div class="footer-col"><h5>SNS</h5>', col + '<div class="footer-col"><h5>SNS</h5>', 1)
     return html
 
+# Telegram waitlist bot link under the waitlist form. Not on /kr/: Korean marketing waits for the legal review.
+TG_CTA = {
+    "en": "Prefer Telegram? Join the waitlist in @Xerovan_ai and track your place in line",
+    "ja": "Telegramをお使いですか？ @Xerovan_ai で順番待ちリストに登録し、自分の順番を確認できます（英語）",
+    "es": "¿Prefieres Telegram? Únete a la lista de espera en @Xerovan_ai y sigue tu lugar en la fila (en inglés)",
+    "pt": "Prefere o Telegram? Entre na lista de espera pelo @Xerovan_ai e acompanhe sua posição na fila (em inglês)",
+    "ar": "تفضّل تيليجرام؟ انضم إلى قائمة الانتظار عبر ‎@Xerovan_ai وتابع ترتيبك (بالإنجليزية)",
+}
+
+def telegram_cta(html, lang):
+    text = TG_CTA.get(lang)
+    if not text:
+        return html
+    arrow = "←" if lang == "ar" else "→"
+    link = (f'\n    <a class="tg-cta" href="https://t.me/Xerovan_ai?start=site_{lang}" target="_blank" rel="noopener" '
+            f'style="display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-size:13px;line-height:1.5;color:var(--ice);text-decoration:none;">'
+            f'<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" style="flex:none"><path fill="currentColor" d="M21.9 4.3 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.3-8.4c.4-.4-.1-.6-.6-.2L6.1 13.5l-4.9-1.5c-1.1-.3-1.1-1.1.2-1.6L20.6 3c.9-.3 1.7.2 1.3 1.3z"/></svg>'
+            f'<span>{text} {arrow}</span></a>')
+    out, n = re.subn(r'(<section class="cta-band" id="waitlist">.*?<div class="form-success" id="footerSuccess">.*?</div>)',
+                     lambda m: m.group(1) + link, html, count=1, flags=re.S)
+    assert n == 1, "waitlist section not found"
+    return out
+
 def finalize(html, lang):
     html = restructure(html, lang)
     # hide footer links that have no destination yet (Company column, Fees)
@@ -824,13 +847,13 @@ def build_generic(code):
     h = must_re(h, r"const useCaseData = \[.*?\n  \];", "const useCaseData = " + js(ucs) + ";")
     h = must_re(h, r"const summaryTable = \[.*?\n  \];", "const summaryTable = " + js(L.SUMMARY) + ";")
     (ROOT / code).mkdir(exist_ok=True)
-    (ROOT / code / "index.html").write_text(finalize(h, code), encoding="utf-8")
+    (ROOT / code / "index.html").write_text(telegram_cta(finalize(h, code), code), encoding="utf-8")
     print(code, "ok", len(h))
 
 for code in ("ja", "es", "ar", "pt"):
     if (ROOT / "_build" / "i18n" / f"{code}.py").exists():
         build_generic(code)
 
-(ROOT / "en" / "index.html").write_text(en, encoding="utf-8")
+(ROOT / "en" / "index.html").write_text(telegram_cta(en, "en"), encoding="utf-8")
 (ROOT / "kr" / "index.html").write_text(finalize(kr, "kr"), encoding="utf-8")
 print("ok", len(en), len(kr))
