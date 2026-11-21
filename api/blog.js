@@ -429,6 +429,25 @@ const fmtDate = (iso, lang) => {
 };
 
 // ---------------------------------------------------------------- page shell
+// Floating support chat button -> support menu in @Xerovan_ai (api/_support.js). Same markup as chat_button() in
+// _build/build_pages.py. Not on /kr/ yet (Korean marketing waits for the legal review).
+const CHAT_LABEL = { en: 'Chat with us', ja: 'チャットで問い合わせ', es: 'Chatea con nosotros', pt: 'Fale com a gente', ar: 'تحدّث معنا' };
+const CHAT_CSS = '.xv-chat{position:fixed;bottom:20px;right:20px;z-index:150;display:inline-flex;align-items:center;gap:8px;padding:12px 18px;'
+  + 'border-radius:999px;background:#8fe3ee;color:#0a0b0d;font:600 14px/1 Inter,system-ui,sans-serif;text-decoration:none;'
+  + 'box-shadow:0 6px 24px rgba(0,0,0,.4)}.xv-chat:hover{filter:brightness(1.07)}.xv-chat-rtl{right:auto;left:20px}'
+  + '@media (max-width:560px){.xv-chat{padding:14px;bottom:16px;right:16px}.xv-chat-rtl{right:auto;left:16px}.xv-chat span{display:none}}'
+  + '@media print{.xv-chat{display:none}}';
+function chatButton(lang, canonical) {
+  const label = CHAT_LABEL[lang];
+  if (!label) return '';
+  const seg = (String(canonical || '').replace(/^https?:\/\/[^/]+/, '').split('/')[2] || 'blog').toLowerCase();
+  const page = ['blog', 'solutions', 'about', 'facts', 'legal'].includes(seg) ? seg : 'blog';
+  return `<style>${CHAT_CSS}</style>\n<a class="xv-chat${lang === 'ar' ? ' xv-chat-rtl' : ''}" href="https://t.me/Xerovan_ai?start=help_${lang}_${page}" `
+    + `target="_blank" rel="noopener" aria-label="${label} (Telegram)"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none">`
+    + '<path fill="currentColor" d="M21.9 4.3 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.3-8.4c.4-.4-.1-.6-.6-.2L6.1 13.5l-4.9-1.5c-1.1-.3-1.1-1.1.2-1.6L20.6 3c.9-.3 1.7.2 1.3 1.3z"/></svg>'
+    + `<span>${label}</span></a>\n`;
+}
+
 function layout({ lang, title, description, canonical, alternates, ogImage, ogType = 'website', body, jsonLd, noindex = false, hreflang = true }) {
   const L = LANGS[lang], t = T[lang];
   const alts = !hreflang ? '' : (alternates || Object.keys(LANGS).map((k) => [k, `${SITE}/${k}/blog`]))
@@ -709,7 +728,7 @@ ${body}
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
   })();
 </script>
-</body>
+${chatButton(lang, canonical)}</body>
 </html>`;
 }
 

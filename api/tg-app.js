@@ -32,7 +32,6 @@ const SITE = 'https://www.xerovan.com';
 const APP_URL = `${SITE}/tg/`;
 const CHANNEL = '@xerovan';
 const CHANNEL_URL = 'https://t.me/xerovan';
-const SUPPORT_URL = 'https://t.me/xerovan_card';
 // Existing waitlist pipeline (Google Sheet via Apps Script), same as the site form and api/telegram.js.
 const SHEET = 'https://script.google.com/macros/s/AKfycbxKNLj0A3U9I-49Yh6bO_7oZltUSemfqj8RjVvyMoUEJLVLKiVxt2YS68BLVX0I4TY1/exec';
 
@@ -61,7 +60,6 @@ const T = {
   welcome: 'Welcome to XEROVAN 👋\n\nXEROVAN is a Visa card that pays straight from your own crypto wallet, with no top-up.\n\nThe private beta opens soon. Join the waitlist in under a minute, and move up the line by inviting friends.\n\nSafety: XEROVAN staff never message you first and never ask for a seed phrase, private key or password.',
   open: 'Open XEROVAN',
   channel: 'Official channel',
-  help: 'Questions? See how XEROVAN works, or contact support.\n\nOfficial accounts: channel @xerovan, support @xerovan_card, and this bot.',
   notJoined: "You're not on the waitlist yet. Tap below to join.",
   seed: 'Please never share a seed phrase, private key or password with anyone, including us. XEROVAN will never ask for them. If you sent one by mistake, move your funds to a new wallet.',
   shareText: 'I just joined the XEROVAN waitlist, a Visa card that pays straight from your own crypto wallet. Join with my link:',
@@ -210,14 +208,26 @@ async function statusText(u) {
   return `You're #${v.position} of ${v.total} on the waitlist.\n${v.referrals} friend${v.referrals === 1 ? '' : 's'} joined with your link.\n\nYour invite link:\n${v.link}`;
 }
 
+// Support chat (site chat button -> this bot -> team chat and back). See api/_support.js.
+let supportApi = null;
+const support = () => supportApi || (supportApi = require('./_support.js').create({ tg, kv, getUser, place, botUser, appButton }));
+
 async function handleUpdate(u) {
   const m = u.message;
-  if (!m || !m.chat || m.chat.type !== 'private' || !m.from) return;
+  if (!m || !m.chat || !m.from) return;
+  if (await support().relay(m)) return; // team's reply to a forwarded message
+  if (m.chat.type !== 'private') return;
   const text = (m.text || '').trim(), chat = m.chat.id;
   if (looksLikeSeed(text)) return tg('sendMessage', { chat_id: chat, text: T.seed });
 
   if (text.startsWith('/start')) {
     const arg = text.split(/\s+/)[1] || '';
+    const sup = require('./_support.js').parseStart(arg);
+    if (sup && sup.kind === 'ask') return support().ask(chat, sup.lang, sup.topic);
+    if (sup && sup.kind === 'help') {
+      if (!(await getUser(m.from.id))) await kv('SET', `src:${m.from.id}`, `site_${sup.lang}_${sup.page}`, 'EX', 2592000);
+      return support().menu(chat, sup.lang);
+    }
     const ref = (arg.match(/^ref_([A-Z0-9]{6})$/) || [])[1];
     const existing = await getUser(m.from.id);
     if (!existing) {
@@ -231,11 +241,12 @@ async function handleUpdate(u) {
     const existing = await getUser(m.from.id);
     return tg('sendMessage', { chat_id: chat, text: existing ? await statusText(existing) : T.notJoined, reply_markup: { inline_keyboard: [[appButton()]] } });
   }
-  if (text.startsWith('/help')) {
-    return tg('sendMessage', { chat_id: chat, text: T.help, reply_markup: { inline_keyboard: [
-      [{ text: 'How it works', url: `${SITE}/en/facts` }, { text: 'Support', url: SUPPORT_URL }], [appButton()]] } });
+  if (text.startsWith('/help') || text.startsWith('/support')) {
+    return support().menu(chat, require('./_support.js').langOf(m.from));
   }
-  return tg('sendMessage', { chat_id: chat, text: T.welcome, reply_markup: startKeyboard() });
+  if (text.startsWith('/')) return tg('sendMessage', { chat_id: chat, text: T.welcome, reply_markup: startKeyboard() });
+  // Anything else is a message for the team.
+  return support().forward(m);
 }
 
 // ---------- mini app API ----------
@@ -445,7 +456,7 @@ async function setup() {
     allowed_updates: ['message'], drop_pending_updates: true })).ok;
   out.commands = (await tg('setMyCommands', { commands: [
     { command: 'start', description: 'Join the waitlist' }, { command: 'status', description: 'My place in line' },
-    { command: 'invite', description: 'Get my invite link' }, { command: 'help', description: 'FAQ & support' }] })).ok;
+    { command: 'invite', description: 'Get my invite link' }, { command: 'help', description: 'FAQ & support' }, { command: 'support', description: 'Message the team' }] })).ok;
   out.menu = (await tg('setChatMenuButton', { menu_button: { type: 'web_app', text: 'Open', web_app: { url: APP_URL } } })).ok;
   const cm = me.ok ? await tg('getChatMember', { chat_id: CHANNEL, user_id: me.result.id }) : {};
   out.channel_admin = cm.ok ? cm.result.status : (cm.description || 'unknown');
