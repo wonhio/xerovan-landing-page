@@ -19,6 +19,7 @@
 //   POST ?action=channel   (X-Tg-Init-Data)        check that I joined @xerovan, +3 places
 //   GET  ?admin=export     (Bearer CRON_SECRET)    CSV of everyone
 //   POST ?admin=broadcast  (Bearer CRON_SECRET)    {text, limit, dry} message the top of the line, once each
+//   POST ?admin=announce   (Bearer admin secret)     {x?, discord?, dry?} post an announcement to X and Discord
 //   POST ?admin=delete     (Bearer CRON_SECRET)    {id} remove one signup (tests, deletion requests)
 
 const crypto = require('crypto');
@@ -358,6 +359,29 @@ async function removeUser(id) {
   return { ok: true, removed: id };
 }
 
+// One-off announcement to X (@XerovanC) and Discord, using the credentials api/telegram.js already uses.
+async function announce(b) {
+  const out = {};
+  if (b.x) {
+    const { xRequest } = require('./telegram.js')._test;
+    const ready = ['X_API_KEY', 'X_API_SECRET', 'X_ACCESS_TOKEN', 'X_ACCESS_TOKEN_SECRET'].every((k) => process.env[k]);
+    if (!ready) out.x = 'not configured';
+    else if (b.dry) out.x = 'ready';
+    else { const r = await xRequest('POST', 'https://api.x.com/2/tweets', { text: String(b.x) }); out.x = r.ok ? { id: r.data && r.data.id } : r.error; }
+  }
+  if (b.discord) {
+    const url = process.env.DISCORD_WEBHOOK_URL;
+    if (!url) out.discord = 'not configured';
+    else if (b.dry) out.discord = 'ready';
+    else {
+      const r = await fetch(`${url}?wait=true`, { method: 'POST', headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ content: String(b.discord).slice(0, 2000), allowed_mentions: { parse: [] } }) });
+      out.discord = r.ok ? 'ok' : `HTTP ${r.status}`;
+    }
+  }
+  return { ok: true, ...out };
+}
+
 async function setup() {
   const out = {};
   const me = await tg('getMe');
@@ -392,6 +416,7 @@ module.exports = async (req, res) => {
       if (!keys.some((k) => req.headers.authorization === `Bearer ${k}`)) return bad(res, 401, 'unauthorized');
       if (q.get('admin') === 'export') { res.setHeader('content-type', 'text/csv; charset=utf-8'); return res.status(200).send(await exportCsv()); }
       if (q.get('admin') === 'broadcast' && req.method === 'POST') return res.status(200).json(await broadcast(readBody(req)));
+      if (q.get('admin') === 'announce' && req.method === 'POST') return res.status(200).json(await announce(readBody(req)));
       if (q.get('admin') === 'delete' && req.method === 'POST') return res.status(200).json(await removeUser(String(readBody(req).id || '')));
       return bad(res, 400, 'unknown admin action');
     }
