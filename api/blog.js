@@ -1241,8 +1241,9 @@ module.exports = async (req, res) => {
     }
     const tmap = cat ? await topicIds().catch(() => ({})) : {};
     let all = cat ? await langPosts(lang, cat) : [];
-    // Topic tabs only for topics that have posts in this language (an empty tab leads to a noindex page).
-    const present = TOPICS.filter((k) => tmap[k] && all.some((p) => (p.categories || []).includes(tmap[k])));
+    // Always show every topic tab that exists in WordPress (news, manual, guide), even before it has posts.
+    // An empty topic page still renders "No articles yet" with noindex, so SEO is unaffected.
+    const present = TOPICS.filter((k) => tmap[k]);
     if (topic) all = tmap[topic] ? all.filter((p) => (p.categories || []).includes(tmap[topic])) : [];
     const pages = Math.ceil(all.length / PER_PAGE);
     const data = all.slice((page - 1) * PER_PAGE, page * PER_PAGE);
