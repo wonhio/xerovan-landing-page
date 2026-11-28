@@ -65,7 +65,7 @@ A: Yes. You can swap supported digital assets directly in Xerovan. Available ass
 A: Blockchain transactions are generally irreversible once confirmed. If funds are sent to an incorrect address or an unsupported network, recovery may not be possible. Always check the wallet address, asset, and network before you confirm.
 
 **Q: Do I need to top up my card first?**
-A: Simply transfer supported crypto assets into your Xerovan wallet and top up your card in just a few taps. Depending on the selected asset and network, funds are converted and made available for card spending.
+A: No. By default each payment is funded in real time from your connected wallet (Real-Time Funding), so there is no card balance to keep topped up. If you prefer a fixed balance, you can also transfer supported crypto assets into your Xerovan wallet and top up the card in a few taps. Depending on the selected asset and network, funds are converted at the time of payment.
 
 **Q: Does Xerovan offer a payment card?**
 A: Yes, for eligible users. Card availability, supported countries, spending limits, fees, and verification requirements may vary by issuing partner and by your location.
@@ -363,7 +363,7 @@ A: 네. 지원되는 디지털 자산을 Xerovan 안에서 바로 스왑할 수 
 A: 블록체인 거래는 확정되면 대부분 되돌릴 수 없습니다. 잘못된 주소나 지원하지 않는 네트워크로 보낸 자금은 복구하지 못할 수 있습니다. 확인 전에 지갑 주소, 자산, 네트워크를 꼭 확인하세요.
 
 **Q: Visa 카드는 어떻게 충전하나요?**
-A: 지원되는 암호화폐를 Xerovan 지갑으로 전송한 뒤 몇 번의 탭으로 카드를 충전하면 됩니다. 선택한 자산과 네트워크에 따라 자금이 변환되어 카드 결제에 사용할 수 있게 됩니다.
+A: 기본적으로는 충전하지 않아도 됩니다. 결제할 때마다 연결된 지갑에서 실시간으로 자금을 가져오는 RTF(Real-Time Funding) 방식이라 카드 잔액을 따로 유지할 필요가 없습니다. 정해진 잔액으로 쓰고 싶다면, 지원되는 암호화폐를 Xerovan 지갑으로 전송한 뒤 몇 번의 탭으로 카드를 충전할 수도 있습니다. 선택한 자산과 네트워크에 따라 결제 시점에 자금이 변환됩니다.
 
 **Q: Xerovan은 결제 카드를 제공하나요?**
 A: 네, 자격을 갖춘 이용자에게 제공합니다. 카드 이용 가능 여부, 지원 국가, 사용 한도, 수수료, 인증 요건은 발급 파트너와 거주 지역에 따라 다를 수 있습니다.
